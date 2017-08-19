@@ -35,6 +35,9 @@ import com.xkhouse.lib.utils.NetUtil;
 import com.xkhouse.lib.utils.StringUtil;
 
 
+/**
+ * 首页
+ */
 public class MainActivity extends FragmentActivity implements OnClickListener{
 
 
