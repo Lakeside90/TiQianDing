@@ -1,0 +1,191 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_bg"
+    android:orientation="vertical" >
+
+    <!-- title  bar -->
+
+    <include layout="@layout/common_title_bar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/common_diver_line" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="20dp" >
+
+                    <TextView
+                        android:id="@+id/wechat_txt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawablePadding="10dp"
+                        android:drawableTop="@drawable/share_wx"
+                        android:gravity="center"
+                        android:text="微信"
+                        android:textColor="@color/common_gray_txt"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/qq_txt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawablePadding="10dp"
+                        android:drawableTop="@drawable/share_qq"
+                        android:gravity="center"
+                        android:text="QQ好友"
+                        android:textColor="@color/common_gray_txt"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/wechat_circle_txt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawablePadding="10dp"
+                        android:drawableTop="@drawable/share_py"
+                        android:gravity="center"
+                        android:text="朋友圈"
+                        android:textColor="@color/common_gray_txt"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/weibo_txt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawablePadding="10dp"
+                        android:drawableTop="@drawable/share_sina"
+                        android:gravity="center"
+                        android:text="新浪微博"
+                        android:textColor="@color/common_gray_txt"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/common_diver_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="20dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="15dp" >
+
+                    <TextView
+                        android:id="@+id/qqzone_txt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawablePadding="10dp"
+                        android:drawableTop="@drawable/share_qzone"
+                        android:gravity="center"
+                        android:text="QQ空间"
+                        android:textColor="@color/common_gray_txt"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/copy_txt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawablePadding="10dp"
+                        android:drawableTop="@drawable/share_link"
+                        android:gravity="center"
+                        android:text="复制链接"
+                        android:textColor="@color/common_gray_txt"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tencet_txt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawablePadding="10dp"
+                        android:drawableTop="@drawable/share_wb"
+                        android:gravity="center"
+                        android:text="腾讯微博"
+                        android:textColor="@color/common_gray_txt"
+                        android:textSize="14sp"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawablePadding="10dp"
+                        android:drawableTop="@drawable/share_sina"
+                        android:gravity="center"
+                        android:text="新浪微博"
+                        android:textColor="@color/common_gray_txt"
+                        android:textSize="14sp"
+                        android:visibility="invisible" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/common_diver_line" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="10dp"
+                android:drawableTop="@drawable/share_code"
+                android:gravity="center"
+                android:text="直接扫描二维码邀请好友安装"
+                android:textColor="@color/common_gray_txt"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/invitation_code_txt"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="获取邀请码"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:background="@drawable/blue_corner_btn_selector" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

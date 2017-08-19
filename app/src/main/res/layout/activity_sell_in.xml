@@ -1,0 +1,420 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_bg"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <include
+        android:id="@+id/title_view"
+        layout="@layout/common_title_bar" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/white"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="期望区域："
+                android:textSize="15sp"
+                android:textColor="@color/common_black_txt"/>
+
+            <TextView
+                android:id="@+id/expect_street_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请选择期望区域"
+                android:gravity="center_vertical"
+                android:textSize="14sp"
+                android:textColor="@color/common_gray_txt"
+                android:drawableRight="@drawable/icon_arrow_right_blue"/>
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="类型："
+                    android:textColor="@color/common_black_txt"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/sell_type_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableRight="@drawable/icon_arrow_right_blue"
+                    android:gravity="center_vertical"
+                    android:hint="请选择物业类型"
+                    android:textColor="@color/common_gray_txt"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="户型："
+                    android:textSize="15sp"
+                    android:textColor="@color/common_black_txt"/>
+
+                <TextView
+                    android:id="@+id/house_type_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="请选择户型"
+                    android:gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:textColor="@color/common_gray_txt"
+                    android:drawableRight="@drawable/icon_arrow_right_blue"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="面积："
+                    android:textSize="15sp"
+                    android:textColor="@color/common_black_txt"/>
+
+                <EditText
+                    android:id="@+id/space_min_txt"
+                    android:layout_width="74dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:background="@drawable/gray_border_btn_bg"
+                    android:textSize="15sp"
+                    android:textColor="@color/common_gray_txt"
+                    android:inputType="number"/>
+
+                <TextView
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:text="至"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/common_black_txt"/>
+
+                <EditText
+                    android:id="@+id/space_max_txt"
+                    android:layout_width="74dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:background="@drawable/gray_border_btn_bg"
+                    android:textSize="15sp"
+                    android:textColor="@color/common_gray_txt"
+                    android:inputType="number"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="平方米"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/common_black_txt"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="售价："
+                    android:textSize="15sp"
+                    android:textColor="@color/common_black_txt"/>
+
+                <EditText
+                    android:id="@+id/price_min_txt"
+                    android:layout_width="74dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:background="@drawable/gray_border_btn_bg"
+                    android:textSize="15sp"
+                    android:textColor="@color/common_gray_txt"
+                    android:inputType="number"/>
+
+                <TextView
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:text="至"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/common_black_txt"/>
+
+                <EditText
+                    android:id="@+id/price_max_txt"
+                    android:layout_width="74dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:background="@drawable/gray_border_btn_bg"
+                    android:textSize="15sp"
+                    android:textColor="@color/common_gray_txt"
+                    android:inputType="number"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="万元"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/common_black_txt"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="楼层："
+                    android:textSize="15sp"
+                    android:textColor="@color/common_black_txt"/>
+
+                <EditText
+                    android:id="@+id/floor_min_txt"
+                    android:layout_width="74dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:background="@drawable/gray_border_btn_bg"
+                    android:textSize="15sp"
+                    android:textColor="@color/common_gray_txt"
+                    android:inputType="number"/>
+
+                <TextView
+                    android:layout_width="34dp"
+                    android:layout_height="wrap_content"
+                    android:text="至"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/common_black_txt"/>
+
+                <EditText
+                    android:id="@+id/floor_max_txt"
+                    android:layout_width="74dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:background="@drawable/gray_border_btn_bg"
+                    android:textSize="15sp"
+                    android:textColor="@color/common_gray_txt"
+                    android:inputType="number"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="层"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:textColor="@color/common_black_txt"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/common_diver_line"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/common_diver_line"
+                android:layout_marginTop="15dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="房源标题："
+                    android:textSize="15sp"
+                    android:textColor="@color/common_black_txt"/>
+
+                <EditText
+                    android:id="@+id/sellin_title_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:hint="8-28字之间"
+                    android:gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:textColor="@color/common_gray_txt"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:gravity="top"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="描述："
+                    android:textSize="15sp"
+                    android:textColor="@color/common_black_txt"/>
+
+                <EditText
+                    android:id="@+id/sellin_remark_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:hint="购房需求等，至少10字"
+                    android:gravity="left|top"
+                    android:textSize="14sp"
+                    android:textColor="@color/common_gray_txt"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/common_diver_line"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/common_diver_line"
+                android:layout_marginTop="15dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="联系人："
+                    android:textSize="15sp"
+                    android:textColor="@color/common_black_txt"/>
+
+                <EditText
+                    android:id="@+id/sellin_name_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:hint="请输入您的名称"
+                    android:gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:textColor="@color/common_gray_txt"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="手机号："
+                    android:textSize="15sp"
+                    android:textColor="@color/common_black_txt"/>
+
+                <EditText
+                    android:id="@+id/sellin_phone_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:hint="请输入您的手机号"
+                    android:gravity="center_vertical"
+                    android:inputType="phone"
+                    android:textSize="14sp"
+                    android:textColor="@color/common_gray_txt"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/common_diver_line"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/submit_txt"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/blue_corner_btn_selector"
+        android:gravity="center"
+        android:text="立即发布"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+
+</LinearLayout>

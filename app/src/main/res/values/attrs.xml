@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+    
+
+    <declare-styleable name="XListView">
+        <attr name="is_header" format="boolean" />
+        <attr name="is_footer" format="boolean" />
+    </declare-styleable>
+    
+    
+    <declare-styleable name="CropImageView">
+        <attr name="guidelines">
+            <enum name="on" value="2" />
+            <enum name="onTouch" value="1" />
+            <enum name="off" value="0" />
+        </attr>
+        <attr name="fixAspectRatio" format="boolean" />
+        <attr name="aspectRatioX" format="integer" />
+        <attr name="aspectRatioY" format="integer" />
+        <attr name="imageResource" format="reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="RotateLoading">
+        <attr name="loading_width" format="dimension"/>
+        <attr name="loading_color" format="color"/>
+        <attr name="shadow_position" format="integer"/>
+        <attr name="loading_speed" format="integer"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="FancyCoverFlow">
+        <attr name="unselectedAlpha" format="float"/>
+        <attr name="unselectedSaturation" format="float"/>
+        <attr name="unselectedScale" format="float"/>
+        <attr name="maxRotation" format="integer"/>
+        <attr name="scaleDownGravity" format="float"/>
+        <attr name="actionDistance" format="integer">
+            <enum name="auto" value="2147483647" />
+        </attr>
+    </declare-styleable>
+
+
+
+</resources>

@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_title_height"
+        android:background="@color/common_blue" >
+
+        <ImageView
+            android:id="@+id/iv_head_left"
+            android:layout_width="@dimen/activity_title_height"
+            android:layout_height="@dimen/activity_title_height"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/nav_back" />
+
+        <TextView
+            android:id="@+id/tv_head_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxWidth="150dp"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        
+        <ImageView
+            android:id="@+id/iv_head_share"
+            android:layout_width="@dimen/activity_title_height"
+            android:layout_height="@dimen/activity_title_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/nav_share" />
+        
+         <ImageView
+            android:id="@+id/iv_head_favorite"
+            android:layout_width="@dimen/activity_title_height"
+            android:layout_height="@dimen/activity_title_height"
+            android:layout_toLeftOf="@id/iv_head_share"
+            android:layout_centerVertical="true"
+            android:src="@drawable/nav_favorite" />
+        
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/pb"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="3dip"
+        android:indeterminateOnly="false"
+        android:max="100"
+        android:progressDrawable="@drawable/progress_bar_states" >
+    </ProgressBar>
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/error_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/web_error"
+            android:drawableTop="@drawable/net_error"
+            android:drawablePadding="20dp"
+            android:textColor="@color/c_666666"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+</LinearLayout>

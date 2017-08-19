@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_bg"
+    android:orientation="vertical" >
+
+    <!-- title  bar -->
+
+    <include layout="@layout/common_title_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:scrollbars="none" >
+
+        <TextView
+            android:id="@+id/content_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_black_txt"
+            android:textSize="14sp"
+            android:gravity="top|left"
+            android:lineSpacingExtra="2dp"/>
+    </ScrollView>
+
+</LinearLayout>

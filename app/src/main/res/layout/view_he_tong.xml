@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/window_bg"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="70dp"
+        android:paddingTop="30dp">
+
+        <ImageView
+            android:id="@+id/fanben_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/hetong_btn_fanben"
+            />
+
+        <ImageView
+            android:id="@+id/buchong_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/hetong_btn_buchong"
+            android:layout_marginTop="25dp"
+            />
+
+        <ImageView
+            android:id="@+id/xianjing_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/hetong_btn_xianjing"
+            android:layout_marginTop="25dp"
+            />
+
+        <ImageView
+            android:id="@+id/qianding_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/hetong_btn_qianding"
+            android:layout_marginTop="25dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

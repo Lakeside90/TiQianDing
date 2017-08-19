@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#44000000"
+    android:orientation="vertical" >
+
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/common_diver_line"
+        />
+
+    <LinearLayout
+    	android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:baselineAligned="false"
+        >
+        
+         <ListView
+	       android:id="@+id/parent_listview"
+	       android:layout_width="0dp"
+	       android:layout_height="match_parent"
+	       android:layout_weight="1"
+	       android:divider="@color/common_diver_line"
+	       android:dividerHeight="1px"
+	       android:scrollbars="none"/>
+         
+         <View 
+	        android:layout_width="1px"
+	        android:layout_height="match_parent"
+	        android:background="@color/common_diver_line"
+	        />
+         
+         <ListView
+	       android:id="@+id/child_listview"
+	       android:layout_width="0dp"
+	       android:layout_height="fill_parent"
+	       android:layout_weight="2"
+	       android:divider="@color/common_diver_line"
+	       android:dividerHeight="1px"
+	       android:scrollbars="none" />
+         
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/multy_btn_lay"
+    	android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/window_bg"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        >
+         
+    <Button 
+        android:id="@+id/cancel_btn"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_weight="1"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="重置"
+        android:textSize="16sp"
+        android:textColor="@color/common_black_txt"
+        android:background="@drawable/more_type_bg_selector"
+        />
+    
+    <Button
+        android:id="@+id/confirm_btn" 
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_weight="1"
+        android:layout_marginRight="15dp"
+        android:text="确定"
+        android:textSize="16sp"
+        android:textColor="@color/common_black_txt"
+        android:background="@drawable/more_type_bg_selector"
+        />
+    
+    </LinearLayout>
+   
+
+    <View
+        android:id="@+id/bg_lay"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#44000000" />
+
+</LinearLayout>

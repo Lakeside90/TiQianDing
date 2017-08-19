@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/window_bg">
+
+
+    <LinearLayout
+        android:id="@+id/yanfang_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/yanfang_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="35dp" />
+
+        <LinearLayout
+            android:id="@+id/yanfang_point_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/yanfang_txt"
+        android:layout_width="125dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:text="验房 验房程序"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:background="@color/common_blue_bg"
+        />
+
+    <LinearLayout
+        android:id="@+id/shuifei_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/yanfang_lay"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/shuifei_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="35dp"  />
+
+        <LinearLayout
+            android:id="@+id/shuifei_point_lay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/shuifei_txt"
+        android:layout_width="125dp"
+        android:layout_height="34dp"
+        android:layout_below="@id/yanfang_lay"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:text="验房 验房程序"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:background="@color/common_blue_bg"
+        />
+
+    <TextView
+        android:id="@+id/zhuyi_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shuifei_lay"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:padding="10dp"
+        android:text=""
+        android:textSize="14sp"
+        android:textColor="@color/common_gray_txt"
+        android:background="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/submit_txt"
+        android:layout_width="fill_parent"
+        android:layout_height="44dp"
+        android:layout_below="@id/zhuyi_txt"
+        android:layout_marginBottom="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/blue_corner_btn_selector"
+        android:gravity="center"
+        android:text="免费验房"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</RelativeLayout>

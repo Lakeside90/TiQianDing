@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/window_bg"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/pinggu"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="帮您测算总价多少的房子适合您"
+            android:textColor="@color/common_gray_txt"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/submit_txt"
+            android:layout_width="fill_parent"
+            android:layout_height="44dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/blue_corner_btn_selector"
+            android:gravity="center"
+            android:text="购房能力评估"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:background="@drawable/dialog_bg_black"
+	    android:layout_centerInParent="true"
+	    >
+    <!-- 撑开布局 -->
+
+    <View
+        android:layout_width="100.0dip"
+        android:layout_height="90.0dip"
+        android:layout_centerInParent="true" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" 
+        android:weightSum="5"
+        >
+
+        <ImageView
+            android:id="@+id/tips_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dip"
+            android:layout_weight="3"
+            android:src="@drawable/loading_icon"
+            />
+
+        <TextView
+            android:id="@+id/tips_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3.0dip"
+            android:maxWidth="140dip"
+            android:textColor="#ffffffff"
+            android:textSize="14.0sp" 
+            android:layout_weight="2"
+            />
+    </LinearLayout>
+</RelativeLayout>
+</RelativeLayout>

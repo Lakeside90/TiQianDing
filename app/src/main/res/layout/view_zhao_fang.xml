@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/window_bg"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/map_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/zhaofang_icon_ditu"
+                android:gravity="center"
+                android:text="地图找房"/>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="40dp"
+                android:background="@color/common_diver_line"/>
+
+            <TextView
+                android:id="@+id/list_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/zhaofang_icon_liebiao"
+                android:gravity="center"
+                android:text="列表找房"/>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="40dp"
+                android:background="@color/common_diver_line"/>
+
+            <TextView
+                android:id="@+id/custom_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:drawableTop="@drawable/zhaofang_icon_bangni"
+                android:gravity="center"
+                android:text="帮你找房"/>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/zhaofang_bg"/>
+
+        <TextView
+            android:id="@+id/submit_txt"
+            android:layout_width="fill_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="-64dp"
+            android:background="@drawable/blue_corner_btn_selector"
+            android:gravity="center"
+            android:text="现在去找房"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

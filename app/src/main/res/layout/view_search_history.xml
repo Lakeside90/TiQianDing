@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.xkhouse.fang.widget.CustomScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" >
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+            
+            <View 
+		     android:layout_width="fill_parent"
+	         android:layout_height="1px"
+	         android:background="@color/common_diver_line"
+		     />
+	 
+			<LinearLayout
+                android:id="@+id/hot_key_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="热门搜索"
+                    android:textSize="14sp"
+                    android:textColor="@color/common_gray_txt"
+                    android:drawableLeft="@drawable/search_icon_hot"
+                    android:drawablePadding="4dp"
+                    />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/common_diver_line"
+                    />
+
+                <HorizontalScrollView
+                    android:id="@+id/hot_scrollview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center_vertical">
+
+                        <GridView
+                            android:id="@+id/hot_keys_grid"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:numColumns="auto_fit"
+                            android:stretchMode="spacingWidthUniform"
+                            >
+                        </GridView>
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/common_diver_line"
+                    />
+            </LinearLayout>
+		    
+		    <View 
+			     android:layout_width="fill_parent"
+		         android:layout_height="1px"
+		         android:background="@color/common_diver_line"
+		         android:layout_marginTop="15dp"
+			     />
+		    <TextView 
+			    android:layout_width="match_parent"
+		        android:layout_height="40dp"
+		        android:background="@color/white"
+		        android:gravity="center_vertical"
+		        android:paddingLeft="15dp"
+		        android:text="搜索历史"
+		        android:textSize="14sp"
+		        android:textColor="@color/common_gray_txt"
+		        android:drawableLeft="@drawable/search_icon_history"
+		        android:drawablePadding="4dp"
+			     />
+		    
+		    <View 
+			     android:layout_width="fill_parent"
+		         android:layout_height="1px"
+		         android:background="@color/common_diver_line"
+			     />
+		    
+		      <com.xkhouse.fang.widget.ScrollListView
+                    android:id="@+id/search_history_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:listSelector="@drawable/search_list_bg_selector"
+                    android:background="@color/white"/>
+		      
+		      <TextView 
+		          android:id="@+id/clear_txt"
+		          android:layout_width="match_parent"
+                  android:layout_height="40dp"
+                  android:text="清除搜索历史"
+                  android:textSize="14sp"
+                  android:textColor="@color/common_black_txt"
+                  android:gravity="center"
+		          />
+        </LinearLayout>
+    </com.xkhouse.fang.widget.CustomScrollView>
+     
+
+</LinearLayout>

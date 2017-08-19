@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/common_diver_line" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/window_bg"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="当前定位城市"
+        android:textColor="@color/common_gray_txt"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/common_diver_line" />
+
+    <LinearLayout
+        android:id="@+id/city_locate_lay"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/city_locate_txt"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:text="正在定位.."
+            android:textColor="@color/common_black_txt"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/city_locate_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_refresh" />
+    </LinearLayout>
+
+</LinearLayout>

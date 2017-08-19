@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">XKLibrary</string>
+    <!-- 升级 -->
+    <string name="update_force">必须升级才能使用</string>
+</resources>

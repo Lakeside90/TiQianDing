@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/window_bg"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/shangye_txt"
+                android:layout_width="0dp"
+                android:layout_height="33dp"
+                android:layout_weight="1"
+                android:layout_marginRight="7dp"
+                android:background="@drawable/blue_corner_btn_selector"
+                android:gravity="center"
+                android:text="商业贷款"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/gongjijin_txt"
+                android:layout_width="0dp"
+                android:layout_height="33dp"
+                android:layout_weight="1"
+                android:layout_marginRight="7dp"
+                android:background="@drawable/blue_border_cricle_btn_bg"
+                android:gravity="center"
+                android:text="公积金贷款"
+                android:textColor="@color/common_blue"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/zuhe_txt"
+                android:layout_width="0dp"
+                android:layout_height="33dp"
+                android:layout_weight="1"
+                android:background="@drawable/blue_border_cricle_btn_bg"
+                android:gravity="center"
+                android:text="组合贷款"
+                android:textColor="@color/common_blue"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/liucheng_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/daikuan_liuchen"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:text="所需材料"
+            android:textColor="@color/common_blue"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/cailiao_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="13dp"
+            android:text=""
+            android:textColor="@color/c_666666"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:text="所需证明"
+            android:textColor="@color/common_blue"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/zhengming_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="13dp"
+            android:text=""
+            android:textColor="@color/c_666666"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+
+
+
+
+    <TextView
+        android:id="@+id/submit_txt"
+        android:layout_width="fill_parent"
+        android:layout_height="44dp"
+        android:layout_marginBottom="35dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/blue_corner_btn_selector"
+        android:gravity="center"
+        android:text="申请贷款"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+
+</LinearLayout>

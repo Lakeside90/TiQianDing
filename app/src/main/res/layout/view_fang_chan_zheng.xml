@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingLeft="15dp"
+              android:paddingRight="15dp"
+              android:paddingBottom="10dp"
+              android:paddingTop="10dp"
+              android:background="@color/window_bg"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/fangchanzheng_fcz"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="8dp"
+            android:text="房产局办理房产证"
+            android:textSize="15sp"
+            android:textColor="@color/common_blue"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="8dp"
+            android:text="房产证：房源交付后到当地房管局办证大厅办理"
+            android:textSize="14sp"
+            android:textColor="@color/c_666666"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="15dp"
+            android:text="携带证件：购房合同、购房发票、房屋共有人身份证原件、结婚证（或单身证明）、房屋交接书"
+            android:textSize="14sp"
+            android:textColor="@color/c_666666"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/fangchanzheng_tdz"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="8dp"
+            android:text="国土局办理土地证"
+            android:textSize="15sp"
+            android:textColor="@color/common_blue"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="8dp"
+            android:text="土地证：房源交付后到当地国土局办证大厅办理"
+            android:textSize="14sp"
+            android:textColor="@color/c_666666"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="15dp"
+            android:text="携带证件：携带证件购房合同、购房发票、房屋共有人身份证原件、结婚证（或单身证明）、房屋交接书"
+            android:textSize="14sp"
+            android:textColor="@color/c_666666"/>
+    </LinearLayout>
+
+
+</LinearLayout>

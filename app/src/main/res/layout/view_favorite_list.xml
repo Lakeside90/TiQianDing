@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:xlist="http://schemas.android.com/apk/res-auto"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/favorite_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/common_diver_line" />
+
+    <com.xkhouse.fang.widget.xlist.XListView
+        android:id="@+id/favorite_listView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/favorite_line"
+        android:cacheColorHint="@color/trans"
+        android:divider="@color/trans"
+        android:dividerHeight="1dp"
+        android:listSelector="@android:color/transparent"
+        xlist:is_header="true" />
+
+    <com.xkhouse.fang.widget.loading.RotateLoading
+        android:id="@+id/rotate_loading"
+        app:loading_color="@color/common_blue"
+        app:loading_width="@dimen/rotate_loading_border"
+        android:layout_width="@dimen/rotate_loading_width"
+        android:layout_height="@dimen/rotate_loading_height"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+
+    <LinearLayout
+        android:id="@+id/error_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/favorite_line"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/web_error"
+            android:drawableTop="@drawable/net_error"
+            android:drawablePadding="20dp"
+            android:textColor="@color/c_666666"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/notice_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pic_wushouchang"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="没有收藏记录"
+            android:textColor="@color/common_black_txt"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="看中的信息值得收藏哦"
+            android:textColor="@color/common_gray_txt"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/window_bg"
+              android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:src="@drawable/xiaoqufang_pic"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/common_diver_line"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical"
+                android:text="为你推荐相似学区"
+                android:textSize="14sp"
+                android:textColor="@color/common_gray_txt"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/common_diver_line"/>
+
+
+            <com.xkhouse.fang.widget.ScrollListView
+                android:id="@+id/school_listView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:cacheColorHint="@color/trans"
+                android:background="@color/white"
+                android:divider="@color/common_diver_line"
+                android:dividerHeight="1px"
+                android:listSelector="@android:color/transparent"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

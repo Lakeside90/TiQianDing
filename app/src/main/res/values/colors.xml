@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#28b4f0</color>
+    <color name="colorPrimaryDark">#0a6f93</color>
+    <color name="colorAccent">#28b4f0</color>
+
+
+    <!-- 黑色 -->
+    <color name="black">#000000</color>
+    <!-- 透明 -->
+    <color name="trans">#00000000</color>
+    <!-- 半透明 -->
+    <color name="trans_half">#50000000</color>
+    <!-- 半透明 -->
+    <color name="trans_eight">#80000000</color>
+    <!-- 半透明 -->
+    <color name="trans_third">#30000000</color>
+    <!-- 红色 -->
+    <color name="red">#FF0000</color>
+    <!-- 绿色 -->
+    <color name="green">#36A678</color>
+    <!-- 白色 -->
+    <color name="white">#FFFFFF</color>
+    <!-- 灰色 -->
+    <color name="gray">#8E908F</color>
+    <!-- 文字蓝色 -->
+    <color name="blue">#37A0E1</color>
+    <!-- 橘黄色 -->
+    <color name="orange">#ff6600</color>
+
+    <!-- 浅蓝 -->
+    <color name="button_unselected">#ff54acea</color>
+    <color name="shape_line">#ffcccccc</color>
+    <color name="text_bg">#404040</color>
+    <!-- 浅灰 -->
+    <color name="window_bg">#f6f6f6</color>
+    <!-- 公共背景色 -->
+    <color name="common_bg_color">#f0f0f0</color>
+    <!-- 灰色 -->
+    <color name="content_text_color">#7E7E7E</color>
+    <color name="g939393">#939393</color>
+    <color name="cccccc">#cccccc</color>
+    <color name="f8f8f8">#f8f8f8</color>
+    <color name="c_ededed">#ededed</color>
+
+
+    <!-- common title 颜色 -->
+    <color name="common_blue_bg">#28b4f0</color>
+    <color name="common_title_color">#ffffff</color>
+    <color name="common_title_txt_color">#555555</color>
+
+    <color name="home_tab_blue">#28b4f0</color>
+    <color name="home_tab_txt">#999999</color>
+
+    <color name="common_black_txt">#333333</color>
+    <color name="common_gray_txt">#999999</color>
+    <color name="c_666666">#666666</color>
+    <color name="common_red_txt">#ff3100</color>
+
+    <color name="common_diver_line">#dddddd</color>
+
+    <color name="common_green">#7dd232</color>
+    <color name="common_orange">#f18e37</color>
+    <color name="common_blue">#28b4f0</color>
+
+    <color name="area_wheel_selected">#191818</color>
+    <color name="area_wheel_unselect">#a2a0a0</color>
+
+    <color name="house_bottom_bg">#90000000</color>
+
+    <color name="image_checked_bg">#66000000</color>
+</resources>

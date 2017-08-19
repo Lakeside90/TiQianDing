@@ -1,0 +1,180 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xlist="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_bg"
+    android:orientation="vertical" >
+
+    <!-- title  bar -->
+
+    <include layout="@layout/common_title_bar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#4cbcec" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_blue_bg"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="可提现金额（元）"
+            android:textColor="@color/white"
+            android:layout_marginTop="30dp"
+            android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/wallet_money_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:text="0.00"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="horizontal"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/yong_num_lay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:background="@drawable/common_list_bg_selector">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/common_black_txt"
+                android:textSize="14sp"
+                android:text="累计赚佣金额（元）"/>
+
+            <TextView
+                android:id="@+id/yong_num_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/common_orange"
+                android:textSize="18sp"
+                android:text="0.00"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/common_diver_line"/>
+
+        <LinearLayout
+            android:id="@+id/tixian_num_lay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:background="@drawable/common_list_bg_selector">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/common_black_txt"
+                android:textSize="14sp"
+                android:text="累计提现金额（元）"/>
+
+            <TextView
+                android:id="@+id/tixian_num_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/common_red_txt"
+                android:textSize="18sp"
+                android:text="0.00"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:text="最新账单"
+        android:textSize="13sp"
+        android:textColor="@color/common_black_txt"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="15dp"
+        android:background="@color/white"
+        />
+    
+     <View
+       android:layout_width="match_parent"
+       android:layout_height="1px"
+       android:background="@color/common_diver_line" />
+     
+     <com.xkhouse.fang.widget.xlist.XListView
+        android:id="@+id/wallet_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        android:cacheColorHint="@color/trans"
+        android:divider="@color/trans"
+        android:dividerHeight="1dp"
+        android:listSelector="@android:color/transparent"
+        xlist:is_header="true" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="-70dp"
+        android:background="@color/white">
+
+  
+        <TextView
+            android:id="@+id/customer_txt"
+            android:layout_width="0dp"
+            android:layout_height="43dp"
+            android:layout_weight="1"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="16sp"
+            android:textColor="@color/common_black_txt"
+            android:text="立即赚佣"
+            android:gravity="center"
+            android:background="@drawable/gray_corner_btn_selector"
+            />
+
+        <TextView
+            android:id="@+id/wallet_application_txt"
+            android:layout_width="0dp"
+            android:layout_height="43dp"
+            android:layout_weight="1"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="申请提现"
+            android:gravity="center"
+            android:background="@drawable/blue_corner_btn_selector"
+            />
+    </LinearLayout>
+     
+</LinearLayout>

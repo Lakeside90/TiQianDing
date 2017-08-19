@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xkhouse.fang" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <!-- Required  一些系统要求的权限，如访问网络等 -->
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <!-- Push service 运行需要的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+
+    <application
+        android:name=".app.activity.ModelApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".app.activity.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".app.activity.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeMainActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".app.activity.GuideActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.NewHouseListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.NewHouseRecentListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.NewHouseDiscountListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.OldHouseListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.SchoolHouseListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.RentHouseListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.SearchActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustResize|stateVisible" />
+        <activity
+            android:name=".house.activity.SchoolHouseSearchActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustResize|stateVisible" />
+        <activity
+            android:name=".house.activity.SearchResultActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustResize|stateVisible" />
+        <activity
+            android:name=".app.activity.CitySelectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".app.activity.NavigationActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".app.activity.NewsIndexActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewsStyledIndicators"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".app.activity.NewsDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".app.activity.FSHQDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".app.activity.KanFangDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".app.activity.JJFreeServiceActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".app.activity.JJAppointmentActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".app.activity.JJShoppingIntentionActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".app.activity.JJIndexActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewsStyledIndicators"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".app.activity.CalculatorActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".app.activity.NewsSearchActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <!-- 热门活动详情 -->
+
+        <activity
+            android:name=".discount.activity.DiscountDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".discount.activity.DiscountActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <!-- 赚佣 -->
+
+        <activity
+            android:name=".money.activity.CustomerAddActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".money.activity.ExpectHouseActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity" />
+        <activity
+            android:name=".money.activity.XKBCitySelectActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".money.activity.XKLoanIndexActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".money.activity.XKLoanActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <!-- house -->
+        <activity
+            android:name=".house.activity.LookHouseOrderActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.MainHouseTypeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/StyledIndicators"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.MapHousesActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/StyledIndicators"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.CustomHouseListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.MyCustomHouseListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.CustomHouseActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".house.activity.CustomHouseDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".house.activity.CustomRequireListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.OnsaleHouseActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/StyledIndicators"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.HouseDynamicActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/StyledIndicators"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.HouseDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.HouseProjectDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.SchoolHouseDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.CommunityListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.CommunityRoomListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.HouseAlbumActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.HouseAroundDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.RoomDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.HouseSupportsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.ConsultOnlineActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".house.activity.BuyAbilityActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".house.activity.BuyAbilityResultActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".house.activity.BaikeHouseActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".house.activity.KanFangActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".house.activity.HouseQuestionListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".house.activity.HouseQuestionAddActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <!-- User -->
+        <activity
+            android:name=".user.activity.LoginActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.RegisterActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.RegisterServiceActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.FindPswActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.ChangePswActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.FindPaypswActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.MobileResetActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.ChangePayPswActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.ResetPswActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.SFPhoneBindActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.SettingsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.AppShareActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.WalletActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.WalletWithdrawActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.MessageCenterActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.UserInfoActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.AccountEditActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.CashWithdrawActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewsStyledIndicators"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.TXIndexActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewsStyledIndicators"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.TXBankActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewsStyledIndicators"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.TXZfbActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewsStyledIndicators"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.CashWithdrawDeclareActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewsStyledIndicators"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.RecommendDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.MyRecommendActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewsStyledIndicators"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.WalletRecordListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewsStyledIndicators"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.FeedBackActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.CropActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeActivity" />
+        <activity
+            android:name=".user.activity.ChangeNameActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.ChangeSexActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.ChangeMobileActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.DisclaimerActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.AboutUsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.CashBankListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.FavoriteListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewsStyledIndicators"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.MSGNewsListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.MSGActivityListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.MSGSystemListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.MyReleaseActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.ReleaseManageActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewsStyledIndicators"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.JJRSellReleaseManageActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewsStyledIndicators"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.JJRRentReleaseManageActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewsStyledIndicators"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.SellInActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.SellInEditActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.RentInActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.RentInEditActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.ExpectStreetActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.SellReleaseActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.SellReleaseEditActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.ReleaseStreetSearchActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.RentReleaseActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".user.activity.RentReleaseEditActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name=".widget.imagepicker.ui.PhotoAlbumActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".widget.imagepicker.ui.PhotoWallActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- 高德地图 app key -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="85add323a34740f59aded12a4c04ab8a" />
+        <!-- android:value="85add323a34740f59aded12a4c04ab8a"    正式 -->
+        <!-- android:value="e572f1b729c81616d64cf79e6e0b753e"    测试 -->
+
+        <activity
+            android:name="com.umeng.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="563037dfe0f55a1004001e5a" >
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Umeng" >
+        </meta-data>
+
+        <service
+            android:name="com.umeng.update.net.DownloadingService"
+            android:process=":DownloadingService" >
+        </service>
+
+        <activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/Theme.UMDialog"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- ############ QQ空间和QQ SSO授权的Activity注册 ############ -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="1104857499" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+
+        <!-- 百度推送  start -->
+        <!-- push应用定义消息receiver声明 -->
+        <receiver android:name=".app.push.MyPushMessageReceiver" >
+            <intent-filter>
+
+                <!-- 接收push消息 -->
+                <action android:name="com.baidu.android.pushservice.action.MESSAGE" />
+                <!-- 接收bind,unbind,fetch,delete等反馈消息 -->
+                <action android:name="com.baidu.android.pushservice.action.RECEIVE" />
+                <action android:name="com.baidu.android.pushservice.action.notification.CLICK" />
+            </intent-filter>
+        </receiver>
+
+        <!-- push必须的receviver和service声明 -->
+        <receiver
+            android:name="com.baidu.android.pushservice.PushServiceReceiver"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.baidu.android.pushservice.action.notification.SHOW" />
+                <action android:name="com.baidu.android.pushservice.action.media.CLICK" />
+                <!-- 以下四项为可选的action声明，可大大提高service存活率和消息到达速度 -->
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.baidu.android.pushservice.RegistrationReceiver"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.METHOD" />
+                <action android:name="com.baidu.android.pushservice.action.BIND_SYNC" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.baidu.android.pushservice.PushService"
+            android:exported="true"
+            android:process=":bdservice_v1" >
+            <intent-filter>
+                <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.baidu.android.pushservice.CommandService"
+            android:exported="true" />
+
+        <!-- 在百度开发者中心查询应用的API Key -->
+        <meta-data
+            android:name="api_key"
+            android:value="1wK0jleZjhG4fee33xXiNGtz" />
+        <!--
+             ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <!-- 百度推送  end -->
+
+    </application>
+
+</manifest>

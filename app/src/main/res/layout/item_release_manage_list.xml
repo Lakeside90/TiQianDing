@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/common_list_bg_selector"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/release_title_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:lines="2"
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            android:textColor="@color/common_black_txt"
+            android:text=""/>
+
+        <TextView
+            android:id="@+id/release_status_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/release_title_txt"
+            android:layout_marginTop="15dp"
+            android:textSize="14sp"
+            android:text="审核中"/>
+
+        <TextView
+            android:id="@+id/release_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/release_title_txt"
+            android:layout_toRightOf="@id/release_status_txt"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:textSize="14sp"
+            android:textColor="@color/common_gray_txt"
+            android:text="刷新时间：2016-4-11"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:background="@color/window_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/release_one_txt"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/common_blue"
+            android:text="刷新"/>
+
+        <TextView
+            android:id="@+id/release_two_txt"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/common_blue"
+            android:text="刷新"/>
+
+        <TextView
+            android:id="@+id/release_three_txt"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/common_blue"
+            android:text="刷新"/>
+
+    </LinearLayout>
+
+</LinearLayout>

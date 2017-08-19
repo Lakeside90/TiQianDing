@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_bg"
+    android:orientation="vertical" >
+
+    <!-- title  bar -->
+
+    <RelativeLayout
+        android:id="@+id/head_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_title_height"
+        android:background="@color/common_blue">
+
+
+
+        <ImageView
+            android:id="@+id/iv_head_left"
+            android:layout_width="@dimen/activity_title_height"
+            android:layout_height="@dimen/activity_title_height"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/nav_back"
+            />
+
+        <TextView
+            android:id="@+id/tv_head_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:ellipsize="marquee"
+            android:maxWidth="150dp"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textSize="18sp"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:id="@+id/iv_head_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"/>
+
+    </RelativeLayout>
+    
+    <com.xkhouse.fang.widget.viewpagerindicator.TabPageIndicator
+        android:id="@+id/indicator"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/common_diver_line"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+        
+</LinearLayout>

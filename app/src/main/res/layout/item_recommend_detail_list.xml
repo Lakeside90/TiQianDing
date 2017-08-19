@@ -1,0 +1,59 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal" >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" >
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/common_diver_line" />
+
+        <ImageView
+            android:id="@+id/status_icon"
+            android:layout_width="16sp"
+            android:layout_height="16sp"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/recommend_icon_wancheng" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/status_content_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text=""
+            android:textColor="@color/common_black_txt"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/status_date_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="2dp"
+            android:text=""
+            android:textColor="@color/common_gray_txt"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/common_diver_line" />
+    </LinearLayout>
+
+</LinearLayout>

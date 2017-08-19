@@ -1,0 +1,180 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:xlist="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical" >
+
+    <include layout="@layout/common_title_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="购买总价:"
+                android:textSize="15sp"
+                android:textColor="@color/common_black_txt"/>
+
+            <TextView
+                android:id="@+id/total_price_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="15sp"
+                android:textColor="@color/common_red_txt"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="万元"
+                android:textSize="15sp"
+                android:textColor="@color/common_black_txt"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="购买单价:"
+                android:textSize="15sp"
+                android:textColor="@color/common_black_txt"/>
+
+            <TextView
+                android:id="@+id/price_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="15sp"
+                android:textColor="@color/common_red_txt"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="元/平方米"
+                android:textSize="15sp"
+                android:textColor="@color/common_black_txt"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="注：本次评估仅适用于购买首套普通住宅，如非首套房，还需要考虑市场政策和开发商的特殊首付要求，如您购买二手房，还需要考虑个人所得税，契税，营业税等相关问题。"
+            android:textSize="12sp"
+            android:textColor="@color/common_gray_txt"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/common_diver_line"
+            android:layout_marginTop="15dp"/>
+    </LinearLayout>
+
+
+
+
+
+            <LinearLayout
+                android:id="@+id/no_result_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/no_data_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="12sp"
+                    android:textColor="@color/common_gray_txt"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/pinggu_bg"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/result_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="小主，为您找到"
+                        android:textSize="12sp"
+                        android:textColor="@color/common_gray_txt"/>
+                    <TextView
+                        android:id="@+id/count_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="12sp"
+                        android:textColor="@color/common_blue"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="个合适的楼盘"
+                        android:textSize="12sp"
+                        android:textColor="@color/common_gray_txt"/>
+                </LinearLayout>
+
+                <com.xkhouse.fang.widget.xlist.XListView
+                    android:id="@+id/house_listView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="10dp"
+                    android:cacheColorHint="@color/trans"
+                    android:divider="@color/trans"
+                    android:dividerHeight="1dp"
+                    android:listSelector="@android:color/transparent"
+                    xlist:is_header="false"/>
+            </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/test_txt"
+        android:layout_width="fill_parent"
+        android:layout_height="44dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/blue_corner_btn_selector"
+        android:gravity="center"
+        android:text="再测一次"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</LinearLayout>

@@ -1,0 +1,143 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/common_list_bg_selector"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:padding="10dp">
+
+
+    <ImageView
+        android:id="@+id/house_icon_iv"
+        android:layout_width="100dp"
+        android:layout_height="78dp"
+        android:scaleType="fitXY"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/house_name_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:text="safdasd"
+            android:textColor="@color/common_black_txt"
+            android:textSize="16sp"/>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp">
+
+            <TextView
+                android:id="@+id/house_area_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:text="asdfsad"
+                android:textColor="@color/common_gray_txt"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/house_distance_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/house_area_txt"
+                android:drawableLeft="@drawable/icon_position"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="12"
+                android:textColor="@color/common_gray_txt"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/total_price_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text="12"
+                android:textColor="@color/common_red_txt"
+                android:textSize="15sp"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/house_type_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical"
+                android:text="sfasdf"
+                android:textColor="#666666"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/type_area_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="sfasdf"
+                android:textColor="#666666"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:gravity="center_vertical">
+
+
+            <TextView
+                android:id="@+id/house_price_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="fsdf"
+                android:textColor="#666666"
+                android:textSize="13sp"/>
+
+            <TextView
+                android:id="@+id/sale_status_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/green_border_btn_bg"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingBottom="2dp"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:paddingTop="2dp"
+                android:text="fsdf"
+                android:textColor="@color/common_green"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

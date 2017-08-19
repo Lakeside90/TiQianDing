@@ -1,0 +1,247 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_bg"
+    android:orientation="vertical" >
+
+    <!-- title  bar -->
+
+    <include layout="@layout/common_title_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/name_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:text=""
+                        android:textColor="@color/common_black_txt"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/date_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text=""
+                        android:textColor="@color/common_gray_txt"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/call_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/tuijianxiangqin_ico_phone"/>
+
+                <ImageView
+                    android:id="@+id/ask_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/tuijianxiangqin_ico_message"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="10dp"
+                android:background="@color/common_diver_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/recommend_icon_weizhi"
+                    android:drawablePadding="10dp"
+                    android:text="所属城市："
+                    android:textColor="@color/common_gray_txt"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/city_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/common_black_txt"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/recommend_icon_loupan"
+                    android:drawablePadding="10dp"
+                    android:text="期望楼盘："
+                    android:textColor="@color/common_gray_txt"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/project_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/common_black_txt"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/recommend_icon_junjia"
+                    android:drawablePadding="10dp"
+                    android:text="期望均价："
+                    android:textColor="@color/common_gray_txt"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/price_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/common_black_txt"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/recommend_icon_liuyan"
+                    android:drawablePadding="10dp"
+                    android:text="客户备注："
+                    android:textColor="@color/common_gray_txt"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/remark_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/common_black_txt"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/common_diver_line" />
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/common_diver_line"
+                android:layout_marginTop="20dp" />
+            
+             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="状态跟踪"
+                    android:textColor="@color/common_gray_txt"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/recommended_status_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/common_black_txt"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/common_diver_line"/>
+            
+            <com.xkhouse.fang.widget.ScrollListView
+                android:id="@+id/status_listview" 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@null"
+                android:scrollbars="none"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/common_diver_line"
+                android:layout_marginBottom="20dp" />
+            
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

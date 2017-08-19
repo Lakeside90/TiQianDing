@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:gravity="center_horizontal" >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/guide_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/guide_btn"
+        android:layout_width="100dp"
+        android:layout_height="28dp"
+        android:layout_below="@id/guide_viewPager"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-60dp"
+        android:gravity="center"
+        android:text="立即体验"
+        android:textColor="@color/white"
+        android:textSize="16sp" 
+        android:background="@drawable/white_conner_guide_bg"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:id="@+id/guide_point_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/guide_viewPager"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-20dp"
+        android:gravity="center"
+        android:orientation="horizontal" />
+
+</RelativeLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/c_ededed"
+    >
+	
+    <LinearLayout 
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        >
+        <Button 
+            android:id="@+id/crop_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/blue_corner_btn_selector"
+            android:text="取消"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            />
+         <Button 
+             android:id="@+id/crop_ok"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/blue_corner_btn_selector"
+            android:text="确定"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            />
+    </LinearLayout>
+    
+        <com.xkhouse.fang.widget.crop.CropImageView
+        android:id="@+id/cropImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom"
+        />
+</RelativeLayout>

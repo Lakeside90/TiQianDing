@@ -1,0 +1,195 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical" >
+
+    <include layout="@layout/common_title_bar" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginLeft="18dp"
+                android:text="期望购房区域"
+                android:textSize="15sp"
+                android:textColor="@color/common_black_txt"/>
+
+            <com.xkhouse.fang.widget.ScrollGridView
+                android:id="@+id/area_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18sp"
+                android:layout_marginRight="18sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:listSelector="@null"
+                android:numColumns="4"
+                android:verticalSpacing="15dp"
+                android:horizontalSpacing="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="18sp"
+                android:background="@color/common_diver_line"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18sp"
+                android:layout_marginRight="18sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="期望购房面积（平米）"
+                    android:textSize="15sp"
+                    android:textColor="@color/common_black_txt"/>
+
+                <EditText
+                    android:id="@+id/space_txt"
+                    android:layout_width="80dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:background="@drawable/gray_border_btn_bg"
+                    android:textSize="15sp"
+                    android:textColor="@color/common_gray_txt"
+                    android:inputType="number"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="18sp"
+                android:background="@color/common_diver_line"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18sp"
+                android:layout_marginRight="18sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="现有首付金额（万元）"
+                    android:textSize="15sp"
+                    android:textColor="@color/common_black_txt"/>
+
+                <EditText
+                    android:id="@+id/down_payment_txt"
+                    android:layout_width="80dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:background="@drawable/gray_border_btn_bg"
+                    android:textSize="15sp"
+                    android:textColor="@color/common_gray_txt"
+                    android:inputType="number"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginLeft="18dp"
+                android:text="期望贷款年限"
+                android:textSize="15sp"
+                android:textColor="@color/common_black_txt"/>
+
+            <com.xkhouse.fang.widget.ScrollGridView
+                android:id="@+id/loan_time_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18sp"
+                android:layout_marginRight="18sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:listSelector="@null"
+                android:numColumns="4"
+                android:verticalSpacing="15dp"
+                android:horizontalSpacing="10dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="18sp"
+                android:background="@color/common_diver_line"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18sp"
+                android:layout_marginRight="18sp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="每月可用于购房的支出（元）"
+                    android:textSize="15sp"
+                    android:textColor="@color/common_black_txt"/>
+
+                <EditText
+                    android:id="@+id/month_payment_txt"
+                    android:layout_width="80dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:background="@drawable/gray_border_btn_bg"
+                    android:textSize="15sp"
+                    android:textColor="@color/common_gray_txt"
+                    android:inputType="number"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:text="*为了保证您的生活质量，建议月供上限不要超过家庭收入的50%"
+                android:textSize="12sp"
+                android:textColor="@color/common_red_txt"/>
+
+
+            <TextView
+                android:id="@+id/submit_txt"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/blue_corner_btn_selector"
+                android:gravity="center"
+                android:text="评估"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

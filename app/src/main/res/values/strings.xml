@@ -1,0 +1,47 @@
+<resources>
+
+    <string name="app_name">星房惠</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="net_warn">亲，您还没连接网络哦!</string>
+    <string name="service_error">您的网络好像不太给力，请稍后再试!</string>
+    <string name="web_error">哎呀妈呀没网了\n亲，快检查下网络后再试试吧\n请点击页面刷新</string>
+
+    <string name="sms_code_error">获取失败，请重新获取</string>
+
+    <!-- common -->
+    <string name="data_loading">努力加载中&#8230;</string>
+    <string name="data_load_end">已经到底啦</string>
+
+    <string name="input_phone">请输入您的手机号</string>
+    <string name="input_code">请输入验证码</string>
+    <string name="input_name">请输入您的姓名</string>
+
+    <string name="no_favorite">您还没有收藏，看中的信息值得收藏</string>
+    <string name="no_release">没有数据</string>
+
+
+    <!-- 下拉刷新 -->
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在刷新...</string>
+    <string name="xlistview_header_last_time">更新于:</string>
+    <string name="xlistview_footer_hint_normal">点击查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="xlistview_updated_at">%1$s前更新</string>
+    <string name="xlistview_not_updated_yet">暂未更新过</string>
+    <string name="xlistview_time_error">时间错误</string>
+    <string name="xlistview_updated_just_now">刚刚更新</string>
+
+    <!-- imagepicker -->
+    <string name="select_album">选择相册</string>
+    <string name="select_image">选择图片</string>
+    <string name="latest_image">最近照片</string>
+    <string name="photo_album">相册</string>
+
+    <string name="main_confirm">确定</string>
+    <string name="main_cancel">取消</string>
+    <string name="main_back">返回</string>
+    <string name="title_activity_txdetail">TXDetailActivity</string>
+
+</resources>

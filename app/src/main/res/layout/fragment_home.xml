@@ -1,0 +1,544 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_bg"
+    android:orientation="vertical" >
+
+    <!-- title  bar -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_title_height"
+        android:background="@color/common_blue_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="14dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/nav_logo" />
+
+        <LinearLayout
+            android:id="@+id/home_search_bar"
+            android:layout_width="0dp"
+            android:layout_height="29dp"
+            android:layout_weight="1"
+            android:background="@drawable/cricle_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:drawableLeft="@drawable/nav_icon_search"
+                android:drawablePadding="6dp"
+                android:gravity="center_vertical"
+                android:text="楼盘名/区域/开发商等"
+                android:textColor="@color/common_gray_txt"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/city_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="14dp"
+            android:drawablePadding="4dp"
+            android:drawableRight="@drawable/nav_icon_down"
+            android:gravity="center_vertical"
+            android:text="合肥"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- content -->
+
+    <com.xkhouse.fang.widget.CustomScrollView
+        android:id="@+id/content_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/contentView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <!-- 轮询图 -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/home_pagerview_height" >
+
+                <com.xkhouse.fang.widget.autoscrollviewpager.AutoScrollViewPager
+                    android:id="@+id/home_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/home_pagerview_height" />
+
+                <LinearLayout
+                    android:id="@+id/home_ad_lay"
+                    android:layout_width="fill_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/trans_eight"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="invisible" >
+
+                    <TextView
+                        android:id="@+id/ad_name_txt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:maxLines="1"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"/>
+
+                    <LinearLayout
+                        android:id="@+id/home_point_lay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:layout_marginRight="10dp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- 图标入口 -->
+
+            <com.xkhouse.fang.widget.ScrollGridView
+                android:id="@+id/home_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:listSelector="@null"
+                android:numColumns="4"
+                android:paddingBottom="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="15dp"
+                android:verticalSpacing="15dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/common_diver_line" />
+
+            <!-- 看房团 -->
+            <LinearLayout
+                android:id="@+id/kanfang_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@color/window_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/home_icon_notic"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:text="免费看房："
+                    android:textColor="@color/common_black_txt"
+                    android:textSize="14sp"
+                    />
+
+                <com.xkhouse.fang.app.view.UpMarqueeTextView
+                    android:id="@+id/kanfang_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:textColor="@color/common_black_txt"
+                    android:textSize="14sp"
+                    />
+            </LinearLayout>
+
+            <!-- 限时抢购 -->
+
+            <LinearLayout
+                android:id="@+id/sale_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/common_diver_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:gravity="center_vertical" >
+
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="14dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:background="#ff3100" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="8dp"
+                            android:gravity="center"
+                            android:text="限时抢购"
+                            android:textColor="@color/common_black_txt"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/sale_time_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:drawableRight="@drawable/icon_arrow_right"
+                            android:gravity="center"
+                            android:text="距离结束：0天00时00分00秒 "
+                            android:textColor="@color/common_gray_txt"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+
+                    <com.xkhouse.fang.widget.ScrollGridView
+                        android:id="@+id/home_sale_grid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:horizontalSpacing="15dp"
+                        android:listSelector="@null"
+                        android:numColumns="2" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/common_diver_line" />
+            </LinearLayout>
+
+            <!-- 专题 -->
+
+            <com.xkhouse.fang.widget.ScrollGridView
+                android:id="@+id/news_grid"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/common_diver_line"
+                android:horizontalSpacing="1px"
+                android:listSelector="@null"
+                android:numColumns="2"
+                android:paddingBottom="1px"
+                android:paddingTop="1px"
+                android:verticalSpacing="1px" 
+                android:layout_marginBottom="15dp"
+                android:visibility="gone"/>
+
+            <!-- 房市行情 -->
+            <LinearLayout
+                android:id="@+id/hq_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical"
+                android:background="@drawable/common_list_bg_selector"
+                android:visibility="gone">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/common_diver_line" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="center"
+                    android:text="房市行情-新房"
+                    android:textColor="@color/common_black_txt"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/common_diver_line" />
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp">
+
+                        <TextView
+                            android:id="@+id/hq_month_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/common_gray_txt"
+                            android:layout_marginLeft="8dp"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/hq_price_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_below="@id/hq_month_txt"
+                            android:text=""
+                            android:textColor="@color/common_red_txt"
+                            android:layout_marginLeft="8dp"
+                            android:textSize="20sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@id/hq_price_txt"
+                            android:layout_toRightOf="@id/hq_price_txt"
+                            android:text="元/平"
+                            android:textColor="@color/common_black_txt"
+                            android:layout_marginLeft="8dp"
+                            android:textSize="14sp"/>
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="60dp"
+                        android:background="@color/common_diver_line" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="40dp"
+                        >
+                        <TextView
+                            android:id="@+id/hq_day_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="昨日成交"
+                            android:textColor="@color/common_gray_txt"
+                            android:layout_marginLeft="8dp"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/hq_count_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_below="@id/hq_day_txt"
+                            android:text=""
+                            android:textColor="@color/common_blue"
+                            android:layout_marginLeft="8dp"
+                            android:textSize="20sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@id/hq_count_txt"
+                            android:layout_toRightOf="@id/hq_count_txt"
+                            android:text="套"
+                            android:textColor="@color/common_black_txt"
+                            android:layout_marginLeft="8dp"
+                            android:textSize="14sp"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/common_diver_line" />
+
+            </LinearLayout>
+
+            <!-- 猜你喜欢 -->
+
+            <LinearLayout
+                android:id="@+id/like_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/common_diver_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp" >
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="14dp"
+                        android:background="#ff3100" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:gravity="center"
+                        android:text="猜你喜欢"
+                        android:textColor="@color/common_black_txt"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/common_diver_line" />
+
+                <com.xkhouse.fang.widget.ScrollListView
+                    android:id="@+id/house_like_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:listSelector="@android:color/transparent"
+                    android:background="@color/white" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/common_diver_line" />
+                <LinearLayout
+                    android:id="@+id/house_like_more_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/common_list_bg_selector"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical|right"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:text="查看更多房源"
+                        android:textSize="14sp"
+                        android:textColor="@color/common_gray_txt"
+                        android:drawableRight="@drawable/icon_arrow_right"
+                        android:drawablePadding="10dp"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/common_diver_line" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/common_diver_line" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp" >
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="14dp"
+                        android:background="#ff3100" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:gravity="center"
+                        android:text="热门资讯"
+                        android:textColor="@color/common_black_txt"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/common_diver_line" />
+
+                <com.xkhouse.fang.widget.ScrollXListView
+                    android:id="@+id/news_like_listview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@color/common_diver_line"
+			        android:dividerHeight="1px"
+			        android:listSelector="@android:color/transparent"
+                    android:background="@color/white"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/common_diver_line" />
+                <LinearLayout
+                    android:id="@+id/news_like_more_lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/common_list_bg_selector"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical|right"
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:text="查看更多资讯"
+                        android:textSize="14sp"
+                        android:textColor="@color/common_gray_txt"
+                        android:drawableRight="@drawable/icon_arrow_right"
+                        android:drawablePadding="10dp"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/common_diver_line" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.xkhouse.fang.widget.CustomScrollView>
+
+    <ImageView
+        android:id="@+id/scroll_top_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="-80dp"
+        android:src="@drawable/icon_gotop"
+        android:visibility="gone"/>
+
+</LinearLayout>

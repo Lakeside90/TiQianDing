@@ -1,0 +1,85 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/window_bg" >
+
+    <!-- bottom bar -->
+
+    <LinearLayout
+        android:id="@+id/home_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" 
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/home_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:gravity="center"
+            android:text="首页"
+            android:textSize="12sp"
+            android:drawableTop="@drawable/home_icon_selector"
+            android:textColor="@drawable/home_tab_txt_selector" />
+
+        <TextView
+            android:id="@+id/discount_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:gravity="center"
+            android:text="百科"
+            android:textSize="12sp"
+            android:drawableTop="@drawable/baike_icon_selector"
+            android:textColor="@drawable/home_tab_txt_selector" />
+
+        <TextView
+            android:id="@+id/money_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:gravity="center"
+            android:text="赚佣"
+            android:textSize="12sp"
+            android:drawableTop="@drawable/money_icon_selector"
+            android:textColor="@drawable/home_tab_txt_selector" />
+
+        <TextView
+            android:id="@+id/user_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:gravity="center"
+            android:text="我的"
+            android:textSize="12sp"
+            android:drawableTop="@drawable/user_icon_selector"
+            android:textColor="@drawable/home_tab_txt_selector" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/home_bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_above="@id/home_bottom"
+        android:background="@color/common_diver_line" />
+
+    <LinearLayout
+        android:id="@+id/container_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/home_bottom_line"
+        android:orientation="vertical"/>
+
+</RelativeLayout>
