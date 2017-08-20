@@ -19,6 +19,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.ModelApplication;
 import com.xkhouse.fang.app.activity.NewsDetailActivity;
+import com.xkhouse.fang.app.entity.House;
 import com.xkhouse.fang.app.entity.News;
 import com.xkhouse.lib.utils.DateUtil;
 
@@ -36,8 +37,13 @@ public class NewsLikeAdapter extends BaseAdapter {
 	
 	private DisplayImageOptions options;
 	private ModelApplication modelApp;
-	
-	public NewsLikeAdapter(Context context, ArrayList<News> newsList){
+
+    public NewsLikeAdapter(Context context) {
+        this.context = context;
+        modelApp = (ModelApplication) ((Activity) context).getApplication();
+    }
+
+    public NewsLikeAdapter(Context context, ArrayList<News> newsList){
 		this.context = context;
 		modelApp = (ModelApplication) ((Activity) context).getApplication();
 		
@@ -54,16 +60,19 @@ public class NewsLikeAdapter extends BaseAdapter {
 	public void setData(ArrayList<News> newsList) {
 		this.newsList = newsList;
 	}
-	
+
+
 	
 	@Override
 	public int getCount() {
-		return newsList.size();
+//		return newsList.size();
+        return 10;
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return newsList.get(position);
+//		return newsList.get(position);
+        return 0;
 	}
 
 	@Override
@@ -83,12 +92,12 @@ public class NewsLikeAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		
-		News news = newsList.get(position); 
+//		News news = newsList.get(position);
 
 
 
 		
-		ImageLoader.getInstance().displayImage(news.getPhotoUrl(), holder.news_icon_iv, options);
+//		ImageLoader.getInstance().displayImage(news.getPhotoUrl(), holder.news_icon_iv, options);
 
 
 

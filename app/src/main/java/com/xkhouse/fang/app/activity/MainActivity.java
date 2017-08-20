@@ -249,9 +249,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 				&& event.getAction() == KeyEvent.ACTION_DOWN) {
 
 
-            if(moneyFragment != null && moneyFragment.isVisible()){
-                if (moneyFragment.closeTypeView()) return  true;
-            }
+//            if(moneyFragment != null && moneyFragment.isVisible()){
+//                if (moneyFragment.closeTypeView()) return  true;
+//            }
 			
 			if ((System.currentTimeMillis() - exitTime) > 2000) {
 				Toast.makeText(getApplicationContext(), "再按一次退出星房惠",
