@@ -1,142 +1,100 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/common_list_bg_selector"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:padding="10dp" >
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/common_list_bg_selector"
+              android:gravity="center_vertical"
+              android:orientation="vertical">
 
     <ImageView
         android:id="@+id/house_icon_iv"
-        android:layout_width="100dp"
-        android:layout_height="78dp"
-        android:scaleType="fitXY" />
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:scaleType="fitXY"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/house_name_txt"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:gravity="center_vertical"
-        android:orientation="vertical" >
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:lines="2"
+        android:text="拉菲红酒拉菲红酒拉菲红酒拉菲红酒拉菲红酒"
+        android:textColor="@color/common_black_txt"
+        android:textSize="16sp"/>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="距离结束 00:55:06"
+        android:textColor="@color/common_red"
+        android:textSize="12sp"/>
 
-            <TextView
-                android:id="@+id/house_name_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:textColor="@color/common_black_txt"
-                android:textSize="16sp"
-                android:text="" />
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:max="100"
+        android:progress="40"
+        android:progressDrawable="@drawable/progress_bar_drawable"/>
 
-            <ImageView
-                android:id="@+id/house_yong_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/icon_commission"/>
-            
-          
-        </RelativeLayout>
-        
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp" >
-
-            <TextView
-                android:id="@+id/house_area_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:text=""
-                android:textColor="@color/common_gray_txt"
-                android:textSize="12sp"/>
-
-            <TextView
-                android:id="@+id/house_distance_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/house_area_txt"
-                android:drawableLeft="@drawable/icon_position"
-                android:drawablePadding="5dp"
-                android:gravity="center_vertical"
-                android:text=""
-                android:textColor="@color/common_gray_txt"
-                android:textSize="12sp"/>
-              
-            <TextView
-                android:id="@+id/house_price_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:gravity="center"
-                android:textColor="@color/common_red_txt"
-                android:textSize="15sp"
-                android:text="" />
-        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
 
         <TextView
-            android:id="@+id/house_type_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:gravity="center_vertical"
-            android:text=""
-            android:textColor="#666666"
-            android:textSize="12sp"/>
+            android:layout_alignParentLeft="true"
+            android:text="256"
+            android:textColor="@color/c_666666"
+            android:textSize="12dp"
+            />
 
-
-        
-        <RelativeLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="3dp" >
+            android:layout_alignParentRight="true"
+            android:text="340"
+            android:textColor="@color/c_666666"
+            android:textSize="12dp"
+            />
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/house_discount_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:gravity="center_vertical"
-                android:textColor="@color/common_orange"
-                android:layout_marginRight="5dp"
-                android:textSize="13sp"
-                android:text="" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="已参与人次"
+            android:textColor="@color/common_gray_txt"
+            android:textSize="12dp"
+            />
 
-            <TextView
-                android:id="@+id/house_status_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/blue_border_btn_bg"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:paddingBottom="2dp"
-                android:paddingLeft="3dp"
-                android:paddingRight="3dp"
-                android:paddingTop="2dp"
-                android:text=""
-                android:textColor="@color/common_red"
-                android:textSize="12sp"/>
-           
-        </RelativeLayout>
-        
-    </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="剩余人次"
+            android:textColor="@color/common_gray_txt"
+            android:textSize="12dp"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="108dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/blue_conner_btn_normal"
+        android:gravity="center"
+        android:text="参与抽奖"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
 
 </LinearLayout>

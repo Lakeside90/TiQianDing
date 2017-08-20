@@ -1,9 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/window_bg"
-    android:orientation="vertical" >
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/window_bg"
+              android:orientation="vertical">
 
     <!-- title  bar -->
 
@@ -12,7 +11,7 @@
         android:layout_height="@dimen/activity_title_height"
         android:background="@color/common_red"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/city_txt"
@@ -27,7 +26,7 @@
             android:gravity="center_vertical"
             android:text="合肥"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,7 +35,7 @@
             android:gravity="center_vertical"
             android:text="@string/title_tqd"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"/>
     </RelativeLayout>
 
 
@@ -46,25 +45,25 @@
         android:id="@+id/content_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none" >
+        android:scrollbars="none">
 
         <LinearLayout
             android:id="@+id/contentView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <!-- 轮询图 -->
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/home_pagerview_height" >
+                android:layout_height="@dimen/home_pagerview_height">
 
                 <com.xkhouse.fang.widget.autoscrollviewpager.AutoScrollViewPager
                     android:id="@+id/home_viewpager"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/home_pagerview_height" />
+                    android:layout_height="@dimen/home_pagerview_height"/>
 
                 <LinearLayout
                     android:id="@+id/home_point_lay"
@@ -72,71 +71,69 @@
                     android:layout_height="30dp"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
                     android:gravity="center_vertical|right"
-                    android:orientation="horizontal"
-                    android:layout_marginRight="10dp" />
+                    android:orientation="horizontal"/>
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@color/common_gray_space" />
+                android:background="@color/common_gray_space"/>
 
 
+            <!-- 最新抽奖 -->
 
-
-           <!-- <LinearLayout
-                android:id="@+id/like_lay"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">-->
-
-                <!-- 最新抽奖 -->
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-
-                    <View
-                        android:layout_width="2dp"
-                        android:layout_height="14dp"
-                        android:background="@color/common_red" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="center_vertical|left"
-                        android:text="最新抽奖"
-                        android:textColor="@color/common_black_txt"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="更多"
-                        android:textSize="14sp"
-                        android:textColor="@color/common_gray_txt"
-                        android:drawableRight="@drawable/icon_arrow_right"
-                        android:drawablePadding="4dp"/>
-                </LinearLayout>
-
-                <com.xkhouse.fang.widget.ScrollListView
-                    android:id="@+id/house_like_listview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:listSelector="@android:color/transparent"
-                    android:background="@color/white" />
+                android:layout_height="46dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="@color/common_gray_space" />
+                    android:layout_width="2dp"
+                    android:layout_height="14dp"
+                    android:background="@color/common_red"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|left"
+                    android:text="最新抽奖"
+                    android:textColor="@color/common_black_txt"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="4dp"
+                    android:drawableRight="@drawable/icon_arrow_right"
+                    android:text="更多"
+                    android:textColor="@color/common_gray_txt"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <com.xkhouse.fang.widget.ScrollGridView
+                android:id="@+id/house_like_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:horizontalSpacing="15dp"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="2"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="15dp"
+                android:verticalSpacing="15dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/common_gray_space"/>
 
             <!-- 广告位 -->
             <ImageView
@@ -149,46 +146,53 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@color/common_gray_space" />
+                android:background="@color/common_gray_space"/>
 
-                <!-- 推荐预订 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="15dp" >
+            <!-- 推荐预订 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp">
 
-                    <View
-                        android:layout_width="2dp"
-                        android:layout_height="14dp"
-                        android:background="@color/common_red" />
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="14dp"
+                    android:background="@color/common_red"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="center"
-                        android:text="推荐预订"
-                        android:textColor="@color/common_black_txt"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:text="推荐预订"
+                    android:textColor="@color/common_black_txt"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/common_diver_line" />
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/common_diver_line"/>
+            </LinearLayout>
 
-                <com.xkhouse.fang.widget.ScrollXListView
-                    android:id="@+id/news_like_listview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:divider="@color/common_diver_line"
-			        android:dividerHeight="1px"
-			        android:listSelector="@android:color/transparent"
-                    android:background="@color/white"/>
 
-            <!--</LinearLayout>-->
+            <com.xkhouse.fang.widget.ScrollXListView
+                android:id="@+id/news_like_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:divider="@color/common_diver_line"
+                android:dividerHeight="1px"
+                android:listSelector="@android:color/transparent"
+                android:paddingLeft="15dp"/>
 
         </LinearLayout>
     </com.xkhouse.fang.widget.CustomScrollView>

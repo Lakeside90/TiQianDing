@@ -84,75 +84,26 @@ public class NewsLikeAdapter extends BaseAdapter {
 		}
 		
 		News news = newsList.get(position); 
-		holder.news_title_txt.setText(news.getTitle());
 
-		long time = 0;
-		try {
-			time = Long.parseLong(news.getCreateTime());
-		} catch (Exception e) {
-		}
-		holder.news_date_txt.setText(DateUtil.getDateFromLong(time, "yyyy-MM-dd HH:mm:ss"));
+
+
 		
 		ImageLoader.getInstance().displayImage(news.getPhotoUrl(), holder.news_icon_iv, options);
 
-        if(news.getAtlas() != null ){
-            if("2".equals(news.getAtlas().getType())){
-                holder.tuji_content_lay.setVisibility(View.GONE);
-                holder.video_content_lay.setVisibility(View.VISIBLE);
-                holder.video_title_txt.setText(news.getAtlas().getTitle());
-                ImageLoader.getInstance().displayImage(news.getAtlas().getaPhotoUrl(), holder.video_left_iv, options);
 
-            }else if("1".equals(news.getAtlas().getType())){
-                holder.tuji_content_lay.setVisibility(View.VISIBLE);
-                holder.video_content_lay.setVisibility(View.GONE);
-                holder.tuji_title_txt.setText(news.getAtlas().getTitle());
-                ImageLoader.getInstance().displayImage(news.getAtlas().getaPhotoUrl(), holder.tujia_left_iv, options);
-                ImageLoader.getInstance().displayImage(news.getAtlas().getbPhotoUrl(), holder.tujia_middle_iv, options);
-                ImageLoader.getInstance().displayImage(news.getAtlas().getcPhotoUrl(), holder.tujia_right_iv, options);
-            }
-
-        }else{
-            holder.tuji_content_lay.setVisibility(View.GONE);
-            holder.video_content_lay.setVisibility(View.GONE);
-        }
 
 		convertView.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, NewsDetailActivity.class);
-                Bundle data = new Bundle();
-                data.putString("url", modelApp.getNewsIndex() + newsList.get(position).getNewsId() + ".html");
-                data.putString("newsId", newsList.get(position).getNewsId());
-                intent.putExtras(data);
-                context.startActivity(intent);
+
 			}
 		});
 
-        holder.tuji_content_lay.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, NewsDetailActivity.class);
-                Bundle data = new Bundle();
-                data.putString("url", modelApp.getNewsPhoto() + newsList.get(position).getAtlas().getAid() + ".html");
-                data.putString("newsId", newsList.get(position).getAtlas().getAid());
-                intent.putExtras(data);
-                context.startActivity(intent);
-            }
-        });
 
-        holder.video_content_lay.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, NewsDetailActivity.class);
-                Bundle data = new Bundle();
-                data.putString("url", modelApp.getNewsVideo() + newsList.get(position).getAtlas().getAid() + ".html");
-                data.putString("newsId", newsList.get(position).getAtlas().getAid());
-                intent.putExtras(data);
-                context.startActivity(intent);
-            }
-        });
+
+
 
 		return convertView;
 	}
@@ -162,30 +113,12 @@ public class NewsLikeAdapter extends BaseAdapter {
 		TextView news_title_txt;
 		TextView news_date_txt;
 
-        LinearLayout tuji_content_lay;
-        TextView tuji_title_txt;
-        ImageView tujia_left_iv;
-        ImageView tujia_middle_iv;
-        ImageView tujia_right_iv;
-
-        LinearLayout video_content_lay;
-        TextView video_title_txt;
-        ImageView video_left_iv;
 
 		public ViewHolder(View view){
 			news_icon_iv = (ImageView) view.findViewById(R.id.news_icon_iv);
 			news_title_txt = (TextView) view.findViewById(R.id.news_title_txt);
 			news_date_txt = (TextView) view.findViewById(R.id.news_date_txt);
 
-            tuji_content_lay = (LinearLayout) view.findViewById(R.id.tuji_content_lay);
-            tuji_title_txt = (TextView) view.findViewById(R.id.tuji_title_txt);
-            tujia_left_iv = (ImageView) view.findViewById(R.id.tujia_left_iv);
-            tujia_middle_iv = (ImageView) view.findViewById(R.id.tujia_middle_iv);
-            tujia_right_iv = (ImageView) view.findViewById(R.id.tujia_right_iv);
-
-            video_content_lay = (LinearLayout) view.findViewById(R.id.video_content_lay);
-            video_title_txt = (TextView) view.findViewById(R.id.video_title_txt);
-            video_left_iv = (ImageView) view.findViewById(R.id.video_left_iv);
         }
 
 

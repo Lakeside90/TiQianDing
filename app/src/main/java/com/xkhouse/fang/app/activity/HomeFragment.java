@@ -51,6 +51,7 @@ import com.xkhouse.fang.house.activity.NewHouseListActivity;
 import com.xkhouse.fang.house.activity.SearchActivity;
 import com.xkhouse.fang.widget.ConfirmDialog;
 import com.xkhouse.fang.widget.CustomScrollView;
+import com.xkhouse.fang.widget.ScrollGridView;
 import com.xkhouse.fang.widget.ScrollListView;
 import com.xkhouse.fang.widget.ScrollXListView;
 import com.xkhouse.fang.widget.autoscrollviewpager.AutoScrollViewPager;
@@ -84,7 +85,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	private List<ImageView> pointViews;
 
 	//猜你喜欢
-	private ScrollListView house_like_listview;
+	private ScrollGridView house_like_listview;
 	private ScrollXListView news_like_listview;
 	private int currentPageIndex = 1;  //分页索引
 	private int pageSize = 5; //每次请求10条数据
@@ -202,7 +203,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 		content_scroll = (CustomScrollView) rootView.findViewById(R.id.content_scroll);
         scroll_top_iv = (ImageView) rootView.findViewById(R.id.scroll_top_iv);
 
-        house_like_listview = (ScrollListView) rootView.findViewById(R.id.house_like_listview);
+        house_like_listview = (ScrollGridView) rootView.findViewById(R.id.house_like_listview);
 		news_like_listview = (ScrollXListView) rootView.findViewById(R.id.news_like_listview);
 
     }
