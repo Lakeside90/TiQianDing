@@ -18,10 +18,6 @@ import android.widget.Toast;
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.update.UmengUpdateAgent;
-import com.umeng.update.UmengUpdateListener;
-import com.umeng.update.UpdateResponse;
-import com.umeng.update.UpdateStatus;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
@@ -87,7 +83,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
         selectFragment(selindex);
 
 		//应用升级
-        appUpdate();
+//        appUpdate();
 	}
 
 	@Override

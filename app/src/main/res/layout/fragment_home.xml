@@ -72,14 +72,14 @@
                     android:layout_height="30dp"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
-                    android:gravity="center_vertical"
+                    android:gravity="center_vertical|right"
                     android:orientation="horizontal"
                     android:layout_marginRight="10dp" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="6dp"
+                android:layout_height="10dp"
                 android:background="@color/common_gray_space" />
 
 
@@ -95,11 +95,11 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="31dp"
+                    android:layout_height="46dp"
                     android:background="@color/white"
                     android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp">
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp">
 
                     <View
                         android:layout_width="2dp"
@@ -110,7 +110,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginLeft="10dp"
                         android:gravity="center_vertical|left"
                         android:text="最新抽奖"
                         android:textColor="@color/common_black_txt"
@@ -135,29 +135,29 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="6dp"
+                    android:layout_height="10dp"
                     android:background="@color/common_gray_space" />
 
             <!-- 广告位 -->
             <ImageView
                 android:id="@+id/home_ad_img"
                 android:layout_width="match_parent"
-                android:layout_height="66dp"
+                android:layout_height="100dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/umeng_socialize_fetch_image"/>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="6dp"
+                android:layout_height="10dp"
                 android:background="@color/common_gray_space" />
 
                 <!-- 推荐预订 -->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="31dp"
+                    android:layout_height="46dp"
                     android:background="@color/white"
                     android:gravity="center_vertical"
-                    android:paddingLeft="10dp" >
+                    android:paddingLeft="15dp" >
 
                     <View
                         android:layout_width="2dp"
@@ -167,7 +167,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginLeft="10dp"
                         android:gravity="center"
                         android:text="推荐预订"
                         android:textColor="@color/common_black_txt"

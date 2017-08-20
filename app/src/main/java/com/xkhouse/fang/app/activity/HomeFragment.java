@@ -84,8 +84,6 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	private List<ImageView> pointViews;
 
 	//猜你喜欢
-    private LinearLayout house_like_more_lay;
-    private LinearLayout news_like_more_lay;
 	private ScrollListView house_like_listview;
 	private ScrollXListView news_like_listview;
 	private int currentPageIndex = 1;  //分页索引
@@ -168,8 +166,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
     //站点切换了，重新加载数据
     private void changeSiteData(){
-        news_like_more_lay.setVisibility(View.GONE);
-        house_like_more_lay.setVisibility(View.GONE);
+
         content_scroll.scrollTo(0,0);
         city_txt.setText(modelApp.getSite().getArea());
 
@@ -205,8 +202,6 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 		content_scroll = (CustomScrollView) rootView.findViewById(R.id.content_scroll);
         scroll_top_iv = (ImageView) rootView.findViewById(R.id.scroll_top_iv);
 
-//        house_like_more_lay = (LinearLayout) rootView.findViewById(R.id.house_like_more_lay);
-//        news_like_more_lay = (LinearLayout) rootView.findViewById(R.id.news_like_more_lay);
         house_like_listview = (ScrollListView) rootView.findViewById(R.id.house_like_listview);
 		news_like_listview = (ScrollXListView) rootView.findViewById(R.id.news_like_listview);
 
@@ -216,8 +211,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 		city_txt.setOnClickListener(this);
         scroll_top_iv.setOnClickListener(this);
 
-        house_like_more_lay.setOnClickListener(this);
-        news_like_more_lay.setOnClickListener(this);
+
 
 		home_viewpager.setOnPageChangeListener(new OnPageChangeListener() {
 
@@ -547,7 +541,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 					houseLikeList.addAll(temp);
 				}
 				fillHouseLikeData();
-				house_like_more_lay.setVisibility(View.VISIBLE);
+
 				break;
 			}
 		}
@@ -577,7 +571,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 				//根据返回的数据量判断是否隐藏加载更多
 				if(temp.size() < pageSize || (newsLikeList != null && newsLikeList.size() >=30)){
 					news_like_listview.setPullLoadEnable(false);
-                    news_like_more_lay.setVisibility(View.VISIBLE);
+
 				}else{
 					news_like_listview.setPullLoadEnable(true);
 				}
@@ -702,7 +696,6 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	private void startNewsListTask(int page){
 		if(newsLikeList != null && newsLikeList.size() >=30){
 			news_like_listview.setPullLoadEnable(false);
-            news_like_more_lay.setVisibility(View.VISIBLE);
 			return;
 		}else{
 			news_like_listview.setPullLoadEnable(true);
