@@ -19,7 +19,6 @@ import com.xkhouse.fang.house.view.baike.DingFangView;
 import com.xkhouse.fang.house.view.baike.FangChanZhengView;
 import com.xkhouse.fang.house.view.baike.HeTongView;
 import com.xkhouse.fang.house.view.baike.JiaoFangView;
-import com.xkhouse.fang.house.view.baike.KangFangView;
 import com.xkhouse.fang.house.view.baike.LuoHuView;
 import com.xkhouse.fang.house.view.baike.ZhaoFangView;
 import com.xkhouse.fang.widget.fancycoverflow.FancyCoverFlow;
@@ -42,7 +41,7 @@ public class BaikeHouseActivity extends AppBaseActivity {
 
     private BuyAbilityView buyAbilityView;
     private ZhaoFangView zhaoFangView;
-    private KangFangView kangFangView;
+//    private KangFangView kangFangView;
     private DingFangView dingFangView;
     private DaiKuanView daiKuanView;
     private HeTongView heTongView;
@@ -212,9 +211,9 @@ public class BaikeHouseActivity extends AppBaseActivity {
                 break;
 
             case 2:
-                if (kangFangView == null) kangFangView = new KangFangView(mContext);
-                baike_content_lay.removeAllViews();
-                baike_content_lay.addView(kangFangView.getView(), lp);
+//                if (kangFangView == null) kangFangView = new KangFangView(mContext);
+//                baike_content_lay.removeAllViews();
+//                baike_content_lay.addView(kangFangView.getView(), lp);
                 break;
 
             case 3:

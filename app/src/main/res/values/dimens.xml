@@ -6,7 +6,7 @@
 
     <dimen name="activity_title_height">44dp</dimen>
 
-    <dimen name="home_pagerview_height">150dp</dimen>
+    <dimen name="home_pagerview_height">120dp</dimen>
     <dimen name="progressbar_margin_left">-40dp</dimen>
     <dimen name="arrow_margin_left">-35dp</dimen>
     <dimen name="update_at_textsize">16sp</dimen>

@@ -1,6 +1,8 @@
 <resources>
 
-    <string name="app_name">星房惠</string>
+    <string name="app_name">提前定</string>
+    <string name="title_tqd">提前定</string>
+
     <string name="action_settings">Settings</string>
 
     <string name="net_warn">亲，您还没连接网络哦!</string>

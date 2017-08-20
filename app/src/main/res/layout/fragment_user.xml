@@ -423,7 +423,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="15sp"
-                android:textColor="@color/common_blue"
+                android:textColor="@color/common_red"
                 android:text="客服电话：400-887-1216"
                 android:layout_marginTop="20dp"/>
 

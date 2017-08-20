@@ -33,7 +33,7 @@
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
                 android:textSize="16sp"
-                android:textColor="@color/common_blue"
+                android:textColor="@color/common_red"
                 android:text="管理"/>
         </RelativeLayout>
         <View
@@ -46,7 +46,6 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_below="@id/favorite_line"
             android:cacheColorHint="@color/trans"
             android:divider="@color/trans"
             android:dividerHeight="1dp"
@@ -65,7 +64,7 @@
                 android:gravity="center"
                 android:textSize="16sp"
                 android:textColor="@color/white"
-                android:background="@color/common_blue"
+                android:background="@color/common_red"
                 android:text="上一页"/>
             <TextView
                 android:id="@+id/next_page_txt"
@@ -136,7 +135,7 @@
 
     <com.xkhouse.fang.widget.loading.RotateLoading
         android:id="@+id/rotate_loading"
-        app:loading_color="@color/common_blue"
+        app:loading_color="@color/common_red"
         app:loading_width="@dimen/rotate_loading_border"
         android:layout_width="@dimen/rotate_loading_width"
         android:layout_height="@dimen/rotate_loading_height"
@@ -148,7 +147,6 @@
         android:id="@+id/error_lay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/favorite_line"
         android:orientation="vertical"
         android:visibility="gone"
         android:gravity="center" >

@@ -26,7 +26,7 @@
     <style name="ThemeMainActivity" mce_bogus="1" parent="Theme.AppCompat.Light.DarkActionBar">
 
         <item name="android:windowNoTitle">true</item>
-        <item name="colorPrimaryDark">@color/common_blue</item>
+        <item name="colorPrimaryDark">@color/common_red</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 

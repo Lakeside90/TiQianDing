@@ -149,13 +149,6 @@
             android:theme="@style/ThemeActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".app.activity.FSHQDetailActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:hardwareAccelerated="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/ThemeActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
             android:name=".app.activity.KanFangDetailActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"

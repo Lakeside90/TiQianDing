@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
@@ -30,34 +29,21 @@ import com.baidu.android.pushservice.PushManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xkhouse.fang.R;
-import com.xkhouse.fang.app.adapter.HomeGridAdapter;
-import com.xkhouse.fang.app.adapter.HomeNewsGridAdapter;
 import com.xkhouse.fang.app.adapter.HouseLikeAdapter;
 import com.xkhouse.fang.app.adapter.NewsLikeAdapter;
-import com.xkhouse.fang.app.adapter.SaleGridAdapter;
 import com.xkhouse.fang.app.cache.AppCache;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
-import com.xkhouse.fang.app.entity.FSHQ;
 import com.xkhouse.fang.app.entity.House;
-import com.xkhouse.fang.app.entity.KanFang;
 import com.xkhouse.fang.app.entity.News;
-import com.xkhouse.fang.app.entity.SaleHouse;
 import com.xkhouse.fang.app.entity.Site;
 import com.xkhouse.fang.app.entity.XKAd;
-import com.xkhouse.fang.app.entity.XKNavigation;
 import com.xkhouse.fang.app.service.SiteDbService;
 import com.xkhouse.fang.app.task.ADListRequest;
-import com.xkhouse.fang.app.task.FSHQRequest;
-import com.xkhouse.fang.app.task.HotActivityListRequest;
 import com.xkhouse.fang.app.task.HouseLikeListRequest;
-import com.xkhouse.fang.app.task.KanFangListRequest;
-import com.xkhouse.fang.app.task.NavigationRequest;
 import com.xkhouse.fang.app.task.NewsLikeListRequest;
 import com.xkhouse.fang.app.task.SiteListRequest;
 import com.xkhouse.fang.app.util.DisplayUtil;
-import com.xkhouse.fang.app.view.UpMarqueeTextView;
-import com.xkhouse.fang.discount.activity.DiscountDetailActivity;
 import com.xkhouse.fang.house.activity.CustomHouseListActivity;
 import com.xkhouse.fang.house.activity.HouseDetailActivity;
 import com.xkhouse.fang.house.activity.MapHousesActivity;
@@ -65,7 +51,6 @@ import com.xkhouse.fang.house.activity.NewHouseListActivity;
 import com.xkhouse.fang.house.activity.SearchActivity;
 import com.xkhouse.fang.widget.ConfirmDialog;
 import com.xkhouse.fang.widget.CustomScrollView;
-import com.xkhouse.fang.widget.ScrollGridView;
 import com.xkhouse.fang.widget.ScrollListView;
 import com.xkhouse.fang.widget.ScrollXListView;
 import com.xkhouse.fang.widget.autoscrollviewpager.AutoScrollViewPager;
@@ -76,8 +61,6 @@ import com.xkhouse.lib.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /** 
  * @Description:  首页
@@ -89,7 +72,6 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	
 	private View rootView;
 	//title bar
-	private View home_search_bar;
 	private TextView city_txt;
 	
 	private CustomScrollView content_scroll;
@@ -98,44 +80,8 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	//轮询图
 	private AutoScrollViewPager home_viewpager;
 	private LinearLayout home_point_lay;
-	private LinearLayout home_ad_lay;
-	private TextView ad_name_txt;
 	private ArrayList<XKAd> adList;
 	private List<ImageView> pointViews;
-	
-	//功能入口图标
-	private ScrollGridView home_grid;
-	private HomeGridAdapter homeGridAdapter;
-	private ArrayList<XKNavigation> homeList;		//首页
-	private ArrayList<XKNavigation> moreList;		//更多
-	private ArrayList<XKNavigation> appList;		//app下载
-
-    //免费看房
-    private LinearLayout kanfang_lay;
-    private UpMarqueeTextView kanfang_txt;
-    private ArrayList<KanFang> kanFangList;
-    private Timer timerKF;
-    private int newsIndex;
-
-	
-	//限时抢购
-	private View sale_lay;
-	private ScrollGridView home_sale_grid;
-	private TextView sale_time_txt;
-	private List<SaleHouse> houseList;
-	private SaleGridAdapter saleGridAdapter;
-
-	//专题
-	private ScrollGridView news_grid;
-	private List<XKAd> themes;
-	private HomeNewsGridAdapter newsGridAdapter;
-
-    //房市行情
-    private LinearLayout hq_lay;
-    private TextView hq_month_txt;
-    private TextView hq_price_txt;
-    private TextView hq_count_txt;
-    private FSHQ fshq;
 
 	//猜你喜欢
     private LinearLayout house_like_more_lay;
@@ -154,11 +100,6 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	private ArrayList<News> newsLikeList = new ArrayList<News>();
 	private NewsLikeAdapter newsLikeAdapter;
 
-	@Override
-	public void onHiddenChanged(boolean hidden) {
-		super.onHiddenChanged(hidden);
-	}
-	
 	private ModelApplication modelApp;
 	private LocationManagerProxy mLocationManagerProxy;  //高德定位代理类
 	private AMapLocation mAmapLocation = null;			//当前定位的位置
@@ -169,7 +110,9 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	private SiteDbService siteDbService = new SiteDbService();
 	
 	private Site currentSite;
-	
+
+
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -186,15 +129,16 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 		mLocationManagerProxy.requestLocationData(LocationProviderProxy.AMapNetwork, 60 * 1000, 15, this);
 		
 		city_txt.setText(modelApp.getSite().getArea());
+
         getDataFromLocal();
 
 		getDataFromNet();
-		startNavigationTask();
-		
 
 		currentSite = modelApp.getSite();
+
 		return rootView;
 	}
+
 	
 	private void initData() {
 		modelApp = (ModelApplication) getActivity().getApplication();
@@ -232,17 +176,8 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
         //清除上一个城市数据
         clearLastSiteData();
 
-        if (kanFangList != null){
-            if (timerKF != null) timerKF.cancel();
-            kanFangList.clear();
-            fillKanFangData();
-        }
-
         getDataFromNet();
         Toast.makeText(getActivity(), "正在切换站点...", Toast.LENGTH_SHORT).show();
-
-        startNavigationTask();
-
 
         //百度推送设置tag
         if(currentSite != null){
@@ -262,46 +197,23 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
     }
 
     private void findViews() {
-		home_search_bar = rootView.findViewById(R.id.home_search_bar);
 		city_txt = (TextView) rootView.findViewById(R.id.city_txt);
 		
 		home_viewpager = (AutoScrollViewPager) rootView.findViewById(R.id.home_viewpager);
 		home_point_lay = (LinearLayout) rootView.findViewById(R.id.home_point_lay);
-		home_ad_lay = (LinearLayout) rootView.findViewById(R.id.home_ad_lay);
-		ad_name_txt = (TextView) rootView.findViewById(R.id.ad_name_txt);
-		
-		home_grid = (ScrollGridView) rootView.findViewById(R.id.home_grid);
-
-        kanfang_lay = (LinearLayout) rootView.findViewById(R.id.kanfang_lay);
-        kanfang_txt = (UpMarqueeTextView) rootView.findViewById(R.id.kanfang_txt);
 
 		content_scroll = (CustomScrollView) rootView.findViewById(R.id.content_scroll);
         scroll_top_iv = (ImageView) rootView.findViewById(R.id.scroll_top_iv);
-		
-		sale_lay = rootView.findViewById(R.id.sale_lay);
-		home_sale_grid= (ScrollGridView) rootView.findViewById(R.id.home_sale_grid);
-		sale_time_txt = (TextView) rootView.findViewById(R.id.sale_time_txt);
-		
-		news_grid = (ScrollGridView) rootView.findViewById(R.id.news_grid);
 
-        house_like_more_lay = (LinearLayout) rootView.findViewById(R.id.house_like_more_lay);
-        news_like_more_lay = (LinearLayout) rootView.findViewById(R.id.news_like_more_lay);
+//        house_like_more_lay = (LinearLayout) rootView.findViewById(R.id.house_like_more_lay);
+//        news_like_more_lay = (LinearLayout) rootView.findViewById(R.id.news_like_more_lay);
         house_like_listview = (ScrollListView) rootView.findViewById(R.id.house_like_listview);
 		news_like_listview = (ScrollXListView) rootView.findViewById(R.id.news_like_listview);
 
-
-        hq_lay = (LinearLayout) rootView.findViewById(R.id.hq_lay);
-        hq_month_txt = (TextView) rootView.findViewById(R.id.hq_month_txt);
-        hq_price_txt = (TextView) rootView.findViewById(R.id.hq_price_txt);
-        hq_count_txt = (TextView) rootView.findViewById(R.id.hq_count_txt);
     }
 	
 	private void setListeners() {
-		home_search_bar.setOnClickListener(this);
 		city_txt.setOnClickListener(this);
-		sale_time_txt.setOnClickListener(this);
-        kanfang_txt.setOnClickListener(this);
-        hq_lay.setOnClickListener(this);
         scroll_top_iv.setOnClickListener(this);
 
         house_like_more_lay.setOnClickListener(this);
@@ -311,7 +223,6 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
             @Override
             public void onPageSelected(int arg0) {
-                ad_name_txt.setText(adList.get(arg0).getTitle());
 
                 for (int i = 0; i < adList.size(); i++) {
                     if (arg0 == i) {
@@ -377,97 +288,24 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
         });
 
 
-		sale_time_txt.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				if(houseList != null && houseList.size() > 0){
-					Intent intent = new Intent(getActivity(), DiscountDetailActivity.class);
-					Bundle data = new Bundle();
-					data.putString("url", modelApp.getHuoDong()+"/"+houseList.get(0).getId()+"/" );
-					intent.putExtras(data);
-					getActivity().startActivity(intent);
-				}
-			}
-		});
+
 	}
 
-	private Timer timer;
-	private double startTime;	//活动开始时间
-	private double endTime;		//活动开始时间
-	private double nowTime;		//服务器当前时间
-	
-	private void fillSaleGridData() {
-        if(houseList == null || houseList.size() ==0 ){
-            sale_lay.setVisibility(View.GONE);
-        }else{
-            sale_lay.setVisibility(View.VISIBLE);
-        }
-		if (saleGridAdapter == null) {
-			saleGridAdapter = new SaleGridAdapter(houseList, getActivity());
-			home_sale_grid.setAdapter(saleGridAdapter);
-		}else{
-			saleGridAdapter.notifyDataSetChanged();
-		}
-	}
-	
-	class MyTimerTask extends TimerTask {
 
-		@Override
-		public void run() {
-			nowTime = nowTime + 1000;
-            if(getActivity() == null) return;
-			getActivity().runOnUiThread(new Runnable() {
-				public void run() {
-					try {
-						if(endTime < nowTime){
-							sale_time_txt.setText("活动已结束！");
-							sale_lay.setVisibility(View.GONE);
-							
-						}else if(startTime > nowTime) {
-//							sale_time_txt.setText("活动未开始！");
-							
-							int time = (int) (startTime - nowTime);
-							int day = time/(24*60*60*1000);
-							int hour = (time - (day*24*60*60*1000))/(60*60*1000);
-							int min = (time - (day*24*60*60*1000) - (hour*60*60*1000))/(60*1000);
-							int second = (time - (day*24*60*60*1000) - (hour*60*60*1000) - (min*60*1000))/(1000);
-							
-							sale_lay.setVisibility(View.VISIBLE);
-							sale_time_txt.setText("距离开始：  " + day+"天" + hour+"时" + min+"分" + second+"秒");
-						}else {
-							int time = (int) (endTime - nowTime);
-							int day = time/(24*60*60*1000);
-							int hour = (time - (day*24*60*60*1000))/(60*60*1000);
-							int min = (time - (day*24*60*60*1000) - (hour*60*60*1000))/(60*1000);
-							int second = (time - (day*24*60*60*1000) - (hour*60*60*1000) - (min*60*1000))/(1000);
-							
-							sale_lay.setVisibility(View.VISIBLE);
-							sale_time_txt.setText("距离结束：  " + day+"天" + hour+"时" + min+"分" + second+"秒");
-						}
-					} catch (Exception e) {
-						sale_time_txt.setText("距离结束：  0天00时00分00秒");
-					}
-				}
-			});
-			
-		}
-	}
+	
+
 	
 	//轮询图
 	private void fillAdData(){
 		if(adList == null) return;
 
         if(adList.size() < 1){
-            ad_name_txt.setText("");
-            home_ad_lay.setVisibility(View.GONE);
+			home_point_lay.setVisibility(View.GONE);
         }else{
-            ad_name_txt.setText(adList.get(0).getTitle());
-            home_ad_lay.setVisibility(View.VISIBLE);
+			home_point_lay.setVisibility(View.VISIBLE);
         }
 
-		
-		pointViews = new ArrayList<ImageView>();
+		pointViews = new ArrayList<>();
 		home_point_lay.removeAllViews();
 		
 		LayoutParams lps = new LayoutParams(DisplayUtil.dip2px(getActivity(), 6),
@@ -490,7 +328,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	       .bitmapConfig(Bitmap.Config.RGB_565).cacheInMemory(true)
 	       .cacheOnDisk(true).build();
 		
-		List<View> views = new ArrayList<View>();
+		List<View> views = new ArrayList<>();
 		for (int i = 0; i < adList.size(); i++) {
 			ImageView image = new ImageView(getActivity());
 			image.setScaleType(ScaleType.FIT_XY);
@@ -543,10 +381,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-            case R.id.home_search_bar:
-                Intent searchIntent = new Intent(getActivity(), SearchActivity.class);
-                getActivity().startActivity(searchIntent);
-                break;
+
 
             case R.id.city_txt:
                 Intent cityIntent = new Intent(getActivity(), CitySelectActivity.class);
@@ -560,43 +395,16 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
                 getActivity().startActivity(cityIntent);
                 break;
 
-            case R.id.sale_time_txt:
-                break;
+
 
             case R.id.custom_house_btn:
                 startActivity(new Intent(getActivity(), CustomHouseListActivity.class));
-                break;
-
-            case R.id.kanfang_txt:
-                if(kanFangList == null || kanFangList.size() == 0) return;
-                String id = (String)kanfang_txt.getTag();
-                String url = modelApp.getKanFang() + id + ".html";
-                Intent intent = new Intent(getActivity(), KanFangDetailActivity.class);
-                Bundle data = new Bundle();
-                data.putString("url", url);
-                intent.putExtras(data);
-                getActivity().startActivity(intent);
                 break;
 
             case R.id.scroll_top_iv:
                 content_scroll.fullScroll(ScrollView.FOCUS_UP);
                 break;
 
-            case R.id.hq_lay:
-                Intent fshqIntent = new Intent(getActivity(), FSHQDetailActivity.class);
-                Bundle fshqData = new Bundle();
-                fshqData.putString("url", fshq.getUrl());
-                fshqIntent.putExtras(fshqData);
-                getActivity().startActivity(fshqIntent);
-                break;
-
-            case R.id.house_like_more_lay:
-                startActivity(new Intent(getActivity(), NewHouseListActivity.class));
-                break;
-
-            case R.id.news_like_more_lay:
-                startActivity(new Intent(getActivity(), NewsIndexActivity.class));
-                break;
 		}
 	}
 	
@@ -662,78 +470,14 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	
 	/********************************** 网络数据请求相关     *******************************************/
 	
-	//功能入口
-	private void fillHomeGridData(){
-		if (homeGridAdapter == null) {
-			homeGridAdapter = new HomeGridAdapter(homeList, moreList, appList, getActivity());
-			home_grid.setAdapter(homeGridAdapter);
-		}else{
-			homeGridAdapter.setData(homeList, moreList, appList);
-		}
-		
-	}
+
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
-	//功能入口
-	private void startNavigationTask() {
-		if(NetUtil.detectAvailable(getActivity())){
-            NavigationRequest navigationRequest = new NavigationRequest(modelApp.getSite().getSiteId(), new RequestListener() {
 
-                @Override
-                public void sendMessage(Message message) {
-                    if(!modelApp.getSite().getSiteId().equals(message.getData().getString("siteId"))){
-                        return;
-                    }
-
-                    switch (message.what) {
-                    case Constants.ERROR_DATA_FROM_NET:
-                    case Constants.NO_DATA_FROM_NET:
-                        if(homeList != null) homeList.clear();
-                        if(moreList != null) moreList.clear();
-                        if(appList != null) appList.clear();
-                        fillHomeGridData();
-                        break;
-
-                    case Constants.SUCCESS_DATA_FROM_NET:
-                        Bundle data = message.getData();
-                        ArrayList<XKNavigation> tempHomeList = (ArrayList<XKNavigation>) data.getSerializable("home");
-                        if(homeList != null){
-                            homeList.clear();
-                        }else{
-                            homeList = new ArrayList<XKNavigation>();
-                        }
-                        homeList.addAll(tempHomeList);
-
-                        ArrayList<XKNavigation> tempMoreList = (ArrayList<XKNavigation>) data.getSerializable("more");
-                        if(moreList != null){
-                            moreList.clear();
-                        }else{
-                            moreList = new ArrayList<XKNavigation>();
-                        }
-                        moreList.addAll(tempMoreList);
-
-                        ArrayList<XKNavigation> tempAppList = (ArrayList<XKNavigation>) data.getSerializable("app");
-                        if(appList != null){
-                            appList.clear();
-                        }else{
-                            appList = new ArrayList<XKNavigation>();
-                        }
-                        appList.addAll(tempAppList);
-
-                        fillHomeGridData();
-                        break;
-                    }
-                }
-            });
-			navigationRequest.doRequest();
-		}else{
-			fillHomeGridData();
-		}
-	}
 	
 	
 	//猜你喜欢（楼盘）
@@ -762,56 +506,9 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 		}
 	}
 	
-	//专题
-	private void fillNewsThemeData() {
-		if(themes == null) return;
-		news_grid.setVisibility(View.VISIBLE);
-		if (newsGridAdapter == null) {
-			newsGridAdapter = new HomeNewsGridAdapter(themes, getActivity());
-			news_grid.setAdapter(newsGridAdapter);
-		} else {
-			newsGridAdapter.setData(themes);
-			newsGridAdapter.notifyDataSetChanged();
-		}
-	}
 
-    //免费看房团
-    private void fillKanFangData(){
-        if (kanFangList == null || kanFangList.size() == 0) {
-            kanfang_txt.setText("暂无看房团信息");
-            kanfang_lay.setVisibility(View.GONE);
-            return;
-        }
-        kanfang_lay.setVisibility(View.VISIBLE);
-        if (kanFangList.size() == 1) {
-            kanfang_txt.setTag(kanFangList.get(0).getId());
-            kanfang_txt.setText(kanFangList.get(0).getTitle());
-            return;
-        }
-        if(timerKF !=null){
-            timerKF.cancel();
-            timerKF= null;
-        }
-        timerKF = new Timer();
-        newsIndex = 0;
-        timerKF.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                if(getActivity() == null) return;
-                getActivity().runOnUiThread(new Runnable() {
-                    public void run() {
-                        if (newsIndex == kanFangList.size()) {
-                            newsIndex = 0;
-                        }
-                        kanfang_txt.setText(kanFangList.get(newsIndex).getTitle());
-                        kanfang_txt.setTag(kanFangList.get(newsIndex).getId());
-                        newsIndex++;
-                    }
-                });
-            }
-        }, 0, 3 * 1000);
 
-    }
+
 
 		
 	private RequestListener houseLikeListener = new RequestListener() {
@@ -903,106 +600,9 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 		}
 	};
 	
-	private RequestListener newsThemeListener = new RequestListener() {
-		
-		@Override
-		public void sendMessage(Message message) {
-            if(!modelApp.getSite().getSiteId().equals(message.getData().getString("siteId"))){
-                return;
-            }
 
-			switch (message.what) {
-			case Constants.ERROR_DATA_FROM_NET:
-				news_grid.setVisibility(View.GONE);
-				break;
-				
-			case Constants.NO_DATA_FROM_NET:
-				if (themes != null) {
-					themes.clear();
-					fillNewsThemeData();
-				}
-				news_grid.setVisibility(View.GONE);
-				break;
-				
-			case Constants.SUCCESS_DATA_FROM_NET:
-				ArrayList<XKAd> temp = (ArrayList<XKAd>) message.getData().getSerializable("adList");
-				//最多显示4条数据
-				if(temp != null && temp.size() > 4){
-					int size = temp.size();
-					for(int i = 4; i < size; i++){
-						temp.remove(temp.size()-1);
-					}
-				}
-				if (themes == null) {
-					themes = new ArrayList<XKAd>();
-					themes.addAll(temp);
-				} else {
-					themes.clear();
-					themes.addAll(temp);
-				}
-				fillNewsThemeData();
-				break;
-			}
-		}
-	};
 	
-	private RequestListener hotActivityListener = new RequestListener() {
-		
-		@Override
-		public void sendMessage(Message message) {
 
-            if(!modelApp.getSite().getSiteId().equals(message.getData().getString("siteId"))){
-                return;
-            }
-
-			switch (message.what) {
-			case Constants.ERROR_DATA_FROM_NET:
-				break;
-				
-			case Constants.NO_DATA_FROM_NET:
-				if (houseList != null) {
-					houseList.clear();
-					fillSaleGridData();
-				}
-				if(timer != null) {
-					timer.cancel();
-					timer = null;
-				}
-				sale_time_txt.setText("距离结束：  0天00时00分00秒");
-				break;
-				
-			case Constants.SUCCESS_DATA_FROM_NET:
-				if(timer != null) {
-					timer.cancel();
-					timer = null;
-				}
-				Bundle data = message.getData();
-				ArrayList<SaleHouse> temp = (ArrayList<SaleHouse>) data.getSerializable("houseList");
-				startTime = data.getDouble("startTime");
-				endTime = data.getDouble("endTime");
-				nowTime = data.getDouble("nowTime");
-				//最多显示4条数据
-				if(temp != null && temp.size() > 2){
-					int size = temp.size();
-					for(int i = 2; i < size; i++){
-						temp.remove(temp.size()-1);
-					}
-				}
-				if (houseList == null) {
-					houseList = new ArrayList<SaleHouse>();
-					houseList.addAll(temp);
-				} else {
-					houseList.clear();
-					houseList.addAll(temp);
-				}
-				fillSaleGridData();
-				timer = new Timer();
-				timer.schedule(new MyTimerTask(), 0, 1000);
-				break;
-			}
-		}
-	};
-	
 	private RequestListener adListListener = new RequestListener() {
 		
 		@Override
@@ -1040,75 +640,6 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	};
 
 
-    private RequestListener kanFangListListener = new RequestListener() {
-
-        @Override
-        public void sendMessage(Message message) {
-            if(!modelApp.getSite().getSiteId().equals(message.getData().getString("siteId"))){
-                return;
-            }
-
-            switch (message.what) {
-                case Constants.ERROR_DATA_FROM_NET:
-                    break;
-
-                case Constants.NO_DATA_FROM_NET:
-                    if (kanFangList != null) {
-                        kanFangList.clear();
-                    }
-                    fillKanFangData();
-                    break;
-
-                case Constants.SUCCESS_DATA_FROM_NET:
-                    ArrayList<KanFang> temp = (ArrayList<KanFang>) message.getData().getSerializable("kanFangList");
-
-                    if (kanFangList == null) {
-                        kanFangList = new ArrayList<KanFang>();
-                        kanFangList.addAll(temp);
-                    } else {
-                        kanFangList.clear();
-                        kanFangList.addAll(temp);
-                    }
-                    fillKanFangData();
-                    break;
-            }
-        }
-    };
-
-    private RequestListener fshqListListener = new RequestListener() {
-
-        @Override
-        public void sendMessage(Message message) {
-            if(!modelApp.getSite().getSiteId().equals(message.getData().getString("siteId"))){
-                return;
-            }
-
-            switch (message.what) {
-                case Constants.ERROR_DATA_FROM_NET:
-                    hq_lay.setVisibility(View.GONE);
-                    break;
-
-                case Constants.NO_DATA_FROM_NET:
-                    hq_lay.setVisibility(View.GONE);
-                    break;
-
-                case Constants.SUCCESS_DATA_FROM_NET:
-
-                    fshq = (FSHQ) message.getData().getSerializable("fshq");
-                    if(fshq != null){
-                        hq_count_txt.setText(fshq.getCount());
-                        hq_month_txt.setText(fshq.getMonth()+"月均价");
-                        hq_price_txt.setText(fshq.getPrice());
-                        hq_lay.setVisibility(View.VISIBLE);
-                    }else{
-                        hq_lay.setVisibility(View.GONE);
-                    }
-                    break;
-            }
-        }
-    };
-
-
 	private void getDataFromNet(){
 		if (NetUtil.detectAvailable(getActivity())) {
 			//猜你喜欢
@@ -1118,26 +649,10 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 			isPullDown = true;
 			currentPageIndex = 1;
 			startNewsListTask(1);
-			
-			//新闻专题
-            ADListRequest topicListRequest = new ADListRequest(modelApp.getSite().getSiteId(), "188", newsThemeListener);
-			topicListRequest.doRequest();
-			
-			//热门活动
-            HotActivityListRequest	hotActivityListRequest = new HotActivityListRequest(modelApp.getSite().getSiteId(), hotActivityListener);
-			hotActivityListRequest.doRequest();
-			
+
 			//轮询图广告
             ADListRequest adListRequest = new ADListRequest(modelApp.getSite().getSiteId(), "187", adListListener);
 			adListRequest.doRequest();
-
-            //免费看房
-            KanFangListRequest kanFangListRequest = new KanFangListRequest(modelApp.getSite().getSiteId(), kanFangListListener);
-            kanFangListRequest.doRequest();
-
-            //房市行情
-            FSHQRequest fshqRequest = new FSHQRequest(modelApp.getSite().getSiteId(), fshqListListener);
-            fshqRequest.doRequest();
 
 		} else {
 			Toast.makeText(getActivity(), R.string.net_warn, Toast.LENGTH_SHORT).show();
@@ -1151,20 +666,6 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
         adListRequest.parseResult(AppCache.readHomeAdJson(modelApp.getSite().getSiteId()));
         adList = adListRequest.getAdList();
         fillAdData();
-
-        //功能入口
-        NavigationRequest navigationRequest = new NavigationRequest();
-        navigationRequest.parseResult(AppCache.readNavigationJson(modelApp.getSite().getSiteId()));
-        homeList = navigationRequest.getHomeList();
-        moreList = navigationRequest.getMoreList();
-        appList = navigationRequest.getAppList();
-        fillHomeGridData();
-
-        //专题
-        ADListRequest topicRequest = new ADListRequest();
-        topicRequest.parseResult(AppCache.readHomeTopicJson(modelApp.getSite().getSiteId()));
-        themes = topicRequest.getAdList();
-        fillNewsThemeData();
 
         //猜你喜欢
         HouseLikeListRequest houseLikeListRequest = new HouseLikeListRequest();
@@ -1184,17 +685,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
             adList.clear();
             fillAdData();
         }
-        if(homeList != null){
-            homeList.clear();
-            moreList.clear();
-            appList.clear();
-            fillHomeGridData();
-        }
 
-        if(themes != null){
-            themes.clear();
-            fillNewsThemeData();
-        }
 
         if(houseLikeList != null){
             houseLikeList.clear();
@@ -1205,13 +696,6 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
             newsLikeList.clear();
             fillNewsLikeData();
         }
-
-        if (houseList != null){
-            houseList.clear();
-            fillSaleGridData();
-        }
-
-
     }
 
 

@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text=""
-            android:textColor="@color/common_blue"
+            android:textColor="@color/common_red"
             android:textSize="15sp"/>
 
         <TextView

@@ -25,7 +25,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="邀请码"
-                android:textColor="@color/common_blue"
+                android:textColor="@color/common_red"
                 android:textSize="15sp" />
 
             <TextView

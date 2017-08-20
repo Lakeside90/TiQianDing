@@ -147,7 +147,7 @@
             android:layout_width="@dimen/rotate_loading_width"
             android:layout_height="@dimen/rotate_loading_height"
             android:layout_centerInParent="true"
-            app:loading_color="@color/common_blue"
+            app:loading_color="@color/common_red"
             app:loading_width="@dimen/rotate_loading_border"/>
 
         <ImageView

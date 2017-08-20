@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#28b4f0</color>
-    <color name="colorPrimaryDark">#0a6f93</color>
-    <color name="colorAccent">#28b4f0</color>
+    <color name="colorPrimary">#d43d3d</color>
+    <color name="colorPrimaryDark">#d43d3d</color>
+    <color name="colorAccent">#d43d3d</color>
 
 
     <!-- 黑色 -->
@@ -61,7 +61,7 @@
 
     <color name="common_green">#7dd232</color>
     <color name="common_orange">#f18e37</color>
-    <color name="common_blue">#28b4f0</color>
+    <color name="common_red">#d43d3d</color>
 
     <color name="area_wheel_selected">#191818</color>
     <color name="area_wheel_unselect">#a2a0a0</color>
@@ -69,4 +69,6 @@
     <color name="house_bottom_bg">#90000000</color>
 
     <color name="image_checked_bg">#66000000</color>
+
+    <color name="common_gray_space">#f2f2f2</color>
 </resources>

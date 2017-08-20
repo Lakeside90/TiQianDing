@@ -225,7 +225,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:text="《星房惠注册协议》"
-            android:textColor="@color/common_blue"
+            android:textColor="@color/common_red"
             android:textSize="12sp" />
     </LinearLayout>
 

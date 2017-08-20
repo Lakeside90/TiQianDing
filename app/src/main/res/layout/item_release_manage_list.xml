@@ -60,7 +60,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="16sp"
-            android:textColor="@color/common_blue"
+            android:textColor="@color/common_red"
             android:text="刷新"/>
 
         <TextView
@@ -70,7 +70,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="16sp"
-            android:textColor="@color/common_blue"
+            android:textColor="@color/common_red"
             android:text="刷新"/>
 
         <TextView
@@ -80,7 +80,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="16sp"
-            android:textColor="@color/common_blue"
+            android:textColor="@color/common_red"
             android:text="刷新"/>
 
     </LinearLayout>

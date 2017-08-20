@@ -20,7 +20,7 @@ import com.xkhouse.fang.R;
  * RotateLoading
  * Created by Victor on 2015/4/28.
  */
-public class RotateLoading extends View {
+public class    RotateLoading extends View {
 
     private static final int DEFAULT_WIDTH = 6;
     private static final int DEFAULT_SHADOW_POSITION = 2;

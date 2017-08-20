@@ -115,7 +115,7 @@
                     android:paddingRight="3dp"
                     android:paddingTop="2dp"
                     android:text=""
-                    android:textColor="@color/common_blue"
+                    android:textColor="@color/common_red"
                     android:textSize="12sp"/>
             </RelativeLayout>
         </LinearLayout>

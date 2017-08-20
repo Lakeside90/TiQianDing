@@ -173,8 +173,8 @@ public class LoginActivity extends AppBaseActivity {
 
         login_one_lay.setVisibility(View.VISIBLE);
         login_two_lay.setVisibility(View.GONE);
-        login_username_txt.setTextColor(getResources().getColor(R.color.common_blue));
-        login_username_line.setBackgroundResource(R.color.common_blue);
+        login_username_txt.setTextColor(getResources().getColor(R.color.common_red));
+        login_username_line.setBackgroundResource(R.color.common_red);
         login_phone_txt.setTextColor(getResources().getColor(R.color.c_666666));
         login_phone_line.setBackgroundResource(R.color.common_diver_line);
 	}
@@ -269,8 +269,8 @@ public class LoginActivity extends AppBaseActivity {
             case R.id.login_username_lay:
                 login_one_lay.setVisibility(View.VISIBLE);
                 login_two_lay.setVisibility(View.GONE);
-                login_username_txt.setTextColor(getResources().getColor(R.color.common_blue));
-                login_username_line.setBackgroundResource(R.color.common_blue);
+                login_username_txt.setTextColor(getResources().getColor(R.color.common_red));
+                login_username_line.setBackgroundResource(R.color.common_red);
                 login_phone_txt.setTextColor(getResources().getColor(R.color.c_666666));
                 login_phone_line.setBackgroundResource(R.color.common_diver_line);
                 break;
@@ -280,8 +280,8 @@ public class LoginActivity extends AppBaseActivity {
                 login_two_lay.setVisibility(View.VISIBLE);
                 login_username_txt.setTextColor(getResources().getColor(R.color.c_666666));
                 login_username_line.setBackgroundResource(R.color.common_diver_line);
-                login_phone_txt.setTextColor(getResources().getColor(R.color.common_blue));
-                login_phone_line.setBackgroundResource(R.color.common_blue);
+                login_phone_txt.setTextColor(getResources().getColor(R.color.common_red));
+                login_phone_line.setBackgroundResource(R.color.common_red);
                 break;
 
             case R.id.get_code_txt:

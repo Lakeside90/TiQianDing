@@ -42,7 +42,7 @@
                 android:background="@drawable/blue_border_cricle_btn_bg"
                 android:gravity="center"
                 android:text="公积金贷款"
-                android:textColor="@color/common_blue"
+                android:textColor="@color/common_red"
                 android:textSize="16sp"/>
 
             <TextView
@@ -53,7 +53,7 @@
                 android:background="@drawable/blue_border_cricle_btn_bg"
                 android:gravity="center"
                 android:text="组合贷款"
-                android:textColor="@color/common_blue"
+                android:textColor="@color/common_red"
                 android:textSize="16sp"/>
         </LinearLayout>
 
@@ -73,7 +73,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="15dp"
             android:text="所需材料"
-            android:textColor="@color/common_blue"
+            android:textColor="@color/common_red"
             android:textSize="16sp"/>
 
         <TextView
@@ -94,7 +94,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="15dp"
             android:text="所需证明"
-            android:textColor="@color/common_blue"
+            android:textColor="@color/common_red"
             android:textSize="16sp"/>
 
         <TextView

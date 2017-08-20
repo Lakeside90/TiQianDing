@@ -122,7 +122,7 @@
                 android:layout_toRightOf="@id/count_txt"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="@color/common_blue"
+                android:textColor="@color/common_red"
                 android:textSize="12sp"/>
 
             <TextView
@@ -181,13 +181,14 @@
 
     </LinearLayout>
 
-    <com.xkhouse.fang.widget.loading.RotateLoading
+<!--    <com.xkhouse.fang.widget.loading.RotateLoading
         android:id="@+id/rotate_loading"
-        app:loading_color="@color/common_blue"
+        app:loading_color="@color/common_red"
         app:loading_width="@dimen/rotate_loading_border"
         android:layout_width="@dimen/rotate_loading_width"
         android:layout_height="@dimen/rotate_loading_height"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        xlist:loading_color="@color/common_red" />-->
 
 
     <LinearLayout

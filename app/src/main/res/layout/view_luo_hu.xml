@@ -21,7 +21,7 @@
             android:layout_marginLeft="8dp"
             android:text="落户前期准备材料"
             android:textSize="15sp"
-            android:textColor="@color/common_blue"/>
+            android:textColor="@color/common_red"/>
 
         <TextView
             android:id="@+id/luohu_txt"

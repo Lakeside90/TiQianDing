@@ -29,7 +29,7 @@
             android:layout_marginLeft="8dp"
             android:text="房产局办理房产证"
             android:textSize="15sp"
-            android:textColor="@color/common_blue"/>
+            android:textColor="@color/common_red"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
             android:layout_marginLeft="8dp"
             android:text="国土局办理土地证"
             android:textSize="15sp"
-            android:textColor="@color/common_blue"/>
+            android:textColor="@color/common_red"/>
 
         <TextView
             android:layout_width="wrap_content"

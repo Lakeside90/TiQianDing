@@ -203,7 +203,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="27dp"
                 android:text="确定"
-                android:textColor="@color/common_blue"
+                android:textColor="@color/common_red"
                 android:textSize="15sp"/>
 
         </RelativeLayout>
