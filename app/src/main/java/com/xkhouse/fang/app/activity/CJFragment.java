@@ -1,5 +1,6 @@
 package com.xkhouse.fang.app.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,7 +83,7 @@ public class CJFragment extends AppBaseFragment {
     public static final String RECOMMEND_SUCCESS = "2";		//推荐成功
     public static final String RECOMMEND_FAIL = "3";		//推荐失败
 
-    private String[] titles = {"全部", "推荐中", "推荐成功", "推荐失败"};
+    private String[] titles = {"全部抽奖", "人气", "上架时间", "已开奖"};
     private String[] types = {RECOMMEND_ALL, RECOMMEND_ING, RECOMMEND_SUCCESS, RECOMMEND_FAIL};
     private List<ItemCJListView> recommendViews = new ArrayList<ItemCJListView>();
 
@@ -96,9 +98,12 @@ public class CJFragment extends AppBaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
+        Context contextThemeWrapper = new ContextThemeWrapper(getActivity(), R.style.NewsStyledIndicators);
+        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
+
         modelApp = (ModelApplication) getActivity().getApplication();
 
-		rootView = inflater.inflate(R.layout.activity_chou_jiang, container, false);
+		rootView = localInflater.inflate(R.layout.activity_chou_jiang, container, false);
 
 
 

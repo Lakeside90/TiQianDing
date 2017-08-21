@@ -30,11 +30,8 @@ import com.xkhouse.fang.app.activity.ModelApplication;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.config.Preference;
-import com.xkhouse.fang.house.activity.BaikeHouseActivity;
 import com.xkhouse.fang.house.activity.BuyAbilityActivity;
-import com.xkhouse.fang.house.activity.CommunityListActivity;
 import com.xkhouse.fang.house.activity.MyCustomHouseListActivity;
-import com.xkhouse.fang.house.task.CommunityListRequest;
 import com.xkhouse.fang.user.task.MessageReadRequest;
 import com.xkhouse.fang.user.task.MsgFavoriteNumRequest;
 import com.xkhouse.fang.user.task.WalletListRequest;
@@ -274,7 +271,6 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
                 break;
 
             case R.id.house_baike_lay:
-                startActivity(new Intent(getActivity(), BaikeHouseActivity.class));
                 break;
 
             case R.id.buy_ability_lay:

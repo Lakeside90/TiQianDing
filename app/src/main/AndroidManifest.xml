@@ -374,12 +374,6 @@
             android:theme="@style/ThemeActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".house.activity.BaikeHouseActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/ThemeActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity
             android:name=".house.activity.KanFangActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"

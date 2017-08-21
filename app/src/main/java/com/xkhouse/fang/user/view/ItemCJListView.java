@@ -111,7 +111,7 @@ public class ItemCJListView {
 	private void startRecommendListTask(int page, boolean showLoading){
 		if (NetUtil.detectAvailable(context)) {
 			if(recommendListRequest == null){
-				recommendListRequest = new XKRecommendListRequest(modelApp.getUser().getUid(), status, page, pageSize,
+				recommendListRequest = new XKRecommendListRequest("1000", status, page, pageSize,
 						new RequestListener() {
 					
 					@Override
@@ -173,7 +173,7 @@ public class ItemCJListView {
 					}
 				});
 			}else {
-				recommendListRequest.setData(modelApp.getUser().getUid(), status, page, pageSize);
+				recommendListRequest.setData("100", status, page, pageSize);
 			}
 			if (showLoading) {
                 content_lay.setVisibility(View.GONE);
@@ -196,6 +196,8 @@ public class ItemCJListView {
                 Toast.makeText(context, R.string.net_warn, Toast.LENGTH_SHORT).show();
             }
 		}
+
+        fillRecommendData();
 	}
 	
 	

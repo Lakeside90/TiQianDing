@@ -40,12 +40,14 @@ public class CJListAdapter extends BaseAdapter {
 	
 	@Override
 	public int getCount() {
-		return recommendList.size();
+//		return recommendList.size();
+        return 10;
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return recommendList.get(position);
+//		return recommendList.get(position);
+        return 0;
 	}
 
 	@Override

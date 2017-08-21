@@ -12,6 +12,7 @@
         android:id="@+id/house_icon_iv"
         android:layout_width="100dp"
         android:layout_height="90dp"
+        android:src="@drawable/guide_img_1"
         android:scaleType="fitXY"/>
 
     <LinearLayout

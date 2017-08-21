@@ -22,7 +22,6 @@ import com.xkhouse.fang.app.activity.MainActivity;
 import com.xkhouse.fang.app.activity.NewsIndexActivity;
 import com.xkhouse.fang.app.entity.XKNavigation;
 import com.xkhouse.fang.discount.activity.DiscountActivity;
-import com.xkhouse.fang.house.activity.BaikeHouseActivity;
 import com.xkhouse.fang.house.activity.BuyAbilityActivity;
 import com.xkhouse.fang.house.activity.CustomHouseListActivity;
 import com.xkhouse.fang.house.activity.NewHouseListActivity;
@@ -367,8 +366,7 @@ public class NavigationAdapter extends BaseAdapter {
 			context.startActivity(intent);
 			((Activity) context).finish();
 		}else if("pushToEncyclopedias".equals(navigation.getMethod())){
-            context.startActivity(new Intent(context, BaikeHouseActivity.class));
-            ((Activity) context).finish();
+
         }else if("pushToAssessment".equals(navigation.getMethod())){
             context.startActivity(new Intent(context, BuyAbilityActivity.class));
             ((Activity) context).finish();
