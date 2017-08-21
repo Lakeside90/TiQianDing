@@ -24,7 +24,7 @@ import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.config.Preference;
 import com.xkhouse.fang.app.entity.AppUpgrade;
 import com.xkhouse.fang.app.task.VersionCheckRequest;
-import com.xkhouse.fang.money.activity.MoneyFragment;
+import com.xkhouse.fang.money.activity.TQDFragment;
 import com.xkhouse.fang.user.activity.UserFragment;
 import com.xkhouse.fang.widget.AppUpdateDialog;
 import com.xkhouse.lib.utils.NetUtil;
@@ -44,8 +44,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 
 	private HomeFragment homeFragment;
 //	private DiscountFragment discountFragment;
-    private BaikeFragment baikeFragment;
-	private MoneyFragment moneyFragment;
+    private CJFragment baikeFragment;
+	private TQDFragment tqdFragment;
 	private UserFragment userFragment;
 	
 	private Fragment currentFrag = null;
@@ -58,7 +58,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
      */
-    private static final  String[] FRAGMENT_TAG = {"homeFragment","baikeFragment","moneyFragment","userFragment"};
+    private static final  String[] FRAGMENT_TAG = {"homeFragment","baikeFragment","tqdFragment","userFragment"};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +74,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
             //读取上一次界面Save的时候tab选中的状态
             selindex = savedInstanceState.getInt(PRV_SELINDEX,selindex);
             homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG[0]);
-            baikeFragment = (BaikeFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG[1]);
-            moneyFragment = (MoneyFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG[2]);
+            baikeFragment = (CJFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG[1]);
+            tqdFragment = (TQDFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG[2]);
             userFragment = (UserFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG[3]);
             currentFrag = getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG[selindex]);
         }
@@ -216,15 +216,15 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
                 break;
 
             case 1:
-                if(baikeFragment == null) baikeFragment = new BaikeFragment();
+                if(baikeFragment == null) baikeFragment = new CJFragment();
                 showFragment(baikeFragment, fragmentFlag);
                 freashBottomUI(fragmentFlag);
                 selindex = fragmentFlag;
                 break;
 
             case 2:
-                if(moneyFragment == null) moneyFragment = new MoneyFragment();
-                showFragment(moneyFragment, fragmentFlag);
+                if(tqdFragment == null) tqdFragment = new TQDFragment();
+                showFragment(tqdFragment, fragmentFlag);
                 freashBottomUI(fragmentFlag);
                 selindex = fragmentFlag;
                 break;
@@ -249,8 +249,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 				&& event.getAction() == KeyEvent.ACTION_DOWN) {
 
 
-//            if(moneyFragment != null && moneyFragment.isVisible()){
-//                if (moneyFragment.closeTypeView()) return  true;
+//            if(tqdFragment != null && tqdFragment.isVisible()){
+//                if (tqdFragment.closeTypeView()) return  true;
 //            }
 			
 			if ((System.currentTimeMillis() - exitTime) > 2000) {

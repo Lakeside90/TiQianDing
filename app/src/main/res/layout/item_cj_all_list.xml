@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/common_list_bg_selector"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+    android:paddingRight="15dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp">
+
+    <ImageView
+        android:id="@+id/house_icon_iv"
+        android:layout_width="100dp"
+        android:layout_height="90dp"
+        android:scaleType="fitXY"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/house_name_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="2"
+            android:text="拉菲红酒拉菲红酒拉菲红酒拉菲红酒拉菲红酒"
+            android:textColor="@color/common_black_txt"
+            android:textSize="16sp"/>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:max="100"
+            android:progress="40"
+            android:progressDrawable="@drawable/progress_bar_drawable"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="原价："
+                android:textColor="@color/common_gray_txt"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="6000"
+                android:textColor="@color/common_gray_txt"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:background="@drawable/blue_conner_btn_normal"
+                android:gravity="center"
+                android:text="参与抽奖"
+                android:textColor="@color/white"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

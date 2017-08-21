@@ -61,7 +61,7 @@ public class BaikeHouseActivity extends AppBaseActivity {
     @Override
     protected void setContentView() {
         super.setContentView();
-        setContentView(R.layout.activity_baike_house);
+        setContentView(R.layout.activity_chou_jiang);
     }
 
     @Override
