@@ -20,16 +20,38 @@
             android:layout_alignParentLeft="true"
             android:src="@drawable/nav_back"/>
 
-        <TextView
+        <RadioGroup
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center_vertical"
-            android:text="@string/title_tqd"
-            android:textColor="@color/white"
-            android:textSize="20sp"/>
-    </RelativeLayout>
+            >
+            <RadioButton
+                android:layout_width="64dp"
+                android:layout_height="30dp"
+                android:text="附近"
+                android:textSize="20sp"
+                android:textColor="@color/tab_red_white"
+                android:gravity="center"
+                android:checked="false"
+                android:button="@null"
+                android:background="@drawable/tab_left_bg_selector"
+                />
+            <RadioButton
+                android:layout_width="64dp"
+                android:layout_height="30dp"
+                android:text="推荐"
+                android:textSize="20sp"
+                android:textColor="@color/tab_red_white"
+                android:gravity="center"
+                android:checked="true"
+                android:button="@null"
+                android:background="@drawable/tab_right_bg_selector"
+                />
+        </RadioGroup>
 
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
