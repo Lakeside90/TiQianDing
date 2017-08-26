@@ -38,12 +38,11 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 
 
 	private TextView home_tv;
-	private TextView discount_tv;
-	private TextView money_tv;
+	private TextView cj_tv;
+	private TextView tqd_tv;
 	private TextView user_tv;
 
 	private HomeFragment homeFragment;
-//	private DiscountFragment discountFragment;
     private CJFragment baikeFragment;
 	private TQDFragment tqdFragment;
 	private UserFragment userFragment;
@@ -107,8 +106,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 
     private void findViews() {
 		home_tv = (TextView) findViewById(R.id.home_tv);
-		discount_tv = (TextView) findViewById(R.id.discount_tv);
-		money_tv = (TextView) findViewById(R.id.money_tv);
+		cj_tv = (TextView) findViewById(R.id.cj_tv);
+		tqd_tv = (TextView) findViewById(R.id.tqd_tv);
 		user_tv = (TextView) findViewById(R.id.user_tv);
 
 	
@@ -117,8 +116,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 	private void setListeners() {
 
 		home_tv.setOnClickListener(this);
-		discount_tv.setOnClickListener(this);
-		money_tv.setOnClickListener(this);
+		cj_tv.setOnClickListener(this);
+		tqd_tv.setOnClickListener(this);
 		user_tv.setOnClickListener(this);
 
 		
@@ -131,11 +130,11 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 			selectFragment(0);
 			break;
 
-		case R.id.discount_tv:
+		case R.id.cj_tv:
 			selectFragment(1);
 			break;
 
-		case R.id.money_tv:
+		case R.id.tqd_tv:
 			selectFragment(2);
 			break;
 
@@ -168,29 +167,29 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 		switch (index) {
 		case 0:
 			home_tv.setSelected(true);
-			discount_tv.setSelected(false);
-			money_tv.setSelected(false);
+			cj_tv.setSelected(false);
+			tqd_tv.setSelected(false);
 			user_tv.setSelected(false);
 			break;
 			
 		case 1:
 			home_tv.setSelected(false);
-			discount_tv.setSelected(true);
-			money_tv.setSelected(false);
+			cj_tv.setSelected(true);
+			tqd_tv.setSelected(false);
 			user_tv.setSelected(false);
 			break;
 			
 		case 2:
 			home_tv.setSelected(false);
-			discount_tv.setSelected(false);
-			money_tv.setSelected(true);
+			cj_tv.setSelected(false);
+			tqd_tv.setSelected(true);
 			user_tv.setSelected(false);
 			break;
 			
 		case 3:
 			home_tv.setSelected(false);
-			discount_tv.setSelected(false);
-			money_tv.setSelected(false);
+			cj_tv.setSelected(false);
+			tqd_tv.setSelected(false);
 			user_tv.setSelected(true);
 			break;
 		}

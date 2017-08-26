@@ -29,7 +29,7 @@
             android:textColor="@drawable/home_tab_txt_selector" />
 
         <TextView
-            android:id="@+id/discount_tv"
+            android:id="@+id/cj_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -38,11 +38,11 @@
             android:gravity="center"
             android:text="抽奖"
             android:textSize="12sp"
-            android:drawableTop="@drawable/baike_icon_selector"
+            android:drawableTop="@drawable/cj_icon_selector"
             android:textColor="@drawable/home_tab_txt_selector" />
 
         <TextView
-            android:id="@+id/money_tv"
+            android:id="@+id/tqd_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -51,7 +51,7 @@
             android:gravity="center"
             android:text="提前定"
             android:textSize="12sp"
-            android:drawableTop="@drawable/money_icon_selector"
+            android:drawableTop="@drawable/tqd_icon_selector"
             android:textColor="@drawable/home_tab_txt_selector" />
 
         <TextView
