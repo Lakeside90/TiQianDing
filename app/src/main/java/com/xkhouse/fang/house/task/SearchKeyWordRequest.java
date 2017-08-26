@@ -76,7 +76,7 @@ public class SearchKeyWordRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code)){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
                         	Bundle data = new Bundle();
                         	data.putString("newhouseCount", newhouseCount);
                         	data.putString("oldhouseCount", oldhouseCount);
@@ -126,7 +126,7 @@ public class SearchKeyWordRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

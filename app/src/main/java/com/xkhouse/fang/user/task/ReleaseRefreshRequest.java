@@ -16,7 +16,6 @@ import com.xkhouse.frame.activity.BaseApplication;
 import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -75,7 +74,7 @@ public class ReleaseRefreshRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code)){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
                         	message.obj = msg;
                         }else{

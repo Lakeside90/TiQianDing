@@ -18,7 +18,6 @@ import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -72,7 +71,7 @@ public class ADListRequest {
                 Message message = new Message();
                 Bundle data = new Bundle();
 
-                if(Constants.SUCCESS_CODE.equals(code)){
+                if(Constants.SUCCESS_CODE_OLD.equals(code)){
                     //缓存json到本地
                     if ("187".equals(moduleId)){
                         AppCache.writeHomeAdJson(siteId, response);
@@ -129,7 +128,7 @@ public class ADListRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

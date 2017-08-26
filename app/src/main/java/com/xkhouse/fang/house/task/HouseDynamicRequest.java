@@ -82,7 +82,7 @@ public class HouseDynamicRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code)){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
                         	Bundle data = new Bundle();
                         	data.putSerializable("yearList", yearList);
                         	data.putSerializable("dynamicList", dynamicList);
@@ -129,7 +129,7 @@ public class HouseDynamicRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

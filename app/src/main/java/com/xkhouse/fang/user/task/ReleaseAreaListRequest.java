@@ -18,7 +18,6 @@ import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -60,7 +59,7 @@ public class ReleaseAreaListRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code)){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
                         	message.obj = areaHouseList;
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
                         }else{
@@ -115,7 +114,7 @@ public class ReleaseAreaListRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

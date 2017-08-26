@@ -17,7 +17,6 @@ import com.xkhouse.frame.activity.BaseApplication;
 import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -61,7 +60,7 @@ public class GetVerifyCodeRequest {
 
                         Message message = new Message();
                         message.obj = msg;
-                        if(Constants.SUCCESS_CODE.equals(code)){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
                             message.what = Constants.SUCCESS_DATA_FROM_NET;
                         }else{
                             message.what = Constants.NO_DATA_FROM_NET;

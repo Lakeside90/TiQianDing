@@ -76,6 +76,9 @@ public class User implements Serializable {
 
     /** 1: 用户名不能修改，*/
     private String usernamestatus;
+
+    /**  登陆保存的token**/
+    private String token;
 	
 	public String getUid() {
 		return uid;
@@ -243,5 +246,13 @@ public class User implements Serializable {
 
     public void setUsernamestatus(String usernamestatus) {
         this.usernamestatus = usernamestatus;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

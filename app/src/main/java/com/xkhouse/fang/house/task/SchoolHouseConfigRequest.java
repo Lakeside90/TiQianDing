@@ -71,7 +71,7 @@ public class SchoolHouseConfigRequest {
                 parseResult(response);
                 
                 Message message = new Message();
-                if(Constants.SUCCESS_CODE.equals(code)){
+                if(Constants.SUCCESS_CODE_OLD.equals(code)){
                 	message.what = Constants.SUCCESS_DATA_FROM_NET;
                 	//插入数据库
                 	HouseConfigDbService dbService = new HouseConfigDbService();
@@ -120,7 +120,7 @@ public class SchoolHouseConfigRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

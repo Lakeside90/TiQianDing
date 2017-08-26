@@ -2,7 +2,6 @@ package com.xkhouse.fang.user.task;
 
 import android.os.Message;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response.ErrorListener;
@@ -12,15 +11,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
-import com.xkhouse.fang.user.entity.SellInEditBean;
 import com.xkhouse.frame.activity.BaseApplication;
 import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
 
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
 * @Description: 推荐客户--再次推荐
@@ -59,7 +54,7 @@ public class RecommendAgainRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code)){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
                         	message.obj = msg;
                         }else{

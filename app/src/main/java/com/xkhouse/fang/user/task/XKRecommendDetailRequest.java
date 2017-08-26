@@ -71,7 +71,7 @@ public class XKRecommendDetailRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code) && recommendDetail != null){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code) && recommendDetail != null){
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
                         	message.obj = recommendDetail;
                         }else{
@@ -116,7 +116,7 @@ public class XKRecommendDetailRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-            	 if (!Constants.SUCCESS_CODE.equals(code)) {
+            	 if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                  	msg = jsonObject.optString("data");
                  	return;
                  }

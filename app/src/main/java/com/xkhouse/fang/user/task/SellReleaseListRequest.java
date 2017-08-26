@@ -19,7 +19,6 @@ import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -88,7 +87,7 @@ public class SellReleaseListRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code)){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
                         	Bundle data = new Bundle();
                         	data.putSerializable("sellList", sellList);
                             data.putString("yifabu", yifabu);
@@ -158,7 +157,7 @@ public class SellReleaseListRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

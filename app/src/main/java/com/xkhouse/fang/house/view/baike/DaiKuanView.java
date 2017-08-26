@@ -140,7 +140,7 @@ public class DaiKuanView implements View.OnClickListener{
     private void changeView(int index){
         switch (index){
             case 0:
-                shangye_txt.setBackgroundResource(R.drawable.blue_corner_btn_selector);
+                shangye_txt.setBackgroundResource(R.drawable.red_corner_btn_selector);
                 shangye_txt.setTextColor(mContext.getResources().getColor(R.color.white));
                 gongjijin_txt.setBackgroundResource(R.drawable.blue_border_cricle_btn_bg);
                 gongjijin_txt.setTextColor(mContext.getResources().getColor(R.color.common_red));
@@ -157,7 +157,7 @@ public class DaiKuanView implements View.OnClickListener{
             case 1:
                 shangye_txt.setBackgroundResource(R.drawable.blue_border_cricle_btn_bg);
                 shangye_txt.setTextColor(mContext.getResources().getColor(R.color.common_red));
-                gongjijin_txt.setBackgroundResource(R.drawable.blue_corner_btn_selector);
+                gongjijin_txt.setBackgroundResource(R.drawable.red_corner_btn_selector);
                 gongjijin_txt.setTextColor(mContext.getResources().getColor(R.color.white));
                 zuhe_txt.setBackgroundResource(R.drawable.blue_border_cricle_btn_bg);
                 zuhe_txt.setTextColor(mContext.getResources().getColor(R.color.common_red));
@@ -174,7 +174,7 @@ public class DaiKuanView implements View.OnClickListener{
                 shangye_txt.setTextColor(mContext.getResources().getColor(R.color.common_red));
                 gongjijin_txt.setBackgroundResource(R.drawable.blue_border_cricle_btn_bg);
                 gongjijin_txt.setTextColor(mContext.getResources().getColor(R.color.common_red));
-                zuhe_txt.setBackgroundResource(R.drawable.blue_corner_btn_selector);
+                zuhe_txt.setBackgroundResource(R.drawable.red_corner_btn_selector);
                 zuhe_txt.setTextColor(mContext.getResources().getColor(R.color.white));
 
                 liucheng_bg.setImageResource(R.drawable.daikuan_liuchen_zh);

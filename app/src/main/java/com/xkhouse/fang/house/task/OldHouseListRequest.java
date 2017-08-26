@@ -94,7 +94,7 @@ public class OldHouseListRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code) && houseList.size()>0 ){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code) && houseList.size()>0 ){
                         	message.obj = houseList;
                         	message.arg1 = count;
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
@@ -145,7 +145,7 @@ public class OldHouseListRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

@@ -18,7 +18,6 @@ import com.xkhouse.frame.activity.BaseApplication;
 import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -32,49 +31,29 @@ import java.util.Map;
  */
 public class LoginPhoneRequest {
 
-	private String TAG = "LoginPhoneRequest";
+	private String TAG = LoginPhoneRequest.class.getSimpleName();
 	private RequestListener requestListener;
 
-	private String mobile;  	//手机号
-	private String mobileCode; 	//验证码
-	private String userId;			//百度userId
-	private String channelId;		//百度channelId
+	private String phone;  	//手机号
+	private String verify; 	//验证码
 
 	private String code;	//返回状态
 	private String msg;		//返回提示语
 	private User user;
 
 
-	public LoginPhoneRequest(String mobile, String mobileCode,
-                             String userId, String channelId, RequestListener requestListener) {
+	public LoginPhoneRequest(String phone, String verify, RequestListener requestListener) {
 		
-		this.mobile = mobile;
-		this.mobileCode = mobileCode;
-		if(userId == null){
-			userId = "";
-		}
-		if(channelId == null){
-			channelId = "";
-		}
-		this.userId = userId;
-		this.channelId = channelId;
-		
+		this.phone = phone;
+		this.verify = verify;
+
 		this.requestListener = requestListener;
 	}
 	
 	
-	public void setData(String userName, String passWord,
-			String userId, String channelId) {
-		this.mobile = userName;
-		this.mobileCode = passWord;
-		if(userId == null){
-			userId = "";
-		}
-		if(channelId == null){
-			channelId = "";
-		}
-		this.userId = userId;
-		this.channelId = channelId;
+	public void setData(String userName, String passWord) {
+		this.phone = userName;
+		this.verify = passWord;
 	}
 	
 	public void doRequest(){
@@ -94,9 +73,6 @@ public class LoginPhoneRequest {
                         	userService.insertUser(user);
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
                         	message.obj = user;
-                        }else if("106".equals(code)){
-                        	message.obj = code;
-                        	message.what = Constants.NO_DATA_FROM_NET;
                         } else{
                            message.obj = msg;
                            message.what = Constants.NO_DATA_FROM_NET;
@@ -117,11 +93,8 @@ public class LoginPhoneRequest {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("mobile", mobile);
-                params.put("mobileCode", mobileCode);
-                params.put("userId", userId);
-                params.put("channelId", channelId);
-                params.put("device_type", "3");
+                params.put("phone", phone);
+                params.put("verify", verify);
 
                 Logger.d(TAG, StringUtil.getRequestUrl(Constants.USER_LOGIN, params));
 
@@ -153,21 +126,16 @@ public class LoginPhoneRequest {
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
-            	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
-                	msg = jsonObject.optString("data");
-                    return;
-                }
-                
-                if("106".equals(code)){
-                    return;
-                }
+                msg = jsonObject.optString("data");
+
+                if (!Constants.SUCCESS_CODE.equals(code)) return;
                 
                 JSONObject dataObj = jsonObject.optJSONObject("data");
                 
                 user = new User();
-                user.setPassword(mobileCode);
-                user.setUid(dataObj.optString("member_id"));
+                user.setPassword(verify);
+                user.setUid(dataObj.optString("uid"));
+                user.setToken(dataObj.optString("token"));
                 user.setUserName(dataObj.optString("member_username"));
                 user.setRealName(dataObj.optString("member_realname"));
                 user.setNickName(dataObj.optString("member_nickname"));

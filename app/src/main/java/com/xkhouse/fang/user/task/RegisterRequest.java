@@ -19,7 +19,6 @@ import com.xkhouse.frame.activity.BaseApplication;
 import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -111,7 +110,7 @@ public class RegisterRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code)){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
                         	
                         	UserService userService = new UserService(); 
                         	userService.insertUser(user);
@@ -184,7 +183,7 @@ public class RegisterRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("data");
                     return;
                 }

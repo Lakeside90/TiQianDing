@@ -33,7 +33,7 @@
     <color name="shape_line">#ffcccccc</color>
     <color name="text_bg">#404040</color>
     <!-- 浅灰 -->
-    <color name="window_bg">#f6f6f6</color>
+    <color name="window_bg">#f2f2f2</color>
     <!-- 公共背景色 -->
     <color name="common_bg_color">#f0f0f0</color>
     <!-- 灰色 -->
@@ -62,6 +62,7 @@
     <color name="common_green">#7dd232</color>
     <color name="common_orange">#f18e37</color>
     <color name="common_red">#d43d3d</color>
+    <color name="common_red_press">#be3737</color>
 
     <color name="area_wheel_selected">#191818</color>
     <color name="area_wheel_unselect">#a2a0a0</color>

@@ -17,7 +17,6 @@ import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -90,7 +89,7 @@ public class NewHouseConfigRequest {
                 parseResult(response);
                 
                 Message message = new Message();
-                if(Constants.SUCCESS_CODE.equals(code)){
+                if(Constants.SUCCESS_CODE_OLD.equals(code)){
                 	message.what = Constants.SUCCESS_DATA_FROM_NET;
                 	//插入数据库
                 	HouseConfigDbService dbService = new HouseConfigDbService();
@@ -144,7 +143,7 @@ public class NewHouseConfigRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

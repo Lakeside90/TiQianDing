@@ -2,7 +2,6 @@ package com.xkhouse.fang.user.task;
 
 import android.os.Message;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
@@ -12,7 +11,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.user.entity.TXRecord;
-import com.xkhouse.fang.user.entity.XKBank;
 import com.xkhouse.frame.activity.BaseApplication;
 import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
@@ -21,8 +19,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**
@@ -64,7 +60,7 @@ public class TXRecordListRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code)){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
                         	message.obj = recordList;
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
                         	
@@ -110,7 +106,7 @@ public class TXRecordListRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

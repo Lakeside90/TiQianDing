@@ -18,7 +18,6 @@ import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -84,7 +83,7 @@ public class HouseLikeListRequest {
 				Message message = new Message();
                 Bundle data = new Bundle();
 
-				if (Constants.SUCCESS_CODE.equals(code)) {
+				if (Constants.SUCCESS_CODE_OLD.equals(code)) {
                     AppCache.writeHouseLikeJson(siteId, response);
                     data.putSerializable("houseList", houseList);
                     data.putString("siteId", siteId);
@@ -135,7 +134,7 @@ public class HouseLikeListRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

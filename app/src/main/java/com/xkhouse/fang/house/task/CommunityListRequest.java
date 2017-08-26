@@ -12,7 +12,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.house.entity.CommunityInfo;
-import com.xkhouse.fang.house.entity.HQuestion;
 import com.xkhouse.frame.activity.BaseApplication;
 import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
@@ -79,7 +78,7 @@ public class CommunityListRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code)){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
                             Bundle data = new Bundle();
                             data.putSerializable("communityList", communityList);
                             data.putString("schoolName", schoolName);
@@ -127,7 +126,7 @@ public class CommunityListRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

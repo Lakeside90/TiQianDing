@@ -81,7 +81,7 @@ public class SchoolHouseListRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code) && count>0 ){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code) && count>0 ){
                         	message.obj = schoolList;
                         	message.arg1 = count;
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
@@ -133,7 +133,7 @@ public class SchoolHouseListRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

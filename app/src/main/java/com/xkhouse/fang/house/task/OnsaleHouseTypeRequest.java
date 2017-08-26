@@ -88,7 +88,7 @@ public class OnsaleHouseTypeRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code)){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
                         	Bundle data = new Bundle();
                         	data.putSerializable("houseTypeList", houseTypeList);
                         	data.putSerializable("roomList", roomList);
@@ -135,7 +135,7 @@ public class OnsaleHouseTypeRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

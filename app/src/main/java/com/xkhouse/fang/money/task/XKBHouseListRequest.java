@@ -17,7 +17,6 @@ import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -81,7 +80,7 @@ public class XKBHouseListRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code) || ("106".equals(code) && page > 1)){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code) || ("106".equals(code) && page > 1)){
                         	message.obj = houseList;
                         	message.arg1 = count;
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
@@ -133,7 +132,7 @@ public class XKBHouseListRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

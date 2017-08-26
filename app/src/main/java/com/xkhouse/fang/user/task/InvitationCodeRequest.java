@@ -14,7 +14,6 @@ import com.xkhouse.frame.activity.BaseApplication;
 import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -50,7 +49,7 @@ public class InvitationCodeRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code)){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
                         	message.obj = invitationCode;
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
                         	
@@ -96,7 +95,7 @@ public class InvitationCodeRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

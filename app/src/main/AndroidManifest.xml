@@ -400,6 +400,18 @@
             android:theme="@style/ThemeNoTitleActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
+            android:name=".user.activity.LoginByCodeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.PswSetActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
             android:name=".user.activity.RegisterActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"

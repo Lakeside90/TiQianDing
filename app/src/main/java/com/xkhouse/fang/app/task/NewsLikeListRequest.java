@@ -82,7 +82,7 @@ public class NewsLikeListRequest {
                 Message message = new Message();
                 Bundle data = new Bundle();
 
-                if(Constants.SUCCESS_CODE.equals(code)){
+                if(Constants.SUCCESS_CODE_OLD.equals(code)){
                     AppCache.writeNewsLikeJson(siteId, response);
 
                     data.putSerializable("newsList", newsList);
@@ -134,7 +134,7 @@ public class NewsLikeListRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

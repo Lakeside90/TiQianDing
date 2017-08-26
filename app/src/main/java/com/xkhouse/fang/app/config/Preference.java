@@ -18,7 +18,10 @@ public class Preference extends AppPreference {
 	
 	//密码
 	private static final String PASSWORD = "password";
-	
+
+    //token
+	private static final String TOKEN = "token";
+
 
 	/**
 	 * 生成单例；
@@ -86,10 +89,27 @@ public class Preference extends AppPreference {
 	}
 
 	public void delPassword() {
-		Editor editor = mSP.edit();
-		editor.remove(PASSWORD);
-		editor.commit();
-	}
+        Editor editor = mSP.edit();
+        editor.remove(PASSWORD);
+        editor.commit();
+    }
+
+
+    /**
+     * token
+     * @return
+     */
+    public void writeToken(String token) {
+        Editor editor = mSP.edit();
+        editor.putString(TOKEN, token);
+        editor.commit();
+    }
+
+    public String readToken() {
+        return mSP.getString(TOKEN, "");
+    }
+
+
 
 
 	// 是否第一次启动

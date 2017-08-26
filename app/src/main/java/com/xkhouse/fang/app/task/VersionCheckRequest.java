@@ -1,6 +1,5 @@
 package com.xkhouse.fang.app.task;
 
-import android.os.Bundle;
 import android.os.Message;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -9,19 +8,15 @@ import com.android.volley.Response.Listener;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.xkhouse.fang.app.cache.AppCache;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.entity.AppUpgrade;
-import com.xkhouse.fang.app.entity.XKAd;
 import com.xkhouse.frame.activity.BaseApplication;
 import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -68,7 +63,7 @@ public class VersionCheckRequest {
                 
                 Message message = new Message();
 
-                if(Constants.SUCCESS_CODE.equals(code)){
+                if(Constants.SUCCESS_CODE_OLD.equals(code)){
                     message.obj = appUpgrade;
                 	message.what = Constants.SUCCESS_DATA_FROM_NET;
                 }else{
@@ -111,7 +106,7 @@ public class VersionCheckRequest {
             if (jsonObject != null) {
             	code = jsonObject.optString("code");
             	
-                if (!Constants.SUCCESS_CODE.equals(code)) {
+                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }

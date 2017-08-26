@@ -91,7 +91,7 @@
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:background="@drawable/blue_conner_btn_normal"
+        android:background="@drawable/red_conner_btn_normal"
         android:gravity="center"
         android:text="参与抽奖"
         android:textColor="@color/white"

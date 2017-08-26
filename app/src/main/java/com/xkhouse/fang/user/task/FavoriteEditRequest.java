@@ -81,7 +81,7 @@ public class FavoriteEditRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE.equals(code)){
+                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
                         	message.obj = msg;
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
                         }else {
