@@ -19,7 +19,7 @@ import com.amap.api.maps2d.model.LatLng;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseFragment;
 import com.xkhouse.fang.app.activity.ModelApplication;
-import com.xkhouse.fang.app.adapter.NewsLikeAdapter;
+import com.xkhouse.fang.app.adapter.BookedInfoAdapter;
 import com.xkhouse.fang.app.cache.AppCache;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
@@ -49,7 +49,7 @@ public class TQDFragment extends AppBaseFragment implements OnClickListener, AMa
 
 	//房源列表
 	private XListView house_listView;
-	private NewsLikeAdapter adapter;
+	private BookedInfoAdapter adapter;
 	private int currentPageIndex = 1;  //分页索引
 	private int pageSize = 20; //每次请求20条数据
 	private boolean isPullDown = false; // 下拉
@@ -307,7 +307,7 @@ public class TQDFragment extends AppBaseFragment implements OnClickListener, AMa
         house_listView.setVisibility(View.VISIBLE);
 		if(adapter == null){
 //			adapter = new XKBHouseAdapter(getActivity(), houseList, startLatlng);
-            adapter = new NewsLikeAdapter(getActivity());
+            adapter = new BookedInfoAdapter(getActivity());
 			house_listView.setAdapter(adapter);
 		}else{
 //			adapter.setData(houseList, startLatlng);

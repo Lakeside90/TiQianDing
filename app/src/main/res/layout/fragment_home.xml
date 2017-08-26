@@ -185,14 +185,13 @@
 
 
             <com.xkhouse.fang.widget.ScrollXListView
-                android:id="@+id/news_like_listview"
+                android:id="@+id/bookInfo_recommed_listview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:divider="@color/common_diver_line"
                 android:dividerHeight="1px"
-                android:listSelector="@android:color/transparent"
-                android:paddingLeft="15dp"/>
+                android:listSelector="@android:color/transparent"/>
 
         </LinearLayout>
     </com.xkhouse.fang.widget.CustomScrollView>

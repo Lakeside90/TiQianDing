@@ -30,29 +30,26 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.adapter.HouseLikeAdapter;
-import com.xkhouse.fang.app.adapter.NewsLikeAdapter;
+import com.xkhouse.fang.app.adapter.BookedInfoAdapter;
 import com.xkhouse.fang.app.cache.AppCache;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
+import com.xkhouse.fang.app.entity.BookedInfo;
 import com.xkhouse.fang.app.entity.House;
-import com.xkhouse.fang.app.entity.News;
 import com.xkhouse.fang.app.entity.Site;
 import com.xkhouse.fang.app.entity.XKAd;
 import com.xkhouse.fang.app.service.SiteDbService;
 import com.xkhouse.fang.app.task.ADListRequest;
+import com.xkhouse.fang.app.task.BookedInfoListRequest;
 import com.xkhouse.fang.app.task.HouseLikeListRequest;
-import com.xkhouse.fang.app.task.NewsLikeListRequest;
 import com.xkhouse.fang.app.task.SiteListRequest;
 import com.xkhouse.fang.app.util.DisplayUtil;
 import com.xkhouse.fang.house.activity.CustomHouseListActivity;
 import com.xkhouse.fang.house.activity.HouseDetailActivity;
 import com.xkhouse.fang.house.activity.MapHousesActivity;
-import com.xkhouse.fang.house.activity.NewHouseListActivity;
-import com.xkhouse.fang.house.activity.SearchActivity;
 import com.xkhouse.fang.widget.ConfirmDialog;
 import com.xkhouse.fang.widget.CustomScrollView;
 import com.xkhouse.fang.widget.ScrollGridView;
-import com.xkhouse.fang.widget.ScrollListView;
 import com.xkhouse.fang.widget.ScrollXListView;
 import com.xkhouse.fang.widget.autoscrollviewpager.AutoScrollViewPager;
 import com.xkhouse.fang.widget.xlist.XListView.IXListViewListener;
@@ -86,7 +83,9 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
 	//猜你喜欢
 	private ScrollGridView house_like_listview;
-	private ScrollXListView news_like_listview;
+
+    //预定推荐
+	private ScrollXListView bookInfo_recommed_listview;
 	private int currentPageIndex = 1;  //分页索引
 	private int pageSize = 5; //每次请求10条数据
 	private boolean isPullDown = false; // 下拉
@@ -96,8 +95,8 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	private ArrayList<House> houseLikeList;
 	private HouseLikeAdapter houseLikeAdapter;
 	
-	private ArrayList<News> newsLikeList = new ArrayList<News>();
-	private NewsLikeAdapter newsLikeAdapter;
+	private ArrayList<BookedInfo> bookedInfoList = new ArrayList<>();
+	private BookedInfoAdapter bookedInfoAdapter;
 
 	private ModelApplication modelApp;
 	private LocationManagerProxy mLocationManagerProxy;  //高德定位代理类
@@ -119,10 +118,15 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 		initData();
 		
 		rootView = inflater.inflate(R.layout.fragment_home, container, false);
+
 		findViews();
 		setListeners();
-		
-		//开始定位
+
+        //滚动到顶部
+        bookInfo_recommed_listview.setFocusable(false);
+        house_like_listview.setFocusable(false);
+
+        //开始定位
 		mLocationManagerProxy = LocationManagerProxy.getInstance(getActivity());
 		mLocationManagerProxy.setGpsEnable(false);
 		mLocationManagerProxy.requestLocationData(LocationProviderProxy.AMapNetwork, 60 * 1000, 15, this);
@@ -204,7 +208,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
         scroll_top_iv = (ImageView) rootView.findViewById(R.id.scroll_top_iv);
 
         house_like_listview = (ScrollGridView) rootView.findViewById(R.id.house_like_listview);
-		news_like_listview = (ScrollXListView) rootView.findViewById(R.id.news_like_listview);
+		bookInfo_recommed_listview = (ScrollXListView) rootView.findViewById(R.id.bookInfo_recommed_listview);
 
     }
 	
@@ -238,9 +242,9 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
         });
 		
 		//猜你喜欢  资讯加载更多
-		news_like_listview.setPullLoadEnable(true);
-		news_like_listview.setPullRefreshEnable(false);
-		news_like_listview.setXListViewListener(new IXListViewListener() {
+		bookInfo_recommed_listview.setPullLoadEnable(true);
+		bookInfo_recommed_listview.setPullRefreshEnable(false);
+		bookInfo_recommed_listview.setXListViewListener(new IXListViewListener() {
 
             @Override
             public void onRefresh() {
@@ -249,17 +253,17 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
             @Override
             public void onLoadMore() {
                 if (!isLoading) {
-                    startNewsListTask(currentPageIndex);
+                    startBookedInfoListTask(currentPageIndex);
                 }
             }
-        }, R.id.news_like_listview);
+        }, R.id.bookInfo_recommed_listview);
 
         content_scroll.setOnBorderListener(new CustomScrollView.OnBorderListener() {
             @Override
             public void onBottom() {
                 //可能会调用多次
-                if (news_like_listview.getEnablePullLoad()) {
-                    news_like_listview.startLoadMore();
+                if (bookInfo_recommed_listview.getEnablePullLoad()) {
+                    bookInfo_recommed_listview.startLoadMore();
                 }
             }
 
@@ -490,14 +494,14 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	
 	//猜你喜欢 （资讯）
 	private void fillNewsLikeData() {
-		if(newsLikeList == null) return;
+		if(bookedInfoList == null) return;
 		
-		if (newsLikeAdapter == null) {
-			newsLikeAdapter = new NewsLikeAdapter(getActivity(), newsLikeList);
-			news_like_listview.setAdapter(newsLikeAdapter);
+		if (bookedInfoAdapter == null) {
+			bookedInfoAdapter = new BookedInfoAdapter(getActivity(), bookedInfoList);
+			bookInfo_recommed_listview.setAdapter(bookedInfoAdapter);
 		} else {
-			newsLikeAdapter.setData(newsLikeList);
-			newsLikeAdapter.notifyDataSetChanged();
+			bookedInfoAdapter.setData(bookedInfoList);
+			bookedInfoAdapter.notifyDataSetChanged();
 		}
 	}
 	
@@ -548,7 +552,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 		}
 	};
 	
-	private RequestListener newsLikeListener = new RequestListener() {
+	private RequestListener bookedInfoListener = new RequestListener() {
 		
 		@Override
 		public void sendMessage(Message message) {
@@ -561,37 +565,30 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 				break;
 				
 			case Constants.NO_DATA_FROM_NET:
-				if (newsLikeList != null) {
-					newsLikeList.clear();
+				if (bookedInfoList != null) {
+					bookedInfoList.clear();
 					fillNewsLikeData();
 				}
 				break;
 				
 			case Constants.SUCCESS_DATA_FROM_NET:
-				ArrayList<News> temp = (ArrayList<News>) message.getData().getSerializable("newsList");
-				//根据返回的数据量判断是否隐藏加载更多
-				if(temp.size() < pageSize || (newsLikeList != null && newsLikeList.size() >=30)){
-					news_like_listview.setPullLoadEnable(false);
+				ArrayList<BookedInfo> temp = (ArrayList<BookedInfo>) message.getData().getSerializable("bookedInfoList");
 
-				}else{
-					news_like_listview.setPullLoadEnable(true);
-				}
-				
 				//如果是下拉刷新则索引恢复到1，并且清除掉之前数据
-				if(isPullDown && newsLikeList != null){
-					newsLikeList.clear();
+				if(isPullDown && bookedInfoList != null){
+					bookedInfoList.clear();
 					currentPageIndex = 1;
 				}
 				currentPageIndex++;
-				newsLikeList.addAll(temp);
+				bookedInfoList.addAll(temp);
 				fillNewsLikeData();
 				break;
 			}
 			
 			isPullDown = false;
 			isLoading = false;
-			news_like_listview.stopRefresh();
-			news_like_listview.stopLoadMore();
+			bookInfo_recommed_listview.stopRefresh();
+			bookInfo_recommed_listview.stopLoadMore();
 		}
 	};
 	
@@ -643,7 +640,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 			
 			isPullDown = true;
 			currentPageIndex = 1;
-			startNewsListTask(1);
+			startBookedInfoListTask(1);
 
 			//轮询图广告
             ADListRequest adListRequest = new ADListRequest(modelApp.getSite().getSiteId(), "187", adListListener);
@@ -668,9 +665,9 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
         houseLikeList = houseLikeListRequest.getHouseList();
         fillHouseLikeData();
 
-        NewsLikeListRequest newsLikeListRequest = new NewsLikeListRequest();
-        newsLikeListRequest.parseResult(AppCache.readNewsLikeJson(modelApp.getSite().getSiteId()));
-        newsLikeList = newsLikeListRequest.getNewsList();
+        BookedInfoListRequest bookedInfoListRequest = new BookedInfoListRequest();
+        bookedInfoListRequest.parseResult(AppCache.readBookInfoRecommedJson(modelApp.getSite().getSiteId()));
+        bookedInfoList = bookedInfoListRequest.getNewsList();
         fillNewsLikeData();
     }
 
@@ -681,37 +678,32 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
             fillAdData();
         }
 
-
         if(houseLikeList != null){
             houseLikeList.clear();
             fillHouseLikeData();
         }
 
-        if(newsLikeList != null){
-            newsLikeList.clear();
+        if(bookedInfoList != null){
+            bookedInfoList.clear();
             fillNewsLikeData();
         }
     }
 
 
-	private void startNewsListTask(int page){
-		if(newsLikeList != null && newsLikeList.size() >=30){
-			news_like_listview.setPullLoadEnable(false);
-			return;
-		}else{
-			news_like_listview.setPullLoadEnable(true);
-		}
-		
+    //预定推荐
+	private void startBookedInfoListTask(int page){
+
 		if (NetUtil.detectAvailable(getActivity())) {
-            NewsLikeListRequest newsLikeListRequest = new NewsLikeListRequest(modelApp.getSite().getSiteId(),
-						pageSize, page, newsLikeListener);
+            BookedInfoListRequest bookedInfoListRequest = new BookedInfoListRequest(BookedInfoListRequest.LIST_RECOMMED,
+                    modelApp.getSite().getSiteId(),
+                    pageSize, page, bookedInfoListener);
 			isLoading = true;
-			newsLikeListRequest.doRequest();
+			bookedInfoListRequest.doRequest();
 		}else {
 			Toast.makeText(getActivity(), R.string.net_warn, Toast.LENGTH_SHORT).show();
 			isPullDown = false;
-			news_like_listview.stopRefresh();
-			news_like_listview.stopLoadMore();
+			bookInfo_recommed_listview.stopRefresh();
+			bookInfo_recommed_listview.stopLoadMore();
 		}
 	}
 	

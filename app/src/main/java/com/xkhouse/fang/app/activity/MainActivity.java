@@ -43,7 +43,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 	private TextView user_tv;
 
 	private HomeFragment homeFragment;
-    private CJFragment baikeFragment;
+    private CJFragment cjFragment;
 	private TQDFragment tqdFragment;
 	private UserFragment userFragment;
 	
@@ -57,7 +57,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
     /**
      * Fragment的TAG 用于解决app内存被回收之后导致的fragment重叠问题
      */
-    private static final  String[] FRAGMENT_TAG = {"homeFragment","baikeFragment","tqdFragment","userFragment"};
+    private static final  String[] FRAGMENT_TAG = {"homeFragment","cjFragment","tqdFragment","userFragment"};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
             //读取上一次界面Save的时候tab选中的状态
             selindex = savedInstanceState.getInt(PRV_SELINDEX,selindex);
             homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG[0]);
-            baikeFragment = (CJFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG[1]);
+            cjFragment = (CJFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG[1]);
             tqdFragment = (TQDFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG[2]);
             userFragment = (UserFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG[3]);
             currentFrag = getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG[selindex]);
@@ -215,8 +215,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
                 break;
 
             case 1:
-                if(baikeFragment == null) baikeFragment = new CJFragment();
-                showFragment(baikeFragment, fragmentFlag);
+                if(cjFragment == null) cjFragment = new CJFragment();
+                showFragment(cjFragment, fragmentFlag);
                 freashBottomUI(fragmentFlag);
                 selindex = fragmentFlag;
                 break;

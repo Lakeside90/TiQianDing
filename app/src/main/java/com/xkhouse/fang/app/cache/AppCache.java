@@ -151,14 +151,14 @@ public class AppCache {
 
 
     /**
-     * 读取首页猜你喜欢--资讯
+     * 读取首页推荐预定
      */
-    public static String readNewsLikeJson(String siteId){
+    public static String readBookInfoRecommedJson(String siteId){
         String json = "";
         try{
             String path = getCachePath(siteId);
             FileUtil.createFolder(path);
-            json = FileUtil.readFile(path+File.separator+"newsLike.json", key);
+            json = FileUtil.readFile(path+File.separator+"bookedInfoRecommed.json", key);
         }catch (Exception e){
             Logger.e(TAG, e.getMessage());
         }
@@ -167,13 +167,13 @@ public class AppCache {
     }
 
     /**
-     * 写入首页猜你喜欢--资讯
+     * 写入首页推荐预定
      */
-    public static void writeNewsLikeJson(String siteId, String value){
+    public static void writeBookInfoRecommedJson(String siteId, String value){
         try{
             String path = getCachePath(siteId);
             FileUtil.createFolder(path);
-            FileUtil.writeFile(path+File.separator+"newsLike.json", value, key);
+            FileUtil.writeFile(path+File.separator+"bookedInfoRecommed.json", value, key);
         }catch (Exception e){
             Logger.e(TAG, e.getMessage());
         }
