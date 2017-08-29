@@ -58,9 +58,7 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
     private TextView message_num_txt;
     private ImageView message_iv;
 	
-	//钱包
-	private LinearLayout wallet_lay;
-	private TextView wallet_txt;
+
 	
 	//收藏
 	private LinearLayout favorite_lay;
@@ -73,7 +71,8 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 	private LinearLayout house_baike_lay;	//购房百科
 	private LinearLayout buy_ability_lay;	//购房能力评估
 	private LinearLayout zuolin_lay;	    //左邻右里
-	private LinearLayout setting_lay;		//设置
+
+	private ImageView setting_iv;		//设置
 
     private TextView server_call_txt;
 	
@@ -149,7 +148,6 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 		user_lay.setOnClickListener(this);
 
         message_lay.setOnClickListener(this);
-		wallet_lay.setOnClickListener(this);
 		favorite_lay.setOnClickListener(this);
 		
 		recommend_lay.setOnClickListener(this);
@@ -159,7 +157,7 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
         house_baike_lay.setOnClickListener(this);
 		buy_ability_lay.setOnClickListener(this);
         zuolin_lay.setOnClickListener(this);
-		setting_lay.setOnClickListener(this);
+		setting_iv.setOnClickListener(this);
 
         server_call_txt.setOnClickListener(this);
 	}
@@ -174,9 +172,6 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
         message_num_txt = (TextView) rootView.findViewById(R.id.message_num_txt);
         message_iv = (ImageView) rootView.findViewById(R.id.message_iv);
 		
-		wallet_lay = (LinearLayout) rootView.findViewById(R.id.wallet_lay);
-		wallet_txt = (TextView) rootView.findViewById(R.id.wallet_txt);
-
 		favorite_lay = (LinearLayout) rootView.findViewById(R.id.favorite_lay);
         favorite_num_txt = (TextView) rootView.findViewById(R.id.favorite_num_txt);
 
@@ -187,7 +182,7 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
         house_baike_lay = (LinearLayout) rootView.findViewById(R.id.house_baike_lay);
         buy_ability_lay = (LinearLayout) rootView.findViewById(R.id.buy_ability_lay);
         zuolin_lay = (LinearLayout) rootView.findViewById(R.id.zuolin_lay);
-        setting_lay = (LinearLayout) rootView.findViewById(R.id.setting_lay);
+        setting_iv = (ImageView) rootView.findViewById(R.id.setting_iv);
 
         server_call_txt = (TextView) rootView.findViewById(R.id.server_call_txt);
 
@@ -211,16 +206,7 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
                 startActivity(new Intent(getActivity(), MessageCenterActivity.class));
                 break;
 
-            case R.id.wallet_lay:
-                if(Preference.getInstance().readIsLogin()){
-                    startActivity(new Intent(getActivity(), WalletActivity.class));
-                }else {
-                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    intent.putExtra("classStr", WalletActivity.class);
-                    startActivity(intent);
-                }
-                break;
+
 
             case R.id.favorite_lay:
                 if(Preference.getInstance().readIsLogin()){
@@ -283,7 +269,7 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
                 startActivity(intent);
                 break;
 
-            case R.id.setting_lay:
+            case R.id.setting_iv:
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
                 break;
 
@@ -349,7 +335,6 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 
         if(!Preference.getInstance().readIsLogin()){
             message_num_txt.setText("--");
-            wallet_txt.setText("--");
             favorite_num_txt.setText("--");
             return;
         }
@@ -405,40 +390,9 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
             }
             favoriteNumRequest.doRequest();
 
-            //钱包
-            if(walletRequest == null){
-                walletRequest = new WalletListRequest(modelApp.getUser().getUid(),
-                        WalletRecordListActivity.WALLET_ALL, 1, 1,
-                        new RequestListener() {
-
-                            @Override
-                            public void sendMessage(Message message) {
-                                hideLoadingDialog();
-                                switch (message.what) {
-                                    case Constants.ERROR_DATA_FROM_NET:
-                                    case Constants.NO_DATA_FROM_NET:
-                                        wallet_txt.setText("--");
-                                        break;
-
-                                    case Constants.SUCCESS_DATA_FROM_NET:
-                                        Bundle data = message.getData();
-                                        if (StringUtil.isEmpty(data.getString("sum"))){
-                                            wallet_txt.setText("0.00");
-                                        }else {
-                                            wallet_txt.setText(data.getString("sum"));
-                                        }
-                                        break;
-                                }
-                            }
-                        });
-            }else {
-                walletRequest.setData(modelApp.getUser().getUid(), WalletRecordListActivity.WALLET_ALL, 1, 1);
-            }
-            walletRequest.doRequest();
 
         }else {
             message_num_txt.setText("--");
-            wallet_txt.setText("--");
             favorite_num_txt.setText("--");
         }
     }
