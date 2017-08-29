@@ -1,204 +1,85 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/window_bg"
-    android:orientation="vertical" >
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/window_bg"
+              android:orientation="vertical">
 
     <!-- title  bar -->
 
-    <include layout="@layout/common_title_bar" />
+    <include layout="@layout/common_title_bar"/>
 
-    <View
+
+    <LinearLayout
+        android:id="@+id/cache_clear_lay"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginTop="15dp"
-        android:background="@color/common_diver_line" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="清除缓存"
+            android:textColor="@color/common_black_txt"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/cache_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:drawablePadding="5dp"
+            android:drawableRight="@drawable/icon_arrow_right"
+            android:gravity="center_vertical"
+            android:text="0.0M"
+            android:textColor="@color/common_gray_txt"
+            android:textSize="14sp"/>
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:background="@color/white"
         android:orientation="vertical"
-        android:paddingLeft="15dp" >
+        android:paddingLeft="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="44dp"
+                android:layout_height="45dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="推送消息"
+                android:text="消息提醒设置"
                 android:textColor="@color/common_black_txt"
-                android:textSize="14sp" />
+                android:textSize="14sp"/>
 
             <ImageView
                 android:id="@+id/switch_on_off"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
-                android:src="@drawable/switch_on" />
+                android:src="@drawable/switch_on"/>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="@color/common_diver_line" />
-
-        <LinearLayout
-            android:id="@+id/share_lay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginRight="15dp"
-                android:drawableRight="@drawable/icon_arrow_right"
-                android:gravity="center_vertical"
-                android:text="邀请好友"
-                android:textColor="@color/common_black_txt"
-                android:textSize="14sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/common_diver_line" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginTop="15dp"
-        android:background="@color/common_diver_line" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingLeft="15dp" >
-
-        <LinearLayout
-            android:id="@+id/upgrade_lay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="44dp"
-                android:layout_marginRight="15dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="检查更新"
-                android:textColor="@color/common_black_txt"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/version_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:drawablePadding="5dp"
-                android:drawableRight="@drawable/icon_arrow_right"
-                android:gravity="center_vertical"
-                android:text="V4.0"
-                android:textColor="@color/common_gray_txt"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/common_diver_line" />
-
-        <LinearLayout
-            android:id="@+id/cache_clear_lay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="44dp"
-                android:layout_marginRight="15dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="清除缓存"
-                android:textColor="@color/common_black_txt"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/cache_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:drawablePadding="5dp"
-                android:drawableRight="@drawable/icon_arrow_right"
-                android:gravity="center_vertical"
-                android:text="0.0M"
-                android:textColor="@color/common_gray_txt"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/common_diver_line" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginTop="15dp"
-        android:background="@color/common_diver_line" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingLeft="15dp" >
-
-        <LinearLayout
-            android:id="@+id/feed_back_lay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:drawableRight="@drawable/icon_arrow_right"
-                android:gravity="center_vertical"
-                android:paddingRight="15dp"
-                android:text="意见反馈"
-                android:textColor="@color/common_black_txt"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/common_diver_line" />
+            android:background="@color/common_diver_line"/>
 
         <LinearLayout
             android:id="@+id/about_lay"
@@ -206,76 +87,33 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
+                android:layout_height="45dp"
                 android:drawableRight="@drawable/icon_arrow_right"
                 android:gravity="center_vertical"
                 android:paddingRight="15dp"
                 android:text="关于我们"
                 android:textColor="@color/common_black_txt"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/common_diver_line" />
-
-        <LinearLayout
-            android:id="@+id/disclaimer_lay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginRight="15dp"
-                android:drawableRight="@drawable/icon_arrow_right"
-                android:gravity="center_vertical"
-                android:text="免责声明"
-                android:textColor="@color/common_black_txt"
-                android:textSize="14sp" />
+                android:textSize="14sp"/>
         </LinearLayout>
     </LinearLayout>
 
-    <View
+
+    <TextView
+        android:id="@+id/logout_txt"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/common_diver_line" />
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="当前版本V1.0"
+        android:textColor="@color/common_black_txt"
+        android:textSize="14sp"/>
 
-    <LinearLayout
-        android:id="@+id/logout_lay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:orientation="vertical" >
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/common_diver_line" />
-
-        <TextView
-            android:id="@+id/logout_txt"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:background="@color/white"
-            android:gravity="center_vertical"
-            android:paddingLeft="15dp"
-            android:text="退出账号"
-            android:textColor="@color/common_black_txt"
-            android:textSize="14sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/common_diver_line" />
-    </LinearLayout>
 
 </LinearLayout>
+
