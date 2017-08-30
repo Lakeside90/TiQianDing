@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/title_lay"
+        layout="@layout/common_title_bar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="15dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/white"
+            android:textSize="16sp"
+            android:textColor="@color/common_gray_txt"
+            android:hint="收货人姓名"
+            android:gravity="center_vertical"
+            android:lines="1"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/common_diver_line"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/white"
+            android:textSize="16sp"
+            android:textColor="@color/common_gray_txt"
+            android:hint="手机号码"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:inputType="phone"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/common_diver_line"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginRight="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/common_black_txt"
+                android:text="所在地区"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|right"
+                android:layout_weight="1"
+                android:lines="1"
+                android:textSize="12sp"
+                android:textColor="@color/common_gray_txt"
+                android:drawableRight="@drawable/icon_arrow_right"
+                android:drawablePadding="5dp"
+                android:text="请选择"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/common_diver_line"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@color/white"
+            android:gravity="left|top"
+            android:paddingTop="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp"
+            android:textSize="16sp"
+            android:textColor="@color/common_gray_txt"
+            android:hint="详细地址"
+            />
+    </LinearLayout>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="设为默认"
+        android:textSize="13sp"
+        android:textColor="@color/c_666666"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="@drawable/red_corner_btn_selector"
+        android:text="保存地址"/>
+</LinearLayout>

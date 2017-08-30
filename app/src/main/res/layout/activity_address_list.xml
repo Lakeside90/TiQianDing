@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xlist="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/title_lay"
+        layout="@layout/common_title_bar"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/title_lay"
+        android:orientation="vertical">
+
+        <com.xkhouse.fang.widget.xlist.XListView
+            android:id="@+id/msg_listView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:cacheColorHint="@color/trans"
+            android:divider="@color/trans"
+            android:dividerHeight="10dp"
+            android:listSelector="@android:color/transparent"
+            xlist:is_header="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:background="@color/white"
+            android:textColor="@color/common_black_txt"
+            android:textSize="16sp"
+            android:text="新增地址"
+            android:drawableLeft="@drawable/icon_release_add"
+            android:drawablePadding="5dp"/>
+    </LinearLayout>
+
+
+
+    <com.xkhouse.fang.widget.loading.RotateLoading
+        android:id="@+id/rotate_loading"
+        app:loading_color="@color/common_red"
+        app:loading_width="@dimen/rotate_loading_border"
+        android:layout_width="@dimen/rotate_loading_width"
+        android:layout_height="@dimen/rotate_loading_height"
+        android:layout_centerInParent="true"/>
+
+
+    <LinearLayout
+        android:id="@+id/error_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_lay"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/web_error"
+            android:drawableTop="@drawable/net_error"
+            android:drawablePadding="20dp"
+            android:textColor="@color/c_666666"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>
