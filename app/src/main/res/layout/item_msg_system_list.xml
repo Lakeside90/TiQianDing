@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/common_black_txt"
         android:textSize="14sp"
-        android:text="打扫打扫的发打扫打扫的发打扫打扫的发打扫打扫的发打扫打扫的发打扫打扫的发打扫打扫的发"
+        android:text="打扫打扫的发打扫打扫的发打扫打扫的发打扫打扫的发打扫打扫的发打扫打扫的发"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"/>
