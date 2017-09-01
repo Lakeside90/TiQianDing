@@ -1,4 +1,4 @@
-package com.xkhouse.fang.app.adapter;
+package com.xkhouse.fang.user.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,9 +19,9 @@ import com.xkhouse.fang.app.entity.BookedInfo;
 import java.util.ArrayList;
 
 /**
- * 推荐预定列表
+ * 收藏/浏览列表
  */
-public class BookedInfoAdapter extends BaseAdapter {
+public class FavAndBrowseAdapter extends BaseAdapter {
 
 	private Context context;
 	private ArrayList<BookedInfo> bookedInfos;
@@ -29,12 +29,12 @@ public class BookedInfoAdapter extends BaseAdapter {
 	private DisplayImageOptions options;
 	private ModelApplication modelApp;
 
-    public BookedInfoAdapter(Context context) {
+    public FavAndBrowseAdapter(Context context) {
         this.context = context;
         modelApp = (ModelApplication) ((Activity) context).getApplication();
     }
 
-    public BookedInfoAdapter(Context context, ArrayList<BookedInfo> bookedInfos){
+    public FavAndBrowseAdapter(Context context, ArrayList<BookedInfo> bookedInfos){
 		this.context = context;
 		modelApp = (ModelApplication) ((Activity) context).getApplication();
 		
@@ -76,7 +76,7 @@ public class BookedInfoAdapter extends BaseAdapter {
 		
 		ViewHolder holder = null;
 		if(convertView == null){
-			convertView = LayoutInflater.from(context).inflate(R.layout.item_booked_info_list, null);
+			convertView = LayoutInflater.from(context).inflate(R.layout.item_favorite_browse, null);
 			holder = new ViewHolder(convertView);
 			convertView.setTag(holder);
 		}else{
