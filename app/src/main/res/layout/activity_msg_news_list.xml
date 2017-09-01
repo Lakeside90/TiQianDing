@@ -21,14 +21,13 @@
         android:listSelector="@android:color/transparent"
         xlist:is_header="true" />
 
-    <!--<com.xkhouse.fang.widget.loading.RotateLoading
+    <com.xkhouse.fang.widget.loading.RotateLoading
         android:id="@+id/rotate_loading"
         app:loading_color="@color/common_red"
         app:loading_width="@dimen/rotate_loading_border"
         android:layout_width="@dimen/rotate_loading_width"
         android:layout_height="@dimen/rotate_loading_height"
-        android:layout_centerInParent="true"
-        xlist:loading_color="@color/common_red" />-->
+        android:layout_centerInParent="true"/>
 
 
     <LinearLayout

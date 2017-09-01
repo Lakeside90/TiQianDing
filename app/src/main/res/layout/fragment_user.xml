@@ -175,7 +175,7 @@
                         android:textColor="@color/common_gray_txt"
                         android:textSize="15sp"
                         android:text="我的预定"
-                        android:drawableTop="@drawable/my_ico_tuijian"
+                        android:drawableTop="@drawable/wo_book"
                         android:drawablePadding="13dp"
                         />
 
@@ -198,7 +198,7 @@
                         android:textColor="@color/common_gray_txt"
                         android:textSize="15sp"
                         android:text="我的抽奖"
-                        android:drawableTop="@drawable/my_ico_dingzhi"
+                        android:drawableTop="@drawable/wo_luck"
                         android:drawablePadding="13dp"/>
                 </LinearLayout>
 
@@ -219,7 +219,7 @@
                         android:textColor="@color/common_gray_txt"
                         android:textSize="15sp"
                         android:text="我的买单"
-                        android:drawableTop="@drawable/my_ico_fabu"
+                        android:drawableTop="@drawable/wo_check"
                         android:drawablePadding="13dp"/>
                 </LinearLayout>
 
@@ -250,7 +250,7 @@
                     android:textColor="@color/common_gray_txt"
                     android:textSize="15sp"
                     android:text="我的评论"
-                    android:drawableTop="@drawable/my_ico_calculator"
+                    android:drawableTop="@drawable/wo_comment"
                     android:drawablePadding="13dp"
                     />
                 </LinearLayout>
@@ -271,7 +271,7 @@
                     android:textColor="@color/common_gray_txt"
                     android:textSize="15sp"
                     android:text="我的收藏"
-                    android:drawableTop="@drawable/my_ico_zoom"
+                    android:drawableTop="@drawable/wo_house"
                     android:drawablePadding="13dp"/>
                 </LinearLayout>
 
@@ -292,7 +292,7 @@
                         android:textColor="@color/common_gray_txt"
                         android:textSize="15sp"
                         android:text="我的消息"
-                        android:drawableTop="@drawable/my_ico_baike"
+                        android:drawableTop="@drawable/wo_news"
                         android:drawablePadding="13dp"/>
 
                 </LinearLayout>
@@ -326,7 +326,7 @@
                     android:textColor="@color/common_gray_txt"
                     android:textSize="15sp"
                     android:text="我的浏览"
-                    android:drawableTop="@drawable/my_ico_logo"
+                    android:drawableTop="@drawable/wo_browse"
                     android:drawablePadding="13dp"
                     />
                 </LinearLayout>

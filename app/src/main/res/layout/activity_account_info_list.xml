@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xlist="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/title_lay"
+        layout="@layout/common_title_bar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/title_lay"
+        android:background="@color/white"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:textSize="24sp"
+            android:textColor="@color/common_red"
+            android:text="10000.00"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="25dp"
+            android:textSize="12sp"
+            android:textColor="@color/common_gray_txt"
+            android:text="我的余额（元）"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/common_gray_space"/>
+
+        <com.xkhouse.fang.widget.xlist.XListView
+            android:id="@+id/msg_listView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/title_lay"
+            android:cacheColorHint="@color/trans"
+            android:divider="@color/trans"
+            android:dividerHeight="10dp"
+            android:listSelector="@android:color/transparent"
+            xlist:is_header="true" />
+    </LinearLayout>
+
+
+
+    <com.xkhouse.fang.widget.loading.RotateLoading
+        android:id="@+id/rotate_loading"
+        app:loading_color="@color/common_red"
+        app:loading_width="@dimen/rotate_loading_border"
+        android:layout_width="@dimen/rotate_loading_width"
+        android:layout_height="@dimen/rotate_loading_height"
+        android:layout_centerInParent="true"/>
+
+
+    <LinearLayout
+        android:id="@+id/error_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_lay"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/web_error"
+            android:drawableTop="@drawable/net_error"
+            android:drawablePadding="20dp"
+            android:textColor="@color/c_666666"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/notice_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_lay"
+        android:visibility="gone"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="没有数据"
+            android:textColor="@color/common_black_txt"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+</RelativeLayout>
