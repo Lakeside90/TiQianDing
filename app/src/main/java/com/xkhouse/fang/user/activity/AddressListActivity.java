@@ -1,13 +1,8 @@
 package com.xkhouse.fang.user.activity;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -19,7 +14,7 @@ import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
-import com.xkhouse.fang.user.adapter.AccountInfoAdapter;
+import com.xkhouse.fang.user.adapter.AddressAdapter;
 import com.xkhouse.fang.user.entity.MSGNews;
 import com.xkhouse.fang.user.task.MessageDetailListRequest;
 import com.xkhouse.fang.widget.loading.RotateLoading;
@@ -37,11 +32,13 @@ public class AddressListActivity extends AppBaseActivity {
 	private ImageView iv_head_left;
 	private TextView tv_head_title;
 	
-	private XListView msg_listView;
-	private AccountInfoAdapter adapter;
+	private XListView listView;
+	private AddressAdapter adapter;
 	private int currentPageIndex = 1;  //分页索引
 	private int pageSize = 10; //每次请求10条数据
 	private boolean isPullDown = false; // 下拉
+
+    private LinearLayout address_add_lay;
 
     private LinearLayout notice_lay;
     private RotateLoading rotate_loading;
@@ -50,13 +47,14 @@ public class AddressListActivity extends AppBaseActivity {
 	private MessageDetailListRequest listRequest;
 	private ArrayList<MSGNews> newsList = new ArrayList<MSGNews>();
 
-    private String DEVICE_ID;      //设备ID
-    private int READ_PHONE_STATE_REQUEST_CODE = 100;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		startDataTask(1, true);
+//		startDataTask(1, true);
+
+        fillData();
 	}
 	
 	
@@ -68,25 +66,17 @@ public class AddressListActivity extends AppBaseActivity {
 	@Override
 	protected void init() {
 		super.init();
-        // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.READ_PHONE_STATE)
-                != PackageManager.PERMISSION_GRANTED) {
-            // No explanation needed, we can request the permission.
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE},
-                    READ_PHONE_STATE_REQUEST_CODE);
 
-        } else {
-            //执行获取权限后的操作
-            TelephonyManager tm = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-            DEVICE_ID = tm.getDeviceId();
-        }
 	}
 
 	@Override
 	protected void findViews() {
 		initTitle();
 		
-		msg_listView = (XListView) findViewById(R.id.msg_listView);
+		listView = (XListView) findViewById(R.id.listView);
+
+        address_add_lay = (LinearLayout) findViewById(R.id.address_add_lay);
+
         rotate_loading = (RotateLoading) findViewById(R.id.rotate_loading);
         error_lay = (LinearLayout) findViewById(R.id.error_lay);
         notice_lay = (LinearLayout) findViewById(R.id.notice_lay);
@@ -96,7 +86,7 @@ public class AddressListActivity extends AppBaseActivity {
 	private void initTitle() {
 		iv_head_left = (ImageView) findViewById(R.id.iv_head_left);
 		tv_head_title = (TextView) findViewById(R.id.tv_head_title);
-		tv_head_title.setText("每日要闻");
+		tv_head_title.setText("收货地址");
 		iv_head_left.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -110,22 +100,23 @@ public class AddressListActivity extends AppBaseActivity {
 	@Override
 	protected void setListeners() {
         error_lay.setOnClickListener(this);
+        address_add_lay.setOnClickListener(this);
 
-		msg_listView.setPullLoadEnable(true);
-		msg_listView.setPullRefreshEnable(true);
-		msg_listView.setXListViewListener(new IXListViewListener() {
+		listView.setPullLoadEnable(true);
+		listView.setPullRefreshEnable(true);
+		listView.setXListViewListener(new IXListViewListener() {
 
             @Override
             public void onRefresh() {
                 isPullDown = true;
-                startDataTask(1, false);
+//                startDataTask(1, false);
             }
 
             @Override
             public void onLoadMore() {
-                startDataTask(currentPageIndex, false);
+//                startDataTask(currentPageIndex, false);
             }
-        }, R.id.favorite_listView);
+        }, R.id.listView);
 	}
 
 	@Override
@@ -133,17 +124,27 @@ public class AddressListActivity extends AppBaseActivity {
 		super.onClick(v);
         switch (v.getId()){
             case R.id.error_lay:
-                startDataTask(1, true);
+//                startDataTask(1, true);
+                break;
+
+            case R.id.address_add_lay:
+                startActivity(new Intent(mContext, AddressEditActivity.class));
                 break;
         }
 	}
 	
 	
 	private void fillData(){
+
+        //test data
+        for (int i = 0 ; i < 3; i++) {
+            newsList.add(new MSGNews());
+        }
+
 		if(newsList == null) return;
 		if(adapter == null ){
-			adapter = new AccountInfoAdapter(mContext, newsList);
-			msg_listView.setAdapter(adapter);
+			adapter = new AddressAdapter(mContext, newsList);
+			listView.setAdapter(adapter);
 		}else {
 			adapter.setData(newsList);
 		}
@@ -152,8 +153,8 @@ public class AddressListActivity extends AppBaseActivity {
 	private void startDataTask(int page, boolean showLoading){
 		if (NetUtil.detectAvailable(mContext)) {
 			if(listRequest == null){
-				listRequest = new MessageDetailListRequest("", DEVICE_ID,modelApp.getSite().getSiteId(),
-						MessageCenterActivity.MSG_NEWS, page, pageSize, new RequestListener() {
+				listRequest = new MessageDetailListRequest("", "",modelApp.getSite().getSiteId(),
+						11, page, pageSize, new RequestListener() {
 					
 					@Override
 					public void sendMessage(Message message) {
@@ -168,7 +169,7 @@ public class AddressListActivity extends AppBaseActivity {
 						switch (message.what) {
 						case Constants.ERROR_DATA_FROM_NET:
                             if (newsList == null || newsList.size() == 0){
-                                msg_listView.setVisibility(View.GONE);
+                                listView.setVisibility(View.GONE);
                                 notice_lay.setVisibility(View.GONE);
                                 error_lay.setVisibility(View.VISIBLE);
                             }else{
@@ -179,24 +180,24 @@ public class AddressListActivity extends AppBaseActivity {
 						case Constants.NO_DATA_FROM_NET:
                             error_lay.setVisibility(View.GONE);
                             notice_lay.setVisibility(View.GONE);
-                            msg_listView.setVisibility(View.VISIBLE);
+                            listView.setVisibility(View.VISIBLE);
                             if(newsList == null || newsList.size() ==0){
-                                msg_listView.setVisibility(View.GONE);
+                                listView.setVisibility(View.GONE);
                                 notice_lay.setVisibility(View.VISIBLE);
                             }
 							break;
 							
 						case Constants.SUCCESS_DATA_FROM_NET:
-                            msg_listView.setVisibility(View.VISIBLE);
+                            listView.setVisibility(View.VISIBLE);
                             error_lay.setVisibility(View.GONE);
                             notice_lay.setVisibility(View.GONE);
 
 							ArrayList<MSGNews> temp = (ArrayList<MSGNews>) message.obj;
 							//根据返回的数据量判断是否隐藏加载更多
 							if(temp.size() < pageSize){
-								msg_listView.setPullLoadEnable(false);
+								listView.setPullLoadEnable(false);
 							}else{
-								msg_listView.setPullLoadEnable(true);
+								listView.setPullLoadEnable(true);
 							}
 							//如果是下拉刷新则索引恢复到1，并且清除掉之前数据
 							if(isPullDown && newsList != null){
@@ -205,7 +206,7 @@ public class AddressListActivity extends AppBaseActivity {
 							}
 							newsList.addAll(temp);
                             if(currentPageIndex == 1 && (temp == null || temp.size() ==0)){
-                                msg_listView.setVisibility(View.GONE);
+                                listView.setVisibility(View.GONE);
                                 notice_lay.setVisibility(View.VISIBLE);
                                 return;
                             }
@@ -218,16 +219,16 @@ public class AddressListActivity extends AppBaseActivity {
 							break;
 						}
 						isPullDown = false;
-						msg_listView.stopRefresh();
-						msg_listView.stopLoadMore();
+						listView.stopRefresh();
+						listView.stopLoadMore();
 					}
 				});
 			}else {
-				listRequest.setData("", DEVICE_ID, modelApp.getSite().getSiteId(),
-						MessageCenterActivity.MSG_NEWS, page, pageSize);
+				listRequest.setData("", "", modelApp.getSite().getSiteId(),
+						11, page, pageSize);
 			}
 			if (showLoading){
-                msg_listView.setVisibility(View.GONE);
+                listView.setVisibility(View.GONE);
                 error_lay.setVisibility(View.GONE);
                 notice_lay.setVisibility(View.GONE);
                 rotate_loading.setVisibility(View.VISIBLE);
@@ -236,10 +237,10 @@ public class AddressListActivity extends AppBaseActivity {
 			listRequest.doRequest();
 		}else {
 			isPullDown = false;
-			msg_listView.stopRefresh();
-			msg_listView.stopLoadMore();
+			listView.stopRefresh();
+			listView.stopLoadMore();
             if (newsList == null || newsList.size() == 0){
-                msg_listView.setVisibility(View.GONE);
+                listView.setVisibility(View.GONE);
                 rotate_loading.setVisibility(View.GONE);
                 notice_lay.setVisibility(View.GONE);
                 error_lay.setVisibility(View.VISIBLE);
@@ -249,21 +250,4 @@ public class AddressListActivity extends AppBaseActivity {
 		}
 	}
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if(requestCode == READ_PHONE_STATE_REQUEST_CODE){
-            // If request is cancelled, the result arrays are empty.
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                TelephonyManager tm = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-                DEVICE_ID = tm.getDeviceId();
-
-            } else {
-                //没有取得权限
-            }
-        }
-    }
 }

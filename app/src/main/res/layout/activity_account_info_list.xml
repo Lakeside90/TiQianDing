@@ -1,37 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xlist="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:xlist="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/window_bg"
+                android:orientation="vertical">
 
     <include
         android:id="@+id/title_lay"
-        layout="@layout/common_title_bar"/>
+        layout="@layout/common_title_bar_white"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_below="@id/title_lay"
         android:background="@color/white"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:textSize="24sp"
+            android:text="10000.00"
             android:textColor="@color/common_red"
-            android:text="10000.00"/>
+            android:textSize="24sp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_marginBottom="25dp"
-            android:textSize="12sp"
+            android:layout_marginTop="5dp"
+            android:text="我的余额（元）"
             android:textColor="@color/common_gray_txt"
-            android:text="我的余额（元）"/>
+            android:textSize="12sp"/>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
@@ -42,22 +46,19 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_below="@id/title_lay"
-            android:cacheColorHint="@color/trans"
-            android:divider="@color/trans"
-            android:dividerHeight="10dp"
+            android:background="@color/window_bg"
             android:listSelector="@android:color/transparent"
-            xlist:is_header="true" />
+            xlist:is_header="true"/>
     </LinearLayout>
-
 
 
     <com.xkhouse.fang.widget.loading.RotateLoading
         android:id="@+id/rotate_loading"
-        app:loading_color="@color/common_red"
-        app:loading_width="@dimen/rotate_loading_border"
         android:layout_width="@dimen/rotate_loading_width"
         android:layout_height="@dimen/rotate_loading_height"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        app:loading_color="@color/common_red"
+        app:loading_width="@dimen/rotate_loading_border"/>
 
 
     <LinearLayout
@@ -65,17 +66,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/title_lay"
+        android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone"
-        android:gravity="center" >
+        android:visibility="gone">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawablePadding="20dp"
+            android:drawableTop="@drawable/net_error"
             android:gravity="center"
             android:text="@string/web_error"
-            android:drawableTop="@drawable/net_error"
-            android:drawablePadding="20dp"
             android:textColor="@color/c_666666"
             android:textSize="14sp"/>
     </LinearLayout>
@@ -85,9 +86,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/title_lay"
-        android:visibility="gone"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

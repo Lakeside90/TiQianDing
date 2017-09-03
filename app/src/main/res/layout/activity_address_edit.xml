@@ -6,7 +6,7 @@
 
     <include
         android:id="@+id/title_lay"
-        layout="@layout/common_title_bar"/>
+        layout="@layout/common_title_bar_white"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,8 +22,9 @@
             android:layout_marginRight="15dp"
             android:background="@color/white"
             android:textSize="16sp"
-            android:textColor="@color/common_gray_txt"
+            android:textColor="@color/common_black_txt"
             android:hint="收货人姓名"
+            android:textColorHint="@color/cccccc"
             android:gravity="center_vertical"
             android:lines="1"
             />
@@ -38,8 +39,9 @@
             android:layout_marginRight="15dp"
             android:background="@color/white"
             android:textSize="16sp"
-            android:textColor="@color/common_gray_txt"
+            android:textColor="@color/common_black_txt"
             android:hint="手机号码"
+            android:textColorHint="@color/cccccc"
             android:gravity="center_vertical"
             android:lines="1"
             android:inputType="phone"
@@ -69,7 +71,7 @@
                 android:gravity="center_vertical|right"
                 android:layout_weight="1"
                 android:lines="1"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:textColor="@color/common_gray_txt"
                 android:drawableRight="@drawable/icon_arrow_right"
                 android:drawablePadding="5dp"

@@ -175,7 +175,7 @@ public class LoginActivity extends AppBaseActivity {
 			Toast.makeText(this, "请填写完整!", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		
+
 		if (NetUtil.detectAvailable(mContext)) {
 			   showLoadingDialog("正在登录...");
 				if(loginRequest == null){

@@ -38,12 +38,17 @@ public class AddressAdapter extends BaseAdapter {
 	
 	@Override
 	public int getCount() {
-		return newsList.size();
+//		return newsList.size();
+
+        return 3;
 	}
+
 
 	@Override
 	public Object getItem(int position) {
-		return newsList.get(position);
+//		return newsList.get(position);
+
+        return position;
 	}
 
 	@Override
@@ -56,7 +61,7 @@ public class AddressAdapter extends BaseAdapter {
 		
 		ViewHolder holder = null;
 		if(convertView == null){
-			convertView = LayoutInflater.from(context).inflate(R.layout.item_account_info_list, null);
+			convertView = LayoutInflater.from(context).inflate(R.layout.item_address_list, null);
 			holder = new ViewHolder(convertView);
 			convertView.setTag(holder);
 		}else{
@@ -80,17 +85,17 @@ public class AddressAdapter extends BaseAdapter {
 	
 	public class ViewHolder{
 		
-		TextView title_txt;
-		TextView date_txt;
-		TextView content_txt;
-		TextView money_txt;
+//		TextView title_txt;
+//		TextView date_txt;
+//		TextView content_txt;
+//		TextView money_txt;
 
 		public ViewHolder(View view){
 			
-			title_txt = (TextView) view.findViewById(R.id.title_txt);
-			date_txt = (TextView) view.findViewById(R.id.date_txt);
-			content_txt = (TextView) view.findViewById(R.id.content_txt);
-            money_txt = (TextView) view.findViewById(R.id.money_txt);
+//			title_txt = (TextView) view.findViewById(R.id.title_txt);
+//			date_txt = (TextView) view.findViewById(R.id.date_txt);
+//			content_txt = (TextView) view.findViewById(R.id.content_txt);
+//            money_txt = (TextView) view.findViewById(R.id.money_txt);
 
 		}
 	}

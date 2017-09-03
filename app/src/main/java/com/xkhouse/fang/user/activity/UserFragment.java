@@ -25,14 +25,10 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseFragment;
-import com.xkhouse.fang.app.activity.CalculatorActivity;
 import com.xkhouse.fang.app.activity.ModelApplication;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.config.Preference;
-import com.xkhouse.fang.house.activity.BuyAbilityActivity;
-import com.xkhouse.fang.house.activity.MyCustomHouseListActivity;
-import com.xkhouse.fang.user.task.MessageReadRequest;
 import com.xkhouse.fang.user.task.MsgFavoriteNumRequest;
 import com.xkhouse.fang.user.task.WalletListRequest;
 import com.xkhouse.fang.widget.circle.CircleImageView;
@@ -48,34 +44,35 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 	
 	
 	private View rootView;
-	
+
+    private ImageView setting_iv;		//设置
+
 	private LinearLayout user_lay;
 	private CircleImageView user_icon_iv;
 	private TextView username_txt;
 
-	//消息
-    private LinearLayout message_lay;
-    private TextView message_num_txt;
-    private ImageView message_iv;
-	
+	//余额
+    private LinearLayout money_lay;
+    private TextView money_num_txt;
 
-	
-	//收藏
-	private LinearLayout favorite_lay;
-    private TextView favorite_num_txt;
+    //抽奖机会
+    private LinearLayout luck_changes_lay;
+    private TextView changes_num_txt;
 
-	private LinearLayout recommend_lay;		//我的推荐
-	private LinearLayout custom_lay;		//我的定制
-	private LinearLayout release_lay;		//我的发布
-	private LinearLayout calculator_lay;	//贷款计算器
-	private LinearLayout house_baike_lay;	//购房百科
-	private LinearLayout buy_ability_lay;	//购房能力评估
-	private LinearLayout zuolin_lay;	    //左邻右里
+    //我是员工
+    private TextView employee_txt;
 
-	private ImageView setting_iv;		//设置
+	private LinearLayout booked_lay;		//我的预定
+	private LinearLayout luck_lay;		    //我的抽奖
+	private LinearLayout check_lay;		    //我的买单
+	private LinearLayout comment_lay;	    //我的评论
+	private LinearLayout favorite_lay;	    //我的收藏
+	private LinearLayout message_lay;	    //我的消息
+	private LinearLayout browse_lay;	    //我的浏览
 
     private TextView server_call_txt;
-	
+
+
 	private DisplayImageOptions options;
 	
 	private ModelApplication modelApp;
@@ -98,8 +95,6 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 		
 		findViews();
 		setListeners();
-
-        startMessageReadTask();
 
 		return rootView;
 	}
@@ -145,19 +140,22 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 	
 	
 	private void setListeners() {
+        setting_iv.setOnClickListener(this);
+
 		user_lay.setOnClickListener(this);
 
+        money_lay.setOnClickListener(this);
+        luck_changes_lay.setOnClickListener(this);
+
+        employee_txt.setOnClickListener(this);
+
+        booked_lay.setOnClickListener(this);
+        luck_lay.setOnClickListener(this);
+        check_lay.setOnClickListener(this);
+		comment_lay.setOnClickListener(this);
+        favorite_lay.setOnClickListener(this);
         message_lay.setOnClickListener(this);
-		favorite_lay.setOnClickListener(this);
-		
-		recommend_lay.setOnClickListener(this);
-        custom_lay.setOnClickListener(this);
-		release_lay.setOnClickListener(this);
-		calculator_lay.setOnClickListener(this);
-        house_baike_lay.setOnClickListener(this);
-		buy_ability_lay.setOnClickListener(this);
-        zuolin_lay.setOnClickListener(this);
-		setting_iv.setOnClickListener(this);
+        browse_lay.setOnClickListener(this);
 
         server_call_txt.setOnClickListener(this);
 	}
@@ -168,22 +166,23 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 		user_icon_iv = (CircleImageView) rootView.findViewById(R.id.user_icon_iv);
 		username_txt = (TextView) rootView.findViewById(R.id.username_txt);
 
+        money_lay = (LinearLayout) rootView.findViewById(R.id.money_lay);
+        money_num_txt = (TextView) rootView.findViewById(R.id.money_num_txt);
+
+        luck_changes_lay = (LinearLayout) rootView.findViewById(R.id.luck_changes_lay);
+        changes_num_txt = (TextView) rootView.findViewById(R.id.changes_num_txt);
+
+        employee_txt = (TextView) rootView.findViewById(R.id.employee_txt);
+
+        booked_lay = (LinearLayout) rootView.findViewById(R.id.booked_lay);
+        luck_lay = (LinearLayout) rootView.findViewById(R.id.luck_lay);
+        check_lay = (LinearLayout) rootView.findViewById(R.id.check_lay);
+        comment_lay = (LinearLayout) rootView.findViewById(R.id.comment_lay);
+        favorite_lay = (LinearLayout) rootView.findViewById(R.id.favorite_lay);
         message_lay = (LinearLayout) rootView.findViewById(R.id.message_lay);
-        message_num_txt = (TextView) rootView.findViewById(R.id.message_num_txt);
-        message_iv = (ImageView) rootView.findViewById(R.id.message_iv);
-		
-		favorite_lay = (LinearLayout) rootView.findViewById(R.id.favorite_lay);
-        favorite_num_txt = (TextView) rootView.findViewById(R.id.favorite_num_txt);
+        browse_lay = (LinearLayout) rootView.findViewById(R.id.browse_lay);
 
-        recommend_lay = (LinearLayout) rootView.findViewById(R.id.recommend_lay);
-        custom_lay = (LinearLayout) rootView.findViewById(R.id.custom_lay);
-        release_lay = (LinearLayout) rootView.findViewById(R.id.release_lay);
-        calculator_lay = (LinearLayout) rootView.findViewById(R.id.calculator_lay);
-        house_baike_lay = (LinearLayout) rootView.findViewById(R.id.house_baike_lay);
-        buy_ability_lay = (LinearLayout) rootView.findViewById(R.id.buy_ability_lay);
-        zuolin_lay = (LinearLayout) rootView.findViewById(R.id.zuolin_lay);
         setting_iv = (ImageView) rootView.findViewById(R.id.setting_iv);
-
         server_call_txt = (TextView) rootView.findViewById(R.id.server_call_txt);
 
     }
@@ -193,80 +192,94 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
             case R.id.user_lay:
-                if(Preference.getInstance().readIsLogin()){
-                    startActivity(new Intent(getActivity(), UserInfoActivity.class));
-                }else {
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
-                }
+//                if(Preference.getInstance().readIsLogin()){
+//                    startActivity(new Intent(getActivity(), UserInfoActivity.class));
+//                }else {
+//                    startActivity(new Intent(getActivity(), LoginActivity.class));
+//                }
+                startActivity(new Intent(getActivity(), UserInfoActivity.class));
+                break;
 
+            case R.id.money_lay:
+//                if(Preference.getInstance().readIsLogin()){
+//                    startActivity(new Intent(getActivity(), AccountInfoListActivity.class));
+//                }else {
+//                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+//                    intent.putExtra("classStr", AccountInfoListActivity.class);
+//                    startActivity(intent);
+//                }
+                startActivity(new Intent(getActivity(), AccountInfoListActivity.class));
+                break;
+
+            case R.id.luck_changes_lay:
+                startActivity(new Intent(getActivity(), LuckChangeListActivity.class));
+                break;
+
+            case R.id.employee_txt:
+                // TODO
+                break;
+
+
+            case R.id.booked_lay:
+                startActivity(new Intent(getActivity(), MyBookedListActivity.class));
+                break;
+
+            case R.id.luck_lay:
+                startActivity(new Intent(getActivity(), MyLuckListActivity.class));
+                break;
+
+            case R.id.check_lay:
+                startActivity(new Intent(getActivity(), MyCheckListActivity.class));
+                break;
+
+            case R.id.comment_lay:
+                startActivity(new Intent(getActivity(), MyCommentListActivity.class));
+//                startActivity(new Intent(getActivity(), CommentAddActivity.class));
+                break;
+
+            case R.id.favorite_lay:
+//                if(Preference.getInstance().readIsLogin()){
+//                    startActivity(new Intent(getActivity(), FavAndBrowseActivity.class));
+//                }else {
+//                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+//                    intent.putExtra("classStr", FavAndBrowseActivity.class);
+//                    startActivity(intent);
+//                }
+                Intent favIntent = new Intent(getActivity(), FavAndBrowseActivity.class);
+                Bundle favBundle = new Bundle();
+                favBundle.putInt("type", FavAndBrowseActivity.TYPE_FAV);
+                favIntent.putExtras(favBundle);
+                startActivity(favIntent);
                 break;
 
             case R.id.message_lay:
-                message_iv.setVisibility(View.INVISIBLE);
-                startActivity(new Intent(getActivity(), MessageCenterActivity.class));
+//                if(Preference.getInstance().readIsLogin()){
+//                    startActivity(new Intent(getActivity(), MessageListActivity.class));
+//                }else {
+//                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+//                    intent.putExtra("classStr", MessageListActivity.class);
+//                    startActivity(intent);
+//                }
+                startActivity(new Intent(getActivity(), MessageListActivity.class));
                 break;
 
-
-
-            case R.id.favorite_lay:
-                if(Preference.getInstance().readIsLogin()){
-                    startActivity(new Intent(getActivity(), FavoriteListActivity.class));
-                }else {
-                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    intent.putExtra("classStr", FavoriteListActivity.class);
-                    startActivity(intent);
-                }
-                break;
-
-            case R.id.recommend_lay:
-                if(Preference.getInstance().readIsLogin()){
-                    startActivity(new Intent(getActivity(), MyRecommendActivity.class));
-                }else {
-                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    intent.putExtra("classStr", MyRecommendActivity.class);
-                    startActivity(intent);
-                }
-                break;
-
-            case R.id.custom_lay:
-                if(Preference.getInstance().readIsLogin()){
-                    startActivity(new Intent(getActivity(), MyCustomHouseListActivity.class));
-                }else {
-                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    intent.putExtra("classStr", MyCustomHouseListActivity.class);
-                    startActivity(intent);
-                }
-                break;
-
-            case R.id.release_lay:
-                if(Preference.getInstance().readIsLogin()){
-                    startActivity(new Intent(getActivity(), MyReleaseActivity.class));
-                }else {
-                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    intent.putExtra("classStr", MyReleaseActivity.class);
-                    startActivity(intent);
-                }
-                break;
-
-            case R.id.calculator_lay:
-                startActivity(new Intent(getActivity(), CalculatorActivity.class));
-                break;
-
-            case R.id.house_baike_lay:
-                break;
-
-            case R.id.buy_ability_lay:
-                startActivity(new Intent(getActivity(), BuyAbilityActivity.class));
-                break;
-
-            case R.id.zuolin_lay:
-                Uri uri = Uri.parse("https://www.nextdoors.com.cn/down.php");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+            case R.id.browse_lay:
+//                if(Preference.getInstance().readIsLogin()){
+//                    startActivity(new Intent(getActivity(), FavAndBrowseActivity.class));
+//                }else {
+//                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+//                    intent.putExtra("classStr", FavAndBrowseActivity.class);
+//                    startActivity(intent);
+//                }
+                Intent broIntent = new Intent(getActivity(), FavAndBrowseActivity.class);
+                Bundle broBundle = new Bundle();
+                broBundle.putInt("type", FavAndBrowseActivity.TYPE_BROWSE);
+                broIntent.putExtras(broBundle);
+                startActivity(broIntent);
                 break;
 
             case R.id.setting_iv:
@@ -298,49 +311,17 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 		getCount();
 	}	
 	
-	
-
-    private void startMessageReadTask(){
-        if (NetUtil.detectAvailable(getActivity())){
-            String userId = null;
-            if (Preference.getInstance().readIsLogin()){
-                userId = modelApp.getUser().getUid();
-            }
-            MessageReadRequest request = new MessageReadRequest(userId, DEVICE_ID, modelApp.getSite().getSiteId(),
-                    new RequestListener() {
-                        @Override
-                        public void sendMessage(Message message) {
-                            switch (message.what) {
-                                case Constants.ERROR_DATA_FROM_NET:
-                                case Constants.NO_DATA_FROM_NET:
-                                    message_iv.setVisibility(View.INVISIBLE);
-                                    break;
-
-                                case Constants.SUCCESS_DATA_FROM_NET:
-                                    if(1 == message.arg1){
-                                        message_iv.setVisibility(View.VISIBLE);
-                                    }else{
-                                        message_iv.setVisibility(View.INVISIBLE);
-                                    }
-                                    break;
-                            }
-                        }
-                    });
-            request.doRequest();
-        }
-    }
-
 
     private void getCount() {
 
         if(!Preference.getInstance().readIsLogin()){
-            message_num_txt.setText("--");
-            favorite_num_txt.setText("--");
+            money_num_txt.setText("--");
+            changes_num_txt.setText("--");
             return;
         }
 
         if(NetUtil.detectAvailable(getActivity())){
-            // 消息条数
+            // 我的余额 TODO 网络请求带替换
             if(msgNumRequest == null){
                 msgNumRequest = new MsgFavoriteNumRequest(modelApp.getUser().getUid(), "1", new RequestListener() {
 
@@ -350,12 +331,12 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
                         switch (message.what) {
                             case Constants.ERROR_DATA_FROM_NET:
                             case Constants.NO_DATA_FROM_NET:
-                                message_num_txt.setText("--");
+                                money_num_txt.setText("--");
                                 break;
 
                             case Constants.SUCCESS_DATA_FROM_NET:
                                 String count = (String) message.obj;
-                                message_num_txt.setText(count);
+                                money_num_txt.setText(count);
                                 break;
                         }
                     }
@@ -365,7 +346,7 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
             }
             msgNumRequest.doRequest();
 
-            //收藏条数
+            //抽奖机会次数  TODO 网络请求带替换
             if(favoriteNumRequest == null){
                 favoriteNumRequest = new MsgFavoriteNumRequest(modelApp.getUser().getUid(), "2", new RequestListener() {
 
@@ -375,12 +356,12 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
                         switch (message.what) {
                             case Constants.ERROR_DATA_FROM_NET:
                             case Constants.NO_DATA_FROM_NET:
-                                favorite_num_txt.setText("--");
+                                changes_num_txt.setText("--");
                                 break;
 
                             case Constants.SUCCESS_DATA_FROM_NET:
                                 String count = (String) message.obj;
-                                favorite_num_txt.setText(count);
+                                changes_num_txt.setText(count);
                                 break;
                         }
                     }
@@ -392,11 +373,10 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 
 
         }else {
-            message_num_txt.setText("--");
-            favorite_num_txt.setText("--");
+            changes_num_txt.setText("--");
+            money_num_txt.setText("--");
         }
     }
-
 
 
 
@@ -418,6 +398,5 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
             }
         }
     }
-
 
 }

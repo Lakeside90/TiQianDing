@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -26,22 +25,11 @@ import com.umeng.socialize.controller.listener.SocializeListeners;
 import com.umeng.socialize.sso.SinaSsoHandler;
 import com.umeng.socialize.sso.UMQQSsoHandler;
 import com.umeng.socialize.weixin.controller.UMWXHandler;
-import com.umeng.update.UmengUpdateAgent;
-import com.umeng.update.UmengUpdateListener;
-import com.umeng.update.UpdateResponse;
-import com.umeng.update.UpdateStatus;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
-import com.xkhouse.fang.app.callback.RequestListener;
-import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.config.Preference;
-import com.xkhouse.fang.app.entity.AppUpgrade;
-import com.xkhouse.fang.app.task.VersionCheckRequest;
-import com.xkhouse.fang.widget.AppUpdateDialog;
 import com.xkhouse.frame.config.BaseConfig;
 import com.xkhouse.lib.utils.FileUtil;
-import com.xkhouse.lib.utils.NetUtil;
-import com.xkhouse.lib.utils.StringUtil;
 
 import java.io.File;
 import java.util.Properties;
@@ -57,18 +45,15 @@ public class SettingsActivity extends AppBaseActivity {
 	private TextView tv_head_title;
 	
 	private ImageView switch_on_off;
-	private LinearLayout share_lay;
-	private LinearLayout feed_back_lay;
-	private LinearLayout disclaimer_lay;
+
 	private LinearLayout about_lay;
+
+    private TextView cache_txt;
 	private LinearLayout cache_clear_lay;
-	private LinearLayout upgrade_lay;
 	
 	private TextView version_txt;
-	private TextView cache_txt;
 
-	private TextView logout_txt;
-	private LinearLayout logout_lay;
+    private TextView server_call_txt;
 	
 	
 	@Override
@@ -99,12 +84,6 @@ public class SettingsActivity extends AppBaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        if(Preference.getInstance().readIsLogin()){
-            logout_lay.setVisibility(View.VISIBLE);
-        }else{
-            logout_lay.setVisibility(View.GONE);
-        }
     }
 
     @Override
@@ -122,17 +101,15 @@ public class SettingsActivity extends AppBaseActivity {
         initTitle();
 		
 		switch_on_off = (ImageView) findViewById(R.id.switch_on_off);
-		share_lay = (LinearLayout) findViewById(R.id.share_lay);
-		feed_back_lay = (LinearLayout) findViewById(R.id.feed_back_lay);
-		disclaimer_lay = (LinearLayout) findViewById(R.id.disclaimer_lay);
+
 		about_lay = (LinearLayout) findViewById(R.id.about_lay);
+
 		cache_clear_lay = (LinearLayout) findViewById(R.id.cache_clear_lay);
-		upgrade_lay = (LinearLayout) findViewById(R.id.upgrade_lay);
-		logout_lay = (LinearLayout) findViewById(R.id.logout_lay);
-		
-		version_txt = (TextView) findViewById(R.id.version_txt);
         cache_txt = (TextView) findViewById(R.id.cache_txt);
-		logout_txt = (TextView) findViewById(R.id.logout_txt);
+
+        version_txt = (TextView) findViewById(R.id.version_txt);
+
+        server_call_txt = (TextView) findViewById(R.id.server_call_txt);
 	}
 
 	private void initTitle() {
@@ -150,14 +127,14 @@ public class SettingsActivity extends AppBaseActivity {
 	
 	@Override
 	protected void setListeners() {
-		share_lay.setOnClickListener(this);
-		feed_back_lay.setOnClickListener(this);
-		disclaimer_lay.setOnClickListener(this);
-		logout_txt.setOnClickListener(this);
+
 		about_lay.setOnClickListener(this);
+
 		cache_clear_lay.setOnClickListener(this);
-		upgrade_lay.setOnClickListener(this);
+
 		switch_on_off.setOnClickListener(this);
+
+        server_call_txt.setOnClickListener(this);
 	}
 
 	@Override
@@ -176,24 +153,6 @@ public class SettingsActivity extends AppBaseActivity {
 				PushManager.stopWork(mContext);
 				Preference.getInstance().writeIsPushClose(true);
 			}
-			break;
-			
-		case R.id.share_lay:
-			startActivity(new Intent(mContext, AppShareActivity.class));
-			break;
-
-		case R.id.logout_txt:
-            logout();
-			Preference.getInstance().writeIsLogin(false);
-			finish();
-			break;
-			
-		case R.id.feed_back_lay:
-			startActivity(new Intent(mContext, FeedBackActivity.class));
-			break;
-			
-		case R.id.disclaimer_lay:
-			startActivity(new Intent(mContext, DisclaimerActivity.class));
 			break;
 			
 		case R.id.about_lay:
@@ -223,64 +182,13 @@ public class SettingsActivity extends AppBaseActivity {
                 }
             }, 3000);
 			break;
-			
-		case R.id.upgrade_lay:
-           appUpdate();
-            break;
+
+            case R.id.server_call_txt:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("tel:400-887-1216")));
+                break;
 		}
 	}
 
-
-    private void appUpdate(){
-        if (NetUtil.detectAvailable(this)) {
-            Toast.makeText(mContext,"正在检查版本...", Toast.LENGTH_SHORT).show();
-            VersionCheckRequest request = new VersionCheckRequest(getVersionCode(), new RequestListener() {
-                @Override
-                public void sendMessage(Message message) {
-                    switch (message.what) {
-                        case Constants.ERROR_DATA_FROM_NET:
-                            Toast.makeText(mContext, R.string.service_error, Toast.LENGTH_SHORT).show();
-                            break;
-
-                        case Constants.NO_DATA_FROM_NET:
-                            Toast.makeText(mContext,"已是最新版本", Toast.LENGTH_SHORT).show();
-                            break;
-
-                        case Constants.SUCCESS_DATA_FROM_NET:
-                            final AppUpgrade appUpgrade = (AppUpgrade) message.obj;
-                            if(appUpgrade == null || StringUtil.isEmpty(appUpgrade.getDownLoadUrl())) {
-                                Toast.makeText(mContext,"已是最新版本", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                            if (appUpgrade != null && !StringUtil.isEmpty(appUpgrade.getDownLoadUrl())){
-                                final AppUpdateDialog confirmDialog = new AppUpdateDialog(SettingsActivity.this, appUpgrade.getContent());
-                                confirmDialog.show();
-                                confirmDialog.setClicklistener(new AppUpdateDialog.ClickListenerInterface() {
-                                    @Override
-                                    public void doConfirm() {
-                                        confirmDialog.dismiss();
-
-                                        Uri uri = Uri.parse(appUpgrade.getDownLoadUrl());
-                                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                                        startActivity(intent);
-                                    }
-
-                                    @Override
-                                    public void doCancel() {
-                                        confirmDialog.dismiss();
-                                    }
-                                });
-                            }
-                            break;
-                    }
-                }
-            });
-            request.doRequest();
-        }else {
-            Toast.makeText(mContext, R.string.net_warn, Toast.LENGTH_SHORT).show();
-        }
-
-    }
 
     /**
      * 获取版本号
@@ -330,10 +238,10 @@ public class SettingsActivity extends AppBaseActivity {
 	        PackageManager manager = this.getPackageManager();
 	        PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);
 	        String version = info.versionName;
-	        return "V"+ version;
+	        return "当前版本V"+ version;
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        return "V1.0";
+	        return "当前版本V1.0";
 	    }
 	}
 

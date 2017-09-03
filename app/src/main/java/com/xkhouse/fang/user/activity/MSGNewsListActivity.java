@@ -155,7 +155,7 @@ public class MSGNewsListActivity extends AppBaseActivity {
 		if (NetUtil.detectAvailable(mContext)) {
 			if(listRequest == null){
 				listRequest = new MessageDetailListRequest("", DEVICE_ID,modelApp.getSite().getSiteId(),
-						MessageCenterActivity.MSG_NEWS, page, pageSize, new RequestListener() {
+						11, page, pageSize, new RequestListener() {
 					
 					@Override
 					public void sendMessage(Message message) {
@@ -226,7 +226,7 @@ public class MSGNewsListActivity extends AppBaseActivity {
 				});
 			}else {
 				listRequest.setData("", DEVICE_ID, modelApp.getSite().getSiteId(),
-						MessageCenterActivity.MSG_NEWS, page, pageSize);
+						11, page, pageSize);
 			}
 			if (showLoading){
                 msg_listView.setVisibility(View.GONE);

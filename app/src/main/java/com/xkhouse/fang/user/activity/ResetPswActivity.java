@@ -18,7 +18,7 @@ import com.xkhouse.lib.utils.StringUtil;
 
 
 /** 
- * @Description: 找回密码 
+ * @Description: 重置密码
  * @author wujian  
  * @date 2015-10-9 上午11:14:46  
  */
@@ -59,7 +59,7 @@ public class ResetPswActivity extends AppBaseActivity {
 	private void initTitle() {
 		iv_head_left = (ImageView) findViewById(R.id.iv_head_left);
 		tv_head_title = (TextView) findViewById(R.id.tv_head_title);
-		tv_head_title.setText("找回密码");
+		tv_head_title.setText("重置密码");
 		iv_head_left.setOnClickListener(new OnClickListener() {
 			
 			@Override

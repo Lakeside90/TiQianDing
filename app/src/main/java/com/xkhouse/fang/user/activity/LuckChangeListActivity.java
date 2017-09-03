@@ -50,13 +50,12 @@ public class LuckChangeListActivity extends AppBaseActivity {
 	private MessageDetailListRequest listRequest;
 	private ArrayList<MSGNews> newsList = new ArrayList<MSGNews>();
 
-    private String DEVICE_ID;      //设备ID
-    private int READ_PHONE_STATE_REQUEST_CODE = 100;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		startDataTask(1, true);
+//		startDataTask(1, true);
+        fillData();
 	}
 	
 	
@@ -68,18 +67,6 @@ public class LuckChangeListActivity extends AppBaseActivity {
 	@Override
 	protected void init() {
 		super.init();
-        // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.READ_PHONE_STATE)
-                != PackageManager.PERMISSION_GRANTED) {
-            // No explanation needed, we can request the permission.
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE},
-                    READ_PHONE_STATE_REQUEST_CODE);
-
-        } else {
-            //执行获取权限后的操作
-            TelephonyManager tm = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-            DEVICE_ID = tm.getDeviceId();
-        }
 	}
 
 	@Override
@@ -96,7 +83,7 @@ public class LuckChangeListActivity extends AppBaseActivity {
 	private void initTitle() {
 		iv_head_left = (ImageView) findViewById(R.id.iv_head_left);
 		tv_head_title = (TextView) findViewById(R.id.tv_head_title);
-		tv_head_title.setText("每日要闻");
+		tv_head_title.setText("抽奖机会明细");
 		iv_head_left.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -118,12 +105,12 @@ public class LuckChangeListActivity extends AppBaseActivity {
             @Override
             public void onRefresh() {
                 isPullDown = true;
-                startDataTask(1, false);
+//                startDataTask(1, false);
             }
 
             @Override
             public void onLoadMore() {
-                startDataTask(currentPageIndex, false);
+//                startDataTask(currentPageIndex, false);
             }
         }, R.id.favorite_listView);
 	}
@@ -133,13 +120,18 @@ public class LuckChangeListActivity extends AppBaseActivity {
 		super.onClick(v);
         switch (v.getId()){
             case R.id.error_lay:
-                startDataTask(1, true);
+//                startDataTask(1, true);
                 break;
         }
 	}
 	
 	
 	private void fillData(){
+
+        for (int i = 0; i < 3; i++) {
+            newsList.add(new MSGNews());
+        }
+
 		if(newsList == null) return;
 		if(adapter == null ){
 			adapter = new LuckChangeAdapter(mContext, newsList);
@@ -152,8 +144,8 @@ public class LuckChangeListActivity extends AppBaseActivity {
 	private void startDataTask(int page, boolean showLoading){
 		if (NetUtil.detectAvailable(mContext)) {
 			if(listRequest == null){
-				listRequest = new MessageDetailListRequest("", DEVICE_ID,modelApp.getSite().getSiteId(),
-						MessageCenterActivity.MSG_NEWS, page, pageSize, new RequestListener() {
+				listRequest = new MessageDetailListRequest("", "",modelApp.getSite().getSiteId(),
+						11, page, pageSize, new RequestListener() {
 					
 					@Override
 					public void sendMessage(Message message) {
@@ -223,8 +215,8 @@ public class LuckChangeListActivity extends AppBaseActivity {
 					}
 				});
 			}else {
-				listRequest.setData("", DEVICE_ID, modelApp.getSite().getSiteId(),
-						MessageCenterActivity.MSG_NEWS, page, pageSize);
+				listRequest.setData("", "", modelApp.getSite().getSiteId(),
+						11, page, pageSize);
 			}
 			if (showLoading){
                 msg_listView.setVisibility(View.GONE);
@@ -249,21 +241,4 @@ public class LuckChangeListActivity extends AppBaseActivity {
 		}
 	}
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if(requestCode == READ_PHONE_STATE_REQUEST_CODE){
-            // If request is cancelled, the result arrays are empty.
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                TelephonyManager tm = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-                DEVICE_ID = tm.getDeviceId();
-
-            } else {
-                //没有取得权限
-            }
-        }
-    }
 }

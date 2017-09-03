@@ -492,12 +492,6 @@
             android:theme="@style/ThemeNoTitleActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".user.activity.MessageCenterActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/ThemeNoTitleActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
             android:name=".user.activity.UserInfoActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
@@ -623,7 +617,7 @@
             android:theme="@style/ThemeNoTitleActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".user.activity.MSGSystemListActivity"
+            android:name=".user.activity.MessageListActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeNoTitleActivity"
@@ -761,10 +755,48 @@
             android:screenOrientation="portrait"
             android:theme="@style/ThemeNoTitleActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-
-
-
-
+        <activity
+            android:name=".user.activity.HobbiesEditActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.MyBookedListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.MyBookedDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.MyLuckListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.MyCommentListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.CommentAddActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.MyCheckListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
 
 
         <!-- 高德地图 app key -->

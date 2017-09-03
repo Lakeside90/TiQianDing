@@ -55,11 +55,11 @@ public class ChangeNameActivity extends AppBaseActivity {
 		name_txt = (EditText) findViewById(R.id.name_txt);
 		commit_txt = (TextView) findViewById(R.id.commit_txt);
 		
-		if(type == TYPE_USER_NAME){
-			name_txt.setText(modelApp.getUser().getUserName());
-		}else {
-			name_txt.setText(modelApp.getUser().getRealName());
-		}
+//		if(type == TYPE_USER_NAME){
+//			name_txt.setText(modelApp.getUser().getUserName());
+//		}else {
+//			name_txt.setText(modelApp.getUser().getRealName());
+//		}
 	}
 
 	private void initTitle() {
@@ -67,7 +67,7 @@ public class ChangeNameActivity extends AppBaseActivity {
 		tv_head_title = (TextView) findViewById(R.id.tv_head_title);
 		
 		if(type == TYPE_USER_NAME){
-			tv_head_title.setText("修改用户名");
+			tv_head_title.setText("修改昵称");
 		}else {
 			tv_head_title.setText("修改姓名");
 		}

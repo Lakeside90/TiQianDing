@@ -10,7 +10,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
-import com.xkhouse.fang.user.activity.MessageCenterActivity;
 import com.xkhouse.fang.user.entity.MSGActivity;
 import com.xkhouse.fang.user.entity.MSGNews;
 import com.xkhouse.fang.user.entity.MSGSystem;
@@ -103,13 +102,13 @@ public class MessageDetailListRequest {
                         
                         Message message = new Message();
                         if(Constants.SUCCESS_CODE_OLD.equals(code)){
-                        	if(type == MessageCenterActivity.MSG_NEWS){
-                        		message.obj = newsList;
-                        	}else if(type == MessageCenterActivity.MSG_ACTIVITY){
-                        		message.obj = activityList;
-                        	}else if(type == MessageCenterActivity.MSG_SYSTEM){
-                        		message.obj = systemList;
-                        	}
+//                        	if(type == MessageCenterActivity.MSG_NEWS){
+//                        		message.obj = newsList;
+//                        	}else if(type == MessageCenterActivity.MSG_ACTIVITY){
+//                        		message.obj = activityList;
+//                        	}else if(type == MessageCenterActivity.MSG_SYSTEM){
+//                        		message.obj = systemList;
+//                        	}
                             message.arg1 = count;
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
                         }else{
@@ -165,51 +164,51 @@ public class MessageDetailListRequest {
 
                 JSONArray dataArray = dataObj.optJSONArray("list");
 	        	if (dataArray != null && dataArray.length() > 0 ) {
-					switch (type) {
-					case MessageCenterActivity.MSG_NEWS:
-						for(int i = 0; i < dataArray.length(); i++){
-							JSONObject newsObj = dataArray.getJSONObject(i);
-							MSGNews news = new MSGNews();
-							
-							news.setContent(newsObj.optString("content"));
-							news.setDate(newsObj.optString("createTime"));
-							news.setId(newsObj.optString("tId"));
-							news.setPhotoUrl(newsObj.optString("photoUrl"));
-							news.setTitle(newsObj.optString("title"));
-							
-							newsList.add(news);
-						}
-						break;
-
-					case MessageCenterActivity.MSG_ACTIVITY:
-						for(int i = 0; i < dataArray.length(); i++){
-							JSONObject activityObj = dataArray.getJSONObject(i);	
-							MSGActivity activity = new MSGActivity();
-							
-							activity.setId(activityObj.optString("tId"));
-							activity.setContent(activityObj.optString("content"));
-							activity.setPhotoUrl(activityObj.optString("photoUrl"));
-							activity.setDate(activityObj.optString("createTime"));
-							activity.setEndTime(activityObj.optDouble("endTime"));
-							activity.setStartTime(activityObj.optDouble("startTime"));
-							activity.setNowTime(activityObj.optDouble("nowTime"));
-							activity.setTitle(activityObj.optString("title"));
-							
-							activityList.add(activity);
-						}			
-						break;
-						
-					case MessageCenterActivity.MSG_SYSTEM:
-						for(int i = 0; i < dataArray.length(); i++){
-							JSONObject activityObj = dataArray.getJSONObject(i);	
-							MSGSystem system = new MSGSystem();
-							
-							system.setContent(activityObj.optString("content"));
-							system.setDate(activityObj.optString("createTime"));
-							systemList.add(system);
-						}
-						break;
-					}
+//					switch (type) {
+//					case MessageCenterActivity.MSG_NEWS:
+//						for(int i = 0; i < dataArray.length(); i++){
+//							JSONObject newsObj = dataArray.getJSONObject(i);
+//							MSGNews news = new MSGNews();
+//
+//							news.setContent(newsObj.optString("content"));
+//							news.setDate(newsObj.optString("createTime"));
+//							news.setId(newsObj.optString("tId"));
+//							news.setPhotoUrl(newsObj.optString("photoUrl"));
+//							news.setTitle(newsObj.optString("title"));
+//
+//							newsList.add(news);
+//						}
+//						break;
+//
+//					case MessageCenterActivity.MSG_ACTIVITY:
+//						for(int i = 0; i < dataArray.length(); i++){
+//							JSONObject activityObj = dataArray.getJSONObject(i);
+//							MSGActivity activity = new MSGActivity();
+//
+//							activity.setId(activityObj.optString("tId"));
+//							activity.setContent(activityObj.optString("content"));
+//							activity.setPhotoUrl(activityObj.optString("photoUrl"));
+//							activity.setDate(activityObj.optString("createTime"));
+//							activity.setEndTime(activityObj.optDouble("endTime"));
+//							activity.setStartTime(activityObj.optDouble("startTime"));
+//							activity.setNowTime(activityObj.optDouble("nowTime"));
+//							activity.setTitle(activityObj.optString("title"));
+//
+//							activityList.add(activity);
+//						}
+//						break;
+//
+//					case MessageCenterActivity.MSG_SYSTEM:
+//						for(int i = 0; i < dataArray.length(); i++){
+//							JSONObject activityObj = dataArray.getJSONObject(i);
+//							MSGSystem system = new MSGSystem();
+//
+//							system.setContent(activityObj.optString("content"));
+//							system.setDate(activityObj.optString("createTime"));
+//							systemList.add(system);
+//						}
+//						break;
+//					}
 				}
             }
         } catch (Exception e) {

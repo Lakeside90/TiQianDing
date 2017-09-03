@@ -8,17 +8,15 @@
 
     <include
         android:id="@+id/title_lay"
-        layout="@layout/common_title_bar"/>
+        layout="@layout/common_title_bar_white"/>
 
     <com.xkhouse.fang.widget.xlist.XListView
-        android:id="@+id/fill_parent"
+        android:id="@+id/msg_listView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/title_lay"
-        android:cacheColorHint="@color/trans"
-        android:divider="@color/trans"
-        android:dividerHeight="10dp"
-        android:listSelector="@android:color/transparent"
+        android:listSelector="@drawable/common_list_bg_selector"
         xlist:is_header="true" />
 
 

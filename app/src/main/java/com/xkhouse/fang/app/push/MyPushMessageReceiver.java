@@ -11,8 +11,7 @@ import com.xkhouse.fang.app.activity.MainActivity;
 import com.xkhouse.fang.app.activity.NewsDetailActivity;
 import com.xkhouse.fang.app.config.Preference;
 import com.xkhouse.fang.discount.activity.DiscountDetailActivity;
-import com.xkhouse.fang.user.activity.MSGSystemListActivity;
-import com.xkhouse.fang.user.activity.MessageCenterActivity;
+import com.xkhouse.fang.user.activity.MessageListActivity;
 import com.xkhouse.lib.utils.StringUtil;
 
 import org.json.JSONException;
@@ -194,13 +193,13 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
 				
 				if(Preference.getInstance().readIsLogin()){
 					//系统消息列表
-					Intent intent = new Intent(context.getApplicationContext(), MSGSystemListActivity.class);
+					Intent intent = new Intent(context.getApplicationContext(), MessageListActivity.class);
 					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					context.getApplicationContext().startActivity(intent);
 					
 				}else {
 					//消息中心
-					Intent intent = new Intent(context.getApplicationContext(), MessageCenterActivity.class);
+					Intent intent = new Intent(context.getApplicationContext(), MessageListActivity.class);
 					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					data.putString("url", newsUrl);
 					intent.putExtras(data);

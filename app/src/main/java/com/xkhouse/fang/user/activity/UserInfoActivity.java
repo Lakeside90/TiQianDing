@@ -54,9 +54,15 @@ public class UserInfoActivity extends AppBaseActivity {
 	
 	private LinearLayout user_icon_lay;
 	private CircleImageView user_icon_iv;
-	
+
 	private LinearLayout username_lay;
 	private TextView username_txt;
+
+    private LinearLayout phone_lay;
+    private TextView phone_txt;
+
+    private LinearLayout psw_lay;
+    private TextView psw_txt;
 	
 	private LinearLayout realname_lay;
 	private TextView realname_txt;
@@ -64,9 +70,12 @@ public class UserInfoActivity extends AppBaseActivity {
 	private LinearLayout gender_lay;
 	private TextView gender_txt;
 	
-	private LinearLayout city_lay;
-	private TextView city_txt;
-	
+	private LinearLayout hobbies_lay;
+	private TextView hobbies_txt;
+
+    private LinearLayout address_lay;
+    private TextView address_txt;
+
     private TextView account_safe_txt;
 
 	private DisplayImageOptions options;
@@ -80,7 +89,7 @@ public class UserInfoActivity extends AppBaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		fillData();
+//		fillData();
 		
 	}
 	
@@ -88,7 +97,7 @@ public class UserInfoActivity extends AppBaseActivity {
 	protected void onResume() {
 		super.onResume();
 		
-		startUserInfoTask();
+//		startUserInfoTask();
 	}
 	
 	@Override
@@ -111,24 +120,33 @@ public class UserInfoActivity extends AppBaseActivity {
 	@Override
 	protected void findViews() {
 		initTitle();
+
         rootView = findViewById(R.id.rootView);
 		user_icon_lay = (LinearLayout) findViewById(R.id.user_icon_lay);
 		user_icon_iv = (CircleImageView) findViewById(R.id.user_icon_iv);
 		
 		username_lay = (LinearLayout) findViewById(R.id.username_lay);
-		username_txt = (TextView) findViewById(R.id.username_txt);
-		
+        username_txt = (TextView) findViewById(R.id.username_txt);
+
+        phone_lay = (LinearLayout) findViewById(R.id.phone_lay);
+        phone_txt = (TextView) findViewById(R.id.phone_txt);
+
+        psw_lay = (LinearLayout) findViewById(R.id.psw_lay);
+        psw_txt = (TextView) findViewById(R.id.psw_txt);
+
 		realname_lay = (LinearLayout) findViewById(R.id.realname_lay);
 		realname_txt = (TextView) findViewById(R.id.realname_txt);
 		
 		gender_lay = (LinearLayout) findViewById(R.id.gender_lay);
 		gender_txt = (TextView) findViewById(R.id.gender_txt);
 		
-		city_lay = (LinearLayout) findViewById(R.id.city_lay);
-		city_txt = (TextView) findViewById(R.id.city_txt);
+		hobbies_lay = (LinearLayout) findViewById(R.id.hobbies_lay);
+		hobbies_txt = (TextView) findViewById(R.id.hobbies_txt);
+
+        address_lay = (LinearLayout) findViewById(R.id.address_lay);
+        address_txt = (TextView) findViewById(R.id.address_txt);
 		
         account_safe_txt = (TextView) findViewById(R.id.account_safe_txt);
-		
 	}
 
 	private void initTitle() {
@@ -148,73 +166,87 @@ public class UserInfoActivity extends AppBaseActivity {
 	protected void setListeners() {
 		user_icon_lay.setOnClickListener(this);
 		username_lay.setOnClickListener(this);
-		realname_lay.setOnClickListener(this);
+        phone_lay.setOnClickListener(this);
+        psw_lay.setOnClickListener(this);
+        realname_lay.setOnClickListener(this);
 		gender_lay.setOnClickListener(this);
-		city_lay.setOnClickListener(this);
+		hobbies_lay.setOnClickListener(this);
+		address_lay.setOnClickListener(this);
         account_safe_txt.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.user_icon_lay:
-			modifyHeadPhoto();
-			break;
-			
-		case R.id.take_photo:
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                    != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},
-                            CAMERA_REQUEST_CODE);
-            } else {
-                camera();
-            }
+            case R.id.user_icon_lay:
+                modifyHeadPhoto();
+                break;
 
-			break;
+            case R.id.take_photo:
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                        != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},
+                                CAMERA_REQUEST_CODE);
+                } else {
+                    camera();
+                }
+
+                break;
+
+            case R.id.take_img:
+                local();
+                break;
+
+            case R.id.cancel:
+                hidePhotoDialog();
+                break;
+
+            case R.id.username_lay:
+    //            if("1".equals(modelApp.getUser().getUsernamestatus())){
+    //                Toast.makeText(mContext, "已修改过用户名！", Toast.LENGTH_SHORT).show();
+    //                return;
+    //            }
+                Intent usernameIntent = new Intent(mContext, ChangeNameActivity.class);
+                Bundle usernameBundle = new Bundle();
+                usernameBundle.putInt("type", ChangeNameActivity.TYPE_USER_NAME);
+                usernameIntent.putExtras(usernameBundle);
+                startActivity(usernameIntent);
+                break;
+
+            case R.id.phone_lay:
+               startActivity(new Intent(mContext, MobileResetActivity.class));
+                break;
+
+            case R.id.psw_lay:
+                Intent intent = new Intent(mContext, ResetPswActivity.class);
+                Bundle phone = new Bundle();
+                phone.putString("mobile", "13954385098");
+                startActivity(intent);
+                break;
 			
-		case R.id.take_img:
-			local();
-			break;
-			
-		case R.id.cancel:
-			hidePhotoDialog();
-			break;
-			
-		case R.id.username_lay:
-            if("1".equals(modelApp.getUser().getUsernamestatus())){
-                Toast.makeText(mContext, "已修改过用户名！", Toast.LENGTH_SHORT).show();
-                return;
-            }
-			Intent usernameIntent = new Intent(mContext, ChangeNameActivity.class);
-			Bundle usernameBundle = new Bundle();
-			usernameBundle.putInt("type", ChangeNameActivity.TYPE_USER_NAME);
-			usernameIntent.putExtras(usernameBundle);
-			startActivity(usernameIntent);
-			break;
-			
-		case R.id.realname_lay:
-			Intent realnameIntent = new Intent(mContext, ChangeNameActivity.class);
-			Bundle realnameBundle = new Bundle();
-			realnameBundle.putInt("type", ChangeNameActivity.TYPE_REAL_NAME);
-			realnameIntent.putExtras(realnameBundle);
-			startActivity(realnameIntent);
-			break;
-			
-		case R.id.gender_lay:
-			startActivity(new Intent(mContext, ChangeSexActivity.class));
-			break;
-			
-		case R.id.city_lay:
-			Intent cityIntent = new Intent(mContext, XKBCitySelectActivity.class);
-			Bundle location = new Bundle();
-			location.putString("city",  null);
-			cityIntent.putExtras(location);
-			startActivityForResult(cityIntent, REQUEST_CODE);
-			break;
-			
-        case R.id.account_safe_txt:
-            startActivity(new Intent(mContext, AccountEditActivity.class));
-            break;
+            case R.id.realname_lay:
+                Intent realnameIntent = new Intent(mContext, ChangeNameActivity.class);
+                Bundle realnameBundle = new Bundle();
+                realnameBundle.putInt("type", ChangeNameActivity.TYPE_REAL_NAME);
+                realnameIntent.putExtras(realnameBundle);
+                startActivity(realnameIntent);
+                break;
+
+            case R.id.gender_lay:
+                startActivity(new Intent(mContext, ChangeSexActivity.class));
+                break;
+
+            case R.id.hobbies_lay:
+                startActivity(new Intent(mContext, HobbiesEditActivity.class));
+                break;
+
+            case R.id.address_lay:
+                startActivity(new Intent(mContext, AddressListActivity.class));
+                break;
+
+            case R.id.account_safe_txt:
+                //TODO Logout
+                break;
 
 		}
 	}
@@ -238,8 +270,7 @@ public class UserInfoActivity extends AppBaseActivity {
 			gender_txt.setText("女");
 		}
 		
-		city_txt.setText(modelApp.getUser().getCity());
-		
+
 	}
 	
 	
@@ -275,37 +306,7 @@ public class UserInfoActivity extends AppBaseActivity {
 	 
 	
 	
-	private void startChangeCityTask(final String city){
-		if(NetUtil.detectAvailable(mContext)){
-			UserInfoEditRequest request = new UserInfoEditRequest(modelApp.getUser().getUid(), new RequestListener() {
-				
-				@Override
-				public void sendMessage(Message message) {
-					hideLoadingDialog();
-					switch (message.what) {
-					case Constants.ERROR_DATA_FROM_NET:
-						Toast.makeText(mContext, R.string.service_error, Toast.LENGTH_SHORT).show();
-						break;
-						
-					case Constants.NO_DATA_FROM_NET:
-						Toast.makeText(mContext, message.obj.toString(), Toast.LENGTH_SHORT).show();
-						break;
-						
-					case Constants.SUCCESS_DATA_FROM_NET:
-						Toast.makeText(mContext, message.obj.toString(), Toast.LENGTH_SHORT).show();
-						city_txt.setText(city);
-						break;
-					}
-				}
-			});
-			
-			showLoadingDialog("修改中...");
-			request.doCityRequest(city);
-			
-		}else {
-			Toast.makeText(mContext, R.string.net_warn, Toast.LENGTH_SHORT).show();
-		}
-	}
+
 	
 	
 	
@@ -407,8 +408,8 @@ public class UserInfoActivity extends AppBaseActivity {
 		
 		 if (requestCode == REQUEST_CODE) {
 			 if(resultCode == RESULT_CODE_CITY){
-				Site site = (Site) data.getExtras().getSerializable("site");
-				startChangeCityTask(site.getArea()); 
+//				Site site = (Site) data.getExtras().getSerializable("site");
+//				startChangeCityTask(site.getArea());
 			}
 		 }
 	}

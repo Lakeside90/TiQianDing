@@ -87,17 +87,17 @@ public class AccountInfoAdapter extends BaseAdapter {
 	
 	public class ViewHolder{
 		
-		TextView title_txt;
-		TextView date_txt;
-		TextView content_txt;
-		TextView money_txt;
+//		TextView title_txt;
+//		TextView date_txt;
+//		TextView content_txt;
+//		TextView money_txt;
 
 		public ViewHolder(View view){
 			
-			title_txt = (TextView) view.findViewById(R.id.title_txt);
-			date_txt = (TextView) view.findViewById(R.id.date_txt);
-			content_txt = (TextView) view.findViewById(R.id.content_txt);
-            money_txt = (TextView) view.findViewById(R.id.money_txt);
+//			title_txt = (TextView) view.findViewById(R.id.title_txt);
+//			date_txt = (TextView) view.findViewById(R.id.date_txt);
+//			content_txt = (TextView) view.findViewById(R.id.content_txt);
+//            money_txt = (TextView) view.findViewById(R.id.money_txt);
 
 		}
 	}

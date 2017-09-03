@@ -96,11 +96,11 @@ public class MobileResetActivity extends AppBaseActivity {
 		super.onClick(v);
 		switch (v.getId()) {
 		case R.id.commit_txt:
-			startMobileResetTask();
+//			startMobileResetTask();
 			break;
 			
 		case R.id.get_code_txt:
-			startVerityCodeTask();
+//			startVerityCodeTask();
 			break;
 		}
 	}

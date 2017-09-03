@@ -19,7 +19,7 @@ import com.xkhouse.fang.user.entity.MSGNews;
 import com.xkhouse.fang.user.entity.MSGSystem;
 
 /**
-* @Description: 我的消息--系统消息
+* @Description: 我的消息
 * @author wujian  
 * @date 2015-11-4 下午8:36:06
  */
@@ -71,12 +71,8 @@ public class MSGSystemAdapter extends BaseAdapter {
 		}else{
 			holder = (ViewHolder) convertView.getTag();  
 		}
-		
-	
-		MSGSystem system = systemList.get(position);
-		
-		holder.content_txt.setText(system.getContent());
-		holder.date_txt.setText(system.getDate());
+
+
 		
 		return convertView;
 	}

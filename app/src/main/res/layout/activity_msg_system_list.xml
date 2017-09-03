@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/title_lay"
-        layout="@layout/common_title_bar"/>
+        layout="@layout/common_title_bar_white"/>
 
     <com.xkhouse.fang.widget.xlist.XListView
         android:id="@+id/msg_listView"
@@ -16,19 +16,16 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:cacheColorHint="@color/trans"
-        android:divider="@color/trans"
-        android:dividerHeight="1px"
         android:listSelector="@android:color/transparent"
         xlist:is_header="true" />
 
-    <!--<com.xkhouse.fang.widget.loading.RotateLoading
+    <com.xkhouse.fang.widget.loading.RotateLoading
         android:id="@+id/rotate_loading"
         app:loading_color="@color/common_red"
         app:loading_width="@dimen/rotate_loading_border"
         android:layout_width="@dimen/rotate_loading_width"
         android:layout_height="@dimen/rotate_loading_height"
-        android:layout_centerInParent="true"
-        xlist:loading_color="@color/common_red" />-->
+        android:layout_centerInParent="true" />
 
 
     <LinearLayout
@@ -68,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="没有系统消息"
+            android:text="没有消息"
             android:textColor="@color/common_black_txt"
             android:textSize="14sp"/>
     </LinearLayout>

@@ -7,19 +7,16 @@
 
     <!-- title  bar -->
 
-    <include layout="@layout/common_title_bar" />
+    <include layout="@layout/common_title_bar_white" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginTop="15dp"
-        android:background="@color/common_diver_line" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
+        android:layout_marginTop="10dp"
         android:paddingLeft="15dp" >
 
         <LinearLayout
@@ -32,8 +29,8 @@
             <EditText
                 android:id="@+id/name_txt"
                 android:layout_width="0dp"
-                android:layout_height="44dp"
-                android:layout_marginRight="10dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="15dp"
                 android:layout_weight="1"
                 android:background="@color/white"
                 android:textColor="@color/common_black_txt"
@@ -42,21 +39,26 @@
         </LinearLayout>
     </LinearLayout>
 
-    <View
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/common_diver_line" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textSize="12sp"
+        android:textColor="@color/common_gray_txt"
+        android:text="请填写3-16位不含特殊字符的昵称"/>
 
     <TextView
         android:id="@+id/commit_txt"
         android:layout_width="match_parent"                         
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/red_corner_btn_selector"
         android:gravity="center"
-        android:text="提交"
+        android:text="保存"
         android:textColor="@color/white"
         android:textSize="16sp" />
 
