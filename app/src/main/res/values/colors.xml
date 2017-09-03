@@ -72,4 +72,7 @@
     <color name="image_checked_bg">#66000000</color>
 
     <color name="common_gray_space">#f2f2f2</color>
+
+
+    <color name="employee_blue">#628acc</color>
 </resources>

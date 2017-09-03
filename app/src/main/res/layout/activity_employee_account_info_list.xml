@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:xlist="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/window_bg"
+                android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/title_lay"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/employee_blue">
+
+        <ImageView
+            android:id="@+id/iv_head_left"
+            android:layout_width="@dimen/activity_title_height"
+            android:layout_height="@dimen/activity_title_height"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/nav_back"
+            />
+
+        <TextView
+            android:id="@+id/tv_head_left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="账户明细"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_lay"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="10000.00"
+            android:textColor="@color/common_red"
+            android:textSize="24sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="5dp"
+            android:text="我的余额（元）"
+            android:textColor="@color/common_gray_txt"
+            android:textSize="12sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/common_gray_space"/>
+
+        <com.xkhouse.fang.widget.xlist.XListView
+            android:id="@+id/msg_listView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/title_lay"
+            android:background="@color/window_bg"
+            android:listSelector="@android:color/transparent"
+            xlist:is_header="true"/>
+    </LinearLayout>
+
+
+    <com.xkhouse.fang.widget.loading.RotateLoading
+        android:id="@+id/rotate_loading"
+        android:layout_width="@dimen/rotate_loading_width"
+        android:layout_height="@dimen/rotate_loading_height"
+        android:layout_centerInParent="true"
+        app:loading_color="@color/common_red"
+        app:loading_width="@dimen/rotate_loading_border"/>
+
+
+    <LinearLayout
+        android:id="@+id/error_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_lay"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="20dp"
+            android:drawableTop="@drawable/net_error"
+            android:gravity="center"
+            android:text="@string/web_error"
+            android:textColor="@color/c_666666"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/notice_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_lay"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="没有数据"
+            android:textColor="@color/common_black_txt"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+</RelativeLayout>

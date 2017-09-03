@@ -1,9 +1,12 @@
 package com.xkhouse.fang.user.activity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,13 +27,12 @@ import com.xkhouse.lib.utils.NetUtil;
 import java.util.ArrayList;
 
 /**
- * 账户明细
+ * 账户明细--员工
  */
-public class AccountInfoListActivity extends AppBaseActivity {
+public class EmployeeAccountInfoListActivity extends AppBaseActivity {
 	
 	private ImageView iv_head_left;
-	private TextView tv_head_title;
-	
+
 	private XListView msg_listView;
 	private AccountInfoAdapter adapter;
 	private int currentPageIndex = 1;  //分页索引
@@ -49,6 +51,17 @@ public class AccountInfoListActivity extends AppBaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = getWindow();
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(getResources().getColor(R.color.employee_blue));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 //		startDataTask(1, true);
         fillData();
 	}
@@ -56,7 +69,7 @@ public class AccountInfoListActivity extends AppBaseActivity {
 	
 	@Override
 	protected void setContentView() {
-		setContentView(R.layout.activity_account_info_list);
+		setContentView(R.layout.activity_employee_account_info_list);
 	}
 
 	@Override
@@ -78,8 +91,6 @@ public class AccountInfoListActivity extends AppBaseActivity {
 
 	private void initTitle() {
 		iv_head_left = (ImageView) findViewById(R.id.iv_head_left);
-		tv_head_title = (TextView) findViewById(R.id.tv_head_title);
-		tv_head_title.setText("账户明细");
 		iv_head_left.setOnClickListener(new OnClickListener() {
 			
 			@Override

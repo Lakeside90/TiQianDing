@@ -797,6 +797,29 @@
             android:screenOrientation="portrait"
             android:theme="@style/ThemeNoTitleActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.EmployeeInfoActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.EmployeeAccountInfoListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.EmployeeDSDetalActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+
+
+
+
 
 
         <!-- 高德地图 app key -->

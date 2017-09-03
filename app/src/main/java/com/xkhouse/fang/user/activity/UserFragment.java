@@ -217,7 +217,7 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
                 break;
 
             case R.id.employee_txt:
-                // TODO
+                startActivity(new Intent(getActivity(), EmployeeInfoActivity.class));
                 break;
 
 
