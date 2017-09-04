@@ -83,8 +83,8 @@ public class EmployeeInfoActivity extends AppBaseActivity {
         switch (v.getId()){
 
             case R.id.account_txt:
-                startActivity(new Intent(this, EmployeeAccountInfoListActivity.class));
-//                startActivity(new Intent(this, EmployeeDSDetalActivity.class));
+//                startActivity(new Intent(this, EmployeeAccountInfoListActivity.class));
+                startActivity(new Intent(this, TXRecordListActivity.class));
                 break;
         }
 	}

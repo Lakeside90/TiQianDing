@@ -12,6 +12,7 @@ import android.widget.ListView;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.user.adapter.DSDetailAdapter;
+import com.xkhouse.fang.user.adapter.TXListAdapter;
 import com.xkhouse.fang.user.adapter.TXRecordAdapter;
 import com.xkhouse.fang.widget.ScrollListView;
 
@@ -25,7 +26,7 @@ public class EmployeeTXlActivity extends AppBaseActivity {
 
     private ScrollListView listView;
 
-    private TXRecordAdapter adapter;
+    private TXListAdapter adapter;
 
 
 
@@ -98,7 +99,7 @@ public class EmployeeTXlActivity extends AppBaseActivity {
 
         if (adapter == null) {
 
-            adapter = new TXRecordAdapter(mContext, null);
+            adapter = new TXListAdapter(mContext, null);
             listView.setAdapter(adapter);
         }
 

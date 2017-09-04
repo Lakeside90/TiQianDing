@@ -16,6 +16,7 @@ import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.user.adapter.AccountInfoAdapter;
+import com.xkhouse.fang.user.adapter.TXRecordAdapter;
 import com.xkhouse.fang.user.entity.MSGNews;
 import com.xkhouse.fang.user.task.MessageDetailListRequest;
 import com.xkhouse.fang.widget.loading.RotateLoading;
@@ -33,7 +34,7 @@ public class TXRecordListActivity extends AppBaseActivity {
 	private ImageView iv_head_left;
 
 	private XListView msg_listView;
-	private AccountInfoAdapter adapter;
+	private TXRecordAdapter adapter;
 	private int currentPageIndex = 1;  //分页索引
 	private int pageSize = 10; //每次请求10条数据
 	private boolean isPullDown = false; // 下拉
@@ -139,7 +140,7 @@ public class TXRecordListActivity extends AppBaseActivity {
 
 		if(newsList == null) return;
 		if(adapter == null ){
-			adapter = new AccountInfoAdapter(mContext, newsList);
+			adapter = new TXRecordAdapter(mContext, newsList);
 			msg_listView.setAdapter(adapter);
 		}else {
 			adapter.setData(newsList);

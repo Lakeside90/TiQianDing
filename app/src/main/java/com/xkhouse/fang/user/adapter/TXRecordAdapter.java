@@ -37,12 +37,16 @@ public class TXRecordAdapter extends BaseAdapter {
 	
 	@Override
 	public int getCount() {
-		return newsList.size();
+//		return newsList.size();
+
+        return 3;
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return newsList.get(position);
+//		return newsList.get(position);
+
+        return position;
 	}
 
 	@Override

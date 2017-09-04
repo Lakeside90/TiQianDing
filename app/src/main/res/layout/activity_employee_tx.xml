@@ -328,7 +328,10 @@
                         android:textSize="12sp"/>
                 </LinearLayout>
 
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/window_bg"/>
 
 
         </LinearLayout>
