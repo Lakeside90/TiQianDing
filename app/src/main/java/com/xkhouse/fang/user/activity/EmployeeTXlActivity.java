@@ -1,6 +1,5 @@
 package com.xkhouse.fang.user.activity;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -9,24 +8,24 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.user.adapter.DSDetailAdapter;
+import com.xkhouse.fang.user.adapter.TXRecordAdapter;
 import com.xkhouse.fang.widget.ScrollListView;
 
 /**
- * 日打赏详情
+ * 提现
  */
-public class EmployeeDSDetalActivity extends AppBaseActivity {
+public class EmployeeTXlActivity extends AppBaseActivity {
 	
 	private ImageView iv_head_left;
 
 
     private ScrollListView listView;
 
-    private DSDetailAdapter adapter;
+    private TXRecordAdapter adapter;
 
 
 
@@ -50,7 +49,7 @@ public class EmployeeDSDetalActivity extends AppBaseActivity {
 	
 	@Override
 	protected void setContentView() {
-		setContentView(R.layout.activity_employee_ds_detail);
+		setContentView(R.layout.activity_employee_tx);
 	}
 
 	@Override
@@ -99,7 +98,7 @@ public class EmployeeDSDetalActivity extends AppBaseActivity {
 
         if (adapter == null) {
 
-            adapter = new DSDetailAdapter(mContext, null);
+            adapter = new TXRecordAdapter(mContext, null);
             listView.setAdapter(adapter);
         }
 

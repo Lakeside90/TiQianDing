@@ -815,8 +815,18 @@
             android:screenOrientation="portrait"
             android:theme="@style/ThemeNoTitleActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-
-
+        <activity
+            android:name=".user.activity.EmployeeTXlActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.activity.TXRecordListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
 
 
 
