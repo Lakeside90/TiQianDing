@@ -829,6 +829,25 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
 
+        <!-- booked -->
+        <activity
+            android:name=".booked.activity.BookedMakeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name=".booked.activity.PayMakeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+
+
+
+
 
 
 
