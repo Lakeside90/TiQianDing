@@ -1,0 +1,17 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/common_list_bg_selector"
+              android:gravity="center_vertical"
+              android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/house_icon_iv"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:src="@drawable/guide_img_1"
+        android:scaleType="fitXY"/>
+
+
+
+</LinearLayout>

@@ -844,7 +844,19 @@
             android:theme="@style/ThemeNoTitleActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
+        <activity
+            android:name=".booked.activity.StoreImageListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/NewsStyledIndicators"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
 
+        <activity
+            android:name=".booked.activity.StoreImageDeatilActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeNoTitleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
 
 
 
