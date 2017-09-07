@@ -29,6 +29,7 @@ import com.xkhouse.fang.app.activity.ModelApplication;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.config.Preference;
+import com.xkhouse.fang.booked.activity.StoreDeatilActivity;
 import com.xkhouse.fang.booked.activity.StoreImageDeatilActivity;
 import com.xkhouse.fang.booked.activity.StoreImageListActivity;
 import com.xkhouse.fang.user.task.MsgFavoriteNumRequest;
@@ -220,7 +221,7 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 
             case R.id.employee_txt:
 //                startActivity(new Intent(getActivity(), EmployeeInfoActivity.class));
-                startActivity(new Intent(getActivity(), StoreImageDeatilActivity.class));
+                startActivity(new Intent(getActivity(), StoreDeatilActivity.class));
                 break;
 
 
