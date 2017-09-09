@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -29,9 +28,7 @@ import com.xkhouse.fang.app.activity.ModelApplication;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.config.Preference;
-import com.xkhouse.fang.booked.activity.StoreDeatilActivity;
-import com.xkhouse.fang.booked.activity.StoreImageDeatilActivity;
-import com.xkhouse.fang.booked.activity.StoreImageListActivity;
+import com.xkhouse.fang.booked.activity.LuckDetailActivity;
 import com.xkhouse.fang.user.task.MsgFavoriteNumRequest;
 import com.xkhouse.fang.user.task.WalletListRequest;
 import com.xkhouse.fang.widget.circle.CircleImageView;
@@ -221,7 +218,7 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 
             case R.id.employee_txt:
 //                startActivity(new Intent(getActivity(), EmployeeInfoActivity.class));
-                startActivity(new Intent(getActivity(), StoreDeatilActivity.class));
+                startActivity(new Intent(getActivity(), LuckDetailActivity.class));
                 break;
 
 

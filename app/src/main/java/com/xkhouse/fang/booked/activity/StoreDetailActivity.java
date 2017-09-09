@@ -16,7 +16,7 @@ import com.xkhouse.fang.widget.ScrollXListView;
 /**
  * 商户详情
  */
-public class StoreDeatilActivity extends AppBaseActivity {
+public class StoreDetailActivity extends AppBaseActivity {
 	
 	private ImageView iv_head_left;
     private TextView tv_head_title;

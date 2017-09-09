@@ -860,12 +860,18 @@
 
 
         <activity
-            android:name=".booked.activity.StoreDeatilActivity"
+            android:name=".booked.activity.StoreDetailActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeNoTitleActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
+        <activity
+            android:name=".booked.activity.LuckDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/StyledIndicators"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
 
 
         <!-- 高德地图 app key -->
