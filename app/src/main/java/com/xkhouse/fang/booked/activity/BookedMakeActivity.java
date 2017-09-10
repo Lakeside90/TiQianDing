@@ -1,18 +1,13 @@
 package com.xkhouse.fang.booked.activity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
-import com.xkhouse.fang.user.adapter.DSDetailAdapter;
-import com.xkhouse.fang.widget.ScrollListView;
 
 /**
  * 在线预定

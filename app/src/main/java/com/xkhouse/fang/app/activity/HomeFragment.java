@@ -667,7 +667,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
         BookedInfoListRequest bookedInfoListRequest = new BookedInfoListRequest();
         bookedInfoListRequest.parseResult(AppCache.readBookInfoRecommedJson(modelApp.getSite().getSiteId()));
-        bookedInfoList = bookedInfoListRequest.getNewsList();
+        bookedInfoList = bookedInfoListRequest.getBookedInfoList();
         fillNewsLikeData();
     }
 

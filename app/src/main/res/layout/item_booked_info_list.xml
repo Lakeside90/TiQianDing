@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/news_icon_iv"
+            android:id="@+id/icon_iv"
             android:layout_width="100dp"
             android:layout_height="90dp"
             android:scaleType="fitXY"/>
@@ -41,13 +41,13 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/news_title_txt"
+                        android:id="@+id/store_name_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:lineSpacingExtra="5dp"
                         android:lines="1"
-                        android:text="张三麻辣烫新品上市"
+                        android:text=""
                         android:textColor="@color/common_black_txt"
                         android:textSize="16sp"
                         />
@@ -59,7 +59,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/news_date_txt"
+                            android:id="@+id/price_txt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
@@ -68,20 +68,11 @@
                             android:textColor="@color/c_666666"
                             android:textSize="14sp"
                             />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:lines="1"
-                            android:text="（今日已定10）"
-                            android:textColor="@color/common_gray_txt"
-                            android:textSize="14sp"
-                            />
                     </LinearLayout>
 
 
                     <LinearLayout
+                        android:id="@+id/label_lay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
@@ -120,20 +111,21 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/address_txt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-
-                    android:drawableLeft="@drawable/icon_position"
+                    android:drawableLeft="@drawable/add_ico"
                     android:drawablePadding="3dp"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:lines="1"
-                    android:text="黄山路休宁路交口1912大厦"
+                    android:text=""
                     android:textColor="@color/c_666666"
                     android:textSize="12sp"/>
 
                 <TextView
+                    android:id="@+id/distance_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="128m"
@@ -146,6 +138,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/mai_lay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -165,6 +158,7 @@
             />
 
         <TextView
+            android:id="@+id/mai_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -180,6 +174,7 @@
         android:background="@color/common_diver_line"/>
 
     <LinearLayout
+        android:id="@+id/booked_lay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
@@ -188,6 +183,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/youhui_txt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -199,11 +195,12 @@
             android:textSize="14sp"/>
 
         <TextView
+            android:id="@+id/booked_txt"
             android:layout_width="78dp"
             android:layout_height="30dp"
             android:background="@drawable/red_conner_btn_normal"
             android:gravity="center"
-            android:text="我要订"
+            android:text="我要预定"
             android:textColor="@color/white"
             android:textSize="16sp"/>
     </LinearLayout>

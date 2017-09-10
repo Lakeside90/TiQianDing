@@ -32,7 +32,7 @@ public class BookedInfoListRequest {
 	private String TAG = BookedInfoListRequest.class.getSimpleName();
 
     public static final String LIST_RECOMMED = "1";
-    public static final String LIST_ALL = "";
+    public static final String LIST_ALL = "0";
 
 	private RequestListener requestListener;
 
@@ -59,11 +59,12 @@ public class BookedInfoListRequest {
 		this.requestListener = requestListener;
 	}
 	
-	public void setData(String isRecommend, String siteId, int num, int page) {
+	public void setData(String isRecommend, String siteId, int num, int page, RequestListener requestListener) {
         this.isRecommend = isRecommend;
 		this.siteId = siteId; 
 		this.num = num;
 		this.page = page;
+        this.requestListener = requestListener;
 	}
 	
 	public void doRequest(){
@@ -88,7 +89,11 @@ public class BookedInfoListRequest {
                 Bundle data = new Bundle();
 
                 if(Constants.SUCCESS_CODE.equals(code)){
-                    AppCache.writeBookInfoRecommedJson(siteId, response);
+                    if (isNeedCache() && isRecommend.equals(LIST_RECOMMED)) {
+                        AppCache.writeBookInfoRecommedJson(siteId, response);
+                    }else if (isNeedCache() && isRecommend.equals(LIST_ALL)) {
+                        AppCache.writeBookInfoJson(siteId, response);
+                    }
 
                     data.putSerializable("bookedInfoList", bookedInfoList);
                     data.putString("siteId", siteId);
@@ -177,7 +182,25 @@ public class BookedInfoListRequest {
 	}
 
 
-    public ArrayList<BookedInfo> getNewsList() {
+    /**
+     * 缓存数据的条件：第一页，且不包含筛选条件
+     * @return
+     */
+    public boolean isNeedCache(){
+        if (page != 1){
+            return false;
+        } else{
+//            if (searchContent.contains("&areaId=") || searchContent.contains("&type=")
+//                    || searchContent.contains("&order=") || searchContent.contains("&k=")) {
+//                return false;
+//            }else{
+//                return true;
+//            }
+            return  true;
+        }
+    }
+
+    public ArrayList<BookedInfo> getBookedInfoList() {
         return bookedInfoList;
     }
 }

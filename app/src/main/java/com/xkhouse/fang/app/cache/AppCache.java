@@ -179,6 +179,37 @@ public class AppCache {
         }
     }
 
+    /**
+     * 读取预定列表
+     */
+    public static String readBookInfoListJson(String siteId){
+        String json = "";
+        try{
+            String path = getCachePath(siteId);
+            FileUtil.createFolder(path);
+            json = FileUtil.readFile(path+File.separator+"bookedInfoAll.json", key);
+        }catch (Exception e){
+            Logger.e(TAG, e.getMessage());
+        }
+
+        return json;
+    }
+
+    /**
+     * 写入预定列表
+     */
+    public static void writeBookInfoJson(String siteId, String value){
+        try{
+            String path = getCachePath(siteId);
+            FileUtil.createFolder(path);
+            FileUtil.writeFile(path+File.separator+"bookedInfoAll.json", value, key);
+        }catch (Exception e){
+            Logger.e(TAG, e.getMessage());
+        }
+    }
+
+
+
 
     /**
      * 读取新房楼盘列表缓存--全部楼盘

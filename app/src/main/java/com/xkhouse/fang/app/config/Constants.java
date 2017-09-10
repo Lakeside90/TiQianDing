@@ -65,7 +65,7 @@ public class Constants {
 	public static String NEWS_LIKE = HOST_OLD + "/v1.2/News/Guess.api";
 
     /** 预定列表   **/
-    public static String BOOKEDINFO_LIST = HOST_OLD + "/v1/booking/booking_list";
+    public static String BOOKEDINFO_LIST = HOST + "/v1/booking/booking_list";
 	
 	/**  专题资讯  **/
 	public static String NAVIGATION_LIST = HOST_OLD + "/v1.1/System/Navigation.api";
