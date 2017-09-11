@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.xkhouse.fang.R;
-import com.xkhouse.fang.user.entity.XKRecommend;
+import com.xkhouse.fang.booked.entity.CommentInfo;
 
 import java.util.ArrayList;
 
@@ -18,30 +18,28 @@ import java.util.ArrayList;
 public class CommentAdapter extends BaseAdapter {
 
 	private Context context;
-	private ArrayList<XKRecommend> recommendList;
+	private ArrayList<CommentInfo> commentInfoList;
 
 
-	public CommentAdapter(Context context, ArrayList<XKRecommend> recommendList){
+	public CommentAdapter(Context context, ArrayList<CommentInfo> recommendList){
 		this.context = context;
-		this.recommendList = recommendList;
+		this.commentInfoList = recommendList;
 
 	}
 	
-	public void setData(ArrayList<XKRecommend> recommendList){
-		this.recommendList = recommendList;
+	public void setData(ArrayList<CommentInfo> recommendList){
+		this.commentInfoList = recommendList;
 		notifyDataSetChanged();
 	}
 	
 	@Override
 	public int getCount() {
-//		return recommendList.size();
-        return 10;
+		return commentInfoList.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-//		return recommendList.get(position);
-        return 0;
+		return commentInfoList.get(position);
 	}
 
 	@Override

@@ -83,6 +83,15 @@ public class Constants {
     public static String FSHQ = HOST_OLD + "/v1.0/Newhouse/Fshq.api";
 
 
+
+    /******************************* 预定 *******************************/
+
+    /** 商家详情  **/
+    public static String STORE_DETAIL = HOST + "/v1/business/business_detail";
+
+    /** 商家评论  **/
+    public static String STORE_COMMENT = HOST + "/v1/business/business_comment";
+
 	
 	/******************************* 房源相关  *******************************/
 	
