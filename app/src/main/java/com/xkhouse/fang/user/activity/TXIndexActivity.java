@@ -151,7 +151,7 @@ public class TXIndexActivity extends AppBaseActivity {
     private void startRecordListTask(){
         if (NetUtil.detectAvailable(mContext)) {
 
-            TXRecordListRequest request = new TXRecordListRequest(modelApp.getUser().getUid(), new RequestListener() {
+            TXRecordListRequest request = new TXRecordListRequest(modelApp.getUser().getId(), new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
                     switch (message.what) {

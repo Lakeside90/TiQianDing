@@ -257,7 +257,7 @@ public class SellInActivity extends AppBaseActivity {
             requestBean.setContacter(sellin_name_txt.getText().toString());
             requestBean.setContactPhone(sellin_phone_txt.getText().toString());
 
-            SellInRequest request = new SellInRequest(modelApp.getUser().getUid(),
+            SellInRequest request = new SellInRequest(modelApp.getUser().getId(),
                                                       modelApp.getSite().getSiteId(),
                                                       requestBean,
                     new RequestListener() {

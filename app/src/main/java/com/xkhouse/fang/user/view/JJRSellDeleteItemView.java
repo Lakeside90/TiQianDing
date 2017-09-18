@@ -221,7 +221,7 @@ public class JJRSellDeleteItemView implements OnClickListener{
 
         if (NetUtil.detectAvailable(context)) {
             if(sellReleaseListRequest == null){
-                sellReleaseListRequest = new SellReleaseListRequest(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),"3",
+                sellReleaseListRequest = new SellReleaseListRequest(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),"3",
                         page, pageSize, new RequestListener() {
 
                     @Override
@@ -275,7 +275,7 @@ public class JJRSellDeleteItemView implements OnClickListener{
                     }
                 });
             }else {
-                sellReleaseListRequest.setData(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),
+                sellReleaseListRequest.setData(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
                         "3", page, pageSize);
             }
 
@@ -362,7 +362,7 @@ public class JJRSellDeleteItemView implements OnClickListener{
     //重新发布
     private void release(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseAgainRequest request = new ReleaseAgainRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseAgainRequest request = new ReleaseAgainRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -402,7 +402,7 @@ public class JJRSellDeleteItemView implements OnClickListener{
     //彻底删除
     private void clear(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseClearRequest request = new ReleaseClearRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseClearRequest request = new ReleaseClearRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -443,7 +443,7 @@ public class JJRSellDeleteItemView implements OnClickListener{
     //编辑出售
     private void sellReleaseInfoTask(String releaseId){
         if (NetUtil.detectAvailable(context)) {
-            SellReleaseInfoRequest request = new SellReleaseInfoRequest( modelApp.getUser().getUid(),
+            SellReleaseInfoRequest request = new SellReleaseInfoRequest( modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), releaseId, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {

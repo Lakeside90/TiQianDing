@@ -239,7 +239,7 @@ public class JJRRentReleaseItemView implements OnClickListener{
 
         if (NetUtil.detectAvailable(context)) {
             if(rentReleaseListRequest == null){
-                rentReleaseListRequest = new RentReleaseListRequest(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),"1",
+                rentReleaseListRequest = new RentReleaseListRequest(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),"1",
                         page, pageSize, new RequestListener() {
 
                     @Override
@@ -293,7 +293,7 @@ public class JJRRentReleaseItemView implements OnClickListener{
                     }
                 });
             }else {
-                rentReleaseListRequest.setData(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),
+                rentReleaseListRequest.setData(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
                         "1", page, pageSize);
             }
 
@@ -381,7 +381,7 @@ public class JJRRentReleaseItemView implements OnClickListener{
     //刷新
     private void refresh(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseRefreshRequest request = new ReleaseRefreshRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseRefreshRequest request = new ReleaseRefreshRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -422,7 +422,7 @@ public class JJRRentReleaseItemView implements OnClickListener{
     //上架
     private void xiajia(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseShangXiaJiaRequest request = new ReleaseShangXiaJiaRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseShangXiaJiaRequest request = new ReleaseShangXiaJiaRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, ReleaseShangXiaJiaRequest.XIA_JIA, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -463,7 +463,7 @@ public class JJRRentReleaseItemView implements OnClickListener{
     //删除
     private void delete(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseDeleteRequest request = new ReleaseDeleteRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseDeleteRequest request = new ReleaseDeleteRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -503,7 +503,7 @@ public class JJRRentReleaseItemView implements OnClickListener{
     //编辑出租
     private void rentReleaseInfoTask(String releaseId){
         if (NetUtil.detectAvailable(context)) {
-            RentReleaseInfoRequest request = new RentReleaseInfoRequest( modelApp.getUser().getUid(),
+            RentReleaseInfoRequest request = new RentReleaseInfoRequest( modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), releaseId, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {

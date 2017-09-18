@@ -228,24 +228,24 @@ public class QQLoginRequest {
                 JSONObject dataObj = jsonObject.optJSONObject("data");
                 
                 user = new User();
-                user.setPassword("");			//TODO 没有返回密码，暂且设置为空
-                user.setUid(dataObj.optString("member_id"));
-                user.setUserName(dataObj.optString("member_username"));
-                user.setRealName(dataObj.optString("member_realname"));
-                user.setNickName(dataObj.optString("member_nickname"));
-                user.setEmail(dataObj.optString("member_email"));
-                user.setPhone(dataObj.optString("member_phone"));
-                user.setMobile(dataObj.optString("member_mobile"));
-                user.setAge(dataObj.optString("member_age"));
-                user.setLastLogintTime(dataObj.optString("member_lastelogintime"));
-                user.setLoginNum(dataObj.optString("member_loginnum"));
-                user.setSex(dataObj.optString("member_sex"));
-                user.setCity(dataObj.optString("member_city"));
-                user.setHeadPhoto(dataObj.optString("member_headphoto"));
-                user.setNuid(dataObj.optString("member_salt"));
-                user.setMemberType(dataObj.optString("member_type"));
-                user.setOldhouseSaleExtAuth(dataObj.optString("oldhouse_sale_ext_auth"));
-                user.setOldhouseHireExtAuth(dataObj.optString("oldhouse_hire_ext_auth"));
+//                user.setPassword("");			//TODO 没有返回密码，暂且设置为空
+//                user.setUid(dataObj.optString("member_id"));
+//                user.setUserName(dataObj.optString("member_username"));
+//                user.setRealName(dataObj.optString("member_realname"));
+//                user.setNickName(dataObj.optString("member_nickname"));
+//                user.setEmail(dataObj.optString("member_email"));
+//                user.setPhone(dataObj.optString("member_phone"));
+//                user.setMobile(dataObj.optString("member_mobile"));
+//                user.setAge(dataObj.optString("member_age"));
+//                user.setLastLogintTime(dataObj.optString("member_lastelogintime"));
+//                user.setLoginNum(dataObj.optString("member_loginnum"));
+//                user.setSex(dataObj.optString("member_sex"));
+//                user.setCity(dataObj.optString("member_city"));
+//                user.setHeadPhoto(dataObj.optString("member_headphoto"));
+//                user.setNuid(dataObj.optString("member_salt"));
+//                user.setMemberType(dataObj.optString("member_type"));
+//                user.setOldhouseSaleExtAuth(dataObj.optString("oldhouse_sale_ext_auth"));
+//                user.setOldhouseHireExtAuth(dataObj.optString("oldhouse_hire_ext_auth"));
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -88,7 +88,7 @@ public class ChangeSexActivity extends AppBaseActivity {
 	private void startChangeSexTask(String sex) {
 		
 		if(NetUtil.detectAvailable(mContext)){
-			UserInfoEditRequest request = new UserInfoEditRequest(modelApp.getUser().getUid(), new RequestListener() {
+			UserInfoEditRequest request = new UserInfoEditRequest(modelApp.getUser().getId(), new RequestListener() {
 				
 				@Override
 				public void sendMessage(Message message) {

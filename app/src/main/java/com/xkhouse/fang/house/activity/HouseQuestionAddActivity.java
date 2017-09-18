@@ -138,10 +138,10 @@ public class HouseQuestionAddActivity extends AppBaseActivity {
 		if(NetUtil.detectAvailable(mContext)){
 			if(request == null){
 				if(Preference.getInstance().readIsLogin()){
-					uid = modelApp.getUser().getUid();
+					uid = modelApp.getUser().getId();
 				}
 				
-				request = new HouseQuestionAddRequest(uid, pid, modelApp.getSite().getSiteId(), modelApp.getUser().getMobile(), content, new RequestListener() {
+				request = new HouseQuestionAddRequest(uid, pid, modelApp.getSite().getSiteId(), modelApp.getUser().getPhone(), content, new RequestListener() {
 					
 					@Override
 					public void sendMessage(Message message) {
@@ -163,7 +163,7 @@ public class HouseQuestionAddActivity extends AppBaseActivity {
 					}
 				});
 			}else {
-				request.setData(uid, pid, modelApp.getSite().getSiteId(), modelApp.getUser().getMobile(), content);
+				request.setData(uid, pid, modelApp.getSite().getSiteId(), modelApp.getUser().getPhone(), content);
 			}
 			showLoadingDialog("意见提交中...");
 			request.doRequest();

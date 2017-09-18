@@ -20,22 +20,28 @@ import com.xkhouse.lib.utils.StringUtil;
 /** 
  * @Description: 重置密码
  * @author wujian  
- * @date 2015-10-9 上午11:14:46  
  */
 public class ResetPswActivity extends AppBaseActivity {
 	
 	private ImageView iv_head_left;
 	private TextView tv_head_title;
-	
+
+	private TextView phone_txt;
+	private TextView get_code_txt;
+	private EditText code_txt;
+
+
 	private EditText new_psw_txt;
 	private EditText re_psw_txt;
 	private TextView commit_txt;
-	
-	
-	private ResetPasswordRequest request;
+
 	//参数
-	private String mobile;	//手机号
-	private String passWord; //验证码
+	private String token;
+	private String phone;	//手机号
+	private String verif;  	//验证码
+	private String passWord; //密码
+
+	private ResetPasswordRequest request;
 	
 	@Override
 	protected void setContentView() {
@@ -45,12 +51,16 @@ public class ResetPswActivity extends AppBaseActivity {
 	@Override
 	protected void init() {
 		super.init();
-		mobile = getIntent().getExtras().getString("mobile");
 	}
 
 	@Override
 	protected void findViews() {
 		initTitle();
+
+		phone_txt = (TextView) findViewById(R.id.phone_txt);
+		get_code_txt = (TextView) findViewById(R.id.get_code_txt);
+		code_txt = (EditText) findViewById(R.id.code_txt);
+
 		new_psw_txt = (EditText) findViewById(R.id.new_psw_txt);
 		re_psw_txt = (EditText) findViewById(R.id.re_psw_txt);
 		commit_txt = (TextView) findViewById(R.id.commit_txt);
@@ -80,15 +90,20 @@ public class ResetPswActivity extends AppBaseActivity {
 	@Override
 	protected void setListeners() {
 		commit_txt.setOnClickListener(this);
+		get_code_txt.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		super.onClick(v);
 		switch (v.getId()) {
-		case R.id.commit_txt:
-			startFindPswTask();
-			break;
+			case R.id.commit_txt:
+				startFindPswTask();
+				break;
+
+			case R.id.get_code_txt:
+				// TODO: 2017/9/14   验证码
+				break;
 	
 		}
 	}
@@ -96,9 +111,14 @@ public class ResetPswActivity extends AppBaseActivity {
 	
 	
 	private void startFindPswTask() {
+
+		verif = code_txt.getText().toString();
+
 		passWord = new_psw_txt.getText().toString();
 		String rePassWord = re_psw_txt.getText().toString();
-		if(StringUtil.isEmpty(passWord) || StringUtil.isEmpty(rePassWord)){
+		if(StringUtil.isEmpty(passWord) || StringUtil.isEmpty(rePassWord) ||
+				StringUtil.isEmpty(phone) || StringUtil.isEmpty(verif)){
+
 			Toast.makeText(mContext, "请填写完整！", Toast.LENGTH_SHORT).show();
 			return;
 		}
@@ -113,7 +133,8 @@ public class ResetPswActivity extends AppBaseActivity {
 		
 		if(NetUtil.detectAvailable(mContext)){
 			if(request == null){
-				request = new ResetPasswordRequest(mobile, passWord, new RequestListener() {
+				request = new ResetPasswordRequest(token, phone,
+						 passWord, verif, new RequestListener() {
 					
 					@Override
 					public void sendMessage(Message message) {
@@ -135,7 +156,7 @@ public class ResetPswActivity extends AppBaseActivity {
 					}
 				});
 			}else {
-				request.setData(mobile, passWord);
+				request.setData(phone, passWord, verif);
 			}
 			showLoadingDialog("密码设置中...");
 			request.doRequest();

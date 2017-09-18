@@ -471,7 +471,7 @@ public class CustomHouseActivity extends AppBaseActivity {
 		
 		if(NetUtil.detectAvailable(mContext)){
 			if(addRequest == null){
-				addRequest = new CustomHouseAddRequest(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),
+				addRequest = new CustomHouseAddRequest(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
 						phone, verifyCode, areaId, priceRange, areaRange, feature, remark,
 						new RequestListener() {
 					
@@ -498,7 +498,7 @@ public class CustomHouseActivity extends AppBaseActivity {
 					}
 				});
 			}else{
-				addRequest.setData(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(), phone, verifyCode,
+				addRequest.setData(modelApp.getUser().getId(), modelApp.getSite().getSiteId(), phone, verifyCode,
 						areaId, priceRange, areaRange, feature, remark);
 			}
 			showLoadingDialog("表单提交中...");

@@ -113,7 +113,7 @@ public class ItemRecommendView {
 	private void startRecommendListTask(int page, boolean showLoading){
 		if (NetUtil.detectAvailable(context)) {
 			if(recommendListRequest == null){
-				recommendListRequest = new XKRecommendListRequest(modelApp.getUser().getUid(), status, page, pageSize,
+				recommendListRequest = new XKRecommendListRequest(modelApp.getUser().getId(), status, page, pageSize,
 						new RequestListener() {
 					
 					@Override
@@ -175,7 +175,7 @@ public class ItemRecommendView {
 					}
 				});
 			}else {
-				recommendListRequest.setData(modelApp.getUser().getUid(), status, page, pageSize);
+				recommendListRequest.setData(modelApp.getUser().getId(), status, page, pageSize);
 			}
 			if (showLoading) {
                 content_lay.setVisibility(View.GONE);
@@ -222,7 +222,7 @@ public class ItemRecommendView {
 	private void recommendAgain(String id){
         if (NetUtil.detectAvailable(context)) {
 
-            RecommendAgainRequest request = new RecommendAgainRequest(modelApp.getUser().getUid(), id, new RequestListener() {
+            RecommendAgainRequest request = new RecommendAgainRequest(modelApp.getUser().getId(), id, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
                     switch (message.what) {

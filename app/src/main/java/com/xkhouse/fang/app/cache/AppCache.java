@@ -17,7 +17,7 @@ public class AppCache {
 
     private static String TAG = "AppCache";
     //AES 加密key
-    private static String key = "xkhouse";
+    private static String key = "tiqianding";
 
 
     private static String getCachePath(String siteId){

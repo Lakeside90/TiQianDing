@@ -64,10 +64,20 @@ public class Constants {
 	/** 资讯推荐(猜你喜欢)   **/
 	public static String NEWS_LIKE = HOST_OLD + "/v1.2/News/Guess.api";
 
+
+
+
     /** 预定列表   **/
     public static String BOOKEDINFO_LIST = HOST + "/v1/booking/booking_list";
-	
-	/**  专题资讯  **/
+
+    /** 首页获取抽奖信息   **/
+    public static String LUCKINFO_LIST = HOST + "/api/v1.index/getIndexLottery";
+
+
+
+
+
+    /**  专题资讯  **/
 	public static String NAVIGATION_LIST = HOST_OLD + "/v1.1/System/Navigation.api";
 	
 	/**  热门活动  **/
@@ -91,6 +101,25 @@ public class Constants {
 
     /** 商家评论  **/
     public static String STORE_COMMENT = HOST + "/v1/business/business_comment";
+
+    /** 商户相册分类  **/
+    public static String STORE_ALBUM_CATEGORY = HOST + "/v1/business/business_album_category";
+
+    /** 商户相册  **/
+    public static String STORE_ALBUM = HOST + "/v1/business/business_album";
+
+    /** 获取收货地址  **/
+    public static String ADDRESS_LIST = HOST + "/v1/My/my_address_list";
+
+    /** 修改收货地址  **/
+    public static String ADDRESS_EDIT = HOST + "/v1/My/my_address_edit";
+
+    /** 添加收货地址  **/
+    public static String ADDRESS_ADD = HOST + "/v1/My/my_address_add";
+
+    /** 删除收货地址  **/
+    public static String ADDRESS_DELETE = HOST + "/v1/My/my_address_del";
+
 
 	
 	/******************************* 房源相关  *******************************/
@@ -205,6 +234,21 @@ public class Constants {
 	
 	
 	/******************************* 个人中心相关  *******************************/
+
+    /**  我的预定列表  **/
+    public static String USER_BOOKED_LIST = HOST + "/v1/Interactive/booking_list";
+
+    /**  我的预定详情  **/
+    public static String USER_BOOKED_DETAIL = HOST + "/v1/Interactive/booking_detail";
+
+    /**  在线预定  **/
+    public static String USER_BOOK_ADD = HOST_OLD + "/v1/Interactive/booking_add";
+
+    /**  我的评价列表  **/
+    public static String USER_COMMENT_LIST = HOST + "/v1/My/my_comment_list";
+
+
+
 	/**  我的消息  **/
 	public static String USER_NEWS = HOST_OLD + "/v1.0/Passport/News.api";
 	
@@ -235,8 +279,8 @@ public class Constants {
 	/**  找回密码第一步  **/
 	public static String USER_MOBILE_CODE = HOST_OLD + "/v1.0/Passport/GetMobileCode.api";
 	
-	/**  找回密码第二步  **/
-	public static String USER_RESET_PSW = HOST_OLD + "/v1.0/Passport/ResetPassWord.api";
+	/**  重置密码 **/
+	public static String USER_RESET_PSW = HOST + "/v1/My/my_edit_password";
 	
 	/**  修改密码 **/
 	public static String USER_CHANGE_PSW = HOST_OLD + "/v1.0/Passport/ChangePassWord.api";
@@ -248,7 +292,7 @@ public class Constants {
 	public static String USER_FEED_BACK = HOST_OLD + "/v1.0/Passport/FeedBack.api";
 	
 	/**  用户信息  **/
-	public static String USER_INFO = HOST_OLD + "/v1.0/Passport/GetUser.api";
+	public static String USER_INFO = HOST + "/v1/My/my_index";
 	
 	/**  支付密码设置/修改  **/
 	public static String USER_CHANGE_PAY_PSW = HOST_OLD + "/v1.0/Passport/PayPassWord.api";
@@ -275,7 +319,13 @@ public class Constants {
 	public static String USER_FAVORITE_EDIT = HOST_OLD + "/v1.0/Passport/FavoriteEdit.api";
 
     /**  修改手机号  **/
-    public static String USER_MOBILE_RESET = HOST_OLD + "/v1.0/Passport/ModifyMobile.api";
+    public static String USER_MOBILE_RESET = HOST + "/v1/My/my_edit_phone";
+
+    /**  修改昵称  **/
+    public static String USER_NICKNAME_CHANGE = HOST + "/v1/My/my_edit_nickname";
+
+
+
 
     /**  修改手机号  **/
     public static String USER_PAYPSW_FIND = HOST_OLD + "/v1.0/Passport/FindPayPassWord.api";

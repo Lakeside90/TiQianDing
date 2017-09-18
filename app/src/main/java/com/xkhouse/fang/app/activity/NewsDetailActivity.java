@@ -267,7 +267,7 @@ public class NewsDetailActivity extends AppBaseActivity {
 				return;
 			}
 			
-			FavoriteAddRequest favoriteAddRequest = new FavoriteAddRequest(modelApp.getUser().getUid(),
+			FavoriteAddRequest favoriteAddRequest = new FavoriteAddRequest(modelApp.getUser().getId(),
 					newsId, "4", modelApp.getSite().getSiteId(), new RequestListener() {
 						
 						@Override
@@ -301,7 +301,7 @@ public class NewsDetailActivity extends AppBaseActivity {
 			return;
 		}
 		if(NetUtil.detectAvailable(mContext)){
-			FavoriteStatusRequest favoriteStatusRequest = new FavoriteStatusRequest(modelApp.getUser().getUid(),
+			FavoriteStatusRequest favoriteStatusRequest = new FavoriteStatusRequest(modelApp.getUser().getId(),
 					newsId, "4", modelApp.getSite().getSiteId(), new RequestListener() {
 						
 						@Override

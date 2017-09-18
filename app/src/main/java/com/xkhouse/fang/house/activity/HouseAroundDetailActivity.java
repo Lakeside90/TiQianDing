@@ -250,7 +250,7 @@ public class HouseAroundDetailActivity extends AppBaseActivity {
 				type = "3";
 			}
 			
-			FavoriteAddRequest favoriteAddRequest = new FavoriteAddRequest(modelApp.getUser().getUid(),
+			FavoriteAddRequest favoriteAddRequest = new FavoriteAddRequest(modelApp.getUser().getId(),
 					projectId, type, modelApp.getSite().getSiteId(), new RequestListener() {
 						
 						@Override
@@ -291,7 +291,7 @@ public class HouseAroundDetailActivity extends AppBaseActivity {
 				type = "3";
 			}
 			
-			FavoriteStatusRequest favoriteStatusRequest = new FavoriteStatusRequest(modelApp.getUser().getUid(),
+			FavoriteStatusRequest favoriteStatusRequest = new FavoriteStatusRequest(modelApp.getUser().getId(),
 					projectId, type, modelApp.getSite().getSiteId(), new RequestListener() {
 						
 						@Override

@@ -32,7 +32,6 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.LocationManagerProxy;
 import com.amap.api.location.LocationProviderProxy;
-import com.umeng.analytics.MobclickAgent;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.adapter.CityListAdapter;
 import com.xkhouse.fang.app.adapter.CityListAdapter.SiteSelectListener;
@@ -442,7 +441,7 @@ public class CitySelectActivity extends AppBaseActivity implements AMapLocationL
         if (StringUtil.isEmpty(Preference.getInstance().readCity()) ){
             Map<String, String> map = new HashMap<>();
             map.put("city", city);
-            MobclickAgent.onEvent(mContext, "install_city", map);
+//            MobclickAgent.onEvent(mContext, "install_city", map);
             Logger.d(TAG, city);
         }
     }

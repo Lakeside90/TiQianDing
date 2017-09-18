@@ -6,12 +6,9 @@
               android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/house_icon_iv"
+        android:id="@+id/icon_iv"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:src="@drawable/guide_img_1"
         android:scaleType="fitXY"/>
-
-
 
 </LinearLayout>

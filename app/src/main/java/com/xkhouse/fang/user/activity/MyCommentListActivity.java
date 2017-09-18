@@ -142,7 +142,7 @@ public class MyCommentListActivity extends AppBaseActivity {
 	private void startDataTask(int page, boolean showLoading){
 		if (NetUtil.detectAvailable(mContext)) {
 			if(listRequest == null){
-				listRequest = new MessageDetailListRequest(modelApp.getUser().getUid(), "", modelApp.getSite().getSiteId(),
+				listRequest = new MessageDetailListRequest(modelApp.getUser().getId(), "", modelApp.getSite().getSiteId(),
 						21, page, pageSize, new RequestListener() {
 					
 					@Override
@@ -214,7 +214,7 @@ public class MyCommentListActivity extends AppBaseActivity {
 					}
 				});
 			}else {
-				listRequest.setData(modelApp.getUser().getUid(), "",modelApp.getSite().getSiteId(),
+				listRequest.setData(modelApp.getUser().getId(), "",modelApp.getSite().getSiteId(),
 						99, page, pageSize);
 			}
 			if (showLoading){

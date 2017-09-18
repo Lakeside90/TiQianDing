@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/window_bg"
@@ -7,20 +8,57 @@
     <include layout="@layout/common_title_bar" />
 
 
-    <com.xkhouse.fang.widget.viewpagerindicator.TabPageIndicator
-        android:id="@+id/indicator"
+    <LinearLayout
+        android:id="@+id/content_lay"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:background="@color/white"
-        />
+        android:orientation="vertical">
+        <com.xkhouse.fang.widget.viewpagerindicator.TabPageIndicator
+            android:id="@+id/indicator"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:background="@color/white"
+            />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="fill_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/white"
-        />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            />
+    </LinearLayout>
 
+
+
+    <com.xkhouse.fang.widget.loading.RotateLoading
+        android:id="@+id/rotate_loading"
+        app:loading_color="@color/common_red"
+        app:loading_width="@dimen/rotate_loading_border"
+        android:layout_width="@dimen/rotate_loading_width"
+        android:layout_height="@dimen/rotate_loading_height"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+
+    <LinearLayout
+        android:id="@+id/error_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_lay"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/web_error"
+            android:drawableTop="@drawable/net_error"
+            android:drawablePadding="20dp"
+            android:textColor="@color/c_666666"
+            android:textSize="14sp"/>
+        </LinearLayout>
 </LinearLayout>

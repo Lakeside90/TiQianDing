@@ -430,12 +430,6 @@
             android:theme="@style/ThemeNoTitleActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".user.activity.ChangePswActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/ThemeNoTitleActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
             android:name=".user.activity.FindPaypswActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"

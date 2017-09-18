@@ -150,13 +150,13 @@ public class RentReleaseActivity extends AppBaseActivity {
         startFeatureListTask();
         initImagePickerView();
 
-        rent_name_txt.setText(modelApp.getUser().getRealName());
-        rent_phone_txt.setText(modelApp.getUser().getMobile());
-        if(Constants.USER_JING_JI_REN.equals(modelApp.getUser().getMemberType()) &&
-                StringUtil.isEmpty(modelApp.getUser().getOldhouseHireExtAuth())){
-            rent_name_txt.setFocusable(false);
-            rent_phone_txt.setFocusable(false);
-        }
+//        rent_name_txt.setText(modelApp.getUser().getRealname());
+//        rent_phone_txt.setText(modelApp.getUser().getMobile());
+//        if(Constants.USER_JING_JI_REN.equals("") &&
+//                StringUtil.isEmpty(modelApp.getUser().getOldhouseHireExtAuth())){
+//            rent_name_txt.setFocusable(false);
+//            rent_phone_txt.setFocusable(false);
+//        }
     }
 
 

@@ -272,7 +272,7 @@ public class OldHouseListActivity extends AppBaseActivity {
 
             case R.id.sell_in_txt:
                 if(Preference.getInstance().readIsLogin()){
-                    if(Constants.USER_GE_REN.equals(modelApp.getUser().getMemberType())){
+                    if(Constants.USER_GE_REN.equals("")){
                         startActivity(new Intent(OldHouseListActivity.this, SellInActivity.class));
                     }else{
                         Toast.makeText(OldHouseListActivity.this, "您不是个人用户，无法发布求购信息", Toast.LENGTH_SHORT).show();

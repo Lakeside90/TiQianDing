@@ -18,13 +18,7 @@ package com.xkhouse.frame.config;
 public class DoaminConstants {
 
 	// 星空网；
-	public static final String XKHOUSE = "xkhouse.com";
-
-	//合房网
-	public static final String HFHOUSE = "hfhouse.com";
-	
-	//安房网
-	public static final String AHHOUSE = "ahhouse.com";
+	public static final String TQD = "tqd.com";
 
 	
 }

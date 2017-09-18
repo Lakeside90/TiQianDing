@@ -328,7 +328,7 @@ public class TXBankActivity extends AppBaseActivity {
 
         if(NetUtil.detectAvailable(mContext)){
             if(commitRequest == null){
-                commitRequest = new CashWithdrawCommitRequest(modelApp.getUser().getUid(),
+                commitRequest = new CashWithdrawCommitRequest(modelApp.getUser().getId(),
                         phone, userName,
                         verifyCode, type, cardNo,
                         money, zfpwd, new RequestListener() {
@@ -355,7 +355,7 @@ public class TXBankActivity extends AppBaseActivity {
                     }
                 });
             }else {
-                commitRequest.setData(modelApp.getUser().getUid(),
+                commitRequest.setData(modelApp.getUser().getId(),
                         phone, userName,
                         verifyCode, type, cardNo,
                         money, zfpwd);

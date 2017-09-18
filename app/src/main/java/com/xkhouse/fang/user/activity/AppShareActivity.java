@@ -240,8 +240,8 @@ public class AppShareActivity extends AppBaseActivity {
 	}
 	
     private String getShareContent(){
-        if(Preference.getInstance().readIsLogin() && !StringUtil.isEmpty(modelApp.getUser().getNuid())){
-            return "注册请填写邀请码：" + modelApp.getUser().getNuid();
+        if(Preference.getInstance().readIsLogin() && !StringUtil.isEmpty(modelApp.getUser().getId())){
+            return "注册请填写邀请码：" + modelApp.getUser().getId();
         }else{
             return content;
         }
@@ -255,7 +255,7 @@ public class AppShareActivity extends AppBaseActivity {
             return;
         }
         if (NetUtil.detectAvailable(mContext)){
-            InvitationCodeRequest request = new InvitationCodeRequest(modelApp.getUser().getUid(), new RequestListener() {
+            InvitationCodeRequest request = new InvitationCodeRequest(modelApp.getUser().getId(), new RequestListener() {
 
                 @Override
                 public void sendMessage(Message message) {
@@ -275,7 +275,7 @@ public class AppShareActivity extends AppBaseActivity {
                             if(StringUtil.isEmpty(nuid)){
                                 Toast.makeText(mContext, "获取邀请码失败", Toast.LENGTH_SHORT).show();
                             }else{
-                                modelApp.getUser().setNuid(nuid);
+//                                modelApp.getUser().setNuid(nuid);
                                 new UserService().insertUser(modelApp.getUser());
                                 showCopyCodeDialog(nuid);
                             }
@@ -344,7 +344,7 @@ public class AppShareActivity extends AppBaseActivity {
             public void doConfirm() {
                 confirmDialog.dismiss();
                 ClipboardManager cmb = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                cmb.setText(modelApp.getUser().getNuid());
+//                cmb.setText(modelApp.getUser().getNuid());
                 Toast.makeText(mContext, "已复制到剪切板", Toast.LENGTH_SHORT).show();
             }
 

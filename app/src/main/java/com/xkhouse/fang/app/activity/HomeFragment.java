@@ -36,12 +36,14 @@ import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.entity.BookedInfo;
 import com.xkhouse.fang.app.entity.House;
+import com.xkhouse.fang.app.entity.LuckInfo;
 import com.xkhouse.fang.app.entity.Site;
 import com.xkhouse.fang.app.entity.XKAd;
 import com.xkhouse.fang.app.service.SiteDbService;
 import com.xkhouse.fang.app.task.ADListRequest;
 import com.xkhouse.fang.app.task.BookedInfoListRequest;
 import com.xkhouse.fang.app.task.HouseLikeListRequest;
+import com.xkhouse.fang.app.task.LuckInfoListRequest;
 import com.xkhouse.fang.app.task.SiteListRequest;
 import com.xkhouse.fang.app.util.DisplayUtil;
 import com.xkhouse.fang.house.activity.CustomHouseListActivity;
@@ -60,10 +62,9 @@ import com.xkhouse.lib.utils.StringUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 
- * @Description:  首页
- * @author wujian  
- * @date 2015-8-25 下午4:28:25  
+/**
+ * 首页
+ *
  */
 public class HomeFragment extends AppBaseFragment implements OnClickListener, AMapLocationListener{
 	
@@ -83,6 +84,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
 	//猜你喜欢
 	private ScrollGridView house_like_listview;
+	private LuckInfoListRequest luckInfoListRequest;
 
     //预定推荐
 	private ScrollXListView bookInfo_recommed_listview;

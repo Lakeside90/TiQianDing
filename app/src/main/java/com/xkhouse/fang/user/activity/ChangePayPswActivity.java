@@ -171,9 +171,9 @@ public class ChangePayPswActivity extends AppBaseActivity {
 		}
 		
 		if(NetUtil.detectAvailable(mContext)){
-			ChangePayPasswordRequest request = new ChangePayPasswordRequest(modelApp.getUser().getUid(),
+			ChangePayPasswordRequest request = new ChangePayPasswordRequest(modelApp.getUser().getId(),
 					oldpassword, newpassword,
-					paystatus, modelApp.getUser().getMobile(), mobileCode,  new RequestListener() {
+					paystatus, modelApp.getUser().getPhone(), mobileCode,  new RequestListener() {
 					
 				@Override
 				public void sendMessage(Message message) {
@@ -208,7 +208,7 @@ public class ChangePayPswActivity extends AppBaseActivity {
 	/*********************  获取验证码    ****************************/
 	
 	private void startVerityCodeTask() {
-		String mobile = modelApp.getUser().getMobile();
+		String mobile = modelApp.getUser().getPhone();
 		
 		if(NetUtil.detectAvailable(mContext)){
 			if(codeRequest == null){

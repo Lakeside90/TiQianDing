@@ -159,7 +159,7 @@ public class FavoriteListItemView implements OnClickListener{
 
 		if (NetUtil.detectAvailable(context)) {
 			if(listRequest == null){
-				listRequest = new FavoriteListRequest(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),
+				listRequest = new FavoriteListRequest(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
 						type, page, pageSize, new RequestListener() {
 					
 					@Override
@@ -231,7 +231,7 @@ public class FavoriteListItemView implements OnClickListener{
 					}
 				});
 			}else {
-				listRequest.setData(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),
+				listRequest.setData(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
 						type, page, pageSize);
 			}
 			if (showLoading) {
@@ -487,7 +487,7 @@ public class FavoriteListItemView implements OnClickListener{
 				break;
 			}
 			
-			FavoriteEditRequest request = new FavoriteEditRequest(modelApp.getUser().getUid(),
+			FavoriteEditRequest request = new FavoriteEditRequest(modelApp.getUser().getId(),
 					mId, type, all, modelApp.getSite().getSiteId(), 
 					new RequestListener() {
 

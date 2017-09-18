@@ -271,9 +271,9 @@ public class MyCustomHouseListActivity extends AppBaseActivity {
 	private void startListTask(int page, boolean showLoading){
 		if(NetUtil.detectAvailable(mContext)) {
 			if(request == null){
-				request = new CustomHouseListRequest(modelApp.getSite().getSiteId(), modelApp.getUser().getUid(), page, pageSize, requestListener);
+				request = new CustomHouseListRequest(modelApp.getSite().getSiteId(), modelApp.getUser().getId(), page, pageSize, requestListener);
 			}else {
-				request.setData(modelApp.getSite().getSiteId(),  modelApp.getUser().getUid(), page, pageSize);
+				request.setData(modelApp.getSite().getSiteId(),  modelApp.getUser().getId(), page, pageSize);
 			}
             if(showLoading){
                 content_lay.setVisibility(View.GONE);

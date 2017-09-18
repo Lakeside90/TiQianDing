@@ -181,8 +181,8 @@ public class LoginByCodeActivity extends AppBaseActivity {
 					if(user != null){
 						Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
 						Preference.getInstance().writeIsLogin(true);
-						Preference.getInstance().writeUID(user.getUid());
-						Preference.getInstance().writePassword(user.getPassword());
+						Preference.getInstance().writeUID(user.getId());
+//						Preference.getInstance().writePassword(user.getPassword());
                         Preference.getInstance().writeToken(user.getToken());
 						modelApp.setUser(user);
 						startToTargetAct();

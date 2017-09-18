@@ -269,7 +269,7 @@ public class RentHouseListActivity extends AppBaseActivity {
 
             case R.id.rent_in_txt:
                 if(Preference.getInstance().readIsLogin()){
-                    if(Constants.USER_GE_REN.equals(modelApp.getUser().getMemberType())){
+                    if(Constants.USER_GE_REN.equals("")){
                         startActivity(new Intent(RentHouseListActivity.this, RentInActivity.class));
                     }else{
                         Toast.makeText(RentHouseListActivity.this, "您不是个人用户，无法发布求租信息", Toast.LENGTH_SHORT).show();

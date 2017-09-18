@@ -151,14 +151,14 @@ public class AccountEditActivity extends AppBaseActivity {
                 break;
 
             case R.id.psw_change_txt:
-                startActivity(new Intent(mContext, ChangePswActivity.class));
+//                startActivity(new Intent(mContext, ChangePswActivity.class));
                 break;
 
             case R.id.paypsw_change_txt:
                 String paystatus = ChangePayPswActivity.PAY_TYPE_CHANGE;
-                if(StringUtil.isEmpty(modelApp.getUser().getPayPassword())){
-                    paystatus = ChangePayPswActivity.PAY_TYPE_SET;
-                }
+//                if(StringUtil.isEmpty(modelApp.getUser().getPayPassword())){
+//                    paystatus = ChangePayPswActivity.PAY_TYPE_SET;
+//                }
                 Intent intent = new Intent(mContext, ChangePayPswActivity.class);
                 Bundle data = new Bundle();
                 data.putString("paystatus", paystatus);
@@ -201,7 +201,7 @@ public class AccountEditActivity extends AppBaseActivity {
     private void startQQStatusTask(final boolean isShowDialog) {
         if (NetUtil.detectAvailable(mContext)){
             if (qqStatusRequest == null) {
-                qqStatusRequest = new BindStatusRequest(modelApp.getUser().getUid(), "1",
+                qqStatusRequest = new BindStatusRequest(modelApp.getUser().getId(), "1",
                         new RequestListener() {
                             @Override
                             public void sendMessage(Message message) {
@@ -240,7 +240,7 @@ public class AccountEditActivity extends AppBaseActivity {
     private void startSinaStatusTask(final boolean isShowDialog) {
         if (NetUtil.detectAvailable(mContext)){
             if (sinaStatusRequest == null) {
-                sinaStatusRequest = new BindStatusRequest(modelApp.getUser().getUid(), "2",
+                sinaStatusRequest = new BindStatusRequest(modelApp.getUser().getId(), "2",
                         new RequestListener() {
                             @Override
                             public void sendMessage(Message message) {
@@ -278,7 +278,7 @@ public class AccountEditActivity extends AppBaseActivity {
     private void startWXStatusTask(final boolean isShowDialog) {
         if (NetUtil.detectAvailable(mContext)){
             if (wxStatusRequest == null) {
-                wxStatusRequest = new BindStatusRequest(modelApp.getUser().getUid(), "3",
+                wxStatusRequest = new BindStatusRequest(modelApp.getUser().getId(), "3",
                         new RequestListener() {
                             @Override
                             public void sendMessage(Message message) {
@@ -316,7 +316,7 @@ public class AccountEditActivity extends AppBaseActivity {
     //绑定qq
     private void startQQBindTask(String openid){
         if (NetUtil.detectAvailable(mContext)){
-            QQBindRequest request = new QQBindRequest(modelApp.getUser().getUid(), "1", openid,
+            QQBindRequest request = new QQBindRequest(modelApp.getUser().getId(), "1", openid,
                     new RequestListener() {
                         @Override
                         public void sendMessage(Message message) {
@@ -357,7 +357,7 @@ public class AccountEditActivity extends AppBaseActivity {
     //解绑qq
     private void startQQUnBindTask(){
         if (NetUtil.detectAvailable(mContext)){
-            QQBindRequest request = new QQBindRequest(modelApp.getUser().getUid(), "2", null,
+            QQBindRequest request = new QQBindRequest(modelApp.getUser().getId(), "2", null,
                     new RequestListener() {
                         @Override
                         public void sendMessage(Message message) {
@@ -394,7 +394,7 @@ public class AccountEditActivity extends AppBaseActivity {
     //绑定微博
     private void startSinaBindTask(String uid){
         if (NetUtil.detectAvailable(mContext)){
-            SinaBindRequest request = new SinaBindRequest(modelApp.getUser().getUid(), "1", uid,
+            SinaBindRequest request = new SinaBindRequest(modelApp.getUser().getId(), "1", uid,
                     new RequestListener() {
                         @Override
                         public void sendMessage(Message message) {
@@ -435,7 +435,7 @@ public class AccountEditActivity extends AppBaseActivity {
     //解绑微博
     private void startSinaUnBindTask(){
         if (NetUtil.detectAvailable(mContext)){
-            SinaBindRequest request = new SinaBindRequest(modelApp.getUser().getUid(), "2", null,
+            SinaBindRequest request = new SinaBindRequest(modelApp.getUser().getId(), "2", null,
                     new RequestListener() {
                         @Override
                         public void sendMessage(Message message) {
@@ -472,7 +472,7 @@ public class AccountEditActivity extends AppBaseActivity {
     //绑定微信
     private void startWXBindTask(String openid){
         if (NetUtil.detectAvailable(mContext)){
-            WXBindRequest request = new WXBindRequest(modelApp.getUser().getUid(), "1", openid,
+            WXBindRequest request = new WXBindRequest(modelApp.getUser().getId(), "1", openid,
                     new RequestListener() {
                         @Override
                         public void sendMessage(Message message) {
@@ -513,7 +513,7 @@ public class AccountEditActivity extends AppBaseActivity {
     //解绑微信
     private void startWXUnBindTask(){
         if (NetUtil.detectAvailable(mContext)){
-            WXBindRequest request = new WXBindRequest(modelApp.getUser().getUid(), "2", null,
+            WXBindRequest request = new WXBindRequest(modelApp.getUser().getId(), "2", null,
                     new RequestListener() {
                         @Override
                         public void sendMessage(Message message) {

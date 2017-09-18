@@ -211,7 +211,7 @@ public class ReleaseManageItemView implements OnClickListener{
 
         if (NetUtil.detectAvailable(context)) {
             if(rentReleaseListRequest == null){
-                rentReleaseListRequest = new RentReleaseListRequest(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),null,
+                rentReleaseListRequest = new RentReleaseListRequest(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),null,
                          page, pageSize, new RequestListener() {
 
                     @Override
@@ -274,7 +274,7 @@ public class ReleaseManageItemView implements OnClickListener{
                     }
                 });
             }else {
-                rentReleaseListRequest.setData(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),
+                rentReleaseListRequest.setData(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
                         null, page, pageSize);
             }
             if (showLoading) {
@@ -344,7 +344,7 @@ public class ReleaseManageItemView implements OnClickListener{
 
         if (NetUtil.detectAvailable(context)) {
             if(rentInListRequest == null){
-                rentInListRequest = new RentInListRequest(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),null,
+                rentInListRequest = new RentInListRequest(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),null,
                         page, pageSize, new RequestListener() {
 
                     @Override
@@ -407,7 +407,7 @@ public class ReleaseManageItemView implements OnClickListener{
                     }
                 });
             }else {
-                rentInListRequest.setData(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),
+                rentInListRequest.setData(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
                         null, page, pageSize);
             }
             if (showLoading) {
@@ -478,7 +478,7 @@ public class ReleaseManageItemView implements OnClickListener{
 
         if (NetUtil.detectAvailable(context)) {
             if(sellReleaseListRequest == null){
-                sellReleaseListRequest = new SellReleaseListRequest(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),null,
+                sellReleaseListRequest = new SellReleaseListRequest(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),null,
                         page, pageSize, new RequestListener() {
 
                     @Override
@@ -541,7 +541,7 @@ public class ReleaseManageItemView implements OnClickListener{
                     }
                 });
             }else {
-                sellReleaseListRequest.setData(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),
+                sellReleaseListRequest.setData(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
                         null, page, pageSize);
             }
             if (showLoading) {
@@ -612,7 +612,7 @@ public class ReleaseManageItemView implements OnClickListener{
 
         if (NetUtil.detectAvailable(context)) {
             if(sellInListRequest == null){
-                sellInListRequest = new SellInListRequest(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),
+                sellInListRequest = new SellInListRequest(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
                         null, page, pageSize, new RequestListener() {
 
                     @Override
@@ -675,7 +675,7 @@ public class ReleaseManageItemView implements OnClickListener{
                     }
                 });
             }else {
-                sellInListRequest.setData(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),
+                sellInListRequest.setData(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
                         null, page, pageSize);
             }
             if (showLoading) {
@@ -740,7 +740,8 @@ public class ReleaseManageItemView implements OnClickListener{
     //刷新
     private void refresh(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseRefreshRequest request = new ReleaseRefreshRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseRefreshRequest request = new ReleaseRefreshRequest(releaseId, modelApp.getUser().getId()
+                    ,
                     modelApp.getSite().getSiteId(), type, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -777,7 +778,7 @@ public class ReleaseManageItemView implements OnClickListener{
     //重新发布
     private void release(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseAgainRequest request = new ReleaseAgainRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseAgainRequest request = new ReleaseAgainRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -815,7 +816,7 @@ public class ReleaseManageItemView implements OnClickListener{
     //删除
     private void delete(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseDeleteRequest request = new ReleaseDeleteRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseDeleteRequest request = new ReleaseDeleteRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -871,7 +872,7 @@ public class ReleaseManageItemView implements OnClickListener{
 	//编辑求购
     private void sellInInfoTask(String releaseId){
         if (NetUtil.detectAvailable(context)) {
-            SellInInfoRequest request = new SellInInfoRequest( modelApp.getUser().getUid(),
+            SellInInfoRequest request = new SellInInfoRequest( modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), releaseId, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -912,7 +913,7 @@ public class ReleaseManageItemView implements OnClickListener{
     //编辑求租
     private void rentInInfoTask(String releaseId){
         if (NetUtil.detectAvailable(context)) {
-            RentInInfoRequest request = new RentInInfoRequest( modelApp.getUser().getUid(),
+            RentInInfoRequest request = new RentInInfoRequest( modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), releaseId, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -954,7 +955,7 @@ public class ReleaseManageItemView implements OnClickListener{
     //编辑出租
     private void rentReleaseInfoTask(String releaseId){
         if (NetUtil.detectAvailable(context)) {
-            RentReleaseInfoRequest request = new RentReleaseInfoRequest( modelApp.getUser().getUid(),
+            RentReleaseInfoRequest request = new RentReleaseInfoRequest( modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), releaseId, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -996,7 +997,7 @@ public class ReleaseManageItemView implements OnClickListener{
     //编辑出售
     private void sellReleaseInfoTask(String releaseId){
      if (NetUtil.detectAvailable(context)) {
-            SellReleaseInfoRequest request = new SellReleaseInfoRequest( modelApp.getUser().getUid(),
+            SellReleaseInfoRequest request = new SellReleaseInfoRequest( modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), releaseId, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {

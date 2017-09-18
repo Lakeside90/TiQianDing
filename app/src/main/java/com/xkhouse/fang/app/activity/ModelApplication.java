@@ -38,7 +38,7 @@ public class ModelApplication extends BaseApplication {
 		initGlobal();
 		initImage();
         //bugly 初始化
-        CrashReport.initCrashReport(getApplicationContext(), "900025669", false);
+//        CrashReport.initCrashReport(getApplicationContext(), "900025669", false);
     }
 	
 	@Override
@@ -67,7 +67,7 @@ public class ModelApplication extends BaseApplication {
 	@Override
 	protected void initDomain() {
 		BaseConfig.getInstance().init(mContext,
-				DoaminConstants.XKHOUSE + ".properties");
+				DoaminConstants.TQD + ".properties");
 	}
 
 	/**

@@ -124,7 +124,7 @@ public class ItemWalletRecordView {
 
 		if(NetUtil.detectAvailable(context)){
 			if(walletListRequest == null){
-				walletListRequest = new WalletListRequest(modelApp.getUser().getUid(), type, page, pageSize,
+				walletListRequest = new WalletListRequest(modelApp.getUser().getId(), type, page, pageSize,
 						new RequestListener() {
 					
 					@Override
@@ -200,7 +200,7 @@ public class ItemWalletRecordView {
 					}
 				});
 			}else {
-				walletListRequest.setData(modelApp.getUser().getUid(), type, page, pageSize);
+				walletListRequest.setData(modelApp.getUser().getId(), type, page, pageSize);
 			}
 			if (showLoading){
                 record_listView.setVisibility(View.GONE);

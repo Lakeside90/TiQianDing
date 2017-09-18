@@ -297,12 +297,12 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 	public void refreshView() {
 		
 		if(Preference.getInstance().readIsLogin()){
-			if(StringUtil.isEmpty(modelApp.getUser().getUserName())){
-				username_txt.setText(modelApp.getUser().getMobile());
+			if(StringUtil.isEmpty(modelApp.getUser().getNickname())){
+				username_txt.setText(modelApp.getUser().getPhone());
 			}else {
-				username_txt.setText(modelApp.getUser().getUserName());
+				username_txt.setText(modelApp.getUser().getNickname());
 			}
-			ImageLoader.getInstance().displayImage(modelApp.getUser().getHeadPhoto(), 
+			ImageLoader.getInstance().displayImage(modelApp.getUser().getHead_img(),
 					user_icon_iv, options);
 		}else {
 			username_txt.setText("您还没有登录哦~");
@@ -324,7 +324,7 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
         if(NetUtil.detectAvailable(getActivity())){
             // 我的余额 TODO 网络请求带替换
             if(msgNumRequest == null){
-                msgNumRequest = new MsgFavoriteNumRequest(modelApp.getUser().getUid(), "1", new RequestListener() {
+                msgNumRequest = new MsgFavoriteNumRequest(modelApp.getUser().getId(), "1", new RequestListener() {
 
                     @Override
                     public void sendMessage(Message message) {
@@ -343,13 +343,13 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
                     }
                 });
             }else {
-                msgNumRequest.setData(modelApp.getUser().getUid(), "1");
+                msgNumRequest.setData(modelApp.getUser().getId(), "1");
             }
             msgNumRequest.doRequest();
 
             //抽奖机会次数  TODO 网络请求带替换
             if(favoriteNumRequest == null){
-                favoriteNumRequest = new MsgFavoriteNumRequest(modelApp.getUser().getUid(), "2", new RequestListener() {
+                favoriteNumRequest = new MsgFavoriteNumRequest(modelApp.getUser().getId(), "2", new RequestListener() {
 
                     @Override
                     public void sendMessage(Message message) {
@@ -368,7 +368,7 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
                     }
                 });
             }else {
-                favoriteNumRequest.setData(modelApp.getUser().getUid(), "2");
+                favoriteNumRequest.setData(modelApp.getUser().getId(), "2");
             }
             favoriteNumRequest.doRequest();
 

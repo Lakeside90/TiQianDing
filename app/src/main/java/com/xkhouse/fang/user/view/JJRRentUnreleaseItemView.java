@@ -229,7 +229,7 @@ public class JJRRentUnreleaseItemView implements OnClickListener{
 
         if (NetUtil.detectAvailable(context)) {
             if(rentReleaseListRequest == null){
-                rentReleaseListRequest = new RentReleaseListRequest(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),"2",
+                rentReleaseListRequest = new RentReleaseListRequest(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),"2",
                         page, pageSize, new RequestListener() {
 
                     @Override
@@ -283,7 +283,7 @@ public class JJRRentUnreleaseItemView implements OnClickListener{
                     }
                 });
             }else {
-                rentReleaseListRequest.setData(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),
+                rentReleaseListRequest.setData(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
                         "2", page, pageSize);
             }
 
@@ -371,7 +371,7 @@ public class JJRRentUnreleaseItemView implements OnClickListener{
     //上架
     private void shangjia(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseShangXiaJiaRequest request = new ReleaseShangXiaJiaRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseShangXiaJiaRequest request = new ReleaseShangXiaJiaRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, ReleaseShangXiaJiaRequest.SHANG_JIA, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -411,7 +411,7 @@ public class JJRRentUnreleaseItemView implements OnClickListener{
     //删除
     private void delete(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseDeleteRequest request = new ReleaseDeleteRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseDeleteRequest request = new ReleaseDeleteRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -451,7 +451,7 @@ public class JJRRentUnreleaseItemView implements OnClickListener{
     //编辑出租
     private void rentReleaseInfoTask(String releaseId){
         if (NetUtil.detectAvailable(context)) {
-            RentReleaseInfoRequest request = new RentReleaseInfoRequest( modelApp.getUser().getUid(),
+            RentReleaseInfoRequest request = new RentReleaseInfoRequest( modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), releaseId, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {

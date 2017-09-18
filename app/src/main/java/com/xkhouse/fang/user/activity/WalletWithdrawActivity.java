@@ -156,7 +156,7 @@ public class WalletWithdrawActivity extends AppBaseActivity {
 		if(NetUtil.detectAvailable(mContext)){
 
 			if(walletListRequest == null){
-				walletListRequest = new WalletListRequest(modelApp.getUser().getUid(), type, page, pageSize,
+				walletListRequest = new WalletListRequest(modelApp.getUser().getId(), type, page, pageSize,
 						new RequestListener() {
 					
 					@Override
@@ -230,7 +230,7 @@ public class WalletWithdrawActivity extends AppBaseActivity {
 					}
 				});
 			}else {
-				walletListRequest.setData(modelApp.getUser().getUid(), type, page, pageSize);
+				walletListRequest.setData(modelApp.getUser().getId(), type, page, pageSize);
 			}
             if (showLoading){
                 wallet_listview.setVisibility(View.GONE);

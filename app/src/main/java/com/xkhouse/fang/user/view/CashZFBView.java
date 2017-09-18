@@ -166,7 +166,7 @@ public class CashZFBView implements OnClickListener{
 				
 		if(NetUtil.detectAvailable(context)){
 			if(commitRequest == null){
-				commitRequest = new CashWithdrawCommitRequest(modelApp.getUser().getUid(),
+				commitRequest = new CashWithdrawCommitRequest(modelApp.getUser().getId(),
 						phone, userName,
 						verifyCode, type, cardNo, 
 						money, zfpwd, new RequestListener() {
@@ -193,7 +193,7 @@ public class CashZFBView implements OnClickListener{
 					}
 				});
 			}else {
-				commitRequest.setData(modelApp.getUser().getUid(),
+				commitRequest.setData(modelApp.getUser().getId(),
 						phone, userName,
 						verifyCode, type, cardNo, 
 						money, zfpwd);

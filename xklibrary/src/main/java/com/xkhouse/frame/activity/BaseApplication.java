@@ -70,7 +70,7 @@ public abstract class BaseApplication extends Application {
 	 * 域名
 	 * 
 	 */
-	public static String domain = DoaminConstants.XKHOUSE;
+	public static String domain = DoaminConstants.TQD;
 
 	/**
 	 * 

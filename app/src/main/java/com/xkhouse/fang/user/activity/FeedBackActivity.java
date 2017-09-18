@@ -109,7 +109,7 @@ public class FeedBackActivity extends AppBaseActivity {
 		if(NetUtil.detectAvailable(mContext)){
 			if(request == null){
 				if(Preference.getInstance().readIsLogin()){
-					uid = modelApp.getUser().getUid();
+					uid = modelApp.getUser().getId();
 				}
 				
 				request = new FeedBackRequest(uid, content, contact, new RequestListener() {

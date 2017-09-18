@@ -131,13 +131,13 @@ public class SellReleaseActivity extends AppBaseActivity {
 
         initImagePickerView();
 
-        sell_name_txt.setText(modelApp.getUser().getRealName());
-        sell_phone_txt.setText(modelApp.getUser().getMobile());
-        if(Constants.USER_JING_JI_REN.equals(modelApp.getUser().getMemberType()) &&
-                StringUtil.isEmpty(modelApp.getUser().getOldhouseSaleExtAuth())){
-            sell_name_txt.setFocusable(false);
-            sell_phone_txt.setFocusable(false);
-        }
+        sell_name_txt.setText(modelApp.getUser().getRealname());
+        sell_phone_txt.setText(modelApp.getUser().getPhone());
+//        if(Constants.USER_JING_JI_REN.equals(modelApp.getUser().getMemberType()) &&
+//                StringUtil.isEmpty(modelApp.getUser().getOldhouseSaleExtAuth())){
+//            sell_name_txt.setFocusable(false);
+//            sell_phone_txt.setFocusable(false);
+//        }
 	}
 	
 	
@@ -429,7 +429,7 @@ public class SellReleaseActivity extends AppBaseActivity {
             requestBean.setPhotoUrl(sb.toString());
         }
 
-        SellReleaseRequest request = new SellReleaseRequest(modelApp.getUser().getUid(),
+        SellReleaseRequest request = new SellReleaseRequest(modelApp.getUser().getId(),
                 modelApp.getSite().getSiteId(),
                 requestBean,
                 new RequestListener() {

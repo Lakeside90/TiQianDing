@@ -85,25 +85,25 @@ public class MyReleaseActivity extends AppBaseActivity {
         switch (v.getId()){
             case R.id.release_sell_lay:
 
-                if(Constants.USER_GE_REN.equals(modelApp.getUser().getMemberType())){
+                if(Constants.USER_GE_REN.equals("")){
                     intent = new Intent(MyReleaseActivity.this, ReleaseManageActivity.class);
                     data = new Bundle();
                     data.putInt("release_type", ReleaseManageActivity.RELEASE_SELL);
                     intent.putExtras(data);
                     startActivity(intent);
-                }else if(Constants.USER_JING_JI_REN.equals(modelApp.getUser().getMemberType())){
+                }else if(Constants.USER_JING_JI_REN.equals("")){
                     startActivity(new Intent(MyReleaseActivity.this, JJRSellReleaseManageActivity.class));
                 }
                 break;
 
             case R.id.release_rent_lay:
-                if(Constants.USER_GE_REN.equals(modelApp.getUser().getMemberType())){
+                if(Constants.USER_GE_REN.equals("")){
                     intent = new Intent(MyReleaseActivity.this, ReleaseManageActivity.class);
                     data = new Bundle();
                     data.putInt("release_type", ReleaseManageActivity.RELEASE_RENT);
                     intent.putExtras(data);
                     startActivity(intent);
-                }else if(Constants.USER_JING_JI_REN.equals(modelApp.getUser().getMemberType())){
+                }else if(Constants.USER_JING_JI_REN.equals("")){
                     startActivity(new Intent(MyReleaseActivity.this, JJRRentReleaseManageActivity.class));
                 }
                 break;

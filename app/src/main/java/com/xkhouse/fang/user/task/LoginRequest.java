@@ -25,17 +25,16 @@ import java.util.Map;
 
 
 /**
-* @Description: 登录接口
-* @author wujian  
-* @date 2015-10-23 上午10:18:41
+* @Description: 账号登录
+* @author wujian
  */
 public class LoginRequest {
 
-	private String TAG = "LoginRequest";
+	private String TAG = LoginRequest.class.getSimpleName();
 	private RequestListener requestListener;
 	
-	private String userName;  	//手机号
-	private String passWord; 	//用户密码
+	private String phone;  	//手机号
+	private String password; 	//用户密码
 
 	
 	private String code;	//返回状态
@@ -44,16 +43,16 @@ public class LoginRequest {
 	
 	
 	public LoginRequest(String userName, String passWord, RequestListener requestListener) {
-		
-		this.userName = userName;
-		this.passWord = passWord;
+
+		this.phone = userName;
+		this.password = passWord;
 		this.requestListener = requestListener;
 	}
 	
 	
 	public void setData(String userName, String passWord) {
-		this.userName = userName;
-		this.passWord = passWord;
+		this.phone = userName;
+		this.password = passWord;
 	}
 	
 	public void doRequest(){
@@ -93,8 +92,8 @@ public class LoginRequest {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("phone", userName);
-                params.put("password", passWord);
+                params.put("phone", phone);
+                params.put("password", password);
 
                 Logger.d(TAG, StringUtil.getRequestUrl(Constants.USER_LOGIN, params));
 
@@ -125,7 +124,7 @@ public class LoginRequest {
         	
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject != null) {
-            	code = jsonObject.optString("code");
+            	code = jsonObject.optString("status");
                 msg = jsonObject.optString("msg");
 
                 if (!Constants.SUCCESS_CODE.equals(code)) return;
@@ -133,25 +132,9 @@ public class LoginRequest {
                 JSONObject dataObj = jsonObject.optJSONObject("data");
                 
                 user = new User();
-                user.setPassword(passWord);
-                user.setUid(dataObj.optString("uid"));
+                user.setId(dataObj.optString("uid"));
                 user.setToken(dataObj.optString("token"));
-                user.setUserName(dataObj.optString("member_username"));
-                user.setRealName(dataObj.optString("member_realname"));
-                user.setNickName(dataObj.optString("member_nickname"));
-                user.setEmail(dataObj.optString("member_email"));
-                user.setPhone(dataObj.optString("member_phone"));
-                user.setMobile(dataObj.optString("member_mobile"));
-                user.setAge(dataObj.optString("member_age"));
-                user.setLastLogintTime(dataObj.optString("member_lastelogintime"));
-                user.setLoginNum(dataObj.optString("member_loginnum"));
-                user.setSex(dataObj.optString("member_sex"));
-                user.setCity(dataObj.optString("member_city"));
-                user.setHeadPhoto(dataObj.optString("member_headphoto"));
-                user.setNuid(dataObj.optString("member_salt"));
-                user.setMemberType(dataObj.optString("member_type"));
-                user.setOldhouseSaleExtAuth(dataObj.optString("oldhouse_sale_ext_auth"));
-                user.setOldhouseHireExtAuth(dataObj.optString("oldhouse_hire_ext_auth"));
+
             }
         } catch (Exception e) {
             e.printStackTrace();

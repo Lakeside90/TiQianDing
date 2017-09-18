@@ -239,7 +239,7 @@ public class JJRSellReleaseItemView implements OnClickListener{
 
         if (NetUtil.detectAvailable(context)) {
             if(sellReleaseListRequest == null){
-                sellReleaseListRequest = new SellReleaseListRequest(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),"1",
+                sellReleaseListRequest = new SellReleaseListRequest(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),"1",
                         page, pageSize, new RequestListener() {
 
                     @Override
@@ -293,7 +293,7 @@ public class JJRSellReleaseItemView implements OnClickListener{
                     }
                 });
             }else {
-                sellReleaseListRequest.setData(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),
+                sellReleaseListRequest.setData(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
                         "1", page, pageSize);
             }
 
@@ -382,7 +382,7 @@ public class JJRSellReleaseItemView implements OnClickListener{
     //刷新
     private void refresh(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseRefreshRequest request = new ReleaseRefreshRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseRefreshRequest request = new ReleaseRefreshRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -423,7 +423,7 @@ public class JJRSellReleaseItemView implements OnClickListener{
     //上架
     private void xiajia(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseShangXiaJiaRequest request = new ReleaseShangXiaJiaRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseShangXiaJiaRequest request = new ReleaseShangXiaJiaRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, ReleaseShangXiaJiaRequest.XIA_JIA, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -464,7 +464,7 @@ public class JJRSellReleaseItemView implements OnClickListener{
     //删除
     private void delete(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseDeleteRequest request = new ReleaseDeleteRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseDeleteRequest request = new ReleaseDeleteRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -505,7 +505,7 @@ public class JJRSellReleaseItemView implements OnClickListener{
     //编辑出售
     private void sellReleaseInfoTask(String releaseId){
         if (NetUtil.detectAvailable(context)) {
-            SellReleaseInfoRequest request = new SellReleaseInfoRequest( modelApp.getUser().getUid(),
+            SellReleaseInfoRequest request = new SellReleaseInfoRequest( modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), releaseId, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {

@@ -12,15 +12,15 @@ import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
+import com.xkhouse.fang.user.task.ChangeNickNameRequest;
 import com.xkhouse.fang.user.task.UserInfoEditRequest;
 import com.xkhouse.lib.utils.NetUtil;
 import com.xkhouse.lib.utils.StringUtil;
 
 
 /**
-* @Description: 修改用户名，姓名 
+* @Description: 修改昵称
 * @author wujian  
-* @date 2015-10-28 上午8:49:40
  */
 public class ChangeNameActivity extends AppBaseActivity {
 	
@@ -29,12 +29,7 @@ public class ChangeNameActivity extends AppBaseActivity {
 	
 	private EditText name_txt;
 	private TextView commit_txt;
-	
-	public static final int TYPE_USER_NAME = 0;		//用户名
-	public static final int TYPE_REAL_NAME = 1;		//真实姓名
-	
-	private int type;
-	
+
 	//参数
 	private String name;	//手机号
 	
@@ -46,7 +41,6 @@ public class ChangeNameActivity extends AppBaseActivity {
 	@Override
 	protected void init() {
 		super.init();
-		type = getIntent().getExtras().getInt("type");
 	}
 
 	@Override
@@ -54,24 +48,12 @@ public class ChangeNameActivity extends AppBaseActivity {
 		initTitle();
 		name_txt = (EditText) findViewById(R.id.name_txt);
 		commit_txt = (TextView) findViewById(R.id.commit_txt);
-		
-//		if(type == TYPE_USER_NAME){
-//			name_txt.setText(modelApp.getUser().getUserName());
-//		}else {
-//			name_txt.setText(modelApp.getUser().getRealName());
-//		}
 	}
 
 	private void initTitle() {
 		iv_head_left = (ImageView) findViewById(R.id.iv_head_left);
 		tv_head_title = (TextView) findViewById(R.id.tv_head_title);
-		
-		if(type == TYPE_USER_NAME){
-			tv_head_title.setText("修改昵称");
-		}else {
-			tv_head_title.setText("修改姓名");
-		}
-		
+		tv_head_title.setText("修改昵称");
 		iv_head_left.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -104,8 +86,7 @@ public class ChangeNameActivity extends AppBaseActivity {
 	
 		}
 	}
-	
-	
+
 	
 	private void startChangeNameTask() {
 		name = name_txt.getText().toString();
@@ -115,7 +96,9 @@ public class ChangeNameActivity extends AppBaseActivity {
 		}
 		
 		if(NetUtil.detectAvailable(mContext)){
-			UserInfoEditRequest request = new UserInfoEditRequest(modelApp.getUser().getUid(), new RequestListener() {
+			ChangeNickNameRequest request = new ChangeNickNameRequest(
+					modelApp.getUser().getToken(), name,
+					new RequestListener() {
 				
 				@Override
 				public void sendMessage(Message message) {
@@ -138,11 +121,8 @@ public class ChangeNameActivity extends AppBaseActivity {
 			});
 			
 			showLoadingDialog("修改中...");
-			if(type == TYPE_USER_NAME){
-				request.doUserNameRequest(name);
-			}else {
-				request.doRealNameRequest(name);
-			}
+
+			request.doRequest();
 			
 		}else {
 			Toast.makeText(mContext, R.string.net_warn, Toast.LENGTH_SHORT).show();

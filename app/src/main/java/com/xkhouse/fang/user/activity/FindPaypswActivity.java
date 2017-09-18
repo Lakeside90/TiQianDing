@@ -46,7 +46,7 @@ public class FindPaypswActivity extends AppBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        phone_txt.setText(modelApp.getUser().getMobile());
+        phone_txt.setText(modelApp.getUser().getPhone());
     }
 
     @Override
@@ -130,7 +130,7 @@ public class FindPaypswActivity extends AppBaseActivity {
 
         if (NetUtil.detectAvailable(mContext)) {
             if (paypswFindRequest == null) {
-                paypswFindRequest = new PaypswFindRequest(modelApp.getUser().getUid(), paypsw, mobile, code,
+                paypswFindRequest = new PaypswFindRequest(modelApp.getUser().getId(), paypsw, mobile, code,
                         new RequestListener() {
                             @Override
                             public void sendMessage(Message message) {

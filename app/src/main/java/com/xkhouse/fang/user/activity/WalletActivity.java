@@ -197,7 +197,7 @@ public class WalletActivity extends AppBaseActivity {
 	private void startDataTask(boolean showLoading) {
 		if(NetUtil.detectAvailable(mContext)){
 			if(walletListRequest == null){
-				walletListRequest = new WalletListRequest(modelApp.getUser().getUid(),
+				walletListRequest = new WalletListRequest(modelApp.getUser().getId(),
 						WalletRecordListActivity.WALLET_ALL, 1, pageSize,
 						new RequestListener() {
 					
@@ -254,7 +254,7 @@ public class WalletActivity extends AppBaseActivity {
 					}
 				});
 			}else {
-				walletListRequest.setData(modelApp.getUser().getUid(),
+				walletListRequest.setData(modelApp.getUser().getId(),
 						WalletRecordListActivity.WALLET_ALL, 1, pageSize);
 			}
             if (showLoading){

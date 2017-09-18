@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS user (_id INTEGER PRIMARY KEY, user_id TEXT, user_name TEXT, user_psw TEXT, real_name TEXT, nick_name TEXT, email TEXT, phone TEXT, mobile TEXT, siteId TEXT, age TEXT, sex TEXT, city TEXT, head_photo TEXT, nuid TEXT, member_type TEXT, oldhouse_sale_ext_auth TEXT, oldhouse_hire_ext_auth TEXT);
+CREATE TABLE IF NOT EXISTS user (_id INTEGER PRIMARY KEY, user_id TEXT, token TEXT, nickname TEXT, realname TEXT, head_img TEXT, account_balance TEXT, activity_num TEXT, business_id TEXT, gender TEXT, phone TEXT, interest TEXT, is_staff TEXT);
 CREATE TABLE IF NOT EXISTS search_record (_id INTEGER PRIMARY KEY, user_id TEXT, search_content TEXT, search_type TEXT, site_id TEXT, create_time TEXT);
 CREATE TABLE IF NOT EXISTS site (_id INTEGER PRIMARY KEY, site_id TEXT, title TEXT, domain TEXT, area TEXT, longitude TEXT, latitude TEXT, hot TEXT);
 CREATE TABLE IF NOT EXISTS price_range(_id INTEGER PRIMARY KEY, price_id TEXT, price_value TEXT, site_id TEXT);

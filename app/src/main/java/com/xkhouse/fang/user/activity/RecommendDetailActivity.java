@@ -149,7 +149,7 @@ public class RecommendDetailActivity extends AppBaseActivity {
 	private void startDataTask(){
 		if(NetUtil.detectAvailable(mContext)){
 			XKRecommendDetailRequest request = new XKRecommendDetailRequest(recommendId,
-					modelApp.getUser().getUid(),
+					modelApp.getUser().getId(),
 					new RequestListener() {
 						
 						@Override

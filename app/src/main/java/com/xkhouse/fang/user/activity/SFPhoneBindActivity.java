@@ -209,8 +209,8 @@ public class SFPhoneBindActivity extends AppBaseActivity {
 						if(user != null){
 							Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
 							Preference.getInstance().writeIsLogin(true);
-							Preference.getInstance().writeUID(user.getUid());
-							Preference.getInstance().writePassword(user.getPassword());
+							Preference.getInstance().writeUID(user.getId());
+//							Preference.getInstance().writePassword(user.getPassword());
 							modelApp.setUser(user);
 							startActivity(new Intent(mContext, MainActivity.class));
 							finish();
@@ -255,8 +255,8 @@ public class SFPhoneBindActivity extends AppBaseActivity {
                             if(user != null){
                                 Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
                                 Preference.getInstance().writeIsLogin(true);
-                                Preference.getInstance().writeUID(user.getUid());
-                                Preference.getInstance().writePassword(user.getPassword());
+                                Preference.getInstance().writeUID(user.getId());
+//                                Preference.getInstance().writePassword(user.getPassword());
                                 modelApp.setUser(user);
                                 startActivity(new Intent(mContext, MainActivity.class));
                                 finish();
@@ -332,8 +332,8 @@ public class SFPhoneBindActivity extends AppBaseActivity {
                                     if(user != null){
                                         Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
                                         Preference.getInstance().writeIsLogin(true);
-                                        Preference.getInstance().writeUID(user.getUid());
-                                        Preference.getInstance().writePassword(user.getPassword());
+                                        Preference.getInstance().writeUID(user.getId());
+//                                        Preference.getInstance().writePassword(user.getPassword());
                                         modelApp.setUser(user);
                                         startActivity(new Intent(mContext, MainActivity.class));
                                         finish();
@@ -377,8 +377,8 @@ public class SFPhoneBindActivity extends AppBaseActivity {
                             if(user != null){
                                 Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
                                 Preference.getInstance().writeIsLogin(true);
-                                Preference.getInstance().writeUID(user.getUid());
-                                Preference.getInstance().writePassword(user.getPassword());
+                                Preference.getInstance().writeUID(user.getId());
+//                                Preference.getInstance().writePassword(user.getPassword());
                                 modelApp.setUser(user);
                                 startActivity(new Intent(mContext, MainActivity.class));
                                 finish();
@@ -456,8 +456,8 @@ public class SFPhoneBindActivity extends AppBaseActivity {
 						if(user != null){
 							Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
 							Preference.getInstance().writeIsLogin(true);
-							Preference.getInstance().writeUID(user.getUid());
-							Preference.getInstance().writePassword(user.getPassword());
+							Preference.getInstance().writeUID(user.getId());
+//							Preference.getInstance().writePassword(user.getPassword());
 							modelApp.setUser(user);
 							startActivity(new Intent(mContext, MainActivity.class));
 							finish();
@@ -501,8 +501,8 @@ public class SFPhoneBindActivity extends AppBaseActivity {
                             if(user != null){
                                 Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
                                 Preference.getInstance().writeIsLogin(true);
-                                Preference.getInstance().writeUID(user.getUid());
-                                Preference.getInstance().writePassword(user.getPassword());
+                                Preference.getInstance().writeUID(user.getId());
+//                                Preference.getInstance().writePassword(user.getPassword());
                                 modelApp.setUser(user);
                                 startActivity(new Intent(mContext, MainActivity.class));
                                 finish();

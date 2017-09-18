@@ -302,7 +302,7 @@ public class CustomerAddActivity extends AppBaseActivity {
 	
 	
 	private void startAddTask(){
-		String uId = modelApp.getUser().getUid();
+		String uId = modelApp.getUser().getId();
 		
 		String rName = customer_name_txt.getText().toString();
 		String rPhone = customer_phone_txt.getText().toString();

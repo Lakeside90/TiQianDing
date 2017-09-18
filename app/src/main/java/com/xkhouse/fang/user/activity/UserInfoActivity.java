@@ -89,7 +89,7 @@ public class UserInfoActivity extends AppBaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		fillData();
+		fillData();
 		
 	}
 	
@@ -97,7 +97,7 @@ public class UserInfoActivity extends AppBaseActivity {
 	protected void onResume() {
 		super.onResume();
 		
-//		startUserInfoTask();
+		startUserInfoTask();
 	}
 	
 	@Override
@@ -206,11 +206,7 @@ public class UserInfoActivity extends AppBaseActivity {
     //                Toast.makeText(mContext, "已修改过用户名！", Toast.LENGTH_SHORT).show();
     //                return;
     //            }
-                Intent usernameIntent = new Intent(mContext, ChangeNameActivity.class);
-                Bundle usernameBundle = new Bundle();
-                usernameBundle.putInt("type", ChangeNameActivity.TYPE_USER_NAME);
-                usernameIntent.putExtras(usernameBundle);
-                startActivity(usernameIntent);
+                startActivity( new Intent(mContext, ChangeNameActivity.class));
                 break;
 
             case R.id.phone_lay:
@@ -225,11 +221,11 @@ public class UserInfoActivity extends AppBaseActivity {
                 break;
 			
             case R.id.realname_lay:
-                Intent realnameIntent = new Intent(mContext, ChangeNameActivity.class);
-                Bundle realnameBundle = new Bundle();
-                realnameBundle.putInt("type", ChangeNameActivity.TYPE_REAL_NAME);
-                realnameIntent.putExtras(realnameBundle);
-                startActivity(realnameIntent);
+//                Intent realnameIntent = new Intent(mContext, ChangeNameActivity.class);
+//                Bundle realnameBundle = new Bundle();
+//                realnameBundle.putInt("type", ChangeNameActivity.TYPE_REAL_NAME);
+//                realnameIntent.putExtras(realnameBundle);
+//                startActivity(realnameIntent);
                 break;
 
             case R.id.gender_lay:
@@ -253,31 +249,29 @@ public class UserInfoActivity extends AppBaseActivity {
 	
 	
 	private void fillData() {
-		ImageLoader.getInstance().displayImage(modelApp.getUser().getHeadPhoto(), 
+		ImageLoader.getInstance().displayImage(modelApp.getUser().getHead_img(),
 				user_icon_iv, options);
 		
-		if(StringUtil.isEmpty(modelApp.getUser().getUserName())){
+		if(StringUtil.isEmpty(modelApp.getUser().getNickname())){
 			username_txt.setText("还没设置用户名哦");
 		}else {
-			username_txt.setText(modelApp.getUser().getUserName());
+			username_txt.setText(modelApp.getUser().getNickname());
 		}
 		
-		realname_txt.setText(modelApp.getUser().getRealName());
+		realname_txt.setText(modelApp.getUser().getRealname());
 		
-		if("1".equals(modelApp.getUser().getSex())){
+		if("1".equals(modelApp.getUser().getGender())){
 			gender_txt.setText("男");
-		}else if("2".equals(modelApp.getUser().getSex())) {
+		}else if("2".equals(modelApp.getUser().getGender())) {
 			gender_txt.setText("女");
 		}
-		
-
 	}
 	
 	
 	private void startUserInfoTask() {
 		if(NetUtil.detectAvailable(mContext)){
 			showLoadingDialog(R.string.data_loading);
-			UserInfoRequest request = new UserInfoRequest(modelApp.getUser().getUid(), new RequestListener() {
+			UserInfoRequest request = new UserInfoRequest(modelApp.getUser().getToken(), new RequestListener() {
 				
 				@Override
 				public void sendMessage(Message message) {
@@ -344,7 +338,7 @@ public class UserInfoActivity extends AppBaseActivity {
 			deleteFile(tempPhotoFile.getAbsolutePath());
 		}
 		tempPhotoFile = new File(StorageUtils.getCacheDirectory(mContext),
-				modelApp.getUser().getUid() + ".jpg");
+				modelApp.getUser().getId() + ".jpg");
 		// 调用系统的拍照功能
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		// 指定调用相机拍照后照片的储存路径
@@ -418,7 +412,7 @@ public class UserInfoActivity extends AppBaseActivity {
 	private void setPicToView(Intent picdata) {
 		mTempBitmap = BitmapManager.getInstance().decodeFile(
 				UserInfoActivity.class.toString(), mContext);
-		BitmapManager.getInstance().cache(modelApp.getUser().getUid(),
+		BitmapManager.getInstance().cache(modelApp.getUser().getId(),
 				mTempBitmap, mContext);
 
 		BitmapManager.getInstance().deleteCache(
@@ -431,7 +425,7 @@ public class UserInfoActivity extends AppBaseActivity {
 	private void upload() {
 		if (NetUtil.detectAvailable(this)) {
 			String imagePath = BitmapManager.getInstance()
-					.getCacheFile(modelApp.getUser().getUid(), this).toString();
+					.getCacheFile(modelApp.getUser().getId(), this).toString();
 			new UploadTask(new UploadCallBack() {
 				@Override
 				public void onSucess(String url) {
@@ -471,7 +465,7 @@ public class UserInfoActivity extends AppBaseActivity {
 	private void startHeadPhotoTask(final String photoUrl){
 		if(NetUtil.detectAvailable(mContext)){
 			showLoadingDialog(R.string.data_loading);
-			UserInfoEditRequest request = new UserInfoEditRequest(modelApp.getUser().getUid(), new RequestListener() {
+			UserInfoEditRequest request = new UserInfoEditRequest(modelApp.getUser().getId(), new RequestListener() {
 				
 				@Override
 				public void sendMessage(Message message) {
@@ -484,8 +478,8 @@ public class UserInfoActivity extends AppBaseActivity {
 							
 						case Constants.SUCCESS_DATA_FROM_NET:
 							Toast.makeText(mContext, "头像修改成功！", Toast.LENGTH_SHORT).show();
-							modelApp.getUser().setHeadPhoto(photoUrl);
-							ImageLoader.getInstance().displayImage(modelApp.getUser().getHeadPhoto(), 
+							modelApp.getUser().setHead_img(photoUrl);
+							ImageLoader.getInstance().displayImage(modelApp.getUser().getHead_img(),
 									user_icon_iv, options);
 							break;
 						}

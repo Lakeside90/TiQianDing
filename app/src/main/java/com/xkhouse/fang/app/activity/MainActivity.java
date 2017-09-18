@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
-import com.umeng.analytics.MobclickAgent;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
@@ -88,13 +87,13 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 	@Override
 	protected void onResume() {
 		super.onResume();
-		 MobclickAgent.onResume(this); 
+//		 MobclickAgent.onResume(this);
 	}
 	
 	@Override
 	protected void onPause() {
 		super.onPause();
-		MobclickAgent.onPause(this);
+//		MobclickAgent.onPause(this);
 	}
 
 
@@ -257,7 +256,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 						Toast.LENGTH_SHORT).show();
 				exitTime = System.currentTimeMillis();
 			} else {
-				MobclickAgent.onKillProcess(MainActivity.this);
+//				MobclickAgent.onKillProcess(MainActivity.this);
 				finish();
 			}
 

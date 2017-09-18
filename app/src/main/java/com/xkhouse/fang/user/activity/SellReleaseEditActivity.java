@@ -138,11 +138,11 @@ public class SellReleaseEditActivity extends AppBaseActivity {
 
         fillData();
 
-        if (Constants.USER_JING_JI_REN.equals(modelApp.getUser().getMemberType()) &&
-                StringUtil.isEmpty(modelApp.getUser().getOldhouseSaleExtAuth())) {
-            sell_name_txt.setFocusable(false);
-            sell_phone_txt.setFocusable(false);
-        }
+//        if (Constants.USER_JING_JI_REN.equals(modelApp.getUser().getMemberType()) &&
+//                StringUtil.isEmpty(modelApp.getUser().getOldhouseSaleExtAuth())) {
+//            sell_name_txt.setFocusable(false);
+//            sell_phone_txt.setFocusable(false);
+//        }
 
     }
 
@@ -546,7 +546,7 @@ public class SellReleaseEditActivity extends AppBaseActivity {
             DeletePhotoUrl = delSB.substring(0, delSB.length() - 1);
         }
 
-        SellReleaseEditRequest request = new SellReleaseEditRequest(modelApp.getUser().getUid(),
+        SellReleaseEditRequest request = new SellReleaseEditRequest(modelApp.getUser().getId(),
                 modelApp.getSite().getSiteId(),
                 sellReleaseEditBean, NewPhotoUrl, DeletePhotoUrl,
                 new RequestListener() {

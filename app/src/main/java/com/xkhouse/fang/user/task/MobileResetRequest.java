@@ -22,37 +22,47 @@ import java.util.Map;
  */
 public class MobileResetRequest {
 
-	private String TAG = "MobileResetRequest";
+	private String TAG = MobileResetRequest.class.getSimpleName();
 	private RequestListener requestListener;
 
-	private String userId;
-	private String mobile;  	//手机号
-	private String mobileCode; 	//验证码
+	private String token;
+	private String oldphone;
+	private String oldverif;
+	private String newphone;
+	private String newverif;
 
 	private String code;	//返回状态
 	private String msg;		//返回提示语
 
 
-	public MobileResetRequest(String userId, String mobile, String mobileCode, RequestListener requestListener) {
+	public MobileResetRequest(String token, String oldphone, String oldverif, String newphone, String newverif,
+							  RequestListener requestListener) {
 		
-		this.mobile = mobile;
-		this.userId = userId;
-		this.mobileCode = mobileCode;
+		this.token = token;
+		this.oldphone = oldphone;
+		this.oldverif = oldverif;
+		this.newphone = newphone;
+		this.newverif = newverif;
+
 		this.requestListener = requestListener;
 	}
 	
 	
-	public void setData(String mobile, String mobileCode) {
-		this.mobile = mobile;
-		this.mobileCode = mobileCode;
+	public void setData(String oldphone, String oldverif, String newphone, String newverif) {
+		this.oldphone = oldphone;
+		this.oldverif = oldverif;
+		this.newphone = newphone;
+		this.newverif = newverif;
 	}
 	
 	public void doRequest(){
 		
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("userId", userId);
-		params.put("mobile", mobile);
-		params.put("mobileCode", mobileCode);
+		params.put("token", token);
+		params.put("oldphone", oldphone);
+		params.put("oldverif", oldverif);
+		params.put("newphone", newphone);
+		params.put("newverif", newverif);
 
 		String url = StringUtil.getRequestUrl(Constants.USER_MOBILE_RESET, params);
 		Logger.d(TAG, url); 
@@ -66,7 +76,7 @@ public class MobileResetRequest {
                         parseResult(response);
                         
                         Message message = new Message();
-                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
+                        if(Constants.SUCCESS_CODE.equals(code)){
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
                         	message.obj = msg;
                         }else{
@@ -103,11 +113,12 @@ public class MobileResetRequest {
         	
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject != null) {
-            	code = jsonObject.optString("code");
-                msg = jsonObject.optString("data");
+            	code = jsonObject.optString("status");
+                msg = jsonObject.optString("msg");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 	}
+
 }

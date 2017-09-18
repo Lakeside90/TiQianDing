@@ -4,8 +4,7 @@ import java.io.Serializable;
 
 /** 
  * @Description: 用户信息
- * @author wujian  
- * @date 2015-10-23 上午9:40:32  
+ * @author wujian
  */
 public class User implements Serializable {
 
@@ -13,111 +12,121 @@ public class User implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 234563213L;
-	
-	/** id **/
-	private String uid;
-	
-	/** 用户名 **/
-	private String userName;
-	
-	/** 密码 **/
-	private String password;
-	
-	/** 支付密码 **/
-	private String payPassword;
-	
-	/** 真实姓名 **/
-	private String realName;
-	
-	/** 昵称 **/
-	private String nickName;
-	
-	/** 邮箱 **/
-	private String email;
-	
-	/** 固定电话 **/
-	private String phone;
-	
-	/** 手机号码 **/
-	private String mobile;
-	
-	/** 年龄 **/
-	private String age;
-	
-	/** 时间戳 **/
-	private String lastLogintTime;
-	
-	/** 登录次数 **/
-	private String loginNum;
-	
-	/** 1,男，2，女 **/
-	private String sex;
-	
-	/** 所在城市 **/
-	private String city;
-	
-	/** 用户头像 **/
-	private String headPhoto;
-
-    /** 邀请码 **/
-	private String nuid;
-
-    /** 密码是否设置了，0没有设置 1 设置 **/
-	private String passportstatus;
-
-    /** 1 个人 2 经纪人 3 中介 4 律师 **/
-    private String memberType;
-
-    /** 发布出售房源是否可以修改联系人 有值：可以  没值：不可以 **/
-    private String oldhouseSaleExtAuth;
-
-    /** 发布出租房源是否可以修改联系人 有值：可以   没值：不可以 **/
-    private String oldhouseHireExtAuth;
-
-    /** 1: 用户名不能修改，*/
-    private String usernamestatus;
 
     /**  登陆保存的token**/
     private String token;
-	
-	public String getUid() {
-		return uid;
+
+	private String id;
+
+	private String nickname;
+
+	private String realname;
+
+	private String head_img;
+
+	/**
+	 * 钱包总金额
+	 */
+	private String account_balance;
+
+	/**
+	 * 活动机会
+	 */
+	private String activity_num;
+
+	/**
+	 * 商家id（用户为员工时有值）
+	 */
+	private String business_id;
+
+	/**
+	 * 性别
+	 */
+	private String gender;
+
+	private String phone;
+
+	/**
+	 * 兴趣
+	 */
+	private String interest;
+
+	/**
+	 * 是否为员工
+	 */
+	private String is_staff;
+
+
+	public String getToken() {
+		return token;
 	}
 
-	public void setUid(String uid) {
-		this.uid = uid;
+	public void setToken(String token) {
+		this.token = token;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getId() {
+		return id;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getRealName() {
-		return realName;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setRealName(String realName) {
-		this.realName = realName;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
-	public String getNickName() {
-		return nickName;
+	public String getRealname() {
+		return realname;
 	}
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setRealname(String realname) {
+		this.realname = realname;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getHead_img() {
+		return head_img;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setHead_img(String head_img) {
+		this.head_img = head_img;
+	}
+
+	public String getAccount_balance() {
+		return account_balance;
+	}
+
+	public void setAccount_balance(String account_balance) {
+		this.account_balance = account_balance;
+	}
+
+	public String getActivity_num() {
+		return activity_num;
+	}
+
+	public void setActivity_num(String activity_num) {
+		this.activity_num = activity_num;
+	}
+
+	public String getBusiness_id() {
+		return business_id;
+	}
+
+	public void setBusiness_id(String business_id) {
+		this.business_id = business_id;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getPhone() {
@@ -128,131 +137,19 @@ public class User implements Serializable {
 		this.phone = phone;
 	}
 
-	public String getMobile() {
-		return mobile;
+	public String getInterest() {
+		return interest;
 	}
 
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
+	public void setInterest(String interest) {
+		this.interest = interest;
 	}
 
-	public String getAge() {
-		return age;
+	public String getIs_staff() {
+		return is_staff;
 	}
 
-	public void setAge(String age) {
-		this.age = age;
+	public void setIs_staff(String is_staff) {
+		this.is_staff = is_staff;
 	}
-
-	public String getLastLogintTime() {
-		return lastLogintTime;
-	}
-
-	public void setLastLogintTime(String lastLogintTime) {
-		this.lastLogintTime = lastLogintTime;
-	}
-
-	public String getLoginNum() {
-		return loginNum;
-	}
-
-	public void setLoginNum(String loginNum) {
-		this.loginNum = loginNum;
-	}
-
-	public String getSex() {
-		return sex;
-	}
-
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getHeadPhoto() {
-		return headPhoto;
-	}
-
-	public void setHeadPhoto(String headPhoto) {
-		this.headPhoto = headPhoto;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getPayPassword() {
-		return payPassword;
-	}
-
-	public void setPayPassword(String payPassword) {
-		this.payPassword = payPassword;
-	}
-
-    public String getNuid() {
-        return nuid;
-    }
-
-    public void setNuid(String nuid) {
-        this.nuid = nuid;
-    }
-
-    public String getPassportstatus() {
-        return passportstatus;
-    }
-
-    public void setPassportstatus(String passportstatus) {
-        this.passportstatus = passportstatus;
-    }
-
-    public String getMemberType() {
-        return memberType;
-    }
-
-    public void setMemberType(String memberType) {
-        this.memberType = memberType;
-    }
-
-    public String getOldhouseSaleExtAuth() {
-        return oldhouseSaleExtAuth;
-    }
-
-    public void setOldhouseSaleExtAuth(String oldhouseSaleExtAuth) {
-        this.oldhouseSaleExtAuth = oldhouseSaleExtAuth;
-    }
-
-    public String getOldhouseHireExtAuth() {
-        return oldhouseHireExtAuth;
-    }
-
-    public void setOldhouseHireExtAuth(String oldhouseHireExtAuth) {
-        this.oldhouseHireExtAuth = oldhouseHireExtAuth;
-    }
-
-    public String getUsernamestatus() {
-        return usernamestatus;
-    }
-
-    public void setUsernamestatus(String usernamestatus) {
-        this.usernamestatus = usernamestatus;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
 }

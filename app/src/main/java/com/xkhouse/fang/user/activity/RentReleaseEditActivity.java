@@ -162,11 +162,11 @@ public class RentReleaseEditActivity extends AppBaseActivity {
 
         fillData();
 
-        if(Constants.USER_JING_JI_REN.equals(modelApp.getUser().getMemberType()) &&
-                StringUtil.isEmpty(modelApp.getUser().getOldhouseHireExtAuth())){
-            rent_name_txt.setFocusable(false);
-            rent_phone_txt.setFocusable(false);
-        }
+//        if(Constants.USER_JING_JI_REN.equals(modelApp.getUser().getMemberType()) &&
+//                StringUtil.isEmpty(modelApp.getUser().getOldhouseHireExtAuth())){
+//            rent_name_txt.setFocusable(false);
+//            rent_phone_txt.setFocusable(false);
+//        }
     }
 
 
@@ -625,7 +625,7 @@ public class RentReleaseEditActivity extends AppBaseActivity {
             DeletePhotoUrl = delSB.substring(0, delSB.length()-1);
         }
 
-        RentReleaseEditRequest request = new RentReleaseEditRequest(modelApp.getUser().getUid(),
+        RentReleaseEditRequest request = new RentReleaseEditRequest(modelApp.getUser().getId(),
                 modelApp.getSite().getSiteId(),
                 rentReleaseEditBean, NewPhotoUrl, DeletePhotoUrl,
                 new RequestListener() {

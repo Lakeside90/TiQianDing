@@ -221,7 +221,7 @@ public class JJRRentDeleteItemView implements OnClickListener{
 
         if (NetUtil.detectAvailable(context)) {
             if(rentReleaseListRequest == null){
-                rentReleaseListRequest = new RentReleaseListRequest(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),"3",
+                rentReleaseListRequest = new RentReleaseListRequest(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),"3",
                         page, pageSize, new RequestListener() {
 
                     @Override
@@ -275,7 +275,7 @@ public class JJRRentDeleteItemView implements OnClickListener{
                     }
                 });
             }else {
-                rentReleaseListRequest.setData(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),
+                rentReleaseListRequest.setData(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
                         "3", page, pageSize);
             }
 
@@ -362,7 +362,7 @@ public class JJRRentDeleteItemView implements OnClickListener{
     //重新发布
     private void release(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseAgainRequest request = new ReleaseAgainRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseAgainRequest request = new ReleaseAgainRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -402,7 +402,7 @@ public class JJRRentDeleteItemView implements OnClickListener{
     //彻底删除
     private void clear(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseClearRequest request = new ReleaseClearRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseClearRequest request = new ReleaseClearRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -442,7 +442,7 @@ public class JJRRentDeleteItemView implements OnClickListener{
     //编辑出租
     private void rentReleaseInfoTask(String releaseId){
         if (NetUtil.detectAvailable(context)) {
-            RentReleaseInfoRequest request = new RentReleaseInfoRequest( modelApp.getUser().getUid(),
+            RentReleaseInfoRequest request = new RentReleaseInfoRequest( modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), releaseId, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {

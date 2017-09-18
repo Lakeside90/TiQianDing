@@ -229,7 +229,7 @@ public class JJRSellUnreleaseItemView implements OnClickListener{
 
         if (NetUtil.detectAvailable(context)) {
             if(sellReleaseListRequest == null){
-                sellReleaseListRequest = new SellReleaseListRequest(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),"2",
+                sellReleaseListRequest = new SellReleaseListRequest(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),"2",
                         page, pageSize, new RequestListener() {
 
                     @Override
@@ -283,7 +283,7 @@ public class JJRSellUnreleaseItemView implements OnClickListener{
                     }
                 });
             }else {
-                sellReleaseListRequest.setData(modelApp.getUser().getUid(), modelApp.getSite().getSiteId(),
+                sellReleaseListRequest.setData(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
                         "2", page, pageSize);
             }
 
@@ -372,7 +372,7 @@ public class JJRSellUnreleaseItemView implements OnClickListener{
     //上架
     private void shangjia(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseShangXiaJiaRequest request = new ReleaseShangXiaJiaRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseShangXiaJiaRequest request = new ReleaseShangXiaJiaRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, ReleaseShangXiaJiaRequest.SHANG_JIA, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -412,7 +412,7 @@ public class JJRSellUnreleaseItemView implements OnClickListener{
     //删除
     private void delete(String releaseId, String type){
         if (NetUtil.detectAvailable(context)) {
-            ReleaseDeleteRequest request = new ReleaseDeleteRequest(releaseId, modelApp.getUser().getUid(),
+            ReleaseDeleteRequest request = new ReleaseDeleteRequest(releaseId, modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), type, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
@@ -452,7 +452,7 @@ public class JJRSellUnreleaseItemView implements OnClickListener{
     //编辑出售
     private void sellReleaseInfoTask(String releaseId){
         if (NetUtil.detectAvailable(context)) {
-            SellReleaseInfoRequest request = new SellReleaseInfoRequest( modelApp.getUser().getUid(),
+            SellReleaseInfoRequest request = new SellReleaseInfoRequest( modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(), releaseId, new RequestListener() {
                 @Override
                 public void sendMessage(Message message) {
