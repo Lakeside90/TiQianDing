@@ -473,7 +473,7 @@ public class RentReleaseActivity extends AppBaseActivity {
         }
 
 
-        RentReleaseRequest request = new RentReleaseRequest(modelApp.getUser().getUid(),
+        RentReleaseRequest request = new RentReleaseRequest(modelApp.getUser().getId(),
                 modelApp.getSite().getSiteId(),
                 requestBean,
                 new RequestListener() {

@@ -292,7 +292,7 @@ public class RentInActivity extends AppBaseActivity {
             requestBean.setSharedType(hezuType.getId());
             requestBean.setRentType(zulinType.getId());
 
-            RentInRequest request = new RentInRequest(modelApp.getUser().getUid(),
+            RentInRequest request = new RentInRequest(modelApp.getUser().getId(),
                     modelApp.getSite().getSiteId(),
                     requestBean,
                     new RequestListener() {

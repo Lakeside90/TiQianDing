@@ -40,7 +40,8 @@
                 android:hint="请输入手机号"
                 android:textColor="@color/common_black_txt"
                 android:textColorHint="@color/common_gray_txt"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:inputType="phone"/>
         </LinearLayout>
 
         <View

@@ -26,6 +26,7 @@ import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
+import com.xkhouse.fang.app.config.Preference;
 import com.xkhouse.fang.app.entity.Site;
 import com.xkhouse.fang.app.util.BitmapManager;
 import com.xkhouse.fang.app.util.uploadImg.UploadTask;
@@ -241,7 +242,8 @@ public class UserInfoActivity extends AppBaseActivity {
                 break;
 
             case R.id.account_safe_txt:
-                //TODO Logout
+                Preference.getInstance().writeIsLogin(false);
+                finish();
                 break;
 
 		}

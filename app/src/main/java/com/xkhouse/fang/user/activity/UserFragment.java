@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -29,7 +30,9 @@ import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.config.Preference;
 import com.xkhouse.fang.booked.activity.LuckDetailActivity;
+import com.xkhouse.fang.user.entity.User;
 import com.xkhouse.fang.user.task.MsgFavoriteNumRequest;
+import com.xkhouse.fang.user.task.UserInfoRequest;
 import com.xkhouse.fang.user.task.WalletListRequest;
 import com.xkhouse.fang.widget.circle.CircleImageView;
 import com.xkhouse.lib.utils.NetUtil;
@@ -192,12 +195,11 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
             case R.id.user_lay:
-//                if(Preference.getInstance().readIsLogin()){
-//                    startActivity(new Intent(getActivity(), UserInfoActivity.class));
-//                }else {
-//                    startActivity(new Intent(getActivity(), LoginActivity.class));
-//                }
-                startActivity(new Intent(getActivity(), UserInfoActivity.class));
+                if(Preference.getInstance().readIsLogin()){
+                    startActivity(new Intent(getActivity(), UserInfoActivity.class));
+                }else {
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                }
                 break;
 
             case R.id.money_lay:
@@ -321,61 +323,31 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
             return;
         }
 
-        if(NetUtil.detectAvailable(getActivity())){
-            // 我的余额 TODO 网络请求带替换
-            if(msgNumRequest == null){
-                msgNumRequest = new MsgFavoriteNumRequest(modelApp.getUser().getId(), "1", new RequestListener() {
+        if(NetUtil.detectAvailable(getContext())){
+            UserInfoRequest request = new UserInfoRequest(modelApp.getUser().getToken(), new RequestListener() {
 
-                    @Override
-                    public void sendMessage(Message message) {
-                        hideLoadingDialog();
-                        switch (message.what) {
-                            case Constants.ERROR_DATA_FROM_NET:
-                            case Constants.NO_DATA_FROM_NET:
-                                money_num_txt.setText("--");
-                                break;
+                @Override
+                public void sendMessage(Message message) {
+                    hideLoadingDialog();
+                    switch (message.what) {
+                        case Constants.ERROR_DATA_FROM_NET:
+                        case Constants.NO_DATA_FROM_NET:
+                            break;
 
-                            case Constants.SUCCESS_DATA_FROM_NET:
-                                String count = (String) message.obj;
-                                money_num_txt.setText(count);
-                                break;
-                        }
+                        case Constants.SUCCESS_DATA_FROM_NET:
+                            User user = (User) message.obj;
+                            modelApp.setUser(user);
+                            money_num_txt.setText(user.getAccount_balance());
+                            changes_num_txt.setText(user.getActivity_num());
+                            break;
                     }
-                });
-            }else {
-                msgNumRequest.setData(modelApp.getUser().getId(), "1");
-            }
-            msgNumRequest.doRequest();
-
-            //抽奖机会次数  TODO 网络请求带替换
-            if(favoriteNumRequest == null){
-                favoriteNumRequest = new MsgFavoriteNumRequest(modelApp.getUser().getId(), "2", new RequestListener() {
-
-                    @Override
-                    public void sendMessage(Message message) {
-                        hideLoadingDialog();
-                        switch (message.what) {
-                            case Constants.ERROR_DATA_FROM_NET:
-                            case Constants.NO_DATA_FROM_NET:
-                                changes_num_txt.setText("--");
-                                break;
-
-                            case Constants.SUCCESS_DATA_FROM_NET:
-                                String count = (String) message.obj;
-                                changes_num_txt.setText(count);
-                                break;
-                        }
-                    }
-                });
-            }else {
-                favoriteNumRequest.setData(modelApp.getUser().getId(), "2");
-            }
-            favoriteNumRequest.doRequest();
-
+                }
+            });
+            request.doRequest();
 
         }else {
-            changes_num_txt.setText("--");
-            money_num_txt.setText("--");
+            changes_num_txt.setText(modelApp.getUser().getActivity_num());
+            money_num_txt.setText(modelApp.getUser().getAccount_balance());
         }
     }
 

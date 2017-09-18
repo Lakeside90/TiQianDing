@@ -1,5 +1,6 @@
 package com.xkhouse.fang.user.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
@@ -32,11 +33,16 @@ public class PswSetActivity extends AppBaseActivity {
 
 	
 	private PswSetRequest pswSetRequest;
+
+    private String phone;
 		
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+        username_txt.setText(phone);
+
     }
 	
 	
@@ -49,6 +55,7 @@ public class PswSetActivity extends AppBaseActivity {
 	@Override
 	protected void init() {
 		super.init();
+        phone = getIntent().getExtras().getString("phone");
 	}
 
 	@Override
@@ -124,6 +131,7 @@ public class PswSetActivity extends AppBaseActivity {
 				case Constants.SUCCESS_DATA_FROM_NET:
                     String msg2 = message.obj.toString();
                     Toast.makeText(mContext, msg2, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(PswSetActivity.this, LoginActivity.class));
                     finish();
 					break;
 				}

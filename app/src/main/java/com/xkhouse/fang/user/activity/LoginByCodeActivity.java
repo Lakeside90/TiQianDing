@@ -32,7 +32,6 @@ public class LoginByCodeActivity extends AppBaseActivity {
 
 	private ImageView iv_head_left;
 	private TextView tv_head_title;
-	private TextView tv_head_right;
 
     //手机号登录
     private EditText phone_txt;
@@ -86,9 +85,6 @@ public class LoginByCodeActivity extends AppBaseActivity {
 	private void initTitle() {
 		iv_head_left = (ImageView) findViewById(R.id.iv_head_left);
 		tv_head_title = (TextView) findViewById(R.id.tv_head_title);
-		tv_head_right = (TextView) findViewById(R.id.tv_head_right);
-		tv_head_right.setVisibility(View.VISIBLE);
-		tv_head_right.setText("新用户");
 		tv_head_title.setText("验证码登录");
 		iv_head_left.setOnClickListener(new OnClickListener() {
 
@@ -105,21 +101,6 @@ public class LoginByCodeActivity extends AppBaseActivity {
                 finish();
             }
         });
-		tv_head_right.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(mContext, RegisterActivity.class);
-//                if (clazz != null) {
-//                    intent.putExtra("classStr", clazz);
-//                    if (bundle != null) {
-//                        intent.putExtras(bundle);
-//                    }
-//                }
-//                startActivity(intent);
-            }
-        });
-		
 	}
 	
 	@Override
@@ -179,13 +160,16 @@ public class LoginByCodeActivity extends AppBaseActivity {
 				case Constants.SUCCESS_DATA_FROM_NET:
 					User user = (User) message.obj;
 					if(user != null){
-						Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
-						Preference.getInstance().writeIsLogin(true);
+//						Toast.makeText(mContext, "登录成功", Toast.LENGTH_SHORT).show();
+//						Preference.getInstance().writeIsLogin(true);
 						Preference.getInstance().writeUID(user.getId());
-//						Preference.getInstance().writePassword(user.getPassword());
                         Preference.getInstance().writeToken(user.getToken());
-						modelApp.setUser(user);
-						startToTargetAct();
+//						modelApp.setUser(user);
+//						startToTargetAct();
+                        Intent intent = new Intent(LoginByCodeActivity.this, PswSetActivity.class);
+                        intent.putExtra("phone", phone_txt.getText().toString());
+                        startActivity(intent);
+                        finish();
 					}else {
 						Toast.makeText(mContext, "登录失败", Toast.LENGTH_SHORT).show();
 					}
@@ -244,7 +228,6 @@ public class LoginByCodeActivity extends AppBaseActivity {
                             case Constants.SUCCESS_DATA_FROM_NET:
                                 Toast.makeText(mContext, (String)message.obj, Toast.LENGTH_SHORT).show();
                                 break;
-
                         }
                     }
                 });

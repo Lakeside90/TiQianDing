@@ -116,7 +116,7 @@ public class LoginActivity extends AppBaseActivity {
                 break;
 
             case R.id.login_code_txt:
-                Intent intent = new Intent(mContext, PswSetActivity.class);
+                Intent intent = new Intent(mContext, LoginByCodeActivity.class);
                 if (clazz != null) {
                     intent.putExtra("classStr", clazz);
                     if (bundle != null) {
