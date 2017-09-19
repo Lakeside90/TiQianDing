@@ -118,7 +118,7 @@
             </LinearLayout>
 
             <com.xkhouse.fang.widget.ScrollGridView
-                android:id="@+id/house_like_listview"
+                android:id="@+id/luck_gridview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"

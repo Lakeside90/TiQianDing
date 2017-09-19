@@ -70,9 +70,9 @@ public class BookedInfoListRequest {
 	public void doRequest(){
 		bookedInfoList.clear();
 		Map<String, String> params = new HashMap<>();
-        params.put("num", String.valueOf(num));
+        params.put("pagenum", String.valueOf(num));
         params.put("page", String.valueOf(page));
-        params.put("siteId", siteId);
+        params.put("cityId", siteId);
         params.put("is_recommend", isRecommend);
         String url = StringUtil.getRequestUrl(Constants.BOOKEDINFO_LIST, params);
         Logger.d(TAG, url);
@@ -142,7 +142,7 @@ public class BookedInfoListRequest {
         	
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject != null) {
-            	code = jsonObject.optString("code");
+            	code = jsonObject.optString("status");
             	
                 if (!Constants.SUCCESS_CODE.equals(code)) {
                 	msg = jsonObject.optString("msg");
@@ -162,6 +162,8 @@ public class BookedInfoListRequest {
                         bookedInfo.setBusinessName(json.optString("business_name"));
                         bookedInfo.setAverageConsump(json.optString("average_consump"));
                         bookedInfo.setBusinessAddress(json.optString("business_address"));
+                        bookedInfo.setCover_banner(json.optString("cover_banner"));
+                        bookedInfo.setCheck_discount(json.optString("check_discount"));
 
                         JSONArray labelArray = json.optJSONArray("business_label");
                         if (labelArray != null && labelArray.length() > 0) {

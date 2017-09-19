@@ -35,9 +35,9 @@ public class CommentAdapter extends BaseAdapter {
 		this.commentInfoList = recommendList;
 
 		options = new DisplayImageOptions.Builder()
-				.showImageOnLoading(R.drawable.nopic)   // 加载的图片
-				.showImageOnFail(R.drawable.nopic) // 错误的时候的图片
-				.showImageForEmptyUri(R.drawable.nopic)
+				.showImageOnLoading(R.drawable.user_sethead_default)   // 加载的图片
+				.showImageOnFail(R.drawable.user_sethead_default) // 错误的时候的图片
+				.showImageForEmptyUri(R.drawable.user_sethead_default)
 				.bitmapConfig(Bitmap.Config.RGB_565).cacheInMemory(true)
 				.cacheOnDisk(true).build();
 	}
@@ -118,7 +118,7 @@ public class CommentAdapter extends BaseAdapter {
 
 			user_icon_iv = (CircleImageView) view.findViewById(R.id.user_icon_iv);
 			nick_name_txt = (TextView) view.findViewById(R.id.nick_name_txt);
-			time_txt = (TextView) view.findViewById(R.id.nick_name_txt);
+			time_txt = (TextView) view.findViewById(R.id.time_txt);
 			star_one_iv = (ImageView) view.findViewById(R.id.star_one_iv);
 			star_two_iv = (ImageView) view.findViewById(R.id.star_two_iv);
 			star_three_iv = (ImageView) view.findViewById(R.id.star_three_iv);

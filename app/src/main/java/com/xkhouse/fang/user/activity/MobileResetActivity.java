@@ -56,6 +56,8 @@ public class MobileResetActivity extends AppBaseActivity {
 	@Override
 	protected void setContentView() {
 		setContentView(R.layout.activity_reset_mobile);
+		old_phone_txt.setText(modelApp.getUser().getPhone());
+
 	}
 
 	@Override
@@ -75,7 +77,7 @@ public class MobileResetActivity extends AppBaseActivity {
 		get_code_txt = (TextView) findViewById(R.id.get_code_txt);
 		code_txt = (EditText) findViewById(R.id.code_txt);
 
-
+		commit_txt = (TextView) findViewById(R.id.commit_txt);
 	}
 
 	private void initTitle() {

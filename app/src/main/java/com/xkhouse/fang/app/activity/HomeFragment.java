@@ -36,7 +36,6 @@ import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.entity.BookedInfo;
 import com.xkhouse.fang.app.entity.House;
-import com.xkhouse.fang.app.entity.LuckInfo;
 import com.xkhouse.fang.app.entity.Site;
 import com.xkhouse.fang.app.entity.XKAd;
 import com.xkhouse.fang.app.service.SiteDbService;
@@ -82,8 +81,8 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	private ArrayList<XKAd> adList;
 	private List<ImageView> pointViews;
 
-	//猜你喜欢
-	private ScrollGridView house_like_listview;
+	//最新抽奖
+	private ScrollGridView luck_gridview;
 	private LuckInfoListRequest luckInfoListRequest;
 
     //预定推荐
@@ -126,7 +125,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
         //滚动到顶部
         bookInfo_recommed_listview.setFocusable(false);
-        house_like_listview.setFocusable(false);
+        luck_gridview.setFocusable(false);
 
         //开始定位
 		mLocationManagerProxy = LocationManagerProxy.getInstance(getActivity());
@@ -209,7 +208,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 		content_scroll = (CustomScrollView) rootView.findViewById(R.id.content_scroll);
         scroll_top_iv = (ImageView) rootView.findViewById(R.id.scroll_top_iv);
 
-        house_like_listview = (ScrollGridView) rootView.findViewById(R.id.house_like_listview);
+        luck_gridview = (ScrollGridView) rootView.findViewById(R.id.luck_gridview);
 		bookInfo_recommed_listview = (ScrollXListView) rootView.findViewById(R.id.bookInfo_recommed_listview);
 
     }
@@ -487,15 +486,15 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 		
 		if (houseLikeAdapter == null) {
 			houseLikeAdapter = new HouseLikeAdapter(getActivity(), houseLikeList, startLatlng);
-			house_like_listview.setAdapter(houseLikeAdapter);
+			luck_gridview.setAdapter(houseLikeAdapter);
 		} else {
 			houseLikeAdapter.setData(houseLikeList, startLatlng);
 			houseLikeAdapter.notifyDataSetChanged();
 		}
 	}
 	
-	//猜你喜欢 （资讯）
-	private void fillNewsLikeData() {
+	//推荐预定
+	private void fillRecommedData() {
 		if(bookedInfoList == null) return;
 		
 		if (bookedInfoAdapter == null) {
@@ -569,7 +568,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 			case Constants.NO_DATA_FROM_NET:
 				if (bookedInfoList != null) {
 					bookedInfoList.clear();
-					fillNewsLikeData();
+					fillRecommedData();
 				}
 				break;
 				
@@ -583,7 +582,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 				}
 				currentPageIndex++;
 				bookedInfoList.addAll(temp);
-				fillNewsLikeData();
+				fillRecommedData();
 				break;
 			}
 			
@@ -636,10 +635,11 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
 	private void getDataFromNet(){
 		if (NetUtil.detectAvailable(getActivity())) {
-			//猜你喜欢
+			//最新抽奖
             HouseLikeListRequest houseLikeListRequest = new HouseLikeListRequest(modelApp.getSite().getSiteId(), 10, 1, houseLikeListener);
 			houseLikeListRequest.doRequest();
-			
+
+			//推荐预定
 			isPullDown = true;
 			currentPageIndex = 1;
 			startBookedInfoListTask(1);
@@ -670,7 +670,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
         BookedInfoListRequest bookedInfoListRequest = new BookedInfoListRequest();
         bookedInfoListRequest.parseResult(AppCache.readBookInfoRecommedJson(modelApp.getSite().getSiteId()));
         bookedInfoList = bookedInfoListRequest.getBookedInfoList();
-        fillNewsLikeData();
+        fillRecommedData();
     }
 
     //清除上个站点的数据
@@ -687,7 +687,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
         if(bookedInfoList != null){
             bookedInfoList.clear();
-            fillNewsLikeData();
+            fillRecommedData();
         }
     }
 

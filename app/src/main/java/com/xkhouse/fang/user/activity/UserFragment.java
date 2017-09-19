@@ -10,6 +10,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
@@ -30,6 +32,7 @@ import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.config.Preference;
 import com.xkhouse.fang.booked.activity.LuckDetailActivity;
+import com.xkhouse.fang.booked.activity.StoreDetailActivity;
 import com.xkhouse.fang.user.entity.User;
 import com.xkhouse.fang.user.task.MsgFavoriteNumRequest;
 import com.xkhouse.fang.user.task.UserInfoRequest;
@@ -290,7 +293,29 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
                 break;
 
             case R.id.server_call_txt:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("tel:400-887-1216")));
+                // 检查是否获得了权限（Android6.0运行时权限）
+                if (ContextCompat.checkSelfPermission(getActivity(),
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+                    // 没有获得授权，申请授权
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                            Manifest.permission.CALL_PHONE)) {
+                        Toast.makeText(getActivity(), "请授权！", Toast.LENGTH_LONG).show();
+
+                        // 帮跳转到该应用的设置界面，让用户手动授权
+                        Intent callIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", getContext().getPackageName(), null);
+                        callIntent.setData(uri);
+                        startActivity(callIntent);
+                    }else{
+                        // 不需要解释为何需要该权限，直接请求授权
+                        ActivityCompat.requestPermissions(getActivity(),
+                                new String[]{Manifest.permission.CALL_PHONE},
+                                MY_PERMISSIONS_REQUEST_CALL_PHONE);
+                    }
+                }else {
+                    // 已经获得授权，可以打电话
+                    CallPhone();
+                }
             break;
 		}
 	}
@@ -300,15 +325,22 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 		
 		if(Preference.getInstance().readIsLogin()){
 			if(StringUtil.isEmpty(modelApp.getUser().getNickname())){
-				username_txt.setText(modelApp.getUser().getPhone());
+				username_txt.setText(modelApp.getUser().getNickname());
 			}else {
 				username_txt.setText(modelApp.getUser().getNickname());
 			}
 			ImageLoader.getInstance().displayImage(modelApp.getUser().getHead_img(),
 					user_icon_iv, options);
+            if ("1".equals(modelApp.getUser().getIs_staff())) {
+                employee_txt.setVisibility(View.VISIBLE);
+            }else {
+                employee_txt.setVisibility(View.GONE);
+            }
+
 		}else {
 			username_txt.setText("您还没有登录哦~");
 			ImageLoader.getInstance().displayImage("", user_icon_iv, options);
+            employee_txt.setVisibility(View.GONE);
 		}
 		
 		getCount();
@@ -339,6 +371,18 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
                             modelApp.setUser(user);
                             money_num_txt.setText(user.getAccount_balance());
                             changes_num_txt.setText(user.getActivity_num());
+                            if(StringUtil.isEmpty(modelApp.getUser().getNickname())){
+                                username_txt.setText(modelApp.getUser().getNickname());
+                            }else {
+                                username_txt.setText(modelApp.getUser().getNickname());
+                            }
+                            ImageLoader.getInstance().displayImage(modelApp.getUser().getHead_img(),
+                                    user_icon_iv, options);
+                            if ("1".equals(modelApp.getUser().getIs_staff())) {
+                                employee_txt.setVisibility(View.VISIBLE);
+                            }else {
+                                employee_txt.setVisibility(View.GONE);
+                            }
                             break;
                     }
                 }
@@ -354,22 +398,32 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 
 
 
+    private void CallPhone() {
+        Intent intent = new Intent(); // 意图对象：动作 + 数据
+        intent.setAction(Intent.ACTION_CALL); // 设置动作
+        Uri data = Uri.parse("tel:400-888-8888"); // 设置数据
+        intent.setData(data);
+        startActivity(intent); // 激活Activity组件
+    }
+
+    private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 1;
+    // 处理权限申请的回调
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if(requestCode == READ_PHONE_STATE_REQUEST_CODE){
-            // If request is cancelled, the result arrays are empty.
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                TelephonyManager tm = (TelephonyManager)getActivity().getSystemService(Context.TELEPHONY_SERVICE);
-                DEVICE_ID = tm.getDeviceId();
-
-            } else {
-                //没有取得权限
+        switch (requestCode){
+            case MY_PERMISSIONS_REQUEST_CALL_PHONE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 授权成功，继续打电话
+                    CallPhone();
+                } else {
+                    // 授权失败！
+                    Toast.makeText(getActivity(), "授权失败！", Toast.LENGTH_LONG).show();
+                }
+                break;
             }
         }
+
     }
 
 }

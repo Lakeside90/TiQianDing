@@ -116,7 +116,7 @@ public class PswSetRequest {
         	
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject != null) {
-            	code = jsonObject.optString("code");
+            	code = jsonObject.optString("status");
                 msg = jsonObject.optString("msg");
 
                 JSONObject dataObj = jsonObject.optJSONObject("data");

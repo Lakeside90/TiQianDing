@@ -35,6 +35,7 @@ public class StoreDetailRequest {
     private RequestListener requestListener;
 
     private String business_id;
+    private String siteId;
 
 
     private String code;    //返回状态
@@ -42,21 +43,24 @@ public class StoreDetailRequest {
 
     private StoreDetail storeDetail;
 
-    public StoreDetailRequest(String business_id,
+    public StoreDetailRequest(String business_id, String siteId,
                               RequestListener requestListener) {
         this.business_id = business_id;
+        this.siteId = siteId;
         this.requestListener = requestListener;
     }
 
 
-    public void setData(String business_id) {
+    public void setData(String business_id, String siteId) {
         this.business_id = business_id;
+        this.siteId = siteId;
     }
 
     public void doRequest() {
 
         Map<String, String> params = new HashMap<String, String>();
         params.put("business_id", business_id);
+        params.put("cityId", siteId);
 
         String url = StringUtil.getRequestUrl(Constants.STORE_DETAIL, params);
         Logger.d(TAG, url);
@@ -129,6 +133,7 @@ public class StoreDetailRequest {
                     storeDetail.setBusinessName(dataObj.optString("business_name"));
                     storeDetail.setAverageConsump(dataObj.optString("average_consump"));
                     storeDetail.setAddress(dataObj.optString("business_address"));
+                    storeDetail.setPhone(dataObj.optString("business_phone"));
 
                     JSONArray labelArray = dataObj.optJSONArray("business_label");
                     if (labelArray != null && labelArray.length() > 0) {
@@ -138,6 +143,17 @@ public class StoreDetailRequest {
                         }
                         storeDetail.setBusinessLabel(labels);
                     }
+
+                    JSONArray bannerArray = dataObj.optJSONArray("banner");
+                    if (bannerArray != null && bannerArray.length() > 0) {
+                        String[] banners = new String[bannerArray.length()];
+                        for (int j = 0; j < bannerArray.length(); j++) {
+                            banners[j] = bannerArray.optString(j);
+                        }
+                        storeDetail.setBanner(banners);
+                    }
+
+
                 }
             }
         } catch (Exception e) {

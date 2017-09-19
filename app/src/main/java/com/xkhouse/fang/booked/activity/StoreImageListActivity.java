@@ -94,10 +94,12 @@ public class StoreImageListActivity extends AppBaseActivity {
 
         // ViewPager的adapter
         pager = (ViewPager) findViewById(R.id.pager);
+//        adapter = new TabPageIndicatorAdapter();
+//        pager.setAdapter(adapter);
 
         // 实例化TabPageIndicator然后设置ViewPager与之关联
         indicator = (TabPageIndicator) findViewById(R.id.indicator);
-        indicator.setViewPager(pager);
+//        indicator.setViewPager(pager);
 
 	}
 
@@ -140,7 +142,7 @@ public class StoreImageListActivity extends AppBaseActivity {
         types = new String[categoryList.size()];
         titles = new String[categoryList.size()];
         for (int i = 0; i < categoryList.size(); i++) {
-            titles[i] = categoryList.get(i).getCategory_id();
+            types[i] = categoryList.get(i).getCategory_id();
             titles[i] = categoryList.get(i).getTitle();
         }
 
@@ -152,8 +154,7 @@ public class StoreImageListActivity extends AppBaseActivity {
 
         adapter = new TabPageIndicatorAdapter();
         pager.setAdapter(adapter);
-
-
+        indicator.setViewPager(pager);
 	}
 
 

@@ -97,7 +97,7 @@ public class Constants {
     /******************************* 预定 *******************************/
 
     /** 商家详情  **/
-    public static String STORE_DETAIL = HOST + "/v1/business/business_detail";
+    public static String STORE_DETAIL = HOST + "/v1/Business/business_detail";
 
     /** 商家评论  **/
     public static String STORE_COMMENT = HOST + "/v1/business/business_comment";

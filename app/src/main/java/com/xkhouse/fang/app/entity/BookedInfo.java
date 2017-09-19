@@ -16,6 +16,8 @@ public class BookedInfo implements Serializable {
     private String businessAddress;
     private String[] businessLabel;
     private String orderNum;
+    private String cover_banner;
+    private String check_discount;
 
     public String getBookingId() {
         return bookingId;
@@ -79,5 +81,21 @@ public class BookedInfo implements Serializable {
 
     public void setOrderNum(String orderNum) {
         this.orderNum = orderNum;
+    }
+
+    public String getCover_banner() {
+        return cover_banner;
+    }
+
+    public void setCover_banner(String cover_banner) {
+        this.cover_banner = cover_banner;
+    }
+
+    public String getCheck_discount() {
+        return check_discount;
+    }
+
+    public void setCheck_discount(String check_discount) {
+        this.check_discount = check_discount;
     }
 }

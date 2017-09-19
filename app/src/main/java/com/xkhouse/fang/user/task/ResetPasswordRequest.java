@@ -59,7 +59,7 @@ public class ResetPasswordRequest {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("token", token);
 		params.put("phone", phone);
-		params.put("passWord", passWord);
+		params.put("password", passWord);
 		params.put("verif", verif);
 		params.put("verifpassword", passWord);
 		

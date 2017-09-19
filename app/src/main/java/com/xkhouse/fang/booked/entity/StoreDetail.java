@@ -14,7 +14,9 @@ public class StoreDetail implements Serializable {
     private String businessName;
     private String averageConsump;
     private String address;
+    private String phone;
     private String[] businessLabel;
+    private String[] banner;
 
 
     public String getBusinessId() {
@@ -55,5 +57,22 @@ public class StoreDetail implements Serializable {
 
     public void setBusinessLabel(String[] businessLabel) {
         this.businessLabel = businessLabel;
+    }
+
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String[] getBanner() {
+        return banner;
+    }
+
+    public void setBanner(String[] banner) {
+        this.banner = banner;
     }
 }

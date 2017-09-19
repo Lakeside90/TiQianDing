@@ -95,7 +95,7 @@ public class BookedInfoAdapter extends BaseAdapter {
 		
 		final BookedInfo bookedInfo = bookedInfos.get(position);
 		
-		ImageLoader.getInstance().displayImage("", holder.icon_iv, options);
+		ImageLoader.getInstance().displayImage(bookedInfo.getCover_banner(), holder.icon_iv, options);
 
         holder.store_name_txt.setText(bookedInfo.getBusinessName());
         holder.price_txt.setText("¥"+ bookedInfo.getAverageConsump() + "/人");
@@ -111,7 +111,7 @@ public class BookedInfoAdapter extends BaseAdapter {
                         DisplayUtil.dip2px(context, 3),
                         DisplayUtil.dip2px(context, 2));
                 textView.setTextColor(context.getResources().getColor(R.color.common_gray_txt));
-                textView.setTextSize(DisplayUtil.dip2px(context, 12));
+                textView.setTextSize(12);
                 textView.setBackground(context.getResources().getDrawable(R.drawable.gray_border_btn_bg));
                 textView.setText(label);
                 holder.label_lay.addView(textView, lps);
@@ -124,7 +124,12 @@ public class BookedInfoAdapter extends BaseAdapter {
 
         holder.distance_txt.setText(""); // TODO: 17/9/9
 
-        holder.mai_txt.setText("");  // TODO: 17/9/9
+        if (StringUtil.isEmpty(bookedInfo.getCheck_discount())) {
+            holder.mai_lay.setVisibility(View.GONE);
+        }else{
+            holder.mai_lay.setVisibility(View.VISIBLE);
+            holder.mai_txt.setText(bookedInfo.getCheck_discount());
+        }
 
         if (StringUtil.isEmpty(bookedInfo.getDiscount())) {
             holder.booked_lay.setVisibility(View.GONE);

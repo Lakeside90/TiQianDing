@@ -1,5 +1,6 @@
 package com.xkhouse.fang.user.activity;
 
+import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,13 +37,17 @@ public class ResetPswActivity extends AppBaseActivity {
 	private TextView commit_txt;
 
 	//参数
-	private String token;
-	private String phone;	//手机号
 	private String verif;  	//验证码
 	private String passWord; //密码
 
 	private ResetPasswordRequest request;
-	
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		phone_txt.setText(modelApp.getUser().getPhone());
+	}
+
 	@Override
 	protected void setContentView() {
 		setContentView(R.layout.activity_reset_psw);
@@ -117,7 +122,7 @@ public class ResetPswActivity extends AppBaseActivity {
 		passWord = new_psw_txt.getText().toString();
 		String rePassWord = re_psw_txt.getText().toString();
 		if(StringUtil.isEmpty(passWord) || StringUtil.isEmpty(rePassWord) ||
-				StringUtil.isEmpty(phone) || StringUtil.isEmpty(verif)){
+				StringUtil.isEmpty(modelApp.getUser().getPhone()) || StringUtil.isEmpty(verif)){
 
 			Toast.makeText(mContext, "请填写完整！", Toast.LENGTH_SHORT).show();
 			return;
@@ -133,7 +138,7 @@ public class ResetPswActivity extends AppBaseActivity {
 		
 		if(NetUtil.detectAvailable(mContext)){
 			if(request == null){
-				request = new ResetPasswordRequest(token, phone,
+				request = new ResetPasswordRequest(modelApp.getUser().getToken(), modelApp.getUser().getPhone(),
 						 passWord, verif, new RequestListener() {
 					
 					@Override
@@ -156,7 +161,7 @@ public class ResetPswActivity extends AppBaseActivity {
 					}
 				});
 			}else {
-				request.setData(phone, passWord, verif);
+				request.setData(modelApp.getUser().getPhone(), passWord, verif);
 			}
 			showLoadingDialog("密码设置中...");
 			request.doRequest();

@@ -84,7 +84,7 @@
                         android:drawablePadding="10dp"
                         android:drawableRight="@drawable/icon_arrow_right"
                         android:gravity="center_vertical"
-                        android:text="demozi"
+                        android:text=""
                         android:textColor="@color/common_gray_txt"
                         android:textSize="14sp"/>
                 </LinearLayout>
@@ -120,7 +120,7 @@
                         android:drawablePadding="10dp"
                         android:drawableRight="@drawable/icon_arrow_right"
                         android:gravity="center_vertical"
-                        android:text="13912345656"
+                        android:text=""
                         android:textColor="@color/common_gray_txt"
                         android:textSize="14sp"/>
                 </LinearLayout>
@@ -234,7 +234,7 @@
                         android:drawablePadding="10dp"
                         android:drawableRight="@drawable/icon_arrow_right"
                         android:gravity="center_vertical"
-                        android:text="男"
+                        android:text=""
                         android:textColor="@color/common_gray_txt"
                         android:textSize="14sp"/>
                 </LinearLayout>
@@ -270,7 +270,7 @@
                         android:drawablePadding="10dp"
                         android:drawableRight="@drawable/icon_arrow_right"
                         android:gravity="center_vertical"
-                        android:text="游泳、足球"
+                        android:text=""
                         android:textColor="@color/common_gray_txt"
                         android:textSize="14sp"/>
                 </LinearLayout>

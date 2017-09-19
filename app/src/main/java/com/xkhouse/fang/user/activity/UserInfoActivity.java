@@ -203,10 +203,6 @@ public class UserInfoActivity extends AppBaseActivity {
                 break;
 
             case R.id.username_lay:
-    //            if("1".equals(modelApp.getUser().getUsernamestatus())){
-    //                Toast.makeText(mContext, "已修改过用户名！", Toast.LENGTH_SHORT).show();
-    //                return;
-    //            }
                 startActivity( new Intent(mContext, ChangeNameActivity.class));
                 break;
 
@@ -215,10 +211,7 @@ public class UserInfoActivity extends AppBaseActivity {
                 break;
 
             case R.id.psw_lay:
-                Intent intent = new Intent(mContext, ResetPswActivity.class);
-                Bundle phone = new Bundle();
-                phone.putString("mobile", "13954385098");
-                startActivity(intent);
+                startActivity(new Intent(mContext, ResetPswActivity.class));
                 break;
 			
             case R.id.realname_lay:
@@ -255,11 +248,11 @@ public class UserInfoActivity extends AppBaseActivity {
 				user_icon_iv, options);
 		
 		if(StringUtil.isEmpty(modelApp.getUser().getNickname())){
-			username_txt.setText("还没设置用户名哦");
+			username_txt.setText("还没设置昵称哦");
 		}else {
 			username_txt.setText(modelApp.getUser().getNickname());
 		}
-		
+		phone_txt.setText(modelApp.getUser().getPhone());
 		realname_txt.setText(modelApp.getUser().getRealname());
 		
 		if("1".equals(modelApp.getUser().getGender())){
@@ -267,6 +260,8 @@ public class UserInfoActivity extends AppBaseActivity {
 		}else if("2".equals(modelApp.getUser().getGender())) {
 			gender_txt.setText("女");
 		}
+
+		hobbies_txt.setText(modelApp.getUser().getInterest());
 	}
 	
 	

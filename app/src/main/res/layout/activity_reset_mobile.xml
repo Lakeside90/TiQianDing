@@ -34,7 +34,7 @@
                 android:background="@color/white"
                 android:textColor="@color/common_black_txt"
                 android:textSize="15sp"
-                android:text="111111"/>
+                android:text=""/>
 
             <TextView
                 android:id="@+id/get_old_code_txt"

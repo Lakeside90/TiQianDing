@@ -67,7 +67,7 @@
                 android:id="@+id/big_image"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                android:src="@drawable/umeng_socialize_fetch_image"/>
+                android:src="@drawable/nopic"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -97,7 +97,7 @@
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:lines="1"
-                            android:text="餐厅名字最多显示一行显示一行显示一行显示一行显示一行"
+                            android:text=""
                             android:textColor="@color/common_black_txt"
                             android:textSize="16sp"/>
 
@@ -112,7 +112,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="5dp"
-                                android:text="¥150/人"
+                                android:text=""
                                 android:textColor="@color/c_666666"
                                 android:textSize="13sp"/>
 
@@ -121,17 +121,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/gray_border_btn_bg"
-                                    android:paddingBottom="2dp"
-                                    android:paddingLeft="4dp"
-                                    android:paddingRight="4dp"
-                                    android:paddingTop="2dp"
-                                    android:text="酒吧"
-                                    android:textColor="@color/common_gray_txt"
-                                    android:textSize="12sp"/>
                             </LinearLayout>
 
                         </LinearLayout>
@@ -166,7 +155,7 @@
                         android:drawablePadding="5dp"
                         android:ellipsize="end"
                         android:lines="1"
-                        android:text="黄山路黄山路黄山路黄山路"
+                        android:text=""
                         android:textColor="@color/c_666666"
                         android:textSize="13sp"/>
 
@@ -208,7 +197,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="50抵200"
+                    android:text=""
                     android:textColor="@color/common_red"
                     android:textSize="13sp"/>
 
@@ -251,7 +240,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="买单95折"
+                    android:text=""
                     android:textColor="@color/c_666666"
                     android:textSize="13sp"/>
 
@@ -286,7 +275,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical|left"
-                    android:text="商家抽奖（13）"
+                    android:text="商家抽奖"
                     android:textColor="@color/common_black_txt"
                     android:textSize="16sp"/>
 
@@ -326,7 +315,7 @@
                 android:background="@color/white"
                 android:gravity="center_vertical|left"
                 android:paddingLeft="15dp"
-                android:text="网友评论（13）"
+                android:text="网友评论"
                 android:textColor="@color/common_black_txt"
                 android:textSize="16sp"/>
 

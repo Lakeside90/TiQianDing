@@ -1,8 +1,15 @@
 package com.xkhouse.fang.booked.activity;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
+import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -32,6 +39,7 @@ import com.xkhouse.fang.widget.ScrollXListView;
 import com.xkhouse.fang.widget.loading.RotateLoading;
 import com.xkhouse.fang.widget.xlist.XListView;
 import com.xkhouse.lib.utils.NetUtil;
+import com.xkhouse.lib.utils.StringUtil;
 
 import java.util.ArrayList;
 
@@ -214,13 +222,40 @@ public class StoreDetailActivity extends AppBaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.error_lay:
-
+                startTask();
+                startCommentTask(1);
                 break;
+
             case R.id.big_image:
-
+                Intent intent = new Intent(StoreDetailActivity.this, StoreImageListActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
                 break;
-            case R.id.call_iv:
 
+            case R.id.call_iv:
+                // 检查是否获得了权限（Android6.0运行时权限）
+                if (ContextCompat.checkSelfPermission(StoreDetailActivity.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+                    // 没有获得授权，申请授权
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(StoreDetailActivity.this,
+                            Manifest.permission.CALL_PHONE)) {
+                        Toast.makeText(StoreDetailActivity.this, "请授权！", Toast.LENGTH_LONG).show();
+
+                        // 帮跳转到该应用的设置界面，让用户手动授权
+                        Intent callIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", getPackageName(), null);
+                        callIntent.setData(uri);
+                        startActivity(callIntent);
+                    }else{
+                        // 不需要解释为何需要该权限，直接请求授权
+                        ActivityCompat.requestPermissions(StoreDetailActivity.this,
+                                new String[]{Manifest.permission.CALL_PHONE},
+                                MY_PERMISSIONS_REQUEST_CALL_PHONE);
+                    }
+                }else {
+                    // 已经获得授权，可以打电话
+                    CallPhone();
+                }
                 break;
 
             case R.id.go_mai_txt:
@@ -241,7 +276,9 @@ public class StoreDetailActivity extends AppBaseActivity {
     private void fillData() {
         if (storeDetail == null) return;
 
-        ImageLoader.getInstance().displayImage("", big_image, options);
+        if (storeDetail.getBanner() != null && storeDetail.getBanner().length > 0) {
+            ImageLoader.getInstance().displayImage(storeDetail.getBanner()[1], big_image, options);
+        }
 
         b_name_txt.setText(storeDetail.getBusinessName());
         ave_consum_txt.setText("¥" + storeDetail.getAverageConsump() + "/人");
@@ -269,6 +306,7 @@ public class StoreDetailActivity extends AppBaseActivity {
         address_txt.setText(storeDetail.getAddress());
 
         distance_txt.setText(""); // TODO: 17/9/9
+
 
 
     }
@@ -311,7 +349,7 @@ public class StoreDetailActivity extends AppBaseActivity {
                     content_scroll.setVisibility(View.VISIBLE);
                     error_lay.setVisibility(View.GONE);
 
-                    storeDetail = (StoreDetail) message.obj;
+                    storeDetail = (StoreDetail) message.getData().getSerializable("storeDetail");
 
                     fillData();
                     break;
@@ -322,9 +360,9 @@ public class StoreDetailActivity extends AppBaseActivity {
     private void startTask() {
         if (NetUtil.detectAvailable(mContext)) {
             if (request == null) {
-                request = new StoreDetailRequest(id, detailRequestListener);
+                request = new StoreDetailRequest(id, modelApp.getSite().getSiteId(), detailRequestListener);
             } else {
-                request.setData(id);
+                request.setData(id, modelApp.getSite().getSiteId());
             }
             content_scroll.setVisibility(View.GONE);
             error_lay.setVisibility(View.GONE);
@@ -394,5 +432,37 @@ public class StoreDetailActivity extends AppBaseActivity {
 
     }
 
+
+    private void CallPhone() {
+        if (storeDetail == null || StringUtil.isEmpty(storeDetail.getPhone())) {
+            Toast.makeText(this, "未获取到号码", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent intent = new Intent(); // 意图对象：动作 + 数据
+            intent.setAction(Intent.ACTION_CALL); // 设置动作
+            Uri data = Uri.parse("tel:" + storeDetail.getPhone()); // 设置数据
+            intent.setData(data);
+            startActivity(intent); // 激活Activity组件
+        }
+    }
+
+    private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 1;
+    // 处理权限申请的回调
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode){
+            case MY_PERMISSIONS_REQUEST_CALL_PHONE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // 授权成功，继续打电话
+                    CallPhone();
+                } else {
+                    // 授权失败！
+                    Toast.makeText(this, "授权失败！", Toast.LENGTH_LONG).show();
+                }
+                break;
+            }
+        }
+
+    }
 
 }
