@@ -17,6 +17,7 @@
         android:paddingLeft="15dp">
 
         <EditText
+            android:id="@+id/name_txt"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginRight="15dp"
@@ -34,6 +35,7 @@
             android:background="@color/common_diver_line"/>
 
         <EditText
+            android:id="@+id/phone_txt"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginRight="15dp"
@@ -66,6 +68,7 @@
                 android:text="所在地区"/>
 
             <TextView
+                android:id="@+id/city_txt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|right"
@@ -84,6 +87,7 @@
             android:background="@color/common_diver_line"/>
 
         <EditText
+            android:id="@+id/content_txt"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:background="@color/white"
@@ -98,6 +102,7 @@
     </LinearLayout>
 
     <CheckBox
+        android:id="@+id/check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -106,6 +111,7 @@
         android:textColor="@color/c_666666"/>
 
     <TextView
+        android:id="@+id/commit_txt"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="15dp"

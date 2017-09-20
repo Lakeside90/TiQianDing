@@ -16,10 +16,10 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/title_txt"
+            android:id="@+id/name_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="小明"
+            android:text=""
             android:textColor="@color/common_black_txt"
             android:textSize="16sp"
             />
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="15678563412"
+            android:text=""
             android:textColor="@color/common_black_txt"
             android:textSize="12sp"
             />
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginRight="15dp"
-        android:text="安徽省合肥市安徽省合肥市安徽省合肥市安徽省合肥市安徽省合肥市"
+        android:text=""
         android:textColor="@color/common_gray_txt"
         android:textSize="12sp"
         />
@@ -62,13 +62,15 @@
         android:orientation="horizontal">
 
         <CheckBox
+            android:id="@+id/check_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="设为默认地址"
+            android:text="默认地址"
             android:textSize="13sp"
             android:textColor="@color/c_666666"/>
 
         <TextView
+            android:id="@+id/edit_txt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -81,6 +83,7 @@
             />
 
         <TextView
+            android:id="@+id/delete_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"

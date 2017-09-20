@@ -1,5 +1,6 @@
 package com.xkhouse.fang.user.activity;
 
+import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -52,11 +53,17 @@ public class MobileResetActivity extends AppBaseActivity {
 	private String newverif;
 
 	private MobileResetRequest mobileResetRequest;
-	
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		old_phone_txt.setText(modelApp.getUser().getPhone());
+	}
+
 	@Override
 	protected void setContentView() {
 		setContentView(R.layout.activity_reset_mobile);
-		old_phone_txt.setText(modelApp.getUser().getPhone());
 
 	}
 

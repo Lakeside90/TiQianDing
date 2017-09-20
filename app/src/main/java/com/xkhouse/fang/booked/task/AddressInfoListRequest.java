@@ -60,7 +60,7 @@ public class AddressInfoListRequest {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("token", token);
         params.put("page", String.valueOf(page));
-        params.put("pageNum", String.valueOf(num));
+        params.put("pagenum", String.valueOf(num));
 
         String url = StringUtil.getRequestUrl(Constants.ADDRESS_LIST, params);
         Logger.d(TAG, url);

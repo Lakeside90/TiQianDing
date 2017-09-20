@@ -14,6 +14,8 @@ import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
+import com.xkhouse.fang.booked.entity.AddressInfo;
+import com.xkhouse.fang.booked.task.AddressInfoListRequest;
 import com.xkhouse.fang.user.adapter.AddressAdapter;
 import com.xkhouse.fang.user.entity.MSGNews;
 import com.xkhouse.fang.user.task.MessageDetailListRequest;
@@ -31,7 +33,7 @@ public class AddressListActivity extends AppBaseActivity {
 	
 	private ImageView iv_head_left;
 	private TextView tv_head_title;
-	
+
 	private XListView listView;
 	private AddressAdapter adapter;
 	private int currentPageIndex = 1;  //分页索引
@@ -40,21 +42,24 @@ public class AddressListActivity extends AppBaseActivity {
 
     private LinearLayout address_add_lay;
 
-    private LinearLayout notice_lay;
+	private LinearLayout content_lay;
     private RotateLoading rotate_loading;
     private LinearLayout error_lay;
 
-	private MessageDetailListRequest listRequest;
-	private ArrayList<MSGNews> newsList = new ArrayList<MSGNews>();
+	private AddressInfoListRequest listRequest;
+	private ArrayList<AddressInfo> addressInfos = new ArrayList<>();
+
+//	private MessageDetailListRequest listRequest;
+//	private ArrayList<MSGNews> newsList = new ArrayList<MSGNews>();
 
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		startDataTask(1, true);
 
-        fillData();
+		startDataTask(1, true);
+
 	}
 	
 	
@@ -66,7 +71,6 @@ public class AddressListActivity extends AppBaseActivity {
 	@Override
 	protected void init() {
 		super.init();
-
 	}
 
 	@Override
@@ -77,10 +81,10 @@ public class AddressListActivity extends AppBaseActivity {
 
         address_add_lay = (LinearLayout) findViewById(R.id.address_add_lay);
 
-        rotate_loading = (RotateLoading) findViewById(R.id.rotate_loading);
+		content_lay = (LinearLayout) findViewById(R.id.content_lay);
+		rotate_loading = (RotateLoading) findViewById(R.id.rotate_loading);
         error_lay = (LinearLayout) findViewById(R.id.error_lay);
-        notice_lay = (LinearLayout) findViewById(R.id.notice_lay);
-		
+
 	}
 
 	private void initTitle() {
@@ -109,12 +113,12 @@ public class AddressListActivity extends AppBaseActivity {
             @Override
             public void onRefresh() {
                 isPullDown = true;
-//                startDataTask(1, false);
+                startDataTask(1, false);
             }
 
             @Override
             public void onLoadMore() {
-//                startDataTask(currentPageIndex, false);
+                startDataTask(currentPageIndex, false);
             }
         }, R.id.listView);
 	}
@@ -124,7 +128,7 @@ public class AddressListActivity extends AppBaseActivity {
 		super.onClick(v);
         switch (v.getId()){
             case R.id.error_lay:
-//                startDataTask(1, true);
+                startDataTask(1, true);
                 break;
 
             case R.id.address_add_lay:
@@ -136,101 +140,100 @@ public class AddressListActivity extends AppBaseActivity {
 	
 	private void fillData(){
 
-        //test data
-        for (int i = 0 ; i < 3; i++) {
-            newsList.add(new MSGNews());
-        }
-
-		if(newsList == null) return;
+		if(addressInfos == null) return;
 		if(adapter == null ){
-			adapter = new AddressAdapter(mContext, newsList);
+			adapter = new AddressAdapter(mContext, addressInfos, new AddressAdapter.AddressClickListener() {
+				@Override
+				public void onEdit(int position) {
+					if (addressInfos == null || addressInfos.size() <= position) return;
+					Intent intent = new Intent(mContext, AddressListActivity.class);
+					Bundle data = new Bundle();
+					data.putSerializable("addressInfo", addressInfos.get(position));
+					intent.putExtras(data);
+					startActivity(intent);
+				}
+
+				@Override
+				public void onDelete(int position) {
+
+				}
+			});
+
 			listView.setAdapter(adapter);
 		}else {
-			adapter.setData(newsList);
+			adapter.setData(addressInfos);
 		}
 	}
+
+
+	RequestListener requestListener = new RequestListener() {
+
+		@Override
+		public void sendMessage(Message message) {
+
+			rotate_loading.stop();
+			rotate_loading.setVisibility(View.GONE);
+
+			if (isPullDown) currentPageIndex = 1;
+
+			switch (message.what) {
+				case Constants.ERROR_DATA_FROM_NET:
+					if (addressInfos == null || addressInfos.size() == 0){
+						content_lay.setVisibility(View.GONE);
+						error_lay.setVisibility(View.VISIBLE);
+					}else{
+						Toast.makeText(mContext, R.string.service_error, Toast.LENGTH_SHORT).show();
+					}
+					break;
+
+				case Constants.NO_DATA_FROM_NET:
+					error_lay.setVisibility(View.GONE);
+					content_lay.setVisibility(View.VISIBLE);
+					break;
+
+				case Constants.SUCCESS_DATA_FROM_NET:
+					content_lay.setVisibility(View.VISIBLE);
+					error_lay.setVisibility(View.GONE);
+
+					ArrayList<AddressInfo> temp = (ArrayList<AddressInfo>) message.obj;
+					//根据返回的数据量判断是否隐藏加载更多
+					if(temp.size() < pageSize){
+						listView.setPullLoadEnable(false);
+					}else{
+						listView.setPullLoadEnable(true);
+					}
+					//如果是下拉刷新则索引恢复到1，并且清除掉之前数据
+					if(isPullDown && addressInfos != null){
+						addressInfos.clear();
+						currentPageIndex = 1;
+					}
+					addressInfos.addAll(temp);
+
+					fillData();
+
+					if (currentPageIndex > 1 && message.arg1 == addressInfos.size()){
+						Toast.makeText(mContext, R.string.data_load_end, Toast.LENGTH_SHORT).show();
+					}
+					currentPageIndex++;
+					break;
+			}
+			isPullDown = false;
+			listView.stopRefresh();
+			listView.stopLoadMore();
+		}
+	};
 	
 	private void startDataTask(int page, boolean showLoading){
 		if (NetUtil.detectAvailable(mContext)) {
 			if(listRequest == null){
-				listRequest = new MessageDetailListRequest("", "",modelApp.getSite().getSiteId(),
-						11, page, pageSize, new RequestListener() {
-					
-					@Override
-					public void sendMessage(Message message) {
-
-                        rotate_loading.stop();
-                        rotate_loading.setVisibility(View.GONE);
-
-                        if (isPullDown){
-                            currentPageIndex = 1;
-                        }
-
-						switch (message.what) {
-						case Constants.ERROR_DATA_FROM_NET:
-                            if (newsList == null || newsList.size() == 0){
-                                listView.setVisibility(View.GONE);
-                                notice_lay.setVisibility(View.GONE);
-                                error_lay.setVisibility(View.VISIBLE);
-                            }else{
-                                Toast.makeText(mContext, R.string.service_error, Toast.LENGTH_SHORT).show();
-                            }
-							break;
-							
-						case Constants.NO_DATA_FROM_NET:
-                            error_lay.setVisibility(View.GONE);
-                            notice_lay.setVisibility(View.GONE);
-                            listView.setVisibility(View.VISIBLE);
-                            if(newsList == null || newsList.size() ==0){
-                                listView.setVisibility(View.GONE);
-                                notice_lay.setVisibility(View.VISIBLE);
-                            }
-							break;
-							
-						case Constants.SUCCESS_DATA_FROM_NET:
-                            listView.setVisibility(View.VISIBLE);
-                            error_lay.setVisibility(View.GONE);
-                            notice_lay.setVisibility(View.GONE);
-
-							ArrayList<MSGNews> temp = (ArrayList<MSGNews>) message.obj;
-							//根据返回的数据量判断是否隐藏加载更多
-							if(temp.size() < pageSize){
-								listView.setPullLoadEnable(false);
-							}else{
-								listView.setPullLoadEnable(true);
-							}
-							//如果是下拉刷新则索引恢复到1，并且清除掉之前数据
-							if(isPullDown && newsList != null){
-								newsList.clear();
-								currentPageIndex = 1;
-							}
-							newsList.addAll(temp);
-                            if(currentPageIndex == 1 && (temp == null || temp.size() ==0)){
-                                listView.setVisibility(View.GONE);
-                                notice_lay.setVisibility(View.VISIBLE);
-                                return;
-                            }
-
-							fillData();
-                            if (currentPageIndex > 1 && message.arg1 == newsList.size()){
-                                Toast.makeText(mContext, R.string.data_load_end, Toast.LENGTH_SHORT).show();
-                            }
-                            currentPageIndex++;
-							break;
-						}
-						isPullDown = false;
-						listView.stopRefresh();
-						listView.stopLoadMore();
-					}
-				});
+				listRequest = new AddressInfoListRequest(modelApp.getUser().getToken(),
+						page, pageSize, requestListener);
 			}else {
-				listRequest.setData("", "", modelApp.getSite().getSiteId(),
-						11, page, pageSize);
+				listRequest.setData(modelApp.getUser().getToken(), page, pageSize);
 			}
 			if (showLoading){
-                listView.setVisibility(View.GONE);
+				content_lay.setVisibility(View.GONE);
                 error_lay.setVisibility(View.GONE);
-                notice_lay.setVisibility(View.GONE);
                 rotate_loading.setVisibility(View.VISIBLE);
                 rotate_loading.start();
             }
@@ -239,10 +242,9 @@ public class AddressListActivity extends AppBaseActivity {
 			isPullDown = false;
 			listView.stopRefresh();
 			listView.stopLoadMore();
-            if (newsList == null || newsList.size() == 0){
-                listView.setVisibility(View.GONE);
+            if (addressInfos == null || addressInfos.size() == 0){
+				content_lay.setVisibility(View.GONE);
                 rotate_loading.setVisibility(View.GONE);
-                notice_lay.setVisibility(View.GONE);
                 error_lay.setVisibility(View.VISIBLE);
             }else{
                 Toast.makeText(mContext, R.string.net_warn, Toast.LENGTH_SHORT).show();

@@ -11,6 +11,7 @@
         layout="@layout/common_title_bar_white"/>
 
     <LinearLayout
+        android:id="@+id/content_lay"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/title_lay"
@@ -19,7 +20,8 @@
         <com.xkhouse.fang.widget.xlist.XListView
             android:id="@+id/listView"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:cacheColorHint="@color/trans"
             android:divider="@color/trans"
             android:dividerHeight="10dp"
