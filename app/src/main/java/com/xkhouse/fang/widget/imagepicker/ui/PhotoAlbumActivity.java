@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
+import com.xkhouse.fang.user.activity.CommentAddActivity;
 import com.xkhouse.fang.user.activity.RentReleaseActivity;
 import com.xkhouse.fang.user.activity.RentReleaseEditActivity;
 import com.xkhouse.fang.user.activity.SellReleaseActivity;
@@ -149,8 +150,8 @@ public class PhotoAlbumActivity extends AppBaseActivity {
             Intent intent = new Intent(this, SellReleaseActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-        }else if(activity == PhotoWallActivity.RENT_ACTIVITY){
-            Intent intent = new Intent(this, RentReleaseActivity.class);
+        }else if(activity == PhotoWallActivity.COMMENT_ACTIVITY){
+            Intent intent = new Intent(this, CommentAddActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }else if(activity == PhotoWallActivity.SELL_EDIT_ACTIVITY){

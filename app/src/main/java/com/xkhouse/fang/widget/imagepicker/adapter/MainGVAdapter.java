@@ -78,7 +78,7 @@ public class MainGVAdapter extends BaseAdapter {
 
         holder.imageView.setTag(filePath);
         if ("ADD_FLAG".equals(filePath)){
-            holder.imageView.setImageResource(R.drawable.icon_camera);
+            holder.imageView.setImageResource(R.drawable.pic);
             holder.item_photo_delete.setVisibility(View.GONE);
         }else{
             if (filePath.contains("http://")){

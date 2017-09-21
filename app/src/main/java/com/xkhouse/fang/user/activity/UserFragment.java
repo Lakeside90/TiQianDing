@@ -31,6 +31,7 @@ import com.xkhouse.fang.app.activity.ModelApplication;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.config.Preference;
+import com.xkhouse.fang.booked.activity.BookedMakeActivity;
 import com.xkhouse.fang.booked.activity.LuckDetailActivity;
 import com.xkhouse.fang.booked.activity.StoreDetailActivity;
 import com.xkhouse.fang.user.entity.User;
@@ -228,7 +229,8 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 
 
             case R.id.booked_lay:
-                startActivity(new Intent(getActivity(), MyBookedListActivity.class));
+//                startActivity(new Intent(getActivity(), MyBookedListActivity.class));
+                startActivity(new Intent(getActivity(), BookedMakeActivity.class));
                 break;
 
             case R.id.luck_lay:

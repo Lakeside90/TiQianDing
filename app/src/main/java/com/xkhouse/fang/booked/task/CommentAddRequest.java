@@ -10,7 +10,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
-import com.xkhouse.fang.booked.entity.BookAddInfo;
+import com.xkhouse.fang.booked.entity.CommentInfo;
 import com.xkhouse.frame.activity.BaseApplication;
 import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
@@ -23,49 +23,52 @@ import java.util.Map;
 
 /**
  * 
-* @Description: 在线预定
+* @Description: 提交评论
 * @author wujian  
  */
-public class BookedAddRequest {
+public class CommentAddRequest {
 
-	private String TAG = BookedAddRequest.class.getSimpleName();
+	private String TAG = CommentAddRequest.class.getSimpleName();
 	private RequestListener requestListener;
 
 	private String token;
-	private BookAddInfo bookAddInfo;
+    private CommentInfo commentInfo;
 
 	private String code;	//返回状态
 	private String msg;		//返回提示语
 
 
-	public BookedAddRequest(String token, BookAddInfo bookAddInfo, RequestListener requestListener) {
+	public CommentAddRequest(String token, CommentInfo commentInfo, RequestListener requestListener) {
 		
 		this.token = token;
-		this.bookAddInfo = bookAddInfo;
+		this.commentInfo = commentInfo;
 		this.requestListener = requestListener;
 	}
 	
 	
-	public void setData(String token, BookAddInfo bookAddInfo) {
+	public void setData(String token, CommentInfo commentInfo) {
 		this.token = token;
-		this.bookAddInfo = bookAddInfo;
+		this.commentInfo = commentInfo;
 	}
 	
 	public void doRequest(){
 		
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("token", token);
-		params.put("cityId", bookAddInfo.getCityId());
-		params.put("member_name", bookAddInfo.getMember_name());
-		params.put("member_phone", bookAddInfo.getMember_phone());
-		params.put("people_num", bookAddInfo.getPeople_num());
-		params.put("member_remarks", bookAddInfo.getMember_remarks());
-		params.put("business_id", bookAddInfo.getBusiness_id());
-		params.put("booking_id", bookAddInfo.getBooking_id());
-		params.put("use_time", bookAddInfo.getUse_time());
-		params.put("gender", bookAddInfo.getGender());
 
-		String url = StringUtil.getRequestUrl(Constants.USER_BOOK_ADD, params);
+		params.put("token", token);
+		params.put("order_id", commentInfo.getOrder_id());
+		params.put("star_num", commentInfo.getStar_num());
+		params.put("content", commentInfo.getContent());
+        if (commentInfo.getImageUrls() != null) {
+            StringBuffer sb = new StringBuffer();
+            for(String imgurl : commentInfo.getImageUrls()) {
+                sb.append(imgurl).append(",");
+            }
+            params.put("img", sb.substring(0, sb.length() - 1));
+        }
+
+
+		String url = StringUtil.getRequestUrl(Constants.USER_COMMENT_ADD, params);
 		Logger.d(TAG, url); 
 		
 		StringRequest request = new StringRequest(url, new Listener<String>() {

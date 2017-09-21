@@ -154,7 +154,7 @@ public class AddressEditActivity extends AppBaseActivity {
 		addressInfo.setName(name_txt.getText().toString());
 		addressInfo.setPhone(phone_txt.getText().toString());
 		addressInfo.setContent(content_txt.getText().toString());
-		if (check_box.isSelected()) {
+		if (check_box.isChecked()) {
 			addressInfo.setIs_selected("1");
 		}else {
 			addressInfo.setIs_selected("0");

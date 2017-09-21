@@ -11,7 +11,7 @@
         layout="@layout/common_title_bar_white"/>
 
     <com.xkhouse.fang.widget.xlist.XListView
-        android:id="@+id/msg_listView"
+        android:id="@+id/listView"
         android:layout_below="@id/title_lay"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="没有活动"
+            android:text="没有数据"
             android:textColor="@color/common_black_txt"
             android:textSize="14sp"/>
     </LinearLayout>

@@ -18,7 +18,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/news_icon_iv"
+            android:id="@+id/icon_iv"
             android:layout_width="75dp"
             android:layout_height="68dp"
             android:scaleType="fitXY"/>
@@ -31,7 +31,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/news_title_txt"
+                android:id="@+id/title_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -50,30 +50,24 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/news_date_txt"
+                    android:id="@+id/money_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:text="人均：¥120"
+                    android:text=""
                     android:textColor="@color/c_666666"
                     android:textSize="14sp"
                     />
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/label_lay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/gray_border_btn_bg"
-                    android:gravity="center"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="3dp"
-                    android:paddingRight="3dp"
-                    android:paddingTop="2dp"
-                    android:text="酒吧"
-                    android:textColor="@color/common_gray_txt"
-                    android:textSize="12dp"/>
-
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal">
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -94,6 +88,7 @@
         android:background="@color/common_diver_line"/>
 
     <TextView
+        android:id="@+id/content_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
@@ -101,6 +96,14 @@
         android:text="评论，图片在下方评论，图片在下方评论，图片在下方评论，图片在下方评论，图片在下方评论，图片在下方"
         android:textColor="@color/common_black_txt"
         android:textSize="13sp"/>
+
+    <com.xkhouse.fang.widget.ScrollGridView
+        android:id="@+id/image_grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:numColumns="4"
+        android:scrollbars="none"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -111,9 +114,10 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/time_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="发表于：2017-01-01"
+            android:text=""
             android:textColor="@color/common_gray_txt"
             android:textSize="13sp"/>
 
@@ -124,6 +128,7 @@
             android:background="@color/common_diver_line"/>
 
         <TextView
+            android:id="@+id/delete_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -134,6 +139,7 @@
             />
 
         <TextView
+            android:id="@+id/look_reply_txt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -146,6 +152,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/reply_txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"

@@ -6,7 +6,8 @@
               android:gravity="center_vertical"
               android:orientation="vertical"
               android:paddingLeft="15dp"
-              android:paddingTop="15dp">
+              android:paddingTop="15dp"
+    android:focusable="false">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -329,7 +329,7 @@ public class RentReleaseActivity extends AppBaseActivity {
                 } else {
                     Intent photoIntent = new Intent(RentReleaseActivity.this, PhotoWallActivity.class);
                     Bundle photoData = new Bundle();
-                    photoData.putInt("activity", PhotoWallActivity.RENT_ACTIVITY);
+//                    photoData.putInt("activity", PhotoWallActivity.RENT_ACTIVITY);
                     photoData.putInt("maxCount", 9-imagePathList.size());
                     photoIntent.putExtras(photoData);
                     startActivity(photoIntent);
@@ -1267,7 +1267,7 @@ public class RentReleaseActivity extends AppBaseActivity {
 
                 Intent photoIntent = new Intent(RentReleaseActivity.this, PhotoWallActivity.class);
                 Bundle photoData = new Bundle();
-                photoData.putInt("activity", PhotoWallActivity.RENT_ACTIVITY);
+//                photoData.putInt("activity", PhotoWallActivity.RENT_ACTIVITY);
                 photoData.putInt("maxCount", 9-imagePathList.size());
                 photoIntent.putExtras(photoData);
                 startActivity(photoIntent);

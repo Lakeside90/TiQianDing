@@ -15,6 +15,8 @@ import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.booked.entity.AddressInfo;
+import com.xkhouse.fang.booked.task.AddressDeleteRequest;
+import com.xkhouse.fang.booked.task.AddressEditRequest;
 import com.xkhouse.fang.booked.task.AddressInfoListRequest;
 import com.xkhouse.fang.user.adapter.AddressAdapter;
 import com.xkhouse.fang.user.entity.MSGNews;
@@ -49,21 +51,20 @@ public class AddressListActivity extends AppBaseActivity {
 	private AddressInfoListRequest listRequest;
 	private ArrayList<AddressInfo> addressInfos = new ArrayList<>();
 
-//	private MessageDetailListRequest listRequest;
-//	private ArrayList<MSGNews> newsList = new ArrayList<MSGNews>();
-
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		startDataTask(1, true);
-
 	}
-	
-	
-	@Override
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isPullDown = true;
+        startDataTask(1, false);
+    }
+
+    @Override
 	protected void setContentView() {
 		setContentView(R.layout.activity_address_list);
 	}
@@ -146,7 +147,7 @@ public class AddressListActivity extends AppBaseActivity {
 				@Override
 				public void onEdit(int position) {
 					if (addressInfos == null || addressInfos.size() <= position) return;
-					Intent intent = new Intent(mContext, AddressListActivity.class);
+					Intent intent = new Intent(mContext, AddressEditActivity.class);
 					Bundle data = new Bundle();
 					data.putSerializable("addressInfo", addressInfos.get(position));
 					intent.putExtras(data);
@@ -155,7 +156,8 @@ public class AddressListActivity extends AppBaseActivity {
 
 				@Override
 				public void onDelete(int position) {
-
+                    if (addressInfos == null || addressInfos.size() <= position) return;
+                    startDelTask(addressInfos.get(position).getId());
 				}
 			});
 
@@ -251,5 +253,43 @@ public class AddressListActivity extends AppBaseActivity {
             }
 		}
 	}
+
+
+
+
+    private void startDelTask(String addressId) {
+        if(NetUtil.detectAvailable(mContext)){
+            AddressDeleteRequest request = new AddressDeleteRequest(modelApp.getUser().getToken(), addressId, delRequestListener);
+            showLoadingDialog("处理中...");
+            request.doRequest();
+
+        }else {
+            Toast.makeText(mContext, R.string.net_warn, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    RequestListener delRequestListener = new RequestListener() {
+
+        @Override
+        public void sendMessage(Message message) {
+            hideLoadingDialog();
+            switch (message.what) {
+                case Constants.ERROR_DATA_FROM_NET:
+                    Toast.makeText(mContext, R.string.service_error, Toast.LENGTH_SHORT).show();
+                    break;
+
+                case Constants.NO_DATA_FROM_NET:
+                    Toast.makeText(mContext, message.obj.toString(), Toast.LENGTH_SHORT).show();
+                    break;
+
+                case Constants.SUCCESS_DATA_FROM_NET:
+                    Toast.makeText(mContext, message.obj.toString(), Toast.LENGTH_SHORT).show();
+                    isPullDown = true;
+                    startDataTask(1, false);
+                    break;
+            }
+        }
+    };
+
 
 }

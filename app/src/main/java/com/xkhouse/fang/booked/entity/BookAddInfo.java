@@ -10,12 +10,14 @@ import java.io.Serializable;
 public class BookAddInfo implements Serializable {
 
     private String member_name;
+    private String cityId;
     private String member_phone;
     private String people_num;
     private String member_remarks;
     private String business_id;
     private String booking_id;
     private String use_time;
+    private String gender;
 
 
     public String getMember_name() {
@@ -72,5 +74,21 @@ public class BookAddInfo implements Serializable {
 
     public void setUse_time(String use_time) {
         this.use_time = use_time;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
     }
 }

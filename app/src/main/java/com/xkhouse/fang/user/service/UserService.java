@@ -95,7 +95,8 @@ public class UserService {
                         user.getGender(),
                         user.getPhone(),
                         user.getInterest(),
-                        user.getIs_staff()
+                        user.getIs_staff(),
+                        user.getId()
                         };
             }
             db.execSQL(sql, obj);

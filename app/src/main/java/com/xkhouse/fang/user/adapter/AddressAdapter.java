@@ -79,10 +79,10 @@ public class AddressAdapter extends BaseAdapter {
 
 		if ("1".equals(addressInfo.getIs_selected())) {
 			holder.check_box.setVisibility(View.VISIBLE);
-			holder.check_box.setTextIsSelectable(true);
+			holder.check_box.setChecked(true);
 		} else {
 			holder.check_box.setVisibility(View.INVISIBLE);
-			holder.check_box.setTextIsSelectable(false);
+			holder.check_box.setChecked(false);
 		}
 
 		holder.edit_txt.setOnClickListener(new OnClickListener() {

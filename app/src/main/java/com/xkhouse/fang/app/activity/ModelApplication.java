@@ -109,8 +109,9 @@ public class ModelApplication extends BaseApplication {
 	public User getUser() {
         //系统内存不足的时候，user可能会被回收
         if(user == null){
-            SharedPreferences mSP = getSharedPreferences("xkhousefang", Context.MODE_PRIVATE);
-            String uid = mSP.getString("uid", "");
+//            SharedPreferences mSP = getSharedPreferences("xkhousefang", Context.MODE_PRIVATE);
+//            String uid = mSP.getString("uid", "");
+            String uid = Preference.getInstance().readUID();
             user = new UserService().queryUser(uid);
         }
 		return user;

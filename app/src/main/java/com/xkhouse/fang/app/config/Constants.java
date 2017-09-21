@@ -242,10 +242,15 @@ public class Constants {
     public static String USER_BOOKED_DETAIL = HOST + "/v1/Interactive/booking_detail";
 
     /**  在线预定  **/
-    public static String USER_BOOK_ADD = HOST_OLD + "/v1/Interactive/booking_add";
+    public static String USER_BOOK_ADD = HOST + "/v1/Interactive/booking_add";
 
     /**  我的评价列表  **/
-    public static String USER_COMMENT_LIST = HOST + "/v1/My/my_comment_list";
+    public static String USER_COMMENT_LIST = HOST + "/v1/My/my_commemt_list";
+
+    /**  我的评价列表  **/
+    public static String USER_COMMENT_ADD = HOST + "/v1/My/my_commemt_add";
+
+
 
 
 

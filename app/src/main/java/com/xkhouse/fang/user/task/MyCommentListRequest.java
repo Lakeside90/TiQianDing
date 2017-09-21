@@ -82,10 +82,7 @@ public class MyCommentListRequest {
                         
                         Message message = new Message();
                         if(Constants.SUCCESS_CODE.equals(code)){
-                        	Bundle data = new Bundle();
-                        	data.putSerializable("commentList", commentList);
-                        	message.setData(data);
-                            message.arg1 = count;
+                            message.obj = commentList;
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
                         }else{
                            message.obj = msg;

@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class CommentInfo implements Serializable {
 
     private String id;
+    private String order_id;
     private String member_id;
     private String business_id;
     private String star_num;
@@ -127,5 +128,13 @@ public class CommentInfo implements Serializable {
 
     public void setHead_img(String head_img) {
         this.head_img = head_img;
+    }
+
+    public String getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(String order_id) {
+        this.order_id = order_id;
     }
 }

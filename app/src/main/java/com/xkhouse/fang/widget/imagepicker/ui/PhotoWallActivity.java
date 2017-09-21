@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
+import com.xkhouse.fang.user.activity.CommentAddActivity;
 import com.xkhouse.fang.user.activity.RentReleaseActivity;
 import com.xkhouse.fang.user.activity.RentReleaseEditActivity;
 import com.xkhouse.fang.user.activity.SellReleaseActivity;
@@ -48,7 +49,7 @@ public class PhotoWallActivity extends AppBaseActivity {
      */
     private boolean isLatest = true;
 
-    public static final int RENT_ACTIVITY = 1;
+    public static final int COMMENT_ACTIVITY = 1;
     public static final int SELL_ACTIVITY = 2;
     public static final int RENT_EDIT_ACTIVITY = 3;
     public static final int SELL_EDIT_ACTIVITY = 4;
@@ -126,8 +127,8 @@ public class PhotoWallActivity extends AppBaseActivity {
                     intent.putStringArrayListExtra("paths", paths);
                     startActivity(intent);
 
-                } else if (activity == RENT_ACTIVITY) {
-                    intent = new Intent(PhotoWallActivity.this, RentReleaseActivity.class);
+                } else if (activity == COMMENT_ACTIVITY) {
+                    intent = new Intent(PhotoWallActivity.this, CommentAddActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("code", paths != null ? 100 : 101);
                     intent.putStringArrayListExtra("paths", paths);
