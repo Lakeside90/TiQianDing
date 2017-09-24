@@ -12,12 +12,9 @@ import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.ModelApplication;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
-import com.xkhouse.fang.user.activity.MyRecommendActivity;
+import com.xkhouse.fang.app.entity.CJInfo;
+import com.xkhouse.fang.app.task.CJListRequest;
 import com.xkhouse.fang.user.adapter.CJListAdapter;
-import com.xkhouse.fang.user.adapter.XKRecommendListAdapter;
-import com.xkhouse.fang.user.entity.XKRecommend;
-import com.xkhouse.fang.user.task.RecommendAgainRequest;
-import com.xkhouse.fang.user.task.XKRecommendListRequest;
 import com.xkhouse.fang.widget.loading.RotateLoading;
 import com.xkhouse.fang.widget.xlist.XListView;
 import com.xkhouse.fang.widget.xlist.XListView.IXListViewListener;
@@ -38,14 +35,14 @@ public class ItemCJListView {
     private RotateLoading rotate_loading;
     private LinearLayout error_lay;
 
-	private XListView recommend_listView;
+	private XListView cj_listView;
 	private CJListAdapter adapter;
 	private int currentPageIndex = 1;  //分页索引
 	private int pageSize = 10; //每次请求10条数据
 	private boolean isPullDown = false; // 下拉
 
-	private XKRecommendListRequest recommendListRequest;
-	private ArrayList<XKRecommend> recommendList = new ArrayList<XKRecommend>();
+    private CJListRequest request;
+	private ArrayList<CJInfo> cjInfoList = new ArrayList<>();
 
 	private String status;
 
@@ -67,9 +64,9 @@ public class ItemCJListView {
 	}
 	
 	private void initView() {
-		rootView = LayoutInflater.from(context).inflate(R.layout.view_recommend_list, null);
+		rootView = LayoutInflater.from(context).inflate(R.layout.view_cj_list, null);
 
-		recommend_listView = (XListView) rootView.findViewById(R.id.recommend_listView);
+		cj_listView = (XListView) rootView.findViewById(R.id.cj_listView);
 
         content_lay = (LinearLayout) rootView.findViewById(R.id.content_lay);
         rotate_loading = (RotateLoading) rootView.findViewById(R.id.rotate_loading);
@@ -78,40 +75,40 @@ public class ItemCJListView {
 	
 	public void refreshView(){
 		isPullDown = true;
-		startRecommendListTask(1, true);
+		startTask(1, true);
 	}
 	
 	private void setListener() {
-		recommend_listView.setPullLoadEnable(true);
-		recommend_listView.setPullRefreshEnable(true);
-		recommend_listView.setXListViewListener(new IXListViewListener() {
+		cj_listView.setPullLoadEnable(true);
+		cj_listView.setPullRefreshEnable(true);
+		cj_listView.setXListViewListener(new IXListViewListener() {
 
             @Override
             public void onRefresh() {
                 isPullDown = true;
-                startRecommendListTask(1, false);
+                startTask(1, false);
             }
 
             @Override
             public void onLoadMore() {
-                startRecommendListTask(currentPageIndex, false);
+                startTask(currentPageIndex, false);
             }
-        }, R.id.recommend_listView);
+        }, R.id.cj_listView);
 
         error_lay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isPullDown = true;
-                startRecommendListTask(1, true);
+                startTask(1, true);
             }
         });
 	}
 	
 	
-	private void startRecommendListTask(int page, boolean showLoading){
+	private void startTask(int page, boolean showLoading){
 		if (NetUtil.detectAvailable(context)) {
-			if(recommendListRequest == null){
-				recommendListRequest = new XKRecommendListRequest("1000", status, page, pageSize,
+			if(request == null){
+                request = new CJListRequest(status, modelApp.getSite().getSiteId(), page, pageSize,
 						new RequestListener() {
 					
 					@Override
@@ -125,7 +122,7 @@ public class ItemCJListView {
 
 						switch (message.what) {
 						case Constants.ERROR_DATA_FROM_NET:
-                            if (recommendList == null || recommendList.size() == 0){
+                            if (cjInfoList == null || cjInfoList.size() == 0){
                                 content_lay.setVisibility(View.GONE);
                                 rotate_loading.setVisibility(View.GONE);
                                 error_lay.setVisibility(View.VISIBLE);
@@ -137,43 +134,43 @@ public class ItemCJListView {
 						case Constants.NO_DATA_FROM_NET:
                             error_lay.setVisibility(View.GONE);
                             content_lay.setVisibility(View.VISIBLE);
-                            if ("0".equals(status)){
-                                Toast.makeText(context, "您还没有推荐，还在等什么！", Toast.LENGTH_SHORT).show();
-                            }
+                            String msg = (String) message.obj;
+                            if (StringUtil.isEmpty(msg)) msg = "没有数据";
+                            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
 							break;
 							
 						case Constants.SUCCESS_DATA_FROM_NET:
                             content_lay.setVisibility(View.VISIBLE);
                             error_lay.setVisibility(View.GONE);
 
-							ArrayList<XKRecommend> temp = (ArrayList<XKRecommend>) message.obj;
+							ArrayList<CJInfo> temp = (ArrayList<CJInfo>) message.obj;
 							//根据返回的数据量判断是否隐藏加载更多
 							if(temp.size() < pageSize){
-								recommend_listView.setPullLoadEnable(false);
+								cj_listView.setPullLoadEnable(false);
 							}else{
-								recommend_listView.setPullLoadEnable(true);
+								cj_listView.setPullLoadEnable(true);
 							}
 							
 							//如果是下拉刷新则索引恢复到1，并且清除掉之前数据
-							if(isPullDown && recommendList != null){
-								recommendList.clear();
+							if(isPullDown && cjInfoList != null){
+								cjInfoList.clear();
 								currentPageIndex = 1;
 							}
-							recommendList.addAll(temp);
-							fillRecommendData();
-                            if (currentPageIndex > 1 && message.arg1 == recommendList.size()){
+							cjInfoList.addAll(temp);
+							fillData();
+                            if (currentPageIndex > 1 && message.arg1 == cjInfoList.size()){
                                 Toast.makeText(context, R.string.data_load_end, Toast.LENGTH_SHORT).show();
                             }
                             currentPageIndex++;
 							break;
 						}
 						isPullDown = false;
-						recommend_listView.stopRefresh();
-						recommend_listView.stopLoadMore();
+						cj_listView.stopRefresh();
+						cj_listView.stopLoadMore();
 					}
 				});
 			}else {
-				recommendListRequest.setData("100", status, page, pageSize);
+				request.setData(status, modelApp.getSite().getSiteId(), page, pageSize);
 			}
 			if (showLoading) {
                 content_lay.setVisibility(View.GONE);
@@ -181,14 +178,14 @@ public class ItemCJListView {
                 rotate_loading.setVisibility(View.VISIBLE);
                 rotate_loading.start();
             }
-			recommendListRequest.doRequest();
+			request.doRequest();
 
 		}else {
 			isPullDown = false;
-			recommend_listView.stopRefresh();
-			recommend_listView.stopLoadMore();
+			cj_listView.stopRefresh();
+			cj_listView.stopLoadMore();
 
-            if (recommendList == null || recommendList.size() == 0){
+            if (cjInfoList == null || cjInfoList.size() == 0){
                 content_lay.setVisibility(View.GONE);
                 rotate_loading.setVisibility(View.GONE);
                 error_lay.setVisibility(View.VISIBLE);
@@ -197,18 +194,18 @@ public class ItemCJListView {
             }
 		}
 
-        fillRecommendData();
+        fillData();
 	}
 	
 	
-	private void fillRecommendData() {
-		if(recommendList == null) return;
+	private void fillData() {
+		if(cjInfoList == null) return;
 		
 		if(adapter == null){
-			adapter = new CJListAdapter(context, recommendList);
-			recommend_listView.setAdapter(adapter);
+			adapter = new CJListAdapter(context, cjInfoList);
+			cj_listView.setAdapter(adapter);
 		}else {
-			adapter.setData(recommendList);
+			adapter.setData(cjInfoList);
 		}
 	}
 	

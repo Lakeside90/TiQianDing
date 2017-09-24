@@ -56,22 +56,18 @@ public class CJFragment extends AppBaseFragment {
     private ViewPager pager;
     private TabPageIndicator indicator;
 
-    public static final String RECOMMEND_ALL = "0";			//全部
-    public static final String RECOMMEND_ING = "1";			//推荐中
-    public static final String RECOMMEND_SUCCESS = "2";		//推荐成功
-    public static final String RECOMMEND_FAIL = "3";		//推荐失败
+    public static final String CJ_JXZ = "1";
+    public static final String CJ_DJX = "2";
+    public static final String CJ_YJX = "3";
 
-    private String[] titles = {"全部抽奖", "人气", "上架时间", "已开奖"};
-    private String[] types = {RECOMMEND_ALL, RECOMMEND_ING, RECOMMEND_SUCCESS, RECOMMEND_FAIL};
+    private String[] titles = {"进行中", "待揭晓", "已揭晓"};
+    private String[] types = {CJ_JXZ, CJ_DJX, CJ_YJX};
     private List<ItemCJListView> recommendViews = new ArrayList<ItemCJListView>();
 
-
-
-
-
-
     private ModelApplication modelApp;
-	
+
+
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -164,7 +160,7 @@ public class CJFragment extends AppBaseFragment {
 		iv_head_left.setVisibility(View.INVISIBLE);
 		
 		tv_head_title = (TextView) rootView.findViewById(R.id.tv_head_title);
-		tv_head_title.setText("抽奖");
+		tv_head_title.setText("活动");
 
 	}
 

@@ -74,6 +74,8 @@ public class Constants {
     public static String LUCKINFO_LIST = HOST + "/api/v1.index/getIndexLottery";
 
 
+    /** 抽奖活动列表   **/
+    public static String CJ_LIST = HOST + "/api/v1.index/getListLottery";
 
 
 

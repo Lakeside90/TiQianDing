@@ -574,7 +574,11 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 				
 			case Constants.SUCCESS_DATA_FROM_NET:
 				ArrayList<BookedInfo> temp = (ArrayList<BookedInfo>) message.getData().getSerializable("bookedInfoList");
-
+                if(temp.size() < pageSize){
+                    bookInfo_recommed_listview.setPullLoadEnable(false);
+                }else{
+                    bookInfo_recommed_listview.setPullLoadEnable(true);
+                }
 				//如果是下拉刷新则索引恢复到1，并且清除掉之前数据
 				if(isPullDown && bookedInfoList != null){
 					bookedInfoList.clear();

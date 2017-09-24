@@ -155,7 +155,7 @@ public class BookedMakeActivity extends AppBaseActivity {
     }
 
     private boolean checkData() {
-// TODO: 17/9/21  
+// TODO: 17/9/21
         return true;
     }
 

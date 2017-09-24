@@ -1,12 +1,10 @@
 package com.xkhouse.fang.user.view;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xkhouse.fang.R;
@@ -69,7 +67,7 @@ public class ItemRecommendView {
 	}
 	
 	private void initView() {
-		rootView = LayoutInflater.from(context).inflate(R.layout.view_recommend_list, null);
+		rootView = LayoutInflater.from(context).inflate(R.layout.view_cj_list, null);
 
 		recommend_listView = (XListView) rootView.findViewById(R.id.recommend_listView);
 

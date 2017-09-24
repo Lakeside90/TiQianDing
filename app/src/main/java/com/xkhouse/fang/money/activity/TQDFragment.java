@@ -82,7 +82,7 @@ public class TQDFragment extends AppBaseFragment implements OnClickListener, AMa
 		mLocationManagerProxy.setGpsEnable(false);
 		mLocationManagerProxy.requestLocationData(LocationProviderProxy.AMapNetwork, 60 * 1000, 15, this);
 
-        fillCacheData();
+//        fillCacheData();
 
 		startListTask(1, true);
 		
@@ -158,6 +158,7 @@ public class TQDFragment extends AppBaseFragment implements OnClickListener, AMa
             listView.setAdapter(adapter);
         }else {
             adapter.setData(bookedInfoList);
+            adapter.notifyDataSetChanged();
         }
     }
 
@@ -203,7 +204,7 @@ public class TQDFragment extends AppBaseFragment implements OnClickListener, AMa
             }
 
             if (showLoading) {
-                listView.setVisibility(View.GONE);
+                content_lay.setVisibility(View.GONE);
                 error_lay.setVisibility(View.GONE);
                 rotate_loading.setVisibility(View.VISIBLE);
                 rotate_loading.start();
@@ -218,7 +219,7 @@ public class TQDFragment extends AppBaseFragment implements OnClickListener, AMa
             listView.stopLoadMore();
 
             if (bookedInfoList == null || bookedInfoList.size() ==0 ){
-                listView.setVisibility(View.GONE);
+                content_lay.setVisibility(View.GONE);
                 rotate_loading.setVisibility(View.GONE);
                 error_lay.setVisibility(View.VISIBLE);
             }else{
@@ -246,7 +247,7 @@ public class TQDFragment extends AppBaseFragment implements OnClickListener, AMa
             switch (message.what) {
                 case Constants.ERROR_DATA_FROM_NET:
                     if (bookedInfoList == null || bookedInfoList.size() == 0){
-                        listView.setVisibility(View.GONE);
+                        content_lay.setVisibility(View.GONE);
                         error_lay.setVisibility(View.VISIBLE);
                     }else{
                         Toast.makeText(getContext(), R.string.service_error, Toast.LENGTH_SHORT).show();
@@ -255,7 +256,7 @@ public class TQDFragment extends AppBaseFragment implements OnClickListener, AMa
 
                 case Constants.NO_DATA_FROM_NET:
                     error_lay.setVisibility(View.GONE);
-                    listView.setVisibility(View.VISIBLE);
+                    content_lay.setVisibility(View.VISIBLE);
 
                     if (bookedInfoList != null) {
                         bookedInfoList.clear();
@@ -264,11 +265,16 @@ public class TQDFragment extends AppBaseFragment implements OnClickListener, AMa
                     break;
 
                 case Constants.SUCCESS_DATA_FROM_NET:
-                    listView.setVisibility(View.VISIBLE);
+                    content_lay.setVisibility(View.VISIBLE);
                     error_lay.setVisibility(View.GONE);
 
                     ArrayList<BookedInfo> temp = (ArrayList<BookedInfo>) message.getData().getSerializable("bookedInfoList");
-
+                    //根据返回的数据量判断是否隐藏加载更多
+                    if(temp.size() < pageSize){
+                        listView.setPullLoadEnable(false);
+                    }else{
+                        listView.setPullLoadEnable(true);
+                    }
                     //如果是下拉刷新则索引恢复到1，并且清除掉之前数据
                     if(isPullDown && bookedInfoList != null){
                         bookedInfoList.clear();
