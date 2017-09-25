@@ -141,7 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/umeng_socialize_fetch_image"/>
+                android:src="@drawable/nopic"/>
 
             <View
                 android:layout_width="match_parent"

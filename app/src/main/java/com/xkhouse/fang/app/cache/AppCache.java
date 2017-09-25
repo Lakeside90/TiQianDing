@@ -31,7 +31,7 @@ public class AppCache {
     /**
      * 读取首页轮询图数据
      */
-    public static String readHomeAdJson(String siteId){
+    public static String readHomeBannerJson(String siteId){
         String json = "";
         try{
             String path = getCachePath(siteId);
@@ -47,7 +47,7 @@ public class AppCache {
     /**
      * 写入首页轮询图数据
      */
-    public static void writeHomeAdJson(String siteId, String value){
+    public static void writeHomeBannerJson(String siteId, String value){
         try{
             String path = getCachePath(siteId);
             FileUtil.createFolder(path);
@@ -57,6 +57,34 @@ public class AppCache {
         }
     }
 
+    /**
+     * 读取首页广告数据
+     */
+    public static String readIndexAdJson(String siteId){
+        String json = "";
+        try{
+            String path = getCachePath(siteId);
+            FileUtil.createFolder(path);
+            json = FileUtil.readFile(path+File.separator+"indexad.json", key);
+        }catch (Exception e){
+            Logger.e(TAG, e.getMessage());
+        }
+
+        return json;
+    }
+
+    /**
+     * 写入首页广告数据
+     */
+    public static void writeIndexAdJson(String siteId, String value){
+        try{
+            String path = getCachePath(siteId);
+            FileUtil.createFolder(path);
+            FileUtil.writeFile(path+File.separator+"indexad.json", value, key);
+        }catch (Exception e){
+            Logger.e(TAG, e.getMessage());
+        }
+    }
 
 
 

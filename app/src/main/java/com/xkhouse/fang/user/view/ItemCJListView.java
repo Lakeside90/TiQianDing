@@ -9,12 +9,14 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.xkhouse.fang.R;
+import com.xkhouse.fang.app.activity.CJFragment;
 import com.xkhouse.fang.app.activity.ModelApplication;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.entity.CJInfo;
 import com.xkhouse.fang.app.task.CJListRequest;
 import com.xkhouse.fang.user.adapter.CJListAdapter;
+import com.xkhouse.fang.user.adapter.CJyjxListAdapter;
 import com.xkhouse.fang.widget.loading.RotateLoading;
 import com.xkhouse.fang.widget.xlist.XListView;
 import com.xkhouse.fang.widget.xlist.XListView.IXListViewListener;
@@ -37,6 +39,7 @@ public class ItemCJListView {
 
 	private XListView cj_listView;
 	private CJListAdapter adapter;
+	private CJyjxListAdapter jyjxListAdapter;
 	private int currentPageIndex = 1;  //分页索引
 	private int pageSize = 10; //每次请求10条数据
 	private boolean isPullDown = false; // 下拉
@@ -200,13 +203,23 @@ public class ItemCJListView {
 	
 	private void fillData() {
 		if(cjInfoList == null) return;
-		
-		if(adapter == null){
-			adapter = new CJListAdapter(context, cjInfoList);
-			cj_listView.setAdapter(adapter);
-		}else {
-			adapter.setData(cjInfoList);
+
+		if (CJFragment.CJ_YJX.equals(status)) {
+			if(jyjxListAdapter == null){
+				jyjxListAdapter = new CJyjxListAdapter(context, cjInfoList);
+				cj_listView.setAdapter(jyjxListAdapter);
+			}else {
+				jyjxListAdapter.setData(cjInfoList);
+			}
+		} else {
+			if(adapter == null){
+				adapter = new CJListAdapter(context, cjInfoList, status);
+				cj_listView.setAdapter(adapter);
+			}else {
+				adapter.setData(cjInfoList, status);
+			}
 		}
+
 	}
 	
 	

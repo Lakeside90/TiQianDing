@@ -34,16 +34,18 @@ import com.xkhouse.fang.app.adapter.BookedInfoAdapter;
 import com.xkhouse.fang.app.cache.AppCache;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
+import com.xkhouse.fang.app.entity.Banner;
 import com.xkhouse.fang.app.entity.BookedInfo;
 import com.xkhouse.fang.app.entity.House;
 import com.xkhouse.fang.app.entity.Site;
-import com.xkhouse.fang.app.entity.XKAd;
+import com.xkhouse.fang.app.entity.TQDad;
 import com.xkhouse.fang.app.service.SiteDbService;
-import com.xkhouse.fang.app.task.ADListRequest;
+import com.xkhouse.fang.app.task.BannerListRequest;
 import com.xkhouse.fang.app.task.BookedInfoListRequest;
 import com.xkhouse.fang.app.task.HouseLikeListRequest;
 import com.xkhouse.fang.app.task.LuckInfoListRequest;
 import com.xkhouse.fang.app.task.SiteListRequest;
+import com.xkhouse.fang.app.task.TQDadRequest;
 import com.xkhouse.fang.app.util.DisplayUtil;
 import com.xkhouse.fang.house.activity.CustomHouseListActivity;
 import com.xkhouse.fang.house.activity.HouseDetailActivity;
@@ -78,8 +80,13 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	//轮询图
 	private AutoScrollViewPager home_viewpager;
 	private LinearLayout home_point_lay;
-	private ArrayList<XKAd> adList;
+	private ArrayList<Banner> bannerList;
 	private List<ImageView> pointViews;
+
+	//广告图片
+	private ImageView home_ad_img;
+	private TQDad ad;
+
 
 	//最新抽奖
 	private ScrollGridView luck_gridview;
@@ -211,7 +218,8 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
         luck_gridview = (ScrollGridView) rootView.findViewById(R.id.luck_gridview);
 		bookInfo_recommed_listview = (ScrollXListView) rootView.findViewById(R.id.bookInfo_recommed_listview);
 
-    }
+		home_ad_img = (ImageView) rootView.findViewById(R.id.home_ad_img);
+	}
 	
 	private void setListeners() {
 		city_txt.setOnClickListener(this);
@@ -224,7 +232,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
             @Override
             public void onPageSelected(int arg0) {
 
-                for (int i = 0; i < adList.size(); i++) {
+                for (int i = 0; i < bannerList.size(); i++) {
                     if (arg0 == i) {
                         pointViews.get(i).setImageResource(R.drawable.home_cricle_light_bg);
                     } else {
@@ -294,12 +302,22 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
 	
 
+	private void fillAdData() {
+		if (ad == null) return;
+		DisplayImageOptions options = new DisplayImageOptions.Builder()
+				.showImageOnLoading(R.drawable.nopic)   // 加载的图片
+				.showImageOnFail(R.drawable.nopic) // 错误的时候的图片
+				.showImageForEmptyUri(R.drawable.nopic)
+				.bitmapConfig(Bitmap.Config.RGB_565).cacheInMemory(true)
+				.cacheOnDisk(true).build();
+		ImageLoader.getInstance().displayImage(ad.getImgurl(), home_ad_img, options);
+	}
 	
 	//轮询图
-	private void fillAdData(){
-		if(adList == null) return;
+	private void fillBannerData(){
+		if(bannerList == null) return;
 
-        if(adList.size() < 1){
+        if(bannerList.size() < 1){
 			home_point_lay.setVisibility(View.GONE);
         }else{
 			home_point_lay.setVisibility(View.VISIBLE);
@@ -311,7 +329,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 		LayoutParams lps = new LayoutParams(DisplayUtil.dip2px(getActivity(), 6),
 				DisplayUtil.dip2px(getActivity(), 6));
 		lps.leftMargin = DisplayUtil.dip2px(getActivity(), 3);
-		for(int i=0; i < adList.size(); i++){
+		for(int i = 0; i < bannerList.size(); i++){
 			ImageView imageView = new ImageView(getActivity());
 			imageView.setImageResource(R.drawable.home_cricle_dark_bg);
 			home_point_lay.addView(imageView, lps);
@@ -329,11 +347,11 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	       .cacheOnDisk(true).build();
 		
 		List<View> views = new ArrayList<>();
-		for (int i = 0; i < adList.size(); i++) {
+		for (int i = 0; i < bannerList.size(); i++) {
 			ImageView image = new ImageView(getActivity());
 			image.setScaleType(ScaleType.FIT_XY);
 			views.add(image);
-			ImageLoader.getInstance().displayImage(adList.get(i).getPhotoUrl(), image, options);
+			ImageLoader.getInstance().displayImage(bannerList.get(i).getImgurl(), image, options);
 			image.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -345,15 +363,13 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
 		ADPagerAdapter pagerAdapter = new ADPagerAdapter(views);
 		home_viewpager.setAdapter(pagerAdapter);
-
-//        home_viewpager.setSlideBorderMode(AutoScrollViewPager.SLIDE_BORDER_MODE_CYCLE);
 		home_viewpager.setInterval(3000);
         home_viewpager.startAutoScroll();
 
 	}
 	
 	private void goADDetail(){
-        String url = adList.get(home_viewpager.getCurrentItem()).getNewsUrl();
+        String url = bannerList.get(home_viewpager.getCurrentItem()).getLink();
 
         if(!StringUtil.isEmpty(url) && url.contains("/newhouse/")){
             String params[] = url.split("/");
@@ -371,7 +387,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
         Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
         Bundle data = new Bundle();
-        data.putString("url", adList.get(home_viewpager.getCurrentItem()).getNewsUrl());
+        data.putString("url", bannerList.get(home_viewpager.getCurrentItem()).getLink());
         data.putString("isAd", NewsDetailActivity.AD_FLAG);
         intent.putExtras(data);
         getActivity().startActivity(intent);
@@ -600,7 +616,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
 	
 
-	private RequestListener adListListener = new RequestListener() {
+	private RequestListener bannerListListener = new RequestListener() {
 		
 		@Override
 		public void sendMessage(Message message) {
@@ -614,28 +630,53 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 				break;
 				
 			case Constants.NO_DATA_FROM_NET:
-				if (adList != null) {
-					adList.clear();
-					fillAdData();
+				if (bannerList != null) {
+					bannerList.clear();
+					fillBannerData();
 				}
 				break;
 				
 			case Constants.SUCCESS_DATA_FROM_NET:
-				ArrayList<XKAd> temp = (ArrayList<XKAd>) message.getData().getSerializable("adList");
+				ArrayList<Banner> temp = (ArrayList<Banner>) message.getData().getSerializable("bannerList");
 				
-				if (adList == null) {
-					adList = new ArrayList<XKAd>();
-					adList.addAll(temp);
+				if (bannerList == null) {
+					bannerList = new ArrayList<Banner>();
+					bannerList.addAll(temp);
 				} else {
-					adList.clear();
-					adList.addAll(temp);
+					bannerList.clear();
+					bannerList.addAll(temp);
 				}
-				fillAdData();
+				fillBannerData();
 				break;
 			}
 		}
 	};
 
+	private RequestListener adListener = new RequestListener() {
+
+		@Override
+		public void sendMessage(Message message) {
+
+			if(!modelApp.getSite().getSiteId().equals(message.getData().getString("siteId"))){
+				return;
+			}
+
+			switch (message.what) {
+				case Constants.ERROR_DATA_FROM_NET:
+					break;
+
+				case Constants.NO_DATA_FROM_NET:
+					ad = new TQDad();
+					fillAdData();
+					break;
+
+				case Constants.SUCCESS_DATA_FROM_NET:
+					ad = (TQDad) message.getData().getSerializable("ad");
+					fillAdData();
+					break;
+			}
+		}
+	};
 
 	private void getDataFromNet(){
 		if (NetUtil.detectAvailable(getActivity())) {
@@ -649,21 +690,30 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 			startBookedInfoListTask(1);
 
 			//轮询图广告
-            ADListRequest adListRequest = new ADListRequest(modelApp.getSite().getSiteId(), "187", adListListener);
-			adListRequest.doRequest();
+            BannerListRequest bannerListRequest = new BannerListRequest(modelApp.getSite().getSiteId(), bannerListListener);
+			bannerListRequest.doRequest();
+
+			TQDadRequest adRequest = new TQDadRequest(modelApp.getSite().getSiteId(), "1", adListener);
+			adRequest.doRequest();
 
 		} else {
 			Toast.makeText(getActivity(), R.string.net_warn, Toast.LENGTH_SHORT).show();
 		}
 	}
 
-    /** 获取本地缓存数据  **/
+    /****************************** 获取本地缓存数据  ******************************/
 	private void getDataFromLocal(){
         //轮询图广告
-        ADListRequest adListRequest = new ADListRequest();
-        adListRequest.parseResult(AppCache.readHomeAdJson(modelApp.getSite().getSiteId()));
-        adList = adListRequest.getAdList();
-        fillAdData();
+        BannerListRequest adListRequest = new BannerListRequest();
+        adListRequest.parseResult(AppCache.readHomeBannerJson(modelApp.getSite().getSiteId()));
+        bannerList = adListRequest.getBannerList();
+        fillBannerData();
+
+		//广告图片
+		TQDadRequest adRequest = new TQDadRequest();
+		adRequest.parseResult(AppCache.readIndexAdJson(modelApp.getSite().getSiteId()));
+		ad = adRequest.getAd();
+		fillAdData();
 
         //猜你喜欢
         HouseLikeListRequest houseLikeListRequest = new HouseLikeListRequest();
@@ -679,9 +729,9 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
     //清除上个站点的数据
     private void clearLastSiteData(){
-        if(adList != null){
-            adList.clear();
-            fillAdData();
+        if(bannerList != null){
+            bannerList.clear();
+            fillBannerData();
         }
 
         if(houseLikeList != null){

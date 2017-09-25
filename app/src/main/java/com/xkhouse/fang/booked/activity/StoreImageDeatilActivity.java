@@ -12,24 +12,18 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.amap.api.maps2d.model.Text;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
-import com.xkhouse.fang.app.activity.CJFragment;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.entity.XKAd;
-import com.xkhouse.fang.app.task.ADListRequest;
-import com.xkhouse.fang.app.util.DisplayUtil;
-import com.xkhouse.fang.booked.view.ItemStoreImageView;
+import com.xkhouse.fang.app.task.BannerListRequest;
 import com.xkhouse.fang.widget.autoscrollviewpager.AutoScrollViewPager;
-import com.xkhouse.fang.widget.viewpagerindicator.TabPageIndicator;
 import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.NetUtil;
 
@@ -262,7 +256,7 @@ public class StoreImageDeatilActivity extends AppBaseActivity {
         if (NetUtil.detectAvailable(this)) {
 
             //轮询图广告
-            ADListRequest adListRequest = new ADListRequest(modelApp.getSite().getSiteId(), "187", adListListener);
+            BannerListRequest adListRequest = new BannerListRequest(modelApp.getSite().getSiteId(), "187", adListListener);
             adListRequest.doRequest();
 
         } else {

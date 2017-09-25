@@ -22,7 +22,7 @@ import com.xkhouse.fang.app.cache.AppCache;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.entity.XKAd;
-import com.xkhouse.fang.app.task.ADListRequest;
+import com.xkhouse.fang.app.task.BannerListRequest;
 import com.xkhouse.fang.app.util.DisplayUtil;
 import com.xkhouse.fang.user.view.ItemCJListView;
 import com.xkhouse.fang.widget.autoscrollviewpager.AutoScrollViewPager;
@@ -390,7 +390,7 @@ public class CJFragment extends AppBaseFragment {
         if (NetUtil.detectAvailable(getActivity())) {
 
             //轮询图广告
-            ADListRequest adListRequest = new ADListRequest(modelApp.getSite().getSiteId(), "187", adListListener);
+            BannerListRequest adListRequest = new BannerListRequest(modelApp.getSite().getSiteId(), "187", adListListener);
             adListRequest.doRequest();
 
         } else {
@@ -401,9 +401,9 @@ public class CJFragment extends AppBaseFragment {
     /** 获取本地缓存数据  **/
     private void getDataFromLocal(){
         //轮询图广告
-        ADListRequest adListRequest = new ADListRequest();
-        adListRequest.parseResult(AppCache.readHomeAdJson(modelApp.getSite().getSiteId()));
-        adList = adListRequest.getAdList();
+        BannerListRequest adListRequest = new BannerListRequest();
+        adListRequest.parseResult(AppCache.readHomeBannerJson(modelApp.getSite().getSiteId()));
+        adList = adListRequest.getBannerList();
         fillAdData();
 
     }

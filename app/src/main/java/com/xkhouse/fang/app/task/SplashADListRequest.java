@@ -21,7 +21,7 @@ import org.json.JSONObject;
  */
 public class SplashADListRequest {
 
-	private String TAG = "ADListRequest";
+	private String TAG = "BannerListRequest";
 	private RequestListener requestListener;
 	
 	private String siteId;

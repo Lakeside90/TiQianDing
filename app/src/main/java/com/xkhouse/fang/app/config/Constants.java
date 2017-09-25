@@ -52,11 +52,14 @@ public class Constants {
 	
 	
 	/******************************* 首页相关  *******************************/
-	
+
+    /** 广告   **/
+    public static String TQD_AD = HOST + "/v1/Index/advertisement";
+
 	public static String SPLASH_AD_LIST = HOST_OLD + "/v1.0/Other/Ad.api";
 			
-	/** 首页轮询图，专题推荐   **/
-	public static String INDEX_AD_LIST = HOST_OLD + "/v1.0/Diy/Index.api";
+	/** 首页轮询图 **/
+	public static String INDEX_BANNER_LIST = HOST+ "/v1/Index/carousel";
 	
 	/** 新房推荐(猜你喜欢)   **/
 	public static String HOUSE_LIKE = HOST_OLD + "/v1.1/Newhouse/Guess.api";
