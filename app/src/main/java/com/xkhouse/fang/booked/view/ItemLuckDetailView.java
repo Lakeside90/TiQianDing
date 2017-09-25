@@ -88,7 +88,7 @@ public class ItemLuckDetailView {
             case LuckDetailActivity.LUCK_JOIN:
                 luck_join_listView.setVisibility(View.VISIBLE);
                 luck_detail_webview.setVisibility(View.GONE);
-                luck_join_listView.setAdapter(new CJListAdapter(context, null));
+//                luck_join_listView.setAdapter(new CJListAdapter(context, null));
                 break;
 
         }
@@ -140,7 +140,7 @@ public class ItemLuckDetailView {
             public void onLoadMore() {
                 startRecommendListTask(currentPageIndex, false);
             }
-        }, R.id.recommend_listView);
+        }, R.id.luck_join_listView);
 
 
 	}
@@ -214,14 +214,14 @@ public class ItemLuckDetailView {
 	
 	
 	private void fillRecommendData() {
-		if(recommendList == null) return;
-		
-		if(adapter == null){
-			adapter = new CJListAdapter(context, recommendList);
-			luck_join_listView.setAdapter(adapter);
-		}else {
-			adapter.setData(recommendList);
-		}
+//		if(recommendList == null) return;
+//
+//		if(adapter == null){
+//			adapter = new CJListAdapter(context, recommendList);
+//			luck_join_listView.setAdapter(adapter);
+//		}else {
+//			adapter.setData(recommendList);
+//		}
 	}
 	
 	

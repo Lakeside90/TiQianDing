@@ -21,6 +21,7 @@ import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.cache.AppCache;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
+import com.xkhouse.fang.app.entity.Banner;
 import com.xkhouse.fang.app.entity.XKAd;
 import com.xkhouse.fang.app.task.BannerListRequest;
 import com.xkhouse.fang.app.util.DisplayUtil;
@@ -47,7 +48,7 @@ public class CJFragment extends AppBaseFragment {
     //轮询图
     private AutoScrollViewPager home_viewpager;
     private LinearLayout home_point_lay;
-    private ArrayList<XKAd> adList;
+    private ArrayList<Banner> adList;
     private List<ImageView> pointViews;
 
 
@@ -229,7 +230,7 @@ public class CJFragment extends AppBaseFragment {
             ImageView image = new ImageView(getActivity());
             image.setScaleType(ImageView.ScaleType.FIT_XY);
             views.add(image);
-            ImageLoader.getInstance().displayImage(adList.get(i).getPhotoUrl(), image, options);
+            ImageLoader.getInstance().displayImage(adList.get(i).getImgurl(), image, options);
             image.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -370,10 +371,10 @@ public class CJFragment extends AppBaseFragment {
                     break;
 
                 case Constants.SUCCESS_DATA_FROM_NET:
-                    ArrayList<XKAd> temp = (ArrayList<XKAd>) message.getData().getSerializable("adList");
+                    ArrayList<Banner> temp = (ArrayList<Banner>) message.getData().getSerializable("bannerList");
 
                     if (adList == null) {
-                        adList = new ArrayList<XKAd>();
+                        adList = new ArrayList<Banner>();
                         adList.addAll(temp);
                     } else {
                         adList.clear();
@@ -390,7 +391,7 @@ public class CJFragment extends AppBaseFragment {
         if (NetUtil.detectAvailable(getActivity())) {
 
             //轮询图广告
-            BannerListRequest adListRequest = new BannerListRequest(modelApp.getSite().getSiteId(), "187", adListListener);
+            BannerListRequest adListRequest = new BannerListRequest(modelApp.getSite().getSiteId(), adListListener);
             adListRequest.doRequest();
 
         } else {

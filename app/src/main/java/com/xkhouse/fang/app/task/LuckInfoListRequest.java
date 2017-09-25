@@ -83,11 +83,9 @@ public class LuckInfoListRequest {
                 Bundle data = new Bundle();
 
                 if(Constants.SUCCESS_CODE.equals(code)){
-//                    if (isNeedCache()) {
-//                        AppCache.writeBookInfoRecommedJson(siteId, response);
-//                    }else if (isNeedCache() && isRecommend.equals(LIST_ALL)) {
-//                        AppCache.writeBookInfoJson(siteId, response);
-//                    }
+                    if (isNeedCache()) {
+                        AppCache.writeHomeLuckJson(siteId, response);
+                    }
 
                     data.putSerializable("luckInfoList", luckInfoList);
                     data.putString("siteId", siteId);
@@ -175,12 +173,6 @@ public class LuckInfoListRequest {
         if (page != 1){
             return false;
         } else{
-//            if (searchContent.contains("&areaId=") || searchContent.contains("&type=")
-//                    || searchContent.contains("&order=") || searchContent.contains("&k=")) {
-//                return false;
-//            }else{
-//                return true;
-//            }
             return  true;
         }
     }

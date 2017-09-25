@@ -69,7 +69,7 @@ public class ItemRecommendView {
 	private void initView() {
 		rootView = LayoutInflater.from(context).inflate(R.layout.view_cj_list, null);
 
-		recommend_listView = (XListView) rootView.findViewById(R.id.recommend_listView);
+//		recommend_listView = (XListView) rootView.findViewById(R.id.recommend_listView);
 
         content_lay = (LinearLayout) rootView.findViewById(R.id.content_lay);
         rotate_loading = (RotateLoading) rootView.findViewById(R.id.rotate_loading);
@@ -82,29 +82,29 @@ public class ItemRecommendView {
 	}
 	
 	private void setListener() {
-		recommend_listView.setPullLoadEnable(true);
-		recommend_listView.setPullRefreshEnable(true);
-		recommend_listView.setXListViewListener(new IXListViewListener() {
-
-            @Override
-            public void onRefresh() {
-                isPullDown = true;
-                startRecommendListTask(1, false);
-            }
-
-            @Override
-            public void onLoadMore() {
-                startRecommendListTask(currentPageIndex, false);
-            }
-        }, R.id.recommend_listView);
-
-        error_lay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isPullDown = true;
-                startRecommendListTask(1, true);
-            }
-        });
+//		recommend_listView.setPullLoadEnable(true);
+//		recommend_listView.setPullRefreshEnable(true);
+//		recommend_listView.setXListViewListener(new IXListViewListener() {
+//
+//            @Override
+//            public void onRefresh() {
+//                isPullDown = true;
+//                startRecommendListTask(1, false);
+//            }
+//
+//            @Override
+//            public void onLoadMore() {
+//                startRecommendListTask(currentPageIndex, false);
+//            }
+//        }, R.id.recommend_listView);
+//
+//        error_lay.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                isPullDown = true;
+//                startRecommendListTask(1, true);
+//            }
+//        });
 	}
 	
 	

@@ -29,14 +29,14 @@ import com.baidu.android.pushservice.PushManager;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xkhouse.fang.R;
-import com.xkhouse.fang.app.adapter.HouseLikeAdapter;
+import com.xkhouse.fang.app.adapter.HomeLuckAdapter;
 import com.xkhouse.fang.app.adapter.BookedInfoAdapter;
 import com.xkhouse.fang.app.cache.AppCache;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.entity.Banner;
 import com.xkhouse.fang.app.entity.BookedInfo;
-import com.xkhouse.fang.app.entity.House;
+import com.xkhouse.fang.app.entity.LuckInfo;
 import com.xkhouse.fang.app.entity.Site;
 import com.xkhouse.fang.app.entity.TQDad;
 import com.xkhouse.fang.app.service.SiteDbService;
@@ -91,6 +91,8 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	//最新抽奖
 	private ScrollGridView luck_gridview;
 	private LuckInfoListRequest luckInfoListRequest;
+    private ArrayList<LuckInfo> luckList;
+    private HomeLuckAdapter luckAdapter;
 
     //预定推荐
 	private ScrollXListView bookInfo_recommed_listview;
@@ -98,11 +100,6 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	private int pageSize = 5; //每次请求10条数据
 	private boolean isPullDown = false; // 下拉
 	private boolean isLoading = false; //是否正在加载数据
-	
-	
-	private ArrayList<House> houseLikeList;
-	private HouseLikeAdapter houseLikeAdapter;
-	
 	private ArrayList<BookedInfo> bookedInfoList = new ArrayList<>();
 	private BookedInfoAdapter bookedInfoAdapter;
 
@@ -496,16 +493,16 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
 	
 	
-	//猜你喜欢（楼盘）
-	private void fillHouseLikeData() {
-		if(houseLikeList == null) return;
+	//最新活动
+	private void fillLuckData() {
+		if(luckList == null) return;
 		
-		if (houseLikeAdapter == null) {
-			houseLikeAdapter = new HouseLikeAdapter(getActivity(), houseLikeList, startLatlng);
-			luck_gridview.setAdapter(houseLikeAdapter);
+		if (luckAdapter == null) {
+			luckAdapter = new HomeLuckAdapter(getActivity(), luckList, startLatlng);
+			luck_gridview.setAdapter(luckAdapter);
 		} else {
-			houseLikeAdapter.setData(houseLikeList, startLatlng);
-			houseLikeAdapter.notifyDataSetChanged();
+			luckAdapter.setData(luckList, startLatlng);
+			luckAdapter.notifyDataSetChanged();
 		}
 	}
 	
@@ -527,7 +524,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
 
 		
-	private RequestListener houseLikeListener = new RequestListener() {
+	private RequestListener luckListener = new RequestListener() {
 		
 		@Override
 		public void sendMessage(Message message) {
@@ -540,14 +537,14 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 				break;
 				
 			case Constants.NO_DATA_FROM_NET:
-				if (houseLikeList != null) {
-					houseLikeList.clear();
-					fillHouseLikeData();
+				if (luckList != null) {
+					luckList.clear();
+					fillLuckData();
 				}
 				break;
 				
 			case Constants.SUCCESS_DATA_FROM_NET:
-				ArrayList<House> temp = (ArrayList<House>) message.getData().getSerializable("houseList");
+				ArrayList<LuckInfo> temp = (ArrayList<LuckInfo>) message.getData().getSerializable("luckInfoList");
 				//最多显示6条数据
 				if(temp != null && temp.size() > 10){
 					int size = temp.size();
@@ -555,14 +552,14 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 						temp.remove(temp.size()-1);
 					}
 				}
-				if (houseLikeList == null) {
-					houseLikeList = new ArrayList<House>();
-					houseLikeList.addAll(temp);
+				if (luckList == null) {
+					luckList = new ArrayList<LuckInfo>();
+					luckList.addAll(temp);
 				} else {
-					houseLikeList.clear();
-					houseLikeList.addAll(temp);
+					luckList.clear();
+					luckList.addAll(temp);
 				}
-				fillHouseLikeData();
+				fillLuckData();
 
 				break;
 			}
@@ -681,8 +678,12 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	private void getDataFromNet(){
 		if (NetUtil.detectAvailable(getActivity())) {
 			//最新抽奖
-            HouseLikeListRequest houseLikeListRequest = new HouseLikeListRequest(modelApp.getSite().getSiteId(), 10, 1, houseLikeListener);
-			houseLikeListRequest.doRequest();
+            if (luckInfoListRequest == null) {
+                luckInfoListRequest = new LuckInfoListRequest(modelApp.getSite().getSiteId(), 10, 1, luckListener);
+                luckInfoListRequest.doRequest();
+            }
+            luckInfoListRequest.doRequest();
+
 
 			//推荐预定
 			isPullDown = true;
@@ -704,9 +705,9 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
     /****************************** 获取本地缓存数据  ******************************/
 	private void getDataFromLocal(){
         //轮询图广告
-        BannerListRequest adListRequest = new BannerListRequest();
-        adListRequest.parseResult(AppCache.readHomeBannerJson(modelApp.getSite().getSiteId()));
-        bannerList = adListRequest.getBannerList();
+        BannerListRequest bannerListRequest = new BannerListRequest();
+        bannerListRequest.parseResult(AppCache.readHomeBannerJson(modelApp.getSite().getSiteId()));
+        bannerList = bannerListRequest.getBannerList();
         fillBannerData();
 
 		//广告图片
@@ -716,10 +717,10 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 		fillAdData();
 
         //猜你喜欢
-        HouseLikeListRequest houseLikeListRequest = new HouseLikeListRequest();
-        houseLikeListRequest.parseResult(AppCache.readHouseLikeJson(modelApp.getSite().getSiteId()));
-        houseLikeList = houseLikeListRequest.getHouseList();
-        fillHouseLikeData();
+        LuckInfoListRequest luckListRequest = new LuckInfoListRequest();
+        luckListRequest.parseResult(AppCache.readHomeLuckJson(modelApp.getSite().getSiteId()));
+        luckList = luckListRequest.getLuckInfoList();
+        fillLuckData();
 
         BookedInfoListRequest bookedInfoListRequest = new BookedInfoListRequest();
         bookedInfoListRequest.parseResult(AppCache.readBookInfoRecommedJson(modelApp.getSite().getSiteId()));
@@ -734,9 +735,9 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
             fillBannerData();
         }
 
-        if(houseLikeList != null){
-            houseLikeList.clear();
-            fillHouseLikeData();
+        if(luckList != null){
+            luckList.clear();
+            fillLuckData();
         }
 
         if(bookedInfoList != null){
@@ -841,7 +842,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
                     }
                 }
             }
-			fillHouseLikeData();
+			fillLuckData();
 		}else {
 			Logger.e("AmapErr","Location ERR:" + amapLocation.getAMapException().getErrorCode());
 		}

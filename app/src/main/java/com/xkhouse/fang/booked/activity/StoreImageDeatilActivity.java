@@ -256,7 +256,7 @@ public class StoreImageDeatilActivity extends AppBaseActivity {
         if (NetUtil.detectAvailable(this)) {
 
             //轮询图广告
-            BannerListRequest adListRequest = new BannerListRequest(modelApp.getSite().getSiteId(), "187", adListListener);
+            BannerListRequest adListRequest = new BannerListRequest(modelApp.getSite().getSiteId(), adListListener);
             adListRequest.doRequest();
 
         } else {

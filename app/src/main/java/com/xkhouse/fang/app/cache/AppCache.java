@@ -207,6 +207,38 @@ public class AppCache {
         }
     }
 
+
+    /**
+     * 读取首页最新活动
+     */
+    public static String readHomeLuckJson(String siteId){
+        String json = "";
+        try{
+            String path = getCachePath(siteId);
+            FileUtil.createFolder(path);
+            json = FileUtil.readFile(path+File.separator+"homeLuck.json", key);
+        }catch (Exception e){
+            Logger.e(TAG, e.getMessage());
+        }
+
+        return json;
+    }
+
+    /**
+     * 写入首页最新活动
+     */
+    public static void writeHomeLuckJson(String siteId, String value){
+        try{
+            String path = getCachePath(siteId);
+            FileUtil.createFolder(path);
+            FileUtil.writeFile(path+File.separator+"homeLuck.json", value, key);
+        }catch (Exception e){
+            Logger.e(TAG, e.getMessage());
+        }
+    }
+
+
+
     /**
      * 读取预定列表
      */
