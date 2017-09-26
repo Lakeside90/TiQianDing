@@ -65,7 +65,7 @@ public class CJListRequest {
 		Map<String, String> params = new HashMap<>();
         params.put("pagesize", String.valueOf(num));
         params.put("page", String.valueOf(page));
-        params.put("siteid", siteId);
+//        params.put("siteid", siteId);
         params.put("type", type);
         String url = StringUtil.getRequestUrl(Constants.CJ_LIST, params);
         Logger.d(TAG, url);

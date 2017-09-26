@@ -67,7 +67,7 @@ public class BannerListRequest {
                 Message message = new Message();
                 Bundle data = new Bundle();
 
-                if(Constants.SUCCESS_CODE_OLD.equals(code)){
+                if(Constants.SUCCESS_CODE.equals(code)){
                     //缓存json到本地
                     AppCache.writeHomeBannerJson(siteId, response);
 

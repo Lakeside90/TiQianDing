@@ -127,7 +127,6 @@ public class ItemCJListView {
 						case Constants.ERROR_DATA_FROM_NET:
                             if (cjInfoList == null || cjInfoList.size() == 0){
                                 content_lay.setVisibility(View.GONE);
-                                rotate_loading.setVisibility(View.GONE);
                                 error_lay.setVisibility(View.VISIBLE);
                             }else{
                                 Toast.makeText(context, R.string.service_error, Toast.LENGTH_SHORT).show();
@@ -135,8 +134,14 @@ public class ItemCJListView {
 							break;
 							
 						case Constants.NO_DATA_FROM_NET:
-                            error_lay.setVisibility(View.GONE);
-                            content_lay.setVisibility(View.VISIBLE);
+							if (cjInfoList == null || cjInfoList.size() == 0){
+								content_lay.setVisibility(View.GONE);
+								error_lay.setVisibility(View.GONE);
+							}else {
+								error_lay.setVisibility(View.GONE);
+								content_lay.setVisibility(View.VISIBLE);
+							}
+
                             String msg = (String) message.obj;
                             if (StringUtil.isEmpty(msg)) msg = "没有数据";
                             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();

@@ -545,13 +545,6 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 				
 			case Constants.SUCCESS_DATA_FROM_NET:
 				ArrayList<LuckInfo> temp = (ArrayList<LuckInfo>) message.getData().getSerializable("luckInfoList");
-				//最多显示6条数据
-				if(temp != null && temp.size() > 10){
-					int size = temp.size();
-					for(int i = 10; i < size; i++){
-						temp.remove(temp.size()-1);
-					}
-				}
 				if (luckList == null) {
 					luckList = new ArrayList<LuckInfo>();
 					luckList.addAll(temp);
@@ -559,8 +552,8 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 					luckList.clear();
 					luckList.addAll(temp);
 				}
-				fillLuckData();
 
+				fillLuckData();
 				break;
 			}
 		}
@@ -680,10 +673,8 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 			//最新抽奖
             if (luckInfoListRequest == null) {
                 luckInfoListRequest = new LuckInfoListRequest(modelApp.getSite().getSiteId(), 10, 1, luckListener);
-                luckInfoListRequest.doRequest();
             }
             luckInfoListRequest.doRequest();
-
 
 			//推荐预定
 			isPullDown = true;

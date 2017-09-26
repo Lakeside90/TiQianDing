@@ -69,7 +69,7 @@ public class TQDadRequest {
                 Message message = new Message();
                 Bundle data = new Bundle();
 
-                if(Constants.SUCCESS_CODE_OLD.equals(code)){
+                if(Constants.SUCCESS_CODE.equals(code)){
                     //缓存json到本地
                     if ("1".equals(position)){
                         AppCache.writeIndexAdJson(siteId, response);

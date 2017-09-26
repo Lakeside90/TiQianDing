@@ -63,11 +63,13 @@ public class LuckInfoListRequest {
 	}
 	
 	public void doRequest(){
-		luckInfoList.clear();
+
+        luckInfoList.clear();
+
 		Map<String, String> params = new HashMap<>();
         params.put("num", String.valueOf(num));
         params.put("page", String.valueOf(page));
-        params.put("siteid", siteId);
+//        params.put("siteid", siteId);
         String url = StringUtil.getRequestUrl(Constants.LUCKINFO_LIST, params);
         Logger.d(TAG, url);
 	            
@@ -134,7 +136,7 @@ public class LuckInfoListRequest {
         	
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject != null) {
-            	code = jsonObject.optString("code");
+            	code = jsonObject.optString("status");
             	
                 if (!Constants.SUCCESS_CODE.equals(code)) {
                 	msg = jsonObject.optString("msg");
@@ -150,7 +152,7 @@ public class LuckInfoListRequest {
                         LuckInfo luckInfo = new LuckInfo();
                         luckInfo.setId(json.optString("id"));
                         luckInfo.setImg(json.optString("img"));
-                        luckInfo.setImg(json.optString("title"));
+                        luckInfo.setTitle(json.optString("title"));
                         luckInfo.setJoin_count(json.optString("join_count"));
                         luckInfo.setCount(json.optString("count"));
                         luckInfo.setPub_type(json.optString("pub_type"));
