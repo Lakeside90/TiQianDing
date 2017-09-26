@@ -34,7 +34,7 @@ public class CJListRequest {
 
 	private RequestListener requestListener;
 
-	private int num;	//返回数量，
+	private int pageSize;	//返回数量，
 	private int page;	//分页，默认为1
 	private String siteId;	//站点ID
 	private String type;	//活动类型（1:进行中，2:待揭晓，3:已揭晓）
@@ -45,25 +45,25 @@ public class CJListRequest {
 	private ArrayList<CJInfo> cjInfoList = new ArrayList<>();
 
 
-	public CJListRequest(String type, String siteId, int num, int page, RequestListener requestListener) {
+	public CJListRequest(String type, String siteId, int page, int pageSize, RequestListener requestListener) {
         this.type = type;
 		this.siteId = siteId; 
-		this.num = num;
 		this.page = page;
+		this.pageSize = pageSize;
 		this.requestListener = requestListener;
 	}
 	
-	public void setData(String type, String siteId, int num, int page) {
+	public void setData(String type, String siteId, int page, int pageSize) {
         this.type = type;
 		this.siteId = siteId; 
-		this.num = num;
 		this.page = page;
+		this.pageSize = pageSize;
 	}
 	
 	public void doRequest(){
         cjInfoList.clear();
 		Map<String, String> params = new HashMap<>();
-        params.put("pagesize", String.valueOf(num));
+        params.put("pagesize", String.valueOf(pageSize));
         params.put("page", String.valueOf(page));
 //        params.put("siteid", siteId);
         params.put("type", type);

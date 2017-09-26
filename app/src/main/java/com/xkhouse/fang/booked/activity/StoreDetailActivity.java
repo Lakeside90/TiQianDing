@@ -24,12 +24,17 @@ import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
+import com.xkhouse.fang.app.config.Preference;
 import com.xkhouse.fang.app.util.DisplayUtil;
 import com.xkhouse.fang.booked.adapter.CommentAdapter;
 import com.xkhouse.fang.booked.entity.CommentInfo;
 import com.xkhouse.fang.booked.entity.StoreDetail;
+import com.xkhouse.fang.booked.task.AddressEditRequest;
 import com.xkhouse.fang.booked.task.CommentInfoListRequest;
+import com.xkhouse.fang.booked.task.FavoriteAddRequest;
+import com.xkhouse.fang.booked.task.FootAddRequest;
 import com.xkhouse.fang.booked.task.StoreDetailRequest;
+import com.xkhouse.fang.user.activity.LoginActivity;
 import com.xkhouse.fang.user.adapter.CJListAdapter;
 import com.xkhouse.fang.user.entity.MSGNews;
 import com.xkhouse.fang.user.task.MessageDetailListRequest;
@@ -116,9 +121,8 @@ public class StoreDetailActivity extends AppBaseActivity {
                 .cacheOnDisk(true).build();
 
         startTask();
-
         startCommentTask(1);
-
+        startFootTask();
     }
 
 
@@ -176,7 +180,7 @@ public class StoreDetailActivity extends AppBaseActivity {
         iv_head_right.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startFavTask();
             }
         });
 
@@ -307,7 +311,18 @@ public class StoreDetailActivity extends AppBaseActivity {
 
         distance_txt.setText(""); // TODO: 17/9/9
 
+        if (StringUtil.isEmpty(storeDetail.getCheck_discount())) {
+            mai_lay.setVisibility(View.GONE);
+        }else {
+            mai_lay.setVisibility(View.VISIBLE);
+            mai_txt.setText(storeDetail.getCheck_discount());
+        }
 
+        if ("0".equals(storeDetail.getCollection())) {
+            iv_head_right.setImageResource(R.drawable.nav_favorite);
+        }else {
+            iv_head_right.setImageResource(R.drawable.nav_favorite_pressed);
+        }
 
     }
 
@@ -431,6 +446,80 @@ public class StoreDetailActivity extends AppBaseActivity {
         }
 
     }
+
+
+    /************************************   收藏  ***************************************/
+    private FavoriteAddRequest favoriteAddRequest;
+    RequestListener favRequestListener = new RequestListener() {
+
+        @Override
+        public void sendMessage(Message message) {
+            hideLoadingDialog();
+            switch (message.what) {
+                case Constants.ERROR_DATA_FROM_NET:
+                    Toast.makeText(mContext, R.string.service_error, Toast.LENGTH_SHORT).show();
+                    break;
+
+                case Constants.NO_DATA_FROM_NET:
+                    Toast.makeText(mContext, message.obj.toString(), Toast.LENGTH_SHORT).show();
+                    break;
+
+                case Constants.SUCCESS_DATA_FROM_NET:
+                    Toast.makeText(mContext, message.obj.toString(), Toast.LENGTH_SHORT).show();
+                    iv_head_right.setImageResource(R.drawable.nav_favorite_pressed);
+                    break;
+            }
+        }
+    };
+
+    private void startFavTask() {
+        if(Preference.getInstance().readIsLogin()){
+            if(NetUtil.detectAvailable(mContext)){
+                if(favoriteAddRequest == null){
+                    favoriteAddRequest = new FavoriteAddRequest(modelApp.getUser().getToken(), id, favRequestListener);
+                }else {
+                    favoriteAddRequest.setData(modelApp.getUser().getToken(), id);
+                }
+                showLoadingDialog("处理中...");
+                favoriteAddRequest.doRequest();
+
+            }else {
+                Toast.makeText(mContext, R.string.net_warn, Toast.LENGTH_SHORT).show();
+            }
+        }else {
+            Toast.makeText(this, "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private FootAddRequest footAddRequest;
+    RequestListener requestListener = new RequestListener() {
+
+        @Override
+        public void sendMessage(Message message) {
+            hideLoadingDialog();
+            switch (message.what) {
+                case Constants.ERROR_DATA_FROM_NET:
+                case Constants.NO_DATA_FROM_NET:
+                case Constants.SUCCESS_DATA_FROM_NET:
+                    break;
+            }
+        }
+    };
+    private void startFootTask() {
+        if(Preference.getInstance().readIsLogin()){
+            if(NetUtil.detectAvailable(mContext)){
+                if(footAddRequest == null){
+                    footAddRequest = new FootAddRequest(modelApp.getUser().getToken(), id, requestListener);
+                }else {
+                    footAddRequest.setData(modelApp.getUser().getToken(), id);
+                }
+                footAddRequest.doRequest();
+            }
+        }
+    }
+
 
 
     private void CallPhone() {

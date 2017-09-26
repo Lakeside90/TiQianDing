@@ -1,6 +1,7 @@
 package com.xkhouse.fang.booked.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,6 +18,11 @@ public class StoreDetail implements Serializable {
     private String phone;
     private String[] businessLabel;
     private String[] banner;
+    private ArrayList<Booking> bookings;
+    private String check_discount;
+    private String check_discount_id;
+    private String collection;
+
 
 
     public String getBusinessId() {
@@ -74,5 +80,37 @@ public class StoreDetail implements Serializable {
 
     public void setBanner(String[] banner) {
         this.banner = banner;
+    }
+
+    public ArrayList<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(ArrayList<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public String getCheck_discount() {
+        return check_discount;
+    }
+
+    public void setCheck_discount(String check_discount) {
+        this.check_discount = check_discount;
+    }
+
+    public String getCheck_discount_id() {
+        return check_discount_id;
+    }
+
+    public void setCheck_discount_id(String check_discount_id) {
+        this.check_discount_id = check_discount_id;
+    }
+
+    public String getCollection() {
+        return collection;
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
     }
 }

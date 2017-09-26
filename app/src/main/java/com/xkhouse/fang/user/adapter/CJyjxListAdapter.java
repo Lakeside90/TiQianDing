@@ -78,7 +78,7 @@ public class CJyjxListAdapter extends BaseAdapter {
         holder.title_txt.setText(cjInfo.getTitle());
         holder.name_txt.setText("恭喜：" + cjInfo.getNickname());
         holder.number_txt.setText(cjInfo.getWinning_number());
-        holder.number_txt.setText("揭晓时间：" + cjInfo.getReal_winning_time());
+        holder.time_txt.setText("揭晓时间：" + cjInfo.getReal_winning_time());
 
 		return convertView;
 	}

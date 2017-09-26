@@ -255,8 +255,11 @@ public class Constants {
     /**  我的评价列表  **/
     public static String USER_COMMENT_ADD = HOST + "/v1/My/my_commemt_add";
 
+    /**  添加收藏  **/
+    public static String USER_FAV_ADD = HOST + "/v1/My/my_collection_add";
 
-
+    /**  添加足迹  **/
+    public static String USER_FOOT_ADD = HOST + "/v1/My/my_footprint_add";
 
 
 	/**  我的消息  **/

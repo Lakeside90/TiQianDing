@@ -12,6 +12,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.entity.House;
+import com.xkhouse.fang.booked.entity.Booking;
 import com.xkhouse.fang.booked.entity.StoreDetail;
 import com.xkhouse.frame.activity.BaseApplication;
 import com.xkhouse.frame.log.Logger;
@@ -134,6 +135,9 @@ public class StoreDetailRequest {
                     storeDetail.setAverageConsump(dataObj.optString("average_consump"));
                     storeDetail.setAddress(dataObj.optString("business_address"));
                     storeDetail.setPhone(dataObj.optString("business_phone"));
+                    storeDetail.setCheck_discount_id(dataObj.optString("check_discount_id"));
+                    storeDetail.setCheck_discount(dataObj.optString("check_discount"));
+                    storeDetail.setCollection(dataObj.optString("collection"));
 
                     JSONArray labelArray = dataObj.optJSONArray("business_label");
                     if (labelArray != null && labelArray.length() > 0) {
@@ -153,6 +157,22 @@ public class StoreDetailRequest {
                         storeDetail.setBanner(banners);
                     }
 
+                    ArrayList<Booking> bookings = new ArrayList<>();
+                    JSONArray bookingArray = dataObj.optJSONArray("booking");
+                    if (bannerArray != null && bannerArray.length() > 0) {
+                        for(int i = 0; i < bookingArray.length(); i++) {
+                            JSONObject bookJson = bannerArray.getJSONObject(i);
+                            Booking booking = new Booking();
+                            booking.setBooking_id(bookJson.optString("booking_id"));
+                            booking.setDiscount(bookJson.optString("discount"));
+                            booking.setPayment(bookJson.optString("payment"));
+                            booking.setMortgage(bookJson.optString("mortgage"));
+                            booking.setOrder_num(bookJson.optString("order_num"));
+                            booking.setToday_order_num(bookJson.optString("today_order_num"));
+                            bookings.add(booking);
+                        }
+                    }
+                    storeDetail.setBookings(bookings);
 
                 }
             }
