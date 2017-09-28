@@ -84,7 +84,7 @@
                     android:gravity="right|center_vertical"
                     android:textSize="13sp"
                     android:textColor="@color/common_black_txt"
-                    android:text="07月26 19:00"
+                    android:text="请选择"
                     android:drawableRight="@drawable/icon_arrow_right"
                     android:drawablePadding="5dp"/>
             </LinearLayout>
@@ -122,6 +122,7 @@
                     android:orientation="horizontal"
                     android:gravity="center_vertical|right">
                     <RadioButton
+                        android:id="@+id/female_rb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="20dp"
@@ -129,6 +130,7 @@
                         android:textColor="@color/common_black_txt"/>
 
                     <RadioButton
+                        android:id="@+id/male_rb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="先生"

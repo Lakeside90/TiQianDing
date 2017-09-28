@@ -158,6 +158,8 @@ public class BookedInfoListRequest {
 	                	BookedInfo bookedInfo = new BookedInfo();
                         bookedInfo.setBookingId(json.optString("booking_id"));
                         bookedInfo.setBusinessId(json.optString("business_id"));
+                        bookedInfo.setPayment(json.optString("payment"));
+                        bookedInfo.setMortgage(json.optString("mortgage"));
                         bookedInfo.setDiscount(json.optString("discount"));
                         bookedInfo.setBusinessName(json.optString("business_name"));
                         bookedInfo.setAverageConsump(json.optString("average_consump"));

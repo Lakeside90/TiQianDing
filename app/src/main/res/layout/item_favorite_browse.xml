@@ -15,7 +15,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/news_icon_iv"
+            android:id="@+id/icon_iv"
             android:layout_width="100dp"
             android:layout_height="90dp"
             android:scaleType="fitXY"/>
@@ -41,7 +41,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/news_title_txt"
+                        android:id="@+id/title_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
@@ -59,7 +59,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/news_date_txt"
+                            android:id="@+id/ave_consum_txt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
@@ -68,37 +68,16 @@
                             android:textColor="@color/c_666666"
                             android:textSize="14sp"
                             />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:lines="1"
-                            android:text="（今日已定10）"
-                            android:textColor="@color/common_gray_txt"
-                            android:textSize="14sp"
-                            />
                     </LinearLayout>
 
 
                     <LinearLayout
+                        android:id="@+id/label_lay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="7dp"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/gray_border_btn_bg"
-                            android:gravity="center"
-                            android:paddingBottom="2dp"
-                            android:paddingLeft="3dp"
-                            android:paddingRight="3dp"
-                            android:paddingTop="2dp"
-                            android:text="酒吧"
-                            android:textColor="@color/common_gray_txt"
-                            android:textSize="12dp"/>
                     </LinearLayout>
 
 
@@ -120,11 +99,11 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@id/address_txt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-
-                    android:drawableLeft="@drawable/icon_position"
+                    android:drawableLeft="@drawable/add_ico"
                     android:drawablePadding="3dp"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
@@ -134,6 +113,7 @@
                     android:textSize="12sp"/>
 
                 <TextView
+                    android:id="@id/distance_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="128m"

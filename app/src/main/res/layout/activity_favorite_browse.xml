@@ -11,7 +11,7 @@
         layout="@layout/common_title_bar_white"/>
 
     <com.xkhouse.fang.widget.xlist.XListView
-        android:id="@+id/msg_listView"
+        android:id="@+id/listView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

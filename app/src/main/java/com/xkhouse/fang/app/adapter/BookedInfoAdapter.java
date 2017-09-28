@@ -142,7 +142,7 @@ public class BookedInfoAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, BookedMakeActivity.class);
-                intent.putExtra("id", bookedInfo.getBookingId());
+                intent.putExtra("bookedInfo", bookedInfo);
                 context.startActivity(intent);
             }
         });

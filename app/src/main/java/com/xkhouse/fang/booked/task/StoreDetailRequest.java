@@ -11,8 +11,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
-import com.xkhouse.fang.app.entity.House;
-import com.xkhouse.fang.booked.entity.Booking;
+import com.xkhouse.fang.app.entity.BookedInfo;
 import com.xkhouse.fang.booked.entity.StoreDetail;
 import com.xkhouse.frame.activity.BaseApplication;
 import com.xkhouse.frame.log.Logger;
@@ -35,6 +34,7 @@ public class StoreDetailRequest {
 
     private RequestListener requestListener;
 
+    private String token;
     private String business_id;
     private String siteId;
 
@@ -44,15 +44,17 @@ public class StoreDetailRequest {
 
     private StoreDetail storeDetail;
 
-    public StoreDetailRequest(String business_id, String siteId,
+    public StoreDetailRequest(String token, String business_id, String siteId,
                               RequestListener requestListener) {
+        this.token = token;
         this.business_id = business_id;
         this.siteId = siteId;
         this.requestListener = requestListener;
     }
 
 
-    public void setData(String business_id, String siteId) {
+    public void setData(String token, String business_id, String siteId) {
+        this.token = token;
         this.business_id = business_id;
         this.siteId = siteId;
     }
@@ -62,6 +64,9 @@ public class StoreDetailRequest {
         Map<String, String> params = new HashMap<String, String>();
         params.put("business_id", business_id);
         params.put("cityId", siteId);
+        if (!StringUtil.isEmpty(token)) {
+            params.put("token", token);
+        }
 
         String url = StringUtil.getRequestUrl(Constants.STORE_DETAIL, params);
         Logger.d(TAG, url);
@@ -157,17 +162,17 @@ public class StoreDetailRequest {
                         storeDetail.setBanner(banners);
                     }
 
-                    ArrayList<Booking> bookings = new ArrayList<>();
+                    ArrayList<BookedInfo> bookings = new ArrayList<>();
                     JSONArray bookingArray = dataObj.optJSONArray("booking");
                     if (bannerArray != null && bannerArray.length() > 0) {
                         for(int i = 0; i < bookingArray.length(); i++) {
                             JSONObject bookJson = bannerArray.getJSONObject(i);
-                            Booking booking = new Booking();
-                            booking.setBooking_id(bookJson.optString("booking_id"));
+                            BookedInfo booking = new BookedInfo();
+                            booking.setBookingId(bookJson.optString("booking_id"));
                             booking.setDiscount(bookJson.optString("discount"));
                             booking.setPayment(bookJson.optString("payment"));
                             booking.setMortgage(bookJson.optString("mortgage"));
-                            booking.setOrder_num(bookJson.optString("order_num"));
+                            booking.setOrderNum(bookJson.optString("order_num"));
                             booking.setToday_order_num(bookJson.optString("today_order_num"));
                             bookings.add(booking);
                         }

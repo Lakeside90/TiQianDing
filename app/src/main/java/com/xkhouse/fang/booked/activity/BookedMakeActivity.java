@@ -1,11 +1,14 @@
 package com.xkhouse.fang.booked.activity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.Checkable;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -17,15 +20,20 @@ import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
+import com.xkhouse.fang.app.entity.BookedInfo;
 import com.xkhouse.fang.booked.entity.BookAddInfo;
 import com.xkhouse.fang.booked.task.AddressEditRequest;
 import com.xkhouse.fang.booked.task.BookedAddRequest;
+import com.xkhouse.fang.widget.TimePickerDialog;
 import com.xkhouse.lib.utils.NetUtil;
+import com.xkhouse.lib.utils.StringUtil;
+
+import java.util.Calendar;
 
 /**
  * 在线预定
  */
-public class BookedMakeActivity extends AppBaseActivity {
+public class BookedMakeActivity extends AppBaseActivity implements TimePickerDialog.TimePickerDialogInterface{
 
     private ImageView iv_head_left;
     private TextView tv_head_title;
@@ -43,9 +51,13 @@ public class BookedMakeActivity extends AppBaseActivity {
     private CheckBox check_box;
     private TextView commit_txt;
 
+    private TimePickerDialog mTimePickerDialog;
 
     private BookedAddRequest request;
     private BookAddInfo bookAddInfo;
+
+    private BookedInfo bookedInfo;
+    private String time;
 
 
     @Override
@@ -66,6 +78,11 @@ public class BookedMakeActivity extends AppBaseActivity {
     @Override
     protected void init() {
         super.init();
+
+        Bundle data = getIntent().getExtras();
+        if (data != null) {
+            bookedInfo = (BookedInfo) data.getSerializable("bookedInfo");
+        }
     }
 
     @Override
@@ -132,7 +149,8 @@ public class BookedMakeActivity extends AppBaseActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.time_txt:
-
+                mTimePickerDialog = new TimePickerDialog(BookedMakeActivity.this);
+                mTimePickerDialog.showDateAndTimePickerDialog();
                 break;
 
             case R.id.book_dec_txt:
@@ -140,9 +158,10 @@ public class BookedMakeActivity extends AppBaseActivity {
                 break;
 
             case R.id.commit_txt:
-
-                getBookData();
-                startTask();
+                if (checkData()) {
+                    getBookData();
+                    startTask();
+                }
                 break;
 
         }
@@ -150,12 +169,25 @@ public class BookedMakeActivity extends AppBaseActivity {
 
 
     private void fillData() {
-
+        money_book_txt.setText(bookedInfo.getPayment());
+        money_discount_txt.setText(bookedInfo.getMortgage());
+        radioGroup.check(R.id.female_rb);
 
     }
 
     private boolean checkData() {
-// TODO: 17/9/21
+
+        if (StringUtil.isEmpty(people_num_txt.getText().toString()) ||
+                StringUtil.isEmpty(name_txt.getText().toString()) ||
+                StringUtil.isEmpty(phone_txt.getText().toString()) ||
+                StringUtil.isEmpty(time)) {
+            Toast.makeText(mContext, "请填写完整", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (!check_box.isChecked()) {
+            Toast.makeText(mContext, "请阅读预定须知", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
 
@@ -210,4 +242,19 @@ public class BookedMakeActivity extends AppBaseActivity {
     };
 
 
+    @Override
+    public void positiveListener() {
+        int hour = mTimePickerDialog.getHour();
+        int minute = mTimePickerDialog.getMinute();
+        int month = mTimePickerDialog.getMonth();
+        int day = mTimePickerDialog.getDay();
+        time = String.valueOf(month) + "-" + String.valueOf(day)
+                + "-" + String.valueOf(hour) + " : " + String.valueOf(minute);
+        time_txt.setText(time);
+    }
+
+    @Override
+    public void negativeListener() {
+
+    }
 }

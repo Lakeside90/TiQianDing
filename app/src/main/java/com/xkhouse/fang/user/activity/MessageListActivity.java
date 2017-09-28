@@ -1,12 +1,9 @@
 package com.xkhouse.fang.user.activity;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Message;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,10 +16,11 @@ import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
-import com.xkhouse.fang.user.adapter.MSGSystemAdapter;
-import com.xkhouse.fang.user.entity.MSGNews;
+import com.xkhouse.fang.user.adapter.MessageAdapter;
 import com.xkhouse.fang.user.entity.MSGSystem;
+import com.xkhouse.fang.user.entity.MessageInfo;
 import com.xkhouse.fang.user.task.MessageDetailListRequest;
+import com.xkhouse.fang.user.task.MessageListRequest;
 import com.xkhouse.fang.widget.loading.RotateLoading;
 import com.xkhouse.fang.widget.xlist.XListView;
 import com.xkhouse.fang.widget.xlist.XListView.IXListViewListener;
@@ -39,7 +37,7 @@ public class MessageListActivity extends AppBaseActivity {
 	private TextView tv_head_title;
 	
 	private XListView msg_listView;
-	private MSGSystemAdapter adapter;
+	private MessageAdapter adapter;
 	private int currentPageIndex = 1;  //分页索引
 	private int pageSize = 10; //每次请求10条数据
 	private boolean isPullDown = false; // 下拉
@@ -49,8 +47,8 @@ public class MessageListActivity extends AppBaseActivity {
     private LinearLayout error_lay;
 
 
-	private MessageDetailListRequest listRequest;
-	private ArrayList<MSGSystem> systemList = new ArrayList<MSGSystem>();
+	private MessageListRequest listRequest;
+	private ArrayList<MessageInfo> messageList = new ArrayList<>();
 
     private String DEVICE_ID;      //设备ID
     private int READ_PHONE_STATE_REQUEST_CODE = 100;
@@ -58,8 +56,8 @@ public class MessageListActivity extends AppBaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//
-        fillData();
+
+        startDataTask(1, true);
 	}
 	
 	
@@ -71,18 +69,6 @@ public class MessageListActivity extends AppBaseActivity {
 	@Override
 	protected void init() {
 		super.init();
-        // Here, thisActivity is the current activity
-        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.READ_PHONE_STATE)
-                != PackageManager.PERMISSION_GRANTED) {
-            // No explanation needed, we can request the permission.
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE},
-                    READ_PHONE_STATE_REQUEST_CODE);
-
-        } else {
-            //执行获取权限后的操作
-            TelephonyManager tm = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-            DEVICE_ID = tm.getDeviceId();
-        }
 	}
 
 	@Override
@@ -124,12 +110,12 @@ public class MessageListActivity extends AppBaseActivity {
             @Override
             public void onRefresh() {
                 isPullDown = true;
-//                startDataTask(1, false);
+                startDataTask(1, false);
             }
 
             @Override
             public void onLoadMore() {
-//                startDataTask(currentPageIndex, false);
+                startDataTask(currentPageIndex, false);
             }
         }, R.id.msg_listView);
 	}
@@ -140,7 +126,7 @@ public class MessageListActivity extends AppBaseActivity {
 
         switch (v.getId()){
             case R.id.error_lay:
-//                startDataTask(1, true);
+                startDataTask(1, true);
                 break;
         }
 		
@@ -149,24 +135,19 @@ public class MessageListActivity extends AppBaseActivity {
 	
 	private void fillData(){
 
-        for (int i = 0; i < 10; i++) {
-            systemList.add(new MSGSystem());
-        }
-
-		if(systemList == null) return;
+		if(messageList == null) return;
 		if(adapter == null ){
-			adapter = new MSGSystemAdapter(mContext, systemList);
+			adapter = new MessageAdapter(mContext, messageList);
 			msg_listView.setAdapter(adapter);
 		}else {
-			adapter.setData(systemList);
+			adapter.setData(messageList);
 		}
 	}
 	
 	private void startDataTask(int page, boolean showLoading){
 		if (NetUtil.detectAvailable(mContext)) {
 			if(listRequest == null){
-				listRequest = new MessageDetailListRequest(modelApp.getUser().getId(), DEVICE_ID,modelApp.getSite().getSiteId(),
-						21, page, pageSize, new RequestListener() {
+				listRequest = new MessageListRequest(modelApp.getUser().getToken(), page, pageSize, new RequestListener() {
 					
 					@Override
 					public void sendMessage(Message message) {
@@ -180,7 +161,7 @@ public class MessageListActivity extends AppBaseActivity {
 
 						switch (message.what) {
 						case Constants.ERROR_DATA_FROM_NET:
-                            if (systemList == null || systemList.size() == 0){
+                            if (messageList == null || messageList.size() == 0){
                                 msg_listView.setVisibility(View.GONE);
                                 notice_lay.setVisibility(View.GONE);
                                 error_lay.setVisibility(View.VISIBLE);
@@ -193,7 +174,7 @@ public class MessageListActivity extends AppBaseActivity {
                             error_lay.setVisibility(View.GONE);
                             notice_lay.setVisibility(View.GONE);
                             msg_listView.setVisibility(View.VISIBLE);
-                            if(systemList == null || systemList.size() ==0){
+                            if(messageList == null || messageList.size() ==0){
                                 msg_listView.setVisibility(View.GONE);
                                 notice_lay.setVisibility(View.VISIBLE);
                             }
@@ -204,7 +185,7 @@ public class MessageListActivity extends AppBaseActivity {
                             error_lay.setVisibility(View.GONE);
                             notice_lay.setVisibility(View.GONE);
 
-							ArrayList<MSGSystem> temp = (ArrayList<MSGSystem>) message.obj;
+							ArrayList<MessageInfo> temp = (ArrayList<MessageInfo>) message.getData().getSerializable("messageList");
 							//根据返回的数据量判断是否隐藏加载更多
 							if(temp.size() < pageSize){
 								msg_listView.setPullLoadEnable(false);
@@ -212,11 +193,11 @@ public class MessageListActivity extends AppBaseActivity {
 								msg_listView.setPullLoadEnable(true);
 							}
 							//如果是下拉刷新则索引恢复到1，并且清除掉之前数据
-							if(isPullDown && systemList != null){
-								systemList.clear();
+							if(isPullDown && messageList != null){
+								messageList.clear();
 								currentPageIndex = 1;
 							}
-							systemList.addAll(temp);
+							messageList.addAll(temp);
 
                             if(currentPageIndex == 1 && (temp == null || temp.size() ==0)){
                                 msg_listView.setVisibility(View.GONE);
@@ -225,7 +206,7 @@ public class MessageListActivity extends AppBaseActivity {
                             }
 
 							fillData();
-                            if (currentPageIndex > 1 && message.arg1 == systemList.size()){
+                            if (currentPageIndex > 1 && message.arg1 == messageList.size()){
                                 Toast.makeText(mContext, R.string.data_load_end, Toast.LENGTH_SHORT).show();
                             }
                             currentPageIndex++;
@@ -237,8 +218,7 @@ public class MessageListActivity extends AppBaseActivity {
 					}
 				});
 			}else {
-				listRequest.setData(modelApp.getUser().getId(), DEVICE_ID,modelApp.getSite().getSiteId(),
-						99, page, pageSize);
+				listRequest.setData(modelApp.getUser().getToken(), page, pageSize);
 			}
 			if (showLoading){
                 msg_listView.setVisibility(View.GONE);
@@ -253,7 +233,7 @@ public class MessageListActivity extends AppBaseActivity {
 			msg_listView.stopRefresh();
 			msg_listView.stopLoadMore();
 
-            if (systemList == null || systemList.size() == 0){
+            if (messageList == null || messageList.size() == 0){
                 msg_listView.setVisibility(View.GONE);
                 rotate_loading.setVisibility(View.GONE);
                 notice_lay.setVisibility(View.GONE);
@@ -268,17 +248,5 @@ public class MessageListActivity extends AppBaseActivity {
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if(requestCode == READ_PHONE_STATE_REQUEST_CODE){
-            // If request is cancelled, the result arrays are empty.
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                TelephonyManager tm = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-                DEVICE_ID = tm.getDeviceId();
-
-            } else {
-                //没有取得权限
-            }
-        }
     }
 }

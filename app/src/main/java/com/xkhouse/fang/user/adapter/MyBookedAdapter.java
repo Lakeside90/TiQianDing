@@ -2,18 +2,16 @@ package com.xkhouse.fang.user.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.user.activity.MyBookedDetailActivity;
 import com.xkhouse.fang.user.entity.MSGNews;
-import com.xkhouse.fang.user.entity.MSGSystem;
+import com.xkhouse.fang.user.entity.MyBookedInfo;
 
 import java.util.ArrayList;
 
@@ -23,27 +21,26 @@ import java.util.ArrayList;
 public class MyBookedAdapter extends BaseAdapter {
 
 	private Context context;
-	private ArrayList<MSGNews> systemList;
+	private ArrayList<MyBookedInfo> myBookedinfoList;
 
-	public MyBookedAdapter(Context context, ArrayList<MSGNews> systemList){
+	public MyBookedAdapter(Context context, ArrayList<MyBookedInfo> myBookedinfoList){
 		this.context = context;
-		this.systemList = systemList;
-
+		this.myBookedinfoList = myBookedinfoList;
 	}
 	
-	public void setData(ArrayList<MSGNews> systemList){
-		this.systemList = systemList;
+	public void setData(ArrayList<MyBookedInfo> myBookedinfoList){
+		this.myBookedinfoList = myBookedinfoList;
 		notifyDataSetChanged();
 	}
 	
 	@Override
 	public int getCount() {
-		return systemList.size();
+		return myBookedinfoList.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return systemList.get(position);
+		return myBookedinfoList.get(position);
 	}
 
 	@Override
@@ -63,6 +60,24 @@ public class MyBookedAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();  
 		}
 
+		MyBookedInfo myBookedInfo = myBookedinfoList.get(position);
+
+		holder.title_txt.setText(myBookedInfo.getBusiness_name());
+        holder.money_txt.setText("预定金额：¥" + myBookedInfo.getMoney());
+        holder.time_txt.setText("预定日期：" + myBookedInfo.getUse_time());
+        holder.people_num_txt.setText(myBookedInfo.getPeople_num() + "人");
+
+        holder.status_txt.setVisibility(View.VISIBLE);
+        if ("1".equals(myBookedInfo.getStatus())) {
+            holder.status_txt.setText("待付款");
+        }else if ("2".equals(myBookedInfo.getStatus())) {
+            holder.status_txt.setText("已付款待服务");
+        } else if ("3".equals(myBookedInfo.getStatus())) {
+            holder.status_txt.setText("已完成");
+        } else {
+            holder.status_txt.setVisibility(View.INVISIBLE);
+        }
+
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,14 +91,19 @@ public class MyBookedAdapter extends BaseAdapter {
 	
 	public class ViewHolder{
 		
-//		TextView content_txt;
-//		TextView date_txt;
-		
+		TextView title_txt;
+		TextView status_txt;
+		TextView money_txt;
+		TextView time_txt;
+		TextView people_num_txt;
+
 		public ViewHolder(View view){
-			
-//			content_txt = (TextView) view.findViewById(R.id.content_txt);
-//			date_txt = (TextView) view.findViewById(R.id.date_txt);
-			
+
+            title_txt = (TextView) view.findViewById(R.id.title_txt);
+            status_txt = (TextView) view.findViewById(R.id.status_txt);
+            money_txt = (TextView) view.findViewById(R.id.money_txt);
+            time_txt = (TextView) view.findViewById(R.id.time_txt);
+            people_num_txt = (TextView) view.findViewById(R.id.people_num_txt);
 		}
 	}
 

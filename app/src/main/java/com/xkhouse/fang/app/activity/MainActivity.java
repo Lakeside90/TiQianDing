@@ -252,7 +252,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 //            }
 			
 			if ((System.currentTimeMillis() - exitTime) > 2000) {
-				Toast.makeText(getApplicationContext(), "再按一次退出星房惠",
+				Toast.makeText(getApplicationContext(), "再按一次退出惠早订",
 						Toast.LENGTH_SHORT).show();
 				exitTime = System.currentTimeMillis();
 			} else {

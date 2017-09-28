@@ -265,8 +265,8 @@ public class Constants {
 	/**  我的消息  **/
 	public static String USER_NEWS = HOST_OLD + "/v1.0/Passport/News.api";
 	
-	/**  我的消息二级列表  **/
-	public static String USER_MESSAGE_LIST = HOST_OLD + "/v1.0/Passport/Message.api";
+	/**  我的消息  **/
+	public static String USER_MESSAGE_LIST = HOST + "/v1/My/my_message_list";
 	
 	/**  注册  **/
 	public static String USER_REGISTER = HOST_OLD + "/v1.1/Passport/UserRegister.api";
@@ -326,7 +326,10 @@ public class Constants {
 	public static String USER_FAVORITE_STATUS = HOST_OLD + "/v1.0/Passport/FavoriteNy.api";
 	
 	/**  收藏列表  **/
-	public static String USER_FAVORITE_LIST = HOST_OLD + "/v1.0/Passport/Favoritelist.api";
+	public static String USER_FAVORITE_LIST = HOST + "/v1/My/my_collection_list";
+
+    /**  浏览列表  **/
+    public static String USER_BROWSE_LIST = HOST + "/v1/My/my_footprint_list";
 	
 	/**  刪除,清空收藏  **/
 	public static String USER_FAVORITE_EDIT = HOST_OLD + "/v1.0/Passport/FavoriteEdit.api";

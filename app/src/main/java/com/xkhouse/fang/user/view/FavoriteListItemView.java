@@ -155,107 +155,107 @@ public class FavoriteListItemView implements OnClickListener{
 	
 	private void startFavoriteListTask(int page, boolean showLoading){
 
-        if(rotate_loading.getVisibility() == View.VISIBLE) return;
-
-		if (NetUtil.detectAvailable(context)) {
-			if(listRequest == null){
-				listRequest = new FavoriteListRequest(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
-						type, page, pageSize, new RequestListener() {
-					
-					@Override
-					public void sendMessage(Message message) {
-
-                        rotate_loading.stop();
-                        rotate_loading.setVisibility(View.GONE);
-                        if (isPullDown){
-                            currentPageIndex = 1;
-                        }
-
-						switch (message.what) {
-						case Constants.ERROR_DATA_FROM_NET:
-                            if (newHouseList == null || newHouseList.size() == 0){
-                                favorite_listView.setVisibility(View.GONE);
-                                notice_lay.setVisibility(View.GONE);
-                                error_lay.setVisibility(View.VISIBLE);
-                            }else{
-                                Toast.makeText(context, R.string.service_error, Toast.LENGTH_SHORT).show();
-                            }
-							break;
-							
-						case Constants.NO_DATA_FROM_NET:
-                            error_lay.setVisibility(View.GONE);
-                            notice_lay.setVisibility(View.GONE);
-                            favorite_listView.setVisibility(View.VISIBLE);
-                            switch (type) {
-                                case FAV_TYPE_NEW:
-                                    if(newHouseList == null || newHouseList.size() ==0){
-                                        favorite_listView.setVisibility(View.GONE);
-                                        notice_lay.setVisibility(View.VISIBLE);
-                                    }
-                                    break;
-
-                                case FAV_TYPE_OLD:
-                                    if(oldHouseList == null || oldHouseList.size() ==0){
-                                        favorite_listView.setVisibility(View.GONE);
-                                        notice_lay.setVisibility(View.VISIBLE);
-                                    }
-                                    break;
-
-                                case FAV_TYPE_RENT:
-                                    if(rentHouseList == null || rentHouseList.size() ==0){
-                                        favorite_listView.setVisibility(View.GONE);
-                                        notice_lay.setVisibility(View.VISIBLE);
-                                    }
-                                    break;
-
-                                case FAV_TYPE_NEWS:
-                                    if(newsList == null || newsList.size() ==0){
-                                        favorite_listView.setVisibility(View.GONE);
-                                        notice_lay.setVisibility(View.VISIBLE);
-                                    }
-                                    break;
-                            }
-
-							break;
-							
-						case Constants.SUCCESS_DATA_FROM_NET:
-                            favorite_listView.setVisibility(View.VISIBLE);
-                            error_lay.setVisibility(View.GONE);
-                            notice_lay.setVisibility(View.GONE);
-							dispatchMessage(message);
-							break;
-						}
-						isPullDown = false;
-						favorite_listView.stopRefresh();
-						favorite_listView.stopLoadMore();
-					}
-				});
-			}else {
-				listRequest.setData(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
-						type, page, pageSize);
-			}
-			if (showLoading) {
-                favorite_listView.setVisibility(View.GONE);
-                error_lay.setVisibility(View.GONE);
-                notice_lay.setVisibility(View.GONE);
-                rotate_loading.setVisibility(View.VISIBLE);
-                rotate_loading.start();
-            }
-			listRequest.doRequest();
-		}else {
-			isPullDown = false;
-			favorite_listView.stopRefresh();
-			favorite_listView.stopLoadMore();
-
-            if (newHouseList == null || newHouseList.size() ==0 ){
-                favorite_listView.setVisibility(View.GONE);
-                rotate_loading.setVisibility(View.GONE);
-                notice_lay.setVisibility(View.GONE);
-                error_lay.setVisibility(View.VISIBLE);
-            }else{
-                Toast.makeText(context, R.string.net_warn, Toast.LENGTH_SHORT).show();
-            }
-		}
+//        if(rotate_loading.getVisibility() == View.VISIBLE) return;
+//
+//		if (NetUtil.detectAvailable(context)) {
+//			if(listRequest == null){
+//				listRequest = new FavoriteListRequest(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
+//						type, page, pageSize, new RequestListener() {
+//
+//					@Override
+//					public void sendMessage(Message message) {
+//
+//                        rotate_loading.stop();
+//                        rotate_loading.setVisibility(View.GONE);
+//                        if (isPullDown){
+//                            currentPageIndex = 1;
+//                        }
+//
+//						switch (message.what) {
+//						case Constants.ERROR_DATA_FROM_NET:
+//                            if (newHouseList == null || newHouseList.size() == 0){
+//                                favorite_listView.setVisibility(View.GONE);
+//                                notice_lay.setVisibility(View.GONE);
+//                                error_lay.setVisibility(View.VISIBLE);
+//                            }else{
+//                                Toast.makeText(context, R.string.service_error, Toast.LENGTH_SHORT).show();
+//                            }
+//							break;
+//
+//						case Constants.NO_DATA_FROM_NET:
+//                            error_lay.setVisibility(View.GONE);
+//                            notice_lay.setVisibility(View.GONE);
+//                            favorite_listView.setVisibility(View.VISIBLE);
+//                            switch (type) {
+//                                case FAV_TYPE_NEW:
+//                                    if(newHouseList == null || newHouseList.size() ==0){
+//                                        favorite_listView.setVisibility(View.GONE);
+//                                        notice_lay.setVisibility(View.VISIBLE);
+//                                    }
+//                                    break;
+//
+//                                case FAV_TYPE_OLD:
+//                                    if(oldHouseList == null || oldHouseList.size() ==0){
+//                                        favorite_listView.setVisibility(View.GONE);
+//                                        notice_lay.setVisibility(View.VISIBLE);
+//                                    }
+//                                    break;
+//
+//                                case FAV_TYPE_RENT:
+//                                    if(rentHouseList == null || rentHouseList.size() ==0){
+//                                        favorite_listView.setVisibility(View.GONE);
+//                                        notice_lay.setVisibility(View.VISIBLE);
+//                                    }
+//                                    break;
+//
+//                                case FAV_TYPE_NEWS:
+//                                    if(newsList == null || newsList.size() ==0){
+//                                        favorite_listView.setVisibility(View.GONE);
+//                                        notice_lay.setVisibility(View.VISIBLE);
+//                                    }
+//                                    break;
+//                            }
+//
+//							break;
+//
+//						case Constants.SUCCESS_DATA_FROM_NET:
+//                            favorite_listView.setVisibility(View.VISIBLE);
+//                            error_lay.setVisibility(View.GONE);
+//                            notice_lay.setVisibility(View.GONE);
+//							dispatchMessage(message);
+//							break;
+//						}
+//						isPullDown = false;
+//						favorite_listView.stopRefresh();
+//						favorite_listView.stopLoadMore();
+//					}
+//				});
+//			}else {
+//				listRequest.setData(modelApp.getUser().getId(), modelApp.getSite().getSiteId(),
+//						type, page, pageSize);
+//			}
+//			if (showLoading) {
+//                favorite_listView.setVisibility(View.GONE);
+//                error_lay.setVisibility(View.GONE);
+//                notice_lay.setVisibility(View.GONE);
+//                rotate_loading.setVisibility(View.VISIBLE);
+//                rotate_loading.start();
+//            }
+//			listRequest.doRequest();
+//		}else {
+//			isPullDown = false;
+//			favorite_listView.stopRefresh();
+//			favorite_listView.stopLoadMore();
+//
+//            if (newHouseList == null || newHouseList.size() ==0 ){
+//                favorite_listView.setVisibility(View.GONE);
+//                rotate_loading.setVisibility(View.GONE);
+//                notice_lay.setVisibility(View.GONE);
+//                error_lay.setVisibility(View.VISIBLE);
+//            }else{
+//                Toast.makeText(context, R.string.net_warn, Toast.LENGTH_SHORT).show();
+//            }
+//		}
 	}
 	
 	

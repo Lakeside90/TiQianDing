@@ -105,6 +105,9 @@ public class StoreDetailActivity extends AppBaseActivity {
     private int currentPageIndex = 1;  //分页索引
     private int pageSize = 10; //每次请求10条数据
 
+    private boolean isCollected = false;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -267,7 +270,13 @@ public class StoreDetailActivity extends AppBaseActivity {
                 break;
 
             case R.id.booked_txt:
-
+                if (storeDetail != null && storeDetail.getBookings() != null && !storeDetail.getBookings().isEmpty()) {
+                    Intent intent1 = new Intent(StoreDetailActivity.this, BookedMakeActivity.class);
+                    Bundle data = new Bundle();
+                    data.putSerializable("bookedInfo" , storeDetail.getBookings().get(0));
+                    intent1.putExtras(data);
+                    startActivity(intent1);
+                }
                 break;
 
             case R.id.cj_refresh_iv:
@@ -319,9 +328,11 @@ public class StoreDetailActivity extends AppBaseActivity {
         }
 
         if ("0".equals(storeDetail.getCollection())) {
-            iv_head_right.setImageResource(R.drawable.nav_favorite);
+            iv_head_right.setImageResource(R.drawable.storeup);
+            isCollected = false;
         }else {
-            iv_head_right.setImageResource(R.drawable.nav_favorite_pressed);
+            iv_head_right.setImageResource(R.drawable.storeup_on);
+            isCollected = true;
         }
 
     }
@@ -373,11 +384,15 @@ public class StoreDetailActivity extends AppBaseActivity {
     };
 
     private void startTask() {
+        String token = null;
+        if (Preference.getInstance().readIsLogin()) {
+            token = modelApp.getUser().getToken();
+        }
         if (NetUtil.detectAvailable(mContext)) {
             if (request == null) {
-                request = new StoreDetailRequest(id, modelApp.getSite().getSiteId(), detailRequestListener);
+                request = new StoreDetailRequest(token, id, modelApp.getSite().getSiteId(), detailRequestListener);
             } else {
-                request.setData(id, modelApp.getSite().getSiteId());
+                request.setData(token, id, modelApp.getSite().getSiteId());
             }
             content_scroll.setVisibility(View.GONE);
             error_lay.setVisibility(View.GONE);
@@ -466,7 +481,14 @@ public class StoreDetailActivity extends AppBaseActivity {
 
                 case Constants.SUCCESS_DATA_FROM_NET:
                     Toast.makeText(mContext, message.obj.toString(), Toast.LENGTH_SHORT).show();
-                    iv_head_right.setImageResource(R.drawable.nav_favorite_pressed);
+                    if (isCollected) {
+                        isCollected = false;
+                        iv_head_right.setImageResource(R.drawable.storeup);
+                    }else {
+                        isCollected = true;
+                        iv_head_right.setImageResource(R.drawable.storeup_on);
+                    }
+
                     break;
             }
         }

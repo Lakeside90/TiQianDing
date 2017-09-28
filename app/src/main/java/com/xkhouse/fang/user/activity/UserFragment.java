@@ -223,71 +223,99 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
                 break;
 
             case R.id.employee_txt:
-//                startActivity(new Intent(getActivity(), EmployeeInfoActivity.class));
-                startActivity(new Intent(getActivity(), LuckDetailActivity.class));
+                startActivity(new Intent(getActivity(), EmployeeInfoActivity.class));
                 break;
 
 
             case R.id.booked_lay:
-//                startActivity(new Intent(getActivity(), MyBookedListActivity.class));
-                startActivity(new Intent(getActivity(), BookedMakeActivity.class));
+                if(Preference.getInstance().readIsLogin()){
+                    startActivity(new Intent(getActivity(), MyBookedListActivity.class));
+                }else {
+                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    intent.putExtra("classStr", MyBookedListActivity.class);
+                    startActivity(intent);
+                }
                 break;
 
             case R.id.luck_lay:
-                startActivity(new Intent(getActivity(), MyLuckListActivity.class));
+                if(Preference.getInstance().readIsLogin()){
+                    startActivity(new Intent(getActivity(), MyLuckListActivity.class));
+                }else {
+                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    intent.putExtra("classStr", MyLuckListActivity.class);
+                    startActivity(intent);
+                }
                 break;
 
             case R.id.check_lay:
-                startActivity(new Intent(getActivity(), MyCheckListActivity.class));
+                if(Preference.getInstance().readIsLogin()){
+                    startActivity(new Intent(getActivity(), MyCheckListActivity.class));
+                }else {
+                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    intent.putExtra("classStr", MyCheckListActivity.class);
+                    startActivity(intent);
+                }
                 break;
 
             case R.id.comment_lay:
-                startActivity(new Intent(getActivity(), MyCommentListActivity.class));
-//                startActivity(new Intent(getActivity(), CommentAddActivity.class));
+                if(Preference.getInstance().readIsLogin()){
+                    startActivity(new Intent(getActivity(), MyCommentListActivity.class));
+                }else {
+                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    intent.putExtra("classStr", MyCommentListActivity.class);
+                    startActivity(intent);
+                }
                 break;
 
             case R.id.favorite_lay:
-//                if(Preference.getInstance().readIsLogin()){
-//                    startActivity(new Intent(getActivity(), FavAndBrowseActivity.class));
-//                }else {
-//                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-//                    intent.putExtra("classStr", FavAndBrowseActivity.class);
-//                    startActivity(intent);
-//                }
-                Intent favIntent = new Intent(getActivity(), FavAndBrowseActivity.class);
-                Bundle favBundle = new Bundle();
-                favBundle.putInt("type", FavAndBrowseActivity.TYPE_FAV);
-                favIntent.putExtras(favBundle);
-                startActivity(favIntent);
+                if(Preference.getInstance().readIsLogin()){
+                    Intent intent = new Intent(getActivity(), FavAndBrowseActivity.class);
+                    Bundle favBundle = new Bundle();
+                    favBundle.putInt("type", FavAndBrowseActivity.TYPE_FAV);
+                    intent.putExtras(favBundle);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    intent.putExtra("classStr", FavAndBrowseActivity.class);
+                    Bundle favBundle = new Bundle();
+                    favBundle.putInt("type", FavAndBrowseActivity.TYPE_FAV);
+                    intent.putExtras(favBundle);
+                    startActivity(intent);
+                }
                 break;
 
             case R.id.message_lay:
-//                if(Preference.getInstance().readIsLogin()){
-//                    startActivity(new Intent(getActivity(), MessageListActivity.class));
-//                }else {
-//                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-//                    intent.putExtra("classStr", MessageListActivity.class);
-//                    startActivity(intent);
-//                }
-                startActivity(new Intent(getActivity(), MessageListActivity.class));
+                if(Preference.getInstance().readIsLogin()){
+                    startActivity(new Intent(getActivity(), MessageListActivity.class));
+                }else {
+                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    intent.putExtra("classStr", MessageListActivity.class);
+                    startActivity(intent);
+                }
                 break;
 
             case R.id.browse_lay:
-//                if(Preference.getInstance().readIsLogin()){
-//                    startActivity(new Intent(getActivity(), FavAndBrowseActivity.class));
-//                }else {
-//                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-//                    intent.putExtra("classStr", FavAndBrowseActivity.class);
-//                    startActivity(intent);
-//                }
-                Intent broIntent = new Intent(getActivity(), FavAndBrowseActivity.class);
-                Bundle broBundle = new Bundle();
-                broBundle.putInt("type", FavAndBrowseActivity.TYPE_BROWSE);
-                broIntent.putExtras(broBundle);
-                startActivity(broIntent);
+                if(Preference.getInstance().readIsLogin()){
+                    Intent intent = new Intent(getActivity(), FavAndBrowseActivity.class);
+                    Bundle broBundle = new Bundle();
+                    broBundle.putInt("type", FavAndBrowseActivity.TYPE_BROWSE);
+                    intent.putExtras(broBundle);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    intent.putExtra("classStr", FavAndBrowseActivity.class);
+                    Bundle broBundle = new Bundle();
+                    broBundle.putInt("type", FavAndBrowseActivity.TYPE_BROWSE);
+                    intent.putExtras(broBundle);
+                    startActivity(intent);
+                }
                 break;
 
             case R.id.setting_iv:

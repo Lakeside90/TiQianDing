@@ -11,6 +11,8 @@ public class BookedInfo implements Serializable {
     private String bookingId;
     private String businessId;
     private String discount;
+    private String payment;
+    private String mortgage;
     private String businessName;
     private String averageConsump;
     private String businessAddress;
@@ -18,6 +20,8 @@ public class BookedInfo implements Serializable {
     private String orderNum;
     private String cover_banner;
     private String check_discount;
+    private String today_order_num;
+
 
     public String getBookingId() {
         return bookingId;
@@ -97,5 +101,29 @@ public class BookedInfo implements Serializable {
 
     public void setCheck_discount(String check_discount) {
         this.check_discount = check_discount;
+    }
+
+    public String getToday_order_num() {
+        return today_order_num;
+    }
+
+    public void setToday_order_num(String today_order_num) {
+        this.today_order_num = today_order_num;
+    }
+
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
+
+    public String getMortgage() {
+        return mortgage;
+    }
+
+    public void setMortgage(String mortgage) {
+        this.mortgage = mortgage;
     }
 }

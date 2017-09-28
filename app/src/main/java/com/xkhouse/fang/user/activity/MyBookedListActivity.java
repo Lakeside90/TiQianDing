@@ -13,10 +13,11 @@ import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
-import com.xkhouse.fang.user.adapter.FavAndBrowseAdapter;
 import com.xkhouse.fang.user.adapter.MyBookedAdapter;
 import com.xkhouse.fang.user.entity.MSGNews;
+import com.xkhouse.fang.user.entity.MyBookedInfo;
 import com.xkhouse.fang.user.task.MessageDetailListRequest;
+import com.xkhouse.fang.user.task.MyBookedListRequest;
 import com.xkhouse.fang.widget.loading.RotateLoading;
 import com.xkhouse.fang.widget.xlist.XListView;
 import com.xkhouse.fang.widget.xlist.XListView.IXListViewListener;
@@ -32,7 +33,7 @@ public class MyBookedListActivity extends AppBaseActivity {
 	private ImageView iv_head_left;
 	private TextView tv_head_title;
 	
-	private XListView msg_listView;
+	private XListView listView;
 	private MyBookedAdapter adapter;
 	private int currentPageIndex = 1;  //分页索引
 	private int pageSize = 10; //每次请求10条数据
@@ -41,16 +42,15 @@ public class MyBookedListActivity extends AppBaseActivity {
     private RotateLoading rotate_loading;
     private LinearLayout error_lay;
 
-	private MessageDetailListRequest listRequest;
-	private ArrayList<MSGNews> newsList = new ArrayList<MSGNews>();
+	private MyBookedListRequest listRequest;
+	private ArrayList<MyBookedInfo> myBookedInfoList = new ArrayList<>();
 
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		startDataTask(1, true);
-        fillData();
+		startDataTask(1, true);
 	}
 	
 	
@@ -68,7 +68,7 @@ public class MyBookedListActivity extends AppBaseActivity {
 	protected void findViews() {
 		initTitle();
 		
-		msg_listView = (XListView) findViewById(R.id.msg_listView);
+		listView = (XListView) findViewById(R.id.listView);
         rotate_loading = (RotateLoading) findViewById(R.id.rotate_loading);
         error_lay = (LinearLayout) findViewById(R.id.error_lay);
 
@@ -92,19 +92,19 @@ public class MyBookedListActivity extends AppBaseActivity {
 	protected void setListeners() {
         error_lay.setOnClickListener(this);
 
-		msg_listView.setPullLoadEnable(true);
-		msg_listView.setPullRefreshEnable(true);
-		msg_listView.setXListViewListener(new IXListViewListener() {
+		listView.setPullLoadEnable(true);
+		listView.setPullRefreshEnable(true);
+		listView.setXListViewListener(new IXListViewListener() {
 
             @Override
             public void onRefresh() {
                 isPullDown = true;
-//                startDataTask(1, false);
+                startDataTask(1, false);
             }
 
             @Override
             public void onLoadMore() {
-//                startDataTask(currentPageIndex, false);
+                startDataTask(currentPageIndex, false);
             }
         }, R.id.favorite_listView);
 	}
@@ -114,7 +114,7 @@ public class MyBookedListActivity extends AppBaseActivity {
 		super.onClick(v);
         switch (v.getId()){
             case R.id.error_lay:
-//                startDataTask(1, true);
+                startDataTask(1, true);
                 break;
         }
 	}
@@ -122,24 +122,19 @@ public class MyBookedListActivity extends AppBaseActivity {
 	
 	private void fillData(){
 
-        for (int i = 0; i < 10; i++) {
-            newsList.add(new MSGNews());
-        }
-
-		if(newsList == null) return;
+		if(myBookedInfoList == null) return;
 		if(adapter == null ){
-			adapter = new MyBookedAdapter(mContext, newsList);
-			msg_listView.setAdapter(adapter);
+			adapter = new MyBookedAdapter(mContext, myBookedInfoList);
+			listView.setAdapter(adapter);
 		}else {
-			adapter.setData(newsList);
+			adapter.setData(myBookedInfoList);
 		}
 	}
 	
 	private void startDataTask(int page, boolean showLoading){
 		if (NetUtil.detectAvailable(mContext)) {
 			if(listRequest == null){
-				listRequest = new MessageDetailListRequest("", "",modelApp.getSite().getSiteId(),
-						11, page, pageSize, new RequestListener() {
+				listRequest = new MyBookedListRequest(modelApp.getUser().getToken(), page, pageSize, new RequestListener() {
 					
 					@Override
 					public void sendMessage(Message message) {
@@ -153,8 +148,8 @@ public class MyBookedListActivity extends AppBaseActivity {
 
 						switch (message.what) {
 						case Constants.ERROR_DATA_FROM_NET:
-                            if (newsList == null || newsList.size() == 0){
-                                msg_listView.setVisibility(View.GONE);
+                            if (myBookedInfoList == null || myBookedInfoList.size() == 0){
+                                listView.setVisibility(View.GONE);
                                 error_lay.setVisibility(View.VISIBLE);
                             }else{
                                 Toast.makeText(mContext, R.string.service_error, Toast.LENGTH_SHORT).show();
@@ -163,48 +158,47 @@ public class MyBookedListActivity extends AppBaseActivity {
 							
 						case Constants.NO_DATA_FROM_NET:
                             error_lay.setVisibility(View.GONE);
-                            msg_listView.setVisibility(View.VISIBLE);
-                            if(newsList == null || newsList.size() ==0){
-                                msg_listView.setVisibility(View.GONE);
+                            listView.setVisibility(View.VISIBLE);
+                            if(myBookedInfoList == null || myBookedInfoList.size() ==0){
+                                listView.setVisibility(View.GONE);
                             }
 							break;
 							
 						case Constants.SUCCESS_DATA_FROM_NET:
-                            msg_listView.setVisibility(View.VISIBLE);
+                            listView.setVisibility(View.VISIBLE);
                             error_lay.setVisibility(View.GONE);
 
-							ArrayList<MSGNews> temp = (ArrayList<MSGNews>) message.obj;
+							ArrayList<MyBookedInfo> temp = (ArrayList<MyBookedInfo>) message.getData().getSerializable("bookedList");
 							//根据返回的数据量判断是否隐藏加载更多
 							if(temp.size() < pageSize){
-								msg_listView.setPullLoadEnable(false);
+								listView.setPullLoadEnable(false);
 							}else{
-								msg_listView.setPullLoadEnable(true);
+								listView.setPullLoadEnable(true);
 							}
 							//如果是下拉刷新则索引恢复到1，并且清除掉之前数据
-							if(isPullDown && newsList != null){
-								newsList.clear();
+							if(isPullDown && myBookedInfoList != null){
+								myBookedInfoList.clear();
 								currentPageIndex = 1;
 							}
-							newsList.addAll(temp);
+							myBookedInfoList.addAll(temp);
 
 							fillData();
-                            if (currentPageIndex > 1 && message.arg1 == newsList.size()){
+                            if (currentPageIndex > 1 && message.arg1 == myBookedInfoList.size()){
                                 Toast.makeText(mContext, R.string.data_load_end, Toast.LENGTH_SHORT).show();
                             }
                             currentPageIndex++;
 							break;
 						}
 						isPullDown = false;
-						msg_listView.stopRefresh();
-						msg_listView.stopLoadMore();
+						listView.stopRefresh();
+						listView.stopLoadMore();
 					}
 				});
 			}else {
-				listRequest.setData("", "", modelApp.getSite().getSiteId(),
-						11, page, pageSize);
+				listRequest.setData(modelApp.getUser().getToken(), page, pageSize);
 			}
 			if (showLoading){
-                msg_listView.setVisibility(View.GONE);
+                listView.setVisibility(View.GONE);
                 error_lay.setVisibility(View.GONE);
                 rotate_loading.setVisibility(View.VISIBLE);
                 rotate_loading.start();
@@ -212,10 +206,10 @@ public class MyBookedListActivity extends AppBaseActivity {
 			listRequest.doRequest();
 		}else {
 			isPullDown = false;
-			msg_listView.stopRefresh();
-			msg_listView.stopLoadMore();
-            if (newsList == null || newsList.size() == 0){
-                msg_listView.setVisibility(View.GONE);
+			listView.stopRefresh();
+			listView.stopLoadMore();
+            if (myBookedInfoList == null || myBookedInfoList.size() == 0){
+                listView.setVisibility(View.GONE);
                 rotate_loading.setVisibility(View.GONE);
                 error_lay.setVisibility(View.VISIBLE);
             }else{
