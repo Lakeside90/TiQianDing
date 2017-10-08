@@ -18,9 +18,10 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/news_icon_iv"
+            android:id="@+id/icon_iv"
             android:layout_width="75dp"
             android:layout_height="68dp"
+            android:layout_marginRight="10dp"
             android:scaleType="fitXY"/>
 
         <LinearLayout
@@ -31,7 +32,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/news_title_txt"
+                android:id="@+id/title_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -50,7 +51,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/news_date_txt"
+                    android:id="@+id/money_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -61,18 +62,13 @@
                     android:textSize="14sp"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/label_lay"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/gray_border_btn_bg"
-                    android:gravity="center"
-                    android:paddingBottom="2dp"
-                    android:paddingLeft="3dp"
-                    android:paddingRight="3dp"
-                    android:paddingTop="2dp"
-                    android:text="酒吧"
-                    android:textColor="@color/common_gray_txt"
-                    android:textSize="12dp"/>
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal">
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -95,12 +91,14 @@
         android:background="@color/common_diver_line"/>
 
     <TextView
+        android:id="@+id/order_number_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="13sp"
         android:textColor="@color/c_666666"
         android:text="订单号：xxxxxxx"/>
     <TextView
+        android:id="@+id/consumer_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -108,6 +106,7 @@
         android:textColor="@color/c_666666"
         android:text="消费：xxxxxxx"/>
     <TextView
+        android:id="@+id/pay_money_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -124,6 +123,7 @@
         android:gravity="center_vertical">
 
         <TextView
+            android:id="@+id/time_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"
@@ -131,6 +131,7 @@
             android:text="日期：xxxxxxx"/>
 
         <TextView
+            android:id="@+id/status_txt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

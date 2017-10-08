@@ -2,9 +2,11 @@ package com.xkhouse.fang.booked.view;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -13,6 +15,7 @@ import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.ModelApplication;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
+import com.xkhouse.fang.booked.activity.StoreImageDeatilActivity;
 import com.xkhouse.fang.booked.adapter.StoreImageAdapter;
 import com.xkhouse.fang.booked.entity.StoreAlbum;
 import com.xkhouse.fang.booked.task.StoreAlbumListRequest;
@@ -92,6 +95,15 @@ public class ItemStoreImageView {
             @Override
             public void onClick(View v) {
 				startDataTask(1, true);
+            }
+        });
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(context, StoreImageDeatilActivity.class);
+                intent.putExtra("albumList", albumList);
+                context.startActivity(intent);
             }
         });
 	}

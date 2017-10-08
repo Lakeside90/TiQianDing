@@ -72,6 +72,9 @@ public class SplashActivity extends BaseSplashActivity{
 		if(Preference.getInstance().readIsLogin()){
 			userService = new UserService();
 			modelApp.setUser(userService.queryUser(user_id));
+            if (modelApp.getUser() == null) {
+                Preference.getInstance().writeIsLogin(false);
+            }
 		}
 		
 		//判断是否是首次启动

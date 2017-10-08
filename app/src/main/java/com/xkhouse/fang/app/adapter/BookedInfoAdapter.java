@@ -20,6 +20,7 @@ import com.xkhouse.fang.app.activity.ModelApplication;
 import com.xkhouse.fang.app.entity.BookedInfo;
 import com.xkhouse.fang.app.util.DisplayUtil;
 import com.xkhouse.fang.booked.activity.BookedMakeActivity;
+import com.xkhouse.fang.booked.activity.CheckMakeActivity;
 import com.xkhouse.fang.booked.activity.StoreDetailActivity;
 import com.xkhouse.lib.utils.StringUtil;
 
@@ -137,6 +138,15 @@ public class BookedInfoAdapter extends BaseAdapter {
             holder.booked_lay.setVisibility(View.VISIBLE);
             holder.youhui_txt.setText(bookedInfo.getDiscount());
         }
+
+        holder.mai_txt.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CheckMakeActivity.class);
+                intent.putExtra("business_id", bookedInfo.getBusinessId());
+                context.startActivity(intent);
+            }
+        });
 
         holder.booked_txt.setOnClickListener(new OnClickListener() {
             @Override

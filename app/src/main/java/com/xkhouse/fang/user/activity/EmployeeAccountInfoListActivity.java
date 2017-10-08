@@ -134,17 +134,17 @@ public class EmployeeAccountInfoListActivity extends AppBaseActivity {
 	
 	
 	private void fillData(){
-        for (int i = 0; i < 3; i++) {
-            newsList.add(new MSGNews());
-        }
-
-		if(newsList == null) return;
-		if(adapter == null ){
-			adapter = new AccountInfoAdapter(mContext, newsList);
-			msg_listView.setAdapter(adapter);
-		}else {
-			adapter.setData(newsList);
-		}
+//        for (int i = 0; i < 3; i++) {
+//            newsList.add(new MSGNews());
+//        }
+//
+//		if(newsList == null) return;
+//		if(adapter == null ){
+//			adapter = new AccountInfoAdapter(mContext, newsList);
+//			msg_listView.setAdapter(adapter);
+//		}else {
+//			adapter.setData(newsList);
+//		}
 	}
 	
 	private void startDataTask(int page, boolean showLoading){

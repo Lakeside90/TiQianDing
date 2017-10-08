@@ -142,13 +142,13 @@ public class MSGNewsListActivity extends AppBaseActivity {
 	
 	
 	private void fillData(){
-		if(newsList == null) return;
-		if(adapter == null ){
-			adapter = new AccountInfoAdapter(mContext, newsList);
-			msg_listView.setAdapter(adapter);
-		}else {
-			adapter.setData(newsList);
-		}
+//		if(newsList == null) return;
+//		if(adapter == null ){
+//			adapter = new AccountInfoAdapter(mContext, newsList);
+//			msg_listView.setAdapter(adapter);
+//		}else {
+//			adapter.setData(newsList);
+//		}
 	}
 	
 	private void startDataTask(int page, boolean showLoading){

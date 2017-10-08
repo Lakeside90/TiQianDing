@@ -248,13 +248,22 @@ public class BookedMakeActivity extends AppBaseActivity implements TimePickerDia
         int minute = mTimePickerDialog.getMinute();
         int month = mTimePickerDialog.getMonth();
         int day = mTimePickerDialog.getDay();
-        time = String.valueOf(month) + "-" + String.valueOf(day)
-                + "-" + String.valueOf(hour) + " : " + String.valueOf(minute);
+        time = timeFormat(month) + "-" + timeFormat(day)
+                + "    " + timeFormat(hour) + " : " + timeFormat(minute);
         time_txt.setText(time);
     }
 
     @Override
     public void negativeListener() {
 
+    }
+
+
+    private String timeFormat(int date) {
+        if (date < 10) {
+            return "0" + date;
+        }else {
+            return date+"";
+        }
     }
 }

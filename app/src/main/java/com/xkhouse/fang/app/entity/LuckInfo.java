@@ -15,6 +15,7 @@ public class LuckInfo implements Serializable {
     private String join_count;
     private String count;
     private String pub_type;
+    private String type;
 
     public String getId() {
         return id;
@@ -62,5 +63,13 @@ public class LuckInfo implements Serializable {
 
     public void setPub_type(String pub_type) {
         this.pub_type = pub_type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

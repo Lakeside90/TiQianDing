@@ -14,9 +14,10 @@ import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.user.adapter.MyCheckAdapter;
-import com.xkhouse.fang.user.adapter.MyCommentAdapter;
 import com.xkhouse.fang.user.entity.MSGSystem;
+import com.xkhouse.fang.user.entity.MyCheckInfo;
 import com.xkhouse.fang.user.task.MessageDetailListRequest;
+import com.xkhouse.fang.user.task.MyCheckListRequest;
 import com.xkhouse.fang.widget.loading.RotateLoading;
 import com.xkhouse.fang.widget.xlist.XListView;
 import com.xkhouse.fang.widget.xlist.XListView.IXListViewListener;
@@ -32,7 +33,7 @@ public class MyCheckListActivity extends AppBaseActivity {
 	private ImageView iv_head_left;
 	private TextView tv_head_title;
 	
-	private XListView msg_listView;
+	private XListView listView;
 	private MyCheckAdapter adapter;
 	private int currentPageIndex = 1;  //分页索引
 	private int pageSize = 10; //每次请求10条数据
@@ -43,16 +44,16 @@ public class MyCheckListActivity extends AppBaseActivity {
     private LinearLayout error_lay;
 
 
-	private MessageDetailListRequest listRequest;
-	private ArrayList<MSGSystem> systemList = new ArrayList<MSGSystem>();
+	private MyCheckListRequest listRequest;
+	private ArrayList<MyCheckInfo> checkList = new ArrayList<>();
 
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//
-        fillData();
+
+        startDataTask(1, true);
 	}
 	
 	
@@ -66,7 +67,7 @@ public class MyCheckListActivity extends AppBaseActivity {
 	protected void findViews() {
 		initTitle();
 		
-		msg_listView = (XListView) findViewById(R.id.msg_listView);
+		listView = (XListView) findViewById(R.id.listView);
 
         rotate_loading = (RotateLoading) findViewById(R.id.rotate_loading);
         error_lay = (LinearLayout) findViewById(R.id.error_lay);
@@ -94,19 +95,19 @@ public class MyCheckListActivity extends AppBaseActivity {
 
         error_lay.setOnClickListener(this);
 
-		msg_listView.setPullLoadEnable(true);
-		msg_listView.setPullRefreshEnable(true);
-		msg_listView.setXListViewListener(new IXListViewListener() {
+		listView.setPullLoadEnable(true);
+		listView.setPullRefreshEnable(true);
+		listView.setXListViewListener(new IXListViewListener() {
 
             @Override
             public void onRefresh() {
                 isPullDown = true;
-//                startDataTask(1, false);
+                startDataTask(1, false);
             }
 
             @Override
             public void onLoadMore() {
-//                startDataTask(currentPageIndex, false);
+                startDataTask(currentPageIndex, false);
             }
         }, R.id.msg_listView);
 	}
@@ -117,7 +118,7 @@ public class MyCheckListActivity extends AppBaseActivity {
 
         switch (v.getId()){
             case R.id.error_lay:
-//                startDataTask(1, true);
+                startDataTask(1, true);
                 break;
         }
 		
@@ -126,24 +127,19 @@ public class MyCheckListActivity extends AppBaseActivity {
 	
 	private void fillData(){
 
-        for (int i = 0; i < 10; i++) {
-            systemList.add(new MSGSystem());
-        }
-
-		if(systemList == null) return;
+		if(checkList == null) return;
 		if(adapter == null ){
-			adapter = new MyCheckAdapter(mContext, systemList);
-			msg_listView.setAdapter(adapter);
+			adapter = new MyCheckAdapter(mContext, checkList);
+			listView.setAdapter(adapter);
 		}else {
-			adapter.setData(systemList);
+			adapter.setData(checkList);
 		}
 	}
 	
 	private void startDataTask(int page, boolean showLoading){
 		if (NetUtil.detectAvailable(mContext)) {
 			if(listRequest == null){
-				listRequest = new MessageDetailListRequest(modelApp.getUser().getId(), "", modelApp.getSite().getSiteId(),
-						21, page, pageSize, new RequestListener() {
+				listRequest = new MyCheckListRequest(modelApp.getUser().getToken(), page, pageSize, new RequestListener() {
 					
 					@Override
 					public void sendMessage(Message message) {
@@ -157,8 +153,8 @@ public class MyCheckListActivity extends AppBaseActivity {
 
 						switch (message.what) {
 						case Constants.ERROR_DATA_FROM_NET:
-                            if (systemList == null || systemList.size() == 0){
-                                msg_listView.setVisibility(View.GONE);
+                            if (checkList == null || checkList.size() == 0){
+                                listView.setVisibility(View.GONE);
                                 notice_lay.setVisibility(View.GONE);
                                 error_lay.setVisibility(View.VISIBLE);
                             }else{
@@ -169,56 +165,55 @@ public class MyCheckListActivity extends AppBaseActivity {
 						case Constants.NO_DATA_FROM_NET:
                             error_lay.setVisibility(View.GONE);
                             notice_lay.setVisibility(View.GONE);
-                            msg_listView.setVisibility(View.VISIBLE);
-                            if(systemList == null || systemList.size() ==0){
-                                msg_listView.setVisibility(View.GONE);
+                            listView.setVisibility(View.VISIBLE);
+                            if(checkList == null || checkList.size() ==0){
+                                listView.setVisibility(View.GONE);
                                 notice_lay.setVisibility(View.VISIBLE);
                             }
 							break;
 							
 						case Constants.SUCCESS_DATA_FROM_NET:
-                            msg_listView.setVisibility(View.VISIBLE);
+                            listView.setVisibility(View.VISIBLE);
                             error_lay.setVisibility(View.GONE);
                             notice_lay.setVisibility(View.GONE);
 
-							ArrayList<MSGSystem> temp = (ArrayList<MSGSystem>) message.obj;
+							ArrayList<MyCheckInfo> temp = (ArrayList<MyCheckInfo>) message.getData().getSerializable("checkList");
 							//根据返回的数据量判断是否隐藏加载更多
 							if(temp.size() < pageSize){
-								msg_listView.setPullLoadEnable(false);
+								listView.setPullLoadEnable(false);
 							}else{
-								msg_listView.setPullLoadEnable(true);
+								listView.setPullLoadEnable(true);
 							}
 							//如果是下拉刷新则索引恢复到1，并且清除掉之前数据
-							if(isPullDown && systemList != null){
-								systemList.clear();
+							if(isPullDown && checkList != null){
+								checkList.clear();
 								currentPageIndex = 1;
 							}
-							systemList.addAll(temp);
+							checkList.addAll(temp);
 
                             if(currentPageIndex == 1 && (temp == null || temp.size() ==0)){
-                                msg_listView.setVisibility(View.GONE);
+                                listView.setVisibility(View.GONE);
                                 notice_lay.setVisibility(View.VISIBLE);
                                 return;
                             }
 
 							fillData();
-                            if (currentPageIndex > 1 && message.arg1 == systemList.size()){
+                            if (currentPageIndex > 1 && message.arg1 == checkList.size()){
                                 Toast.makeText(mContext, R.string.data_load_end, Toast.LENGTH_SHORT).show();
                             }
                             currentPageIndex++;
 							break;
 						}
 						isPullDown = false;
-						msg_listView.stopRefresh();
-						msg_listView.stopLoadMore();
+						listView.stopRefresh();
+						listView.stopLoadMore();
 					}
 				});
 			}else {
-				listRequest.setData(modelApp.getUser().getId(), "",modelApp.getSite().getSiteId(),
-						99, page, pageSize);
+				listRequest.setData(modelApp.getUser().getToken(), page, pageSize);
 			}
 			if (showLoading){
-                msg_listView.setVisibility(View.GONE);
+                listView.setVisibility(View.GONE);
                 error_lay.setVisibility(View.GONE);
                 notice_lay.setVisibility(View.GONE);
                 rotate_loading.setVisibility(View.VISIBLE);
@@ -227,11 +222,11 @@ public class MyCheckListActivity extends AppBaseActivity {
 			listRequest.doRequest();
 		}else {
 			isPullDown = false;
-			msg_listView.stopRefresh();
-			msg_listView.stopLoadMore();
+			listView.stopRefresh();
+			listView.stopLoadMore();
 
-            if (systemList == null || systemList.size() == 0){
-                msg_listView.setVisibility(View.GONE);
+            if (checkList == null || checkList.size() == 0){
+                listView.setVisibility(View.GONE);
                 rotate_loading.setVisibility(View.GONE);
                 notice_lay.setVisibility(View.GONE);
                 error_lay.setVisibility(View.VISIBLE);

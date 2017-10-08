@@ -25,6 +25,8 @@ import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.config.Preference;
+import com.xkhouse.fang.app.entity.LuckInfo;
+import com.xkhouse.fang.app.task.BusinessLuckInfoListRequest;
 import com.xkhouse.fang.app.util.DisplayUtil;
 import com.xkhouse.fang.booked.adapter.CommentAdapter;
 import com.xkhouse.fang.booked.entity.CommentInfo;
@@ -36,7 +38,9 @@ import com.xkhouse.fang.booked.task.FootAddRequest;
 import com.xkhouse.fang.booked.task.StoreDetailRequest;
 import com.xkhouse.fang.user.activity.LoginActivity;
 import com.xkhouse.fang.user.adapter.CJListAdapter;
+import com.xkhouse.fang.user.adapter.LuckListAdapter;
 import com.xkhouse.fang.user.entity.MSGNews;
+import com.xkhouse.fang.user.entity.MyLuckInfo;
 import com.xkhouse.fang.user.task.MessageDetailListRequest;
 import com.xkhouse.fang.widget.CustomScrollView;
 import com.xkhouse.fang.widget.ScrollListView;
@@ -85,7 +89,8 @@ public class StoreDetailActivity extends AppBaseActivity {
     private TextView cj_count_txt;
     private ImageView cj_refresh_iv;
     private ScrollListView luck_listview;
-    private CJListAdapter luckAdapter;
+    private LuckListAdapter luckAdapter;
+    private ArrayList<LuckInfo> luckInfoList = new ArrayList<>();
 
     //评论
     private TextView comment_count_txt;
@@ -124,6 +129,7 @@ public class StoreDetailActivity extends AppBaseActivity {
                 .cacheOnDisk(true).build();
 
         startTask();
+        startLuckTask();
         startCommentTask(1);
         startFootTask();
     }
@@ -230,7 +236,9 @@ public class StoreDetailActivity extends AppBaseActivity {
         switch (v.getId()) {
             case R.id.error_lay:
                 startTask();
+                startLuckTask();
                 startCommentTask(1);
+                startFootTask();
                 break;
 
             case R.id.big_image:
@@ -266,7 +274,9 @@ public class StoreDetailActivity extends AppBaseActivity {
                 break;
 
             case R.id.go_mai_txt:
-
+                Intent checkIntent = new Intent(StoreDetailActivity.this, CheckMakeActivity.class);
+                checkIntent.putExtra("business_id", id);
+                startActivity(checkIntent);
                 break;
 
             case R.id.booked_txt:
@@ -335,6 +345,16 @@ public class StoreDetailActivity extends AppBaseActivity {
             isCollected = true;
         }
 
+    }
+
+    private void fillLuckData() {
+        if (luckInfoList == null) return;
+        if (luckAdapter == null) {
+            luckAdapter = new LuckListAdapter(mContext, luckInfoList);
+            luck_listview.setAdapter(luckAdapter);
+        }else {
+            luckAdapter.setData(luckInfoList);
+        }
     }
 
     private void fillCommentData() {
@@ -413,6 +433,41 @@ public class StoreDetailActivity extends AppBaseActivity {
     }
 
 
+    /************************************   抽奖 ***************************************/
+    private void startLuckTask() {
+        if (NetUtil.detectAvailable(mContext)) {
+            BusinessLuckInfoListRequest request = new BusinessLuckInfoListRequest(id, new RequestListener() {
+                @Override
+                public void sendMessage(Message message) {
+                    switch (message.what) {
+                        case Constants.ERROR_DATA_FROM_NET:
+                            break;
+
+                        case Constants.NO_DATA_FROM_NET:
+                            break;
+
+                        case Constants.SUCCESS_DATA_FROM_NET:
+                            ArrayList<LuckInfo> temp = (ArrayList<LuckInfo>) message.obj;
+
+                            if (commentInfoList != null) {
+                                commentInfoList.clear();
+                            }
+                            luckInfoList.addAll(temp);
+
+                            fillLuckData();
+
+                            break;
+                    }
+                }
+            });
+
+            request.doRequest();
+        }
+    }
+
+
+
+    /************************************   收藏  ***************************************/
     RequestListener commentRequestListener = new RequestListener() {
         @Override
         public void sendMessage(Message message) {

@@ -76,6 +76,8 @@ public class Constants {
     /** 首页获取抽奖信息   **/
     public static String LUCKINFO_LIST = HOST + "/v1.index/getIndexLottery";
 
+    /** 商家详情页抽奖信息  **/
+    public static String BUSINESS_LUCKINFO_LIST = HOST + "/v1/business/business_lottery";
 
     /** 抽奖活动列表   **/
     public static String CJ_LIST = HOST + "/v1.index/getListLottery";
@@ -101,6 +103,13 @@ public class Constants {
 
     /******************************* 预定 *******************************/
 
+    /** 买单信息  **/
+    public static String PAY_DETAIL = HOST + "/v1/Interactive/pay_detail";
+
+
+    /** 商家详情  **/
+    public static String USER_ACCOUNT_LIST = HOST + "/v1/my/my_member_balance";
+
     /** 商家详情  **/
     public static String STORE_DETAIL = HOST + "/v1/Business/business_detail";
 
@@ -125,6 +134,13 @@ public class Constants {
     /** 删除收货地址  **/
     public static String ADDRESS_DELETE = HOST + "/v1/My/my_address_del";
 
+
+    /** 修改预定信息  **/
+    public static String BOOKED_EDIT = HOST + "/v1/Interactive/booking_edit";
+
+
+    /** 添加买单订单  **/
+    public static String PAY_ADD = HOST + "/v1/Interactive/pay_add";
 
 	
 	/******************************* 房源相关  *******************************/
@@ -239,6 +255,12 @@ public class Constants {
 	
 	
 	/******************************* 个人中心相关  *******************************/
+
+    /**  我的抽奖活动列表  **/
+    public static String USER_LUCK_LIST = HOST + "/v1/my/my_lottery";
+
+    /**  我的预定列表  **/
+    public static String USER_CHECK_LIST = HOST + "/v1/Interactive/pay_list";
 
     /**  我的预定列表  **/
     public static String USER_BOOKED_LIST = HOST + "/v1/Interactive/booking_list";

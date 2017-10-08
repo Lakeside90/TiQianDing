@@ -3,7 +3,6 @@ package com.xkhouse.fang.booked.activity;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -13,19 +12,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
-import com.xkhouse.fang.app.callback.RequestListener;
-import com.xkhouse.fang.app.config.Constants;
-import com.xkhouse.fang.app.entity.XKAd;
-import com.xkhouse.fang.app.task.BannerListRequest;
+import com.xkhouse.fang.booked.entity.StoreAlbum;
 import com.xkhouse.fang.widget.autoscrollviewpager.AutoScrollViewPager;
 import com.xkhouse.frame.log.Logger;
-import com.xkhouse.lib.utils.NetUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +38,7 @@ public class StoreImageDeatilActivity extends AppBaseActivity {
 
     //轮询图
     private AutoScrollViewPager home_viewpager;
-    private ArrayList<XKAd> adList;
+    private ArrayList<StoreAlbum> albumList = new ArrayList<>();
 
 
 
@@ -62,9 +56,11 @@ public class StoreImageDeatilActivity extends AppBaseActivity {
             e.printStackTrace();
         }
 
-        getDataFromNet();
+        fillData();
 
-        image_dec_txt.setText("图片描述图片描述图片描述图片描述图片描述图片描述图片描述图片描述图片描述图片描述图片描述图片描述图片描述图片描述图片描述kkkk");
+        if (albumList != null && albumList.size() > 0) {
+            image_dec_txt.setText(albumList.get(0).getContent());
+        }
 	}
 
 
@@ -77,6 +73,8 @@ public class StoreImageDeatilActivity extends AppBaseActivity {
 	@Override
 	protected void init() {
 		super.init();
+
+        albumList = (ArrayList<StoreAlbum>) getIntent().getExtras().getSerializable("albumList");
 	}
 
 	@Override
@@ -113,6 +111,7 @@ public class StoreImageDeatilActivity extends AppBaseActivity {
             public void onPageSelected(int arg0) {
 
                 index_txt.setText(String.valueOf(arg0 + 1));
+                image_dec_txt.setText(albumList.get(arg0).getContent());
             }
 
             @Override
@@ -128,10 +127,10 @@ public class StoreImageDeatilActivity extends AppBaseActivity {
 
 
 
-    private void fillAdData(){
-        if(adList == null) return;
+    private void fillData(){
+        if(albumList == null) return;
 
-        count_txt.setText("/" + adList.size());
+        count_txt.setText("/" + albumList.size());
 
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.nopic)   // 加载的图片
@@ -141,18 +140,16 @@ public class StoreImageDeatilActivity extends AppBaseActivity {
                 .cacheOnDisk(true).build();
 
         List<View> views = new ArrayList<>();
-        for (int i = 0; i < adList.size(); i++) {
+        for (int i = 0; i < albumList.size(); i++) {
             ImageView image = new ImageView(mContext);
             image.setScaleType(ImageView.ScaleType.FIT_XY);
             views.add(image);
-            ImageLoader.getInstance().displayImage(adList.get(i).getPhotoUrl(), image, options);
+            ImageLoader.getInstance().displayImage(albumList.get(i).getImg(), image, options);
         }
 
         ADPagerAdapter pagerAdapter = new ADPagerAdapter(views);
         home_viewpager.setAdapter(pagerAdapter);
 
-//        home_viewpager.setInterval(3000);
-//        home_viewpager.startAutoScroll();
 
     }
 
@@ -213,55 +210,6 @@ public class StoreImageDeatilActivity extends AppBaseActivity {
             return POSITION_NONE;
         }
 
-    }
-
-    private RequestListener adListListener = new RequestListener() {
-
-        @Override
-        public void sendMessage(Message message) {
-
-            if(!modelApp.getSite().getSiteId().equals(message.getData().getString("siteId"))){
-                return;
-            }
-
-            switch (message.what) {
-                case Constants.ERROR_DATA_FROM_NET:
-                    break;
-
-                case Constants.NO_DATA_FROM_NET:
-                    if (adList != null) {
-                        adList.clear();
-                        fillAdData();
-                    }
-                    break;
-
-                case Constants.SUCCESS_DATA_FROM_NET:
-                    ArrayList<XKAd> temp = (ArrayList<XKAd>) message.getData().getSerializable("adList");
-
-                    if (adList == null) {
-                        adList = new ArrayList<XKAd>();
-                        adList.addAll(temp);
-                    } else {
-                        adList.clear();
-                        adList.addAll(temp);
-                    }
-                    fillAdData();
-                    break;
-            }
-        }
-    };
-
-
-    private void getDataFromNet(){
-        if (NetUtil.detectAvailable(this)) {
-
-            //轮询图广告
-            BannerListRequest adListRequest = new BannerListRequest(modelApp.getSite().getSiteId(), adListListener);
-            adListRequest.doRequest();
-
-        } else {
-            Toast.makeText(this, R.string.net_warn, Toast.LENGTH_SHORT).show();
-        }
     }
 
 

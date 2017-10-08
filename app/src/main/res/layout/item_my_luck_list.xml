@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/title_txt"
+            android:id="@+id/number_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="编号：BJ0001-01"
@@ -24,7 +24,7 @@
             android:textSize="13sp"/>
 
         <TextView
-            android:id="@+id/date_txt"
+            android:id="@+id/type_txt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -43,11 +43,11 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/news_icon_iv"
+            android:id="@+id/icon_iv"
             android:layout_width="100dp"
             android:layout_height="90dp"
             android:scaleType="fitXY"
-            android:src="@drawable/bank_default"/>
+            android:src="@drawable/nopic"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,6 +57,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/title_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -79,6 +80,7 @@
                     android:textColor="@color/common_gray_txt"
                     android:text="原价："/>
                 <TextView
+                    android:id="@+id/price_txt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -95,6 +97,7 @@
 
 
     <TextView
+        android:id="@+id/result_txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="15dp"
@@ -122,6 +125,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/time_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="订单时间：2017-05-03"
@@ -129,13 +133,14 @@
             android:textSize="13sp"/>
 
         <TextView
+            android:id="@+id/status_txt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
             android:maxLines="1"
             android:text="填写收货地址"
-            android:textColor="@color/common_red"
+            android:textColor="@color/common_black_txt"
             android:textSize="12sp"/>
     </LinearLayout>
 </LinearLayout>

@@ -116,15 +116,15 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
         .bitmapConfig(Bitmap.Config.RGB_565).cacheInMemory(true)
         .cacheOnDisk(true).build();
 
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_PHONE_STATE)
-                != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions( new String[]{Manifest.permission.READ_PHONE_STATE},
-                        READ_PHONE_STATE_REQUEST_CODE);
-
-        } else {
-            TelephonyManager tm = (TelephonyManager)getActivity().getSystemService(Context.TELEPHONY_SERVICE);
-            DEVICE_ID = tm.getDeviceId();
-        }
+//        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_PHONE_STATE)
+//                != PackageManager.PERMISSION_GRANTED) {
+//                requestPermissions( new String[]{Manifest.permission.READ_PHONE_STATE},
+//                        READ_PHONE_STATE_REQUEST_CODE);
+//
+//        } else {
+//            TelephonyManager tm = (TelephonyManager)getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+//            DEVICE_ID = tm.getDeviceId();
+//        }
 	}
 	
 	@Override
@@ -207,15 +207,14 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
                 break;
 
             case R.id.money_lay:
-//                if(Preference.getInstance().readIsLogin()){
-//                    startActivity(new Intent(getActivity(), AccountInfoListActivity.class));
-//                }else {
-//                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-//                    intent.putExtra("classStr", AccountInfoListActivity.class);
-//                    startActivity(intent);
-//                }
-                startActivity(new Intent(getActivity(), AccountInfoListActivity.class));
+                if(Preference.getInstance().readIsLogin()){
+                    startActivity(new Intent(getActivity(), AccountInfoListActivity.class));
+                }else {
+                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    intent.putExtra("classStr", AccountInfoListActivity.class);
+                    startActivity(intent);
+                }
                 break;
 
             case R.id.luck_changes_lay:

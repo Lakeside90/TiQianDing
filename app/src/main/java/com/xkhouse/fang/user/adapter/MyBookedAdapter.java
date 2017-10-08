@@ -2,6 +2,7 @@ package com.xkhouse.fang.user.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,7 @@ public class MyBookedAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();  
 		}
 
-		MyBookedInfo myBookedInfo = myBookedinfoList.get(position);
+		final MyBookedInfo myBookedInfo = myBookedinfoList.get(position);
 
 		holder.title_txt.setText(myBookedInfo.getBusiness_name());
         holder.money_txt.setText("预定金额：¥" + myBookedInfo.getMoney());
@@ -71,9 +72,13 @@ public class MyBookedAdapter extends BaseAdapter {
         if ("1".equals(myBookedInfo.getStatus())) {
             holder.status_txt.setText("待付款");
         }else if ("2".equals(myBookedInfo.getStatus())) {
-            holder.status_txt.setText("已付款待服务");
+            holder.status_txt.setText("待审核");
         } else if ("3".equals(myBookedInfo.getStatus())) {
+            holder.status_txt.setText("待使用");
+        } else if ("4".equals(myBookedInfo.getStatus())) {
             holder.status_txt.setText("已完成");
+        } else if ("5".equals(myBookedInfo.getStatus())) {
+            holder.status_txt.setText("已取消");
         } else {
             holder.status_txt.setVisibility(View.INVISIBLE);
         }
@@ -81,7 +86,11 @@ public class MyBookedAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, MyBookedDetailActivity.class));
+                Intent intent = new Intent(context, MyBookedDetailActivity.class);
+                Bundle data = new Bundle();
+                data.putSerializable("myBookedInfo", myBookedInfo);
+                intent.putExtras(data);
+                context.startActivity(intent);
             }
         });
 		

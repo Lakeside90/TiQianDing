@@ -297,13 +297,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:horizontalSpacing="15dp"
                 android:listSelector="@android:color/transparent"
-                android:numColumns="2"
-                android:paddingBottom="15dp"
+                android:divider="@color/common_diver_line"
                 android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:verticalSpacing="15dp"/>
+                android:dividerHeight="1px"/>
 
 
             <!-- 网友评论 -->
