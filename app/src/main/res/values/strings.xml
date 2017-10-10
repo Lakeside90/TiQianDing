@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">惠早订</string>
-    <string name="title_tqd">提前定</string>
+    <string name="title_tqd">惠早订</string>
 
     <string name="action_settings">Settings</string>
 

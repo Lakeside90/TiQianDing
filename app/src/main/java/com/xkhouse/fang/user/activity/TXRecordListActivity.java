@@ -15,7 +15,8 @@ import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
-import com.xkhouse.fang.user.adapter.AccountInfoAdapter;
+import com.xkhouse.fang.booked.entity.TXRecord;
+import com.xkhouse.fang.booked.task.TXRecordListRequest;
 import com.xkhouse.fang.user.adapter.TXRecordAdapter;
 import com.xkhouse.fang.user.entity.MSGNews;
 import com.xkhouse.fang.user.task.MessageDetailListRequest;
@@ -33,7 +34,7 @@ public class TXRecordListActivity extends AppBaseActivity {
 	
 	private ImageView iv_head_left;
 
-	private XListView msg_listView;
+	private XListView listView;
 	private TXRecordAdapter adapter;
 	private int currentPageIndex = 1;  //分页索引
 	private int pageSize = 10; //每次请求10条数据
@@ -43,8 +44,8 @@ public class TXRecordListActivity extends AppBaseActivity {
     private RotateLoading rotate_loading;
     private LinearLayout error_lay;
 
-	private MessageDetailListRequest listRequest;
-	private ArrayList<MSGNews> newsList = new ArrayList<MSGNews>();
+	private TXRecordListRequest listRequest;
+	private ArrayList<TXRecord> recordList = new ArrayList<>();
 
 
 
@@ -62,8 +63,7 @@ public class TXRecordListActivity extends AppBaseActivity {
             e.printStackTrace();
         }
 
-//		startDataTask(1, true);
-        fillData();
+		startDataTask(1, true);
 	}
 	
 	
@@ -82,7 +82,7 @@ public class TXRecordListActivity extends AppBaseActivity {
 	protected void findViews() {
 		initTitle();
 		
-		msg_listView = (XListView) findViewById(R.id.msg_listView);
+		listView = (XListView) findViewById(R.id.listView);
         rotate_loading = (RotateLoading) findViewById(R.id.rotate_loading);
         error_lay = (LinearLayout) findViewById(R.id.error_lay);
         notice_lay = (LinearLayout) findViewById(R.id.notice_lay);
@@ -105,21 +105,21 @@ public class TXRecordListActivity extends AppBaseActivity {
 	protected void setListeners() {
         error_lay.setOnClickListener(this);
 
-		msg_listView.setPullLoadEnable(true);
-		msg_listView.setPullRefreshEnable(true);
-		msg_listView.setXListViewListener(new IXListViewListener() {
+		listView.setPullLoadEnable(true);
+		listView.setPullRefreshEnable(true);
+		listView.setXListViewListener(new IXListViewListener() {
 
             @Override
             public void onRefresh() {
                 isPullDown = true;
-//                startDataTask(1, false);
+                startDataTask(1, false);
             }
 
             @Override
             public void onLoadMore() {
                 startDataTask(currentPageIndex, false);
             }
-        }, R.id.msg_listView);
+        }, R.id.listView);
 	}
 
 	@Override
@@ -127,31 +127,28 @@ public class TXRecordListActivity extends AppBaseActivity {
 		super.onClick(v);
         switch (v.getId()){
             case R.id.error_lay:
-//                startDataTask(1, true);
+                startDataTask(1, true);
                 break;
         }
 	}
 	
 	
 	private void fillData(){
-        for (int i = 0; i < 3; i++) {
-            newsList.add(new MSGNews());
-        }
 
-		if(newsList == null) return;
+		if(recordList == null) return;
 		if(adapter == null ){
-			adapter = new TXRecordAdapter(mContext, newsList);
-			msg_listView.setAdapter(adapter);
+			adapter = new TXRecordAdapter(mContext, recordList);
+			listView.setAdapter(adapter);
 		}else {
-			adapter.setData(newsList);
+			adapter.setData(recordList);
 		}
 	}
 	
 	private void startDataTask(int page, boolean showLoading){
 		if (NetUtil.detectAvailable(mContext)) {
 			if(listRequest == null){
-				listRequest = new MessageDetailListRequest("", "",modelApp.getSite().getSiteId(),
-						11, page, pageSize, new RequestListener() {
+				listRequest = new TXRecordListRequest(modelApp.getUser().getToken(),
+						page, pageSize, new RequestListener() {
 					
 					@Override
 					public void sendMessage(Message message) {
@@ -165,8 +162,8 @@ public class TXRecordListActivity extends AppBaseActivity {
 
 						switch (message.what) {
 						case Constants.ERROR_DATA_FROM_NET:
-                            if (newsList == null || newsList.size() == 0){
-                                msg_listView.setVisibility(View.GONE);
+                            if (recordList == null || recordList.size() == 0){
+                                listView.setVisibility(View.GONE);
                                 notice_lay.setVisibility(View.GONE);
                                 error_lay.setVisibility(View.VISIBLE);
                             }else{
@@ -177,55 +174,54 @@ public class TXRecordListActivity extends AppBaseActivity {
 						case Constants.NO_DATA_FROM_NET:
                             error_lay.setVisibility(View.GONE);
                             notice_lay.setVisibility(View.GONE);
-                            msg_listView.setVisibility(View.VISIBLE);
-                            if(newsList == null || newsList.size() ==0){
-                                msg_listView.setVisibility(View.GONE);
+                            listView.setVisibility(View.VISIBLE);
+                            if(recordList == null || recordList.size() ==0){
+                                listView.setVisibility(View.GONE);
                                 notice_lay.setVisibility(View.VISIBLE);
                             }
 							break;
 							
 						case Constants.SUCCESS_DATA_FROM_NET:
-                            msg_listView.setVisibility(View.VISIBLE);
+                            listView.setVisibility(View.VISIBLE);
                             error_lay.setVisibility(View.GONE);
                             notice_lay.setVisibility(View.GONE);
 
-							ArrayList<MSGNews> temp = (ArrayList<MSGNews>) message.obj;
+							ArrayList<TXRecord> temp = (ArrayList<TXRecord>) message.obj;
 							//根据返回的数据量判断是否隐藏加载更多
 							if(temp.size() < pageSize){
-								msg_listView.setPullLoadEnable(false);
+								listView.setPullLoadEnable(false);
 							}else{
-								msg_listView.setPullLoadEnable(true);
+								listView.setPullLoadEnable(true);
 							}
 							//如果是下拉刷新则索引恢复到1，并且清除掉之前数据
-							if(isPullDown && newsList != null){
-								newsList.clear();
+							if(isPullDown && recordList != null){
+								recordList.clear();
 								currentPageIndex = 1;
 							}
-							newsList.addAll(temp);
+							recordList.addAll(temp);
                             if(currentPageIndex == 1 && (temp == null || temp.size() ==0)){
-                                msg_listView.setVisibility(View.GONE);
+                                listView.setVisibility(View.GONE);
                                 notice_lay.setVisibility(View.VISIBLE);
                                 return;
                             }
 
 							fillData();
-                            if (currentPageIndex > 1 && message.arg1 == newsList.size()){
+                            if (currentPageIndex > 1 && message.arg1 == recordList.size()){
                                 Toast.makeText(mContext, R.string.data_load_end, Toast.LENGTH_SHORT).show();
                             }
                             currentPageIndex++;
 							break;
 						}
 						isPullDown = false;
-						msg_listView.stopRefresh();
-						msg_listView.stopLoadMore();
+						listView.stopRefresh();
+						listView.stopLoadMore();
 					}
 				});
 			}else {
-				listRequest.setData("", "", modelApp.getSite().getSiteId(),
-						11, page, pageSize);
+				listRequest.setData(modelApp.getUser().getToken(), page, pageSize);
 			}
 			if (showLoading){
-                msg_listView.setVisibility(View.GONE);
+                listView.setVisibility(View.GONE);
                 error_lay.setVisibility(View.GONE);
                 notice_lay.setVisibility(View.GONE);
                 rotate_loading.setVisibility(View.VISIBLE);
@@ -234,10 +230,10 @@ public class TXRecordListActivity extends AppBaseActivity {
 			listRequest.doRequest();
 		}else {
 			isPullDown = false;
-			msg_listView.stopRefresh();
-			msg_listView.stopLoadMore();
-            if (newsList == null || newsList.size() == 0){
-                msg_listView.setVisibility(View.GONE);
+			listView.stopRefresh();
+			listView.stopLoadMore();
+            if (recordList == null || recordList.size() == 0){
+                listView.setVisibility(View.GONE);
                 rotate_loading.setVisibility(View.GONE);
                 notice_lay.setVisibility(View.GONE);
                 error_lay.setVisibility(View.VISIBLE);

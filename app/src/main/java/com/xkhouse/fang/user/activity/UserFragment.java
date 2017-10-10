@@ -83,10 +83,7 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 	private DisplayImageOptions options;
 	
 	private ModelApplication modelApp;
-	
-	private MsgFavoriteNumRequest msgNumRequest;	//消息条数
-	private MsgFavoriteNumRequest favoriteNumRequest;	//我的收藏
-	private WalletListRequest walletRequest;		//我的钱包
+
 
     private String DEVICE_ID;      //设备ID
     private int READ_PHONE_STATE_REQUEST_CODE = 100;

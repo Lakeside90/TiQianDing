@@ -213,7 +213,7 @@
                 android:layout_margin="15dp"
                 android:textSize="13sp"
                 android:textColor="@color/common_gray_txt"
-                android:text="注：提交评论即可获得抽奖次数"/>
+                android:text="注：提交评论即可获得活动次数"/>
         </LinearLayout>
     </ScrollView>
 

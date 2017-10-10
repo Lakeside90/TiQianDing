@@ -275,7 +275,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical|left"
-                    android:text="商家抽奖"
+                    android:text="商家活动"
                     android:textColor="@color/common_black_txt"
                     android:textSize="16sp"/>
 

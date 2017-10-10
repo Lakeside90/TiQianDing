@@ -7,9 +7,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.ModelApplication;
+import com.xkhouse.fang.booked.entity.TXRecord;
 import com.xkhouse.fang.user.entity.MSGNews;
 
 import java.util.ArrayList;
@@ -20,33 +22,29 @@ import java.util.ArrayList;
 public class TXRecordAdapter extends BaseAdapter {
 
 	private Context context;
-	private ArrayList<MSGNews> newsList;
+	private ArrayList<TXRecord> recordList;
 	private ModelApplication modelApp;
 
-	public TXRecordAdapter(Context context, ArrayList<MSGNews> newsList){
+	public TXRecordAdapter(Context context, ArrayList<TXRecord> recordList){
 		this.context = context;
-		this.newsList = newsList;
+		this.recordList = recordList;
 		modelApp = (ModelApplication) ((Activity) context).getApplication();
 		
 	}
 	
-	public void setData(ArrayList<MSGNews> newsList){
-		this.newsList = newsList;
+	public void setData(ArrayList<TXRecord> recordList){
+		this.recordList = recordList;
 		notifyDataSetChanged();
 	}
 	
 	@Override
 	public int getCount() {
-//		return newsList.size();
-
-        return 3;
+		return recordList.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-//		return newsList.get(position);
-
-        return position;
+		return recordList.get(position);
 	}
 
 	@Override
@@ -65,10 +63,22 @@ public class TXRecordAdapter extends BaseAdapter {
 		}else{
 			holder = (ViewHolder) convertView.getTag();  
 		}
-		
-	
 
-		
+		TXRecord txRecord = recordList.get(position);
+
+		holder.money_txt.setText("体现金额：" + txRecord.getMoney());
+		holder.date_txt.setText(txRecord.getCreate_time());
+		if ("1".equals(txRecord.getStatus())) {
+			holder.status_txt.setText("等待审核");
+			holder.status_txt.setTextColor(context.getResources().getColor(R.color.common_red));
+		} else if ("1".equals(txRecord.getStatus())) {
+			holder.status_txt.setText("等待汇款");
+			holder.status_txt.setTextColor(context.getResources().getColor(R.color.common_red));
+		} else if ("1".equals(txRecord.getStatus())) {
+			holder.status_txt.setText("打款成功");
+			holder.status_txt.setTextColor(context.getResources().getColor(R.color.common_green));
+		}
+
 		convertView.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -83,18 +93,16 @@ public class TXRecordAdapter extends BaseAdapter {
 	
 	public class ViewHolder{
 		
-//		TextView title_txt;
-//		TextView date_txt;
-//		TextView content_txt;
-//		TextView money_txt;
+		TextView money_txt;
+		TextView date_txt;
+		TextView status_txt;
+
 
 		public ViewHolder(View view){
-			
-//			title_txt = (TextView) view.findViewById(R.id.title_txt);
-//			date_txt = (TextView) view.findViewById(R.id.date_txt);
-//			content_txt = (TextView) view.findViewById(R.id.content_txt);
-//            money_txt = (TextView) view.findViewById(R.id.money_txt);
 
+			money_txt = (TextView) view.findViewById(R.id.money_txt);
+			date_txt = (TextView) view.findViewById(R.id.date_txt);
+			status_txt = (TextView) view.findViewById(R.id.status_txt);
 		}
 	}
 

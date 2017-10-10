@@ -68,7 +68,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/red_conner_btn_normal"
         android:gravity="center"
-        android:text="参与抽奖"
+        android:text="参与活动"
         android:textColor="@color/white"
         android:textSize="16sp"/>
 

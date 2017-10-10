@@ -83,7 +83,7 @@ public class LuckChangeListActivity extends AppBaseActivity {
 	private void initTitle() {
 		iv_head_left = (ImageView) findViewById(R.id.iv_head_left);
 		tv_head_title = (TextView) findViewById(R.id.tv_head_title);
-		tv_head_title.setText("抽奖机会明细");
+		tv_head_title.setText("活动机会明细");
 		iv_head_left.setOnClickListener(new OnClickListener() {
 			
 			@Override

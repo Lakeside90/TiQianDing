@@ -60,7 +60,7 @@ public class GetVerifyCodeRequest {
 
                         Message message = new Message();
                         message.obj = msg;
-                        if(Constants.SUCCESS_CODE_OLD.equals(code)){
+                        if(Constants.SUCCESS_CODE.equals(code)){
                             message.what = Constants.SUCCESS_DATA_FROM_NET;
                         }else{
                             message.what = Constants.NO_DATA_FROM_NET;
@@ -101,8 +101,8 @@ public class GetVerifyCodeRequest {
 
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject != null) {
-                code = jsonObject.optString("code");
-                msg = jsonObject.optString("data");
+                code = jsonObject.optString("status");
+                msg = jsonObject.optString("msg");
             }
         } catch (Exception e) {
             e.printStackTrace();

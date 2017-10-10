@@ -56,14 +56,15 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/name_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="@color/white"
-                    android:text="早上好：xxx"/>
+                    android:text="早上好："/>
 
                 <ImageView
-                    android:id="@+id/news_icon_iv"
+                    android:id="@+id/icon_iv"
                     android:layout_width="133dp"
                     android:layout_height="133dp"
                     android:layout_marginTop="15dp"
@@ -97,12 +98,13 @@
                         android:text="我的余额"/>
 
                     <TextView
+                        android:id="@+id/money_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:textSize="16sp"
                         android:textColor="@color/common_red"
-                        android:text="10000元"/>
+                        android:text="0元"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -122,12 +124,13 @@
                         android:background="@drawable/blue_conner_btn_normal"/>
 
                     <TextView
+                        android:id="@+id/num_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:textSize="12sp"
                         android:textColor="@color/common_gray_txt"
-                        android:text="本月剩余提现次数：1/4"/>
+                        android:text="本月剩余提现次数：0/0"/>
 
                 </LinearLayout>
 
@@ -163,6 +166,7 @@
                     android:background="@color/common_diver_line"/>
 
                 <TextView
+                    android:id="@+id/withdraw_txt"
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:paddingLeft="15dp"
@@ -183,6 +187,7 @@
                     android:background="@color/common_diver_line"/>
 
                 <TextView
+                    android:id="@+id/comment_txt"
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:paddingLeft="15dp"
@@ -202,9 +207,6 @@
                     android:background="@color/common_diver_line"/>
 
             </LinearLayout>
-
-
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

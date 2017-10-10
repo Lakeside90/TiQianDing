@@ -219,9 +219,9 @@ public class CJFragment extends AppBaseFragment {
         }
 
         DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.nopic)   // 加载的图片
-                .showImageOnFail(R.drawable.nopic) // 错误的时候的图片
-                .showImageForEmptyUri(R.drawable.nopic)
+                .showImageOnLoading(R.drawable.banner_nopic)   // 加载的图片
+                .showImageOnFail(R.drawable.banner_nopic) // 错误的时候的图片
+                .showImageForEmptyUri(R.drawable.banner_nopic)
                 .bitmapConfig(Bitmap.Config.RGB_565).cacheInMemory(true)
                 .cacheOnDisk(true).build();
 

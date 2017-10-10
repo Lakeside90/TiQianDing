@@ -47,10 +47,11 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/money_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="10000.00"
+            android:text="0"
             android:textColor="@color/common_red"
             android:textSize="24sp"/>
 
@@ -69,7 +70,7 @@
             android:background="@color/common_gray_space"/>
 
         <com.xkhouse.fang.widget.xlist.XListView
-            android:id="@+id/msg_listView"
+            android:id="@+id/listView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_below="@id/title_lay"

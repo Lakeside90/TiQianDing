@@ -112,7 +112,7 @@ public class AccountInfoListActivity extends AppBaseActivity {
             public void onLoadMore() {
                 startDataTask(currentPageIndex, false);
             }
-        }, R.id.msg_listView);
+        }, R.id.listView);
 	}
 
 	@Override

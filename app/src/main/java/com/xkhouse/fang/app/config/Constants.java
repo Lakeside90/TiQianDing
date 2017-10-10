@@ -11,9 +11,10 @@ public class Constants {
 	// androidID
 	public static String ANDROID_ID;
 
+    public static final String PIC_TOKEN = "NqewTSRWT_SlHgAjy-vByH15bSJC91LZhC8Vsoz_:eBAkWb8sryO56guzJZRg7l0YIgE=:eyJzY29wZSI6InRpcWlhbmRpbmciLCJkZWFkbGluZSI6MzMzNDk4ODA2MH0=";
 
 	public static String HOST_OLD = "http://xkapi.com";
-	public static String HOST = "https://api.tiqianding.com";
+	public static String HOST = "https://api.huizaoding.com";
 
 
 	/******************************* 全局通用  *******************************/
@@ -28,7 +29,7 @@ public class Constants {
 	public static String CONFIG_LIST = HOST_OLD + "/v1.0/System/Config.api";
 	
 	/**  短信验证码接口    **/
-	public static String GET_VERIFY_CODE = HOST_OLD + "/v1.0/Other/Sms.api";
+	public static String GET_VERIFY_CODE = HOST_OLD + "/v1/login/sendMsgCode";
 	
 	/**  根据站点ID获取该站点热搜关键词     **/
 	public static String SEARCH_HOT_WORDS = HOST_OLD + "/v1.0/Other/SearchHot.api";
@@ -107,8 +108,14 @@ public class Constants {
     public static String PAY_DETAIL = HOST + "/v1/Interactive/pay_detail";
 
 
-    /** 商家详情  **/
+    /** 账户明细  **/
     public static String USER_ACCOUNT_LIST = HOST + "/v1/my/my_member_balance";
+
+    /** 员工--账户明细  **/
+    public static String EMPLOYEE_ACCOUNT_LIST = HOST + "/v1/Staff/staff_member_balance";
+
+    /** 员工--提现记录  **/
+    public static String EMPLOYEE_TX_RECORD = HOST + "/v1/Staff/staff_withdrawals";
 
     /** 商家详情  **/
     public static String STORE_DETAIL = HOST + "/v1/Business/business_detail";
@@ -142,7 +149,11 @@ public class Constants {
     /** 添加买单订单  **/
     public static String PAY_ADD = HOST + "/v1/Interactive/pay_add";
 
-	
+
+    /** 用户修改头像  **/
+    public static String HEAD_IMG_EDIT = HOST + "/v1/My/my_edit_head";
+
+
 	/******************************* 房源相关  *******************************/
 	
 	/**  某站点的行政区域列表  **/
@@ -328,6 +339,9 @@ public class Constants {
 	
 	/**  用户信息  **/
 	public static String USER_INFO = HOST + "/v1/My/my_index";
+
+    /**  员工首页  **/
+    public static String EMPLOYEE_INFO = HOST + "/v1/Staff/index";
 	
 	/**  支付密码设置/修改  **/
 	public static String USER_CHANGE_PAY_PSW = HOST_OLD + "/v1.0/Passport/PayPassWord.api";

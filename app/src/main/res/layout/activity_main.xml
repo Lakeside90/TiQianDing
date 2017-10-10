@@ -36,7 +36,7 @@
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"
             android:gravity="center"
-            android:text="抽奖"
+            android:text="活动"
             android:textSize="12sp"
             android:drawableTop="@drawable/cj_icon_selector"
             android:textColor="@drawable/home_tab_txt_selector" />
@@ -49,7 +49,7 @@
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"
             android:gravity="center"
-            android:text="提前定"
+            android:text="@string/title_tqd"
             android:textSize="12sp"
             android:drawableTop="@drawable/tqd_icon_selector"
             android:textColor="@drawable/home_tab_txt_selector" />

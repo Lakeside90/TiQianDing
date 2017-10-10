@@ -22,12 +22,16 @@ import android.widget.Toast;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.utils.StorageUtils;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
+import com.qiniu.android.storage.UploadManager;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.config.Preference;
 import com.xkhouse.fang.app.entity.Site;
+import com.xkhouse.fang.app.task.HeadImgEditRequest;
 import com.xkhouse.fang.app.util.BitmapManager;
 import com.xkhouse.fang.app.util.uploadImg.UploadTask;
 import com.xkhouse.fang.app.util.uploadImg.UploadTask.UploadCallBack;
@@ -39,6 +43,8 @@ import com.xkhouse.fang.user.view.PhotoDialog;
 import com.xkhouse.fang.widget.circle.CircleImageView;
 import com.xkhouse.lib.utils.NetUtil;
 import com.xkhouse.lib.utils.StringUtil;
+
+import org.json.JSONObject;
 
 import java.io.File;
 
@@ -421,25 +427,61 @@ public class UserInfoActivity extends AppBaseActivity {
 
 	private void upload() {
 		if (NetUtil.detectAvailable(this)) {
+
 			String imagePath = BitmapManager.getInstance()
 					.getCacheFile(modelApp.getUser().getId(), this).toString();
-			new UploadTask(new UploadCallBack() {
-				@Override
-				public void onSucess(String url) {
-					String photoUrl = "http://upload.xkhouse.com" + url;
-					startHeadPhotoTask(photoUrl);
-				}
+			int i=(int)(Math.random()*900)+100;
+			String key = System.currentTimeMillis() + i + "";
+			new UploadManager().put(imagePath, key, Constants.PIC_TOKEN,
+					new UpCompletionHandler() {
+						@Override
+						public void complete(String key, ResponseInfo info, JSONObject res) {
+							//res包含hash、key等信息，具体字段取决于上传策略的设置
+							if(info.isOK()) {
+								String url = Constants.HOST + "/" + key;
+								startEditHeadImg(url);
+							} else {
+								Toast.makeText(UserInfoActivity.this, "图片上传失败！", Toast.LENGTH_SHORT).show();
+							}
 
-				@Override
-				public void onFail(String msg) {
-					Toast.makeText(mContext, "头像修改失败，请重新上传", Toast.LENGTH_SHORT).show();
-				}
-			}).execute(imagePath);
+						}
+					}, null);
 		} else {
 			Toast.makeText(this, R.string.net_warn, Toast.LENGTH_SHORT).show();
 		}
 	}
-	
+
+
+
+	private void startEditHeadImg(final String url) {
+		if (NetUtil.detectAvailable(this)) {
+			showLoadingDialog(R.string.data_loading);
+			HeadImgEditRequest request = new HeadImgEditRequest(modelApp.getUser().getToken(), url, new RequestListener() {
+				@Override
+				public void sendMessage(Message message) {
+					hideLoadingDialog();
+					switch (message.what) {
+						case Constants.ERROR_DATA_FROM_NET:
+						case Constants.NO_DATA_FROM_NET:
+							Toast.makeText(mContext, "头像修改失败，请重新上传！", Toast.LENGTH_SHORT).show();
+							break;
+
+						case Constants.SUCCESS_DATA_FROM_NET:
+							Toast.makeText(mContext, "头像修改成功！", Toast.LENGTH_SHORT).show();
+							modelApp.getUser().setHead_img(url);
+							ImageLoader.getInstance().displayImage(modelApp.getUser().getHead_img(),
+									user_icon_iv, options);
+							break;
+					}
+				}
+			});
+			request.doRequest();
+		} else {
+			Toast.makeText(this, R.string.net_warn, Toast.LENGTH_SHORT).show();
+		}
+	}
+
+
 	/**
 	 * 删除单个文件
 	 * 
@@ -458,38 +500,6 @@ public class UserInfoActivity extends AppBaseActivity {
 		return flag;
 	}
 	
-	
-	private void startHeadPhotoTask(final String photoUrl){
-		if(NetUtil.detectAvailable(mContext)){
-			showLoadingDialog(R.string.data_loading);
-			UserInfoEditRequest request = new UserInfoEditRequest(modelApp.getUser().getId(), new RequestListener() {
-				
-				@Override
-				public void sendMessage(Message message) {
-					 hideLoadingDialog();
-						switch (message.what) {
-						case Constants.ERROR_DATA_FROM_NET:
-						case Constants.NO_DATA_FROM_NET:
-							Toast.makeText(mContext, "头像修改失败，请重新上传！", Toast.LENGTH_SHORT).show();
-							break;
-							
-						case Constants.SUCCESS_DATA_FROM_NET:
-							Toast.makeText(mContext, "头像修改成功！", Toast.LENGTH_SHORT).show();
-							modelApp.getUser().setHead_img(photoUrl);
-							ImageLoader.getInstance().displayImage(modelApp.getUser().getHead_img(),
-									user_icon_iv, options);
-							break;
-						}
-				}
-			});
-			request.doHeadPhotoRequest(photoUrl);
-		}else {
-			Toast.makeText(this, R.string.net_warn, Toast.LENGTH_SHORT).show();
-		}
-	}
-
-
-
 
     // 6.0 权限处理
     @Override
@@ -505,7 +515,7 @@ public class UserInfoActivity extends AppBaseActivity {
             } else {
                 //没有取得权限
                 if(photoDialog != null) photoDialog.dismiss();
-                Snackbar.make(rootView, "星房惠没有取得拍照权限，请在设置>应用管理中获取！",
+                Snackbar.make(rootView, "惠早定没有取得拍照权限，请在设置>应用管理中获取！",
                         Snackbar.LENGTH_INDEFINITE).setAction("确定", new View.OnClickListener() {
 
                     @Override

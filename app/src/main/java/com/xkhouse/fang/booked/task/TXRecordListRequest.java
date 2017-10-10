@@ -12,7 +12,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.booked.entity.AccountInfo;
-import com.xkhouse.fang.booked.entity.CommentInfo;
+import com.xkhouse.fang.booked.entity.TXRecord;
 import com.xkhouse.frame.activity.BaseApplication;
 import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.StringUtil;
@@ -25,13 +25,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-* @Description: 获取账户明细
+* @Description: 提现记录--员工
 * @author wujian  
 * @date 2015-9-21 下午2:20:00
  */
-public class AccountInfoListRequest {
+public class TXRecordListRequest {
 
-	private String TAG = AccountInfoListRequest.class.getSimpleName();
+	private String TAG = TXRecordListRequest.class.getSimpleName();
 	private RequestListener requestListener;
 
 	private String token;  //站点
@@ -41,11 +41,9 @@ public class AccountInfoListRequest {
 	private String code;	//返回状态
 	private String msg;		//返回提示语
 
-    private String balance;  //余额
+	private ArrayList<TXRecord> txRecordList = new ArrayList<>();
 
-	private ArrayList<AccountInfo> accountInfoList = new ArrayList<>();
-
-	public AccountInfoListRequest(String token, int page, int num, RequestListener requestListener) {
+	public TXRecordListRequest(String token, int page, int num, RequestListener requestListener) {
 		this.token = token;
 		this.page = page;
 		this.num = num;
@@ -59,13 +57,13 @@ public class AccountInfoListRequest {
 	}
 	
 	public void doRequest(){
-		accountInfoList.clear();
+		txRecordList.clear();
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("token", token);
         params.put("page", String.valueOf(page));
         params.put("pagenum", String.valueOf(num));
 
-        String url = StringUtil.getRequestUrl(Constants.USER_ACCOUNT_LIST, params);
+        String url = StringUtil.getRequestUrl(Constants.EMPLOYEE_TX_RECORD, params);
         Logger.d(TAG, url);
         
 		StringRequest request = new StringRequest(url, new Listener<String>() {
@@ -78,10 +76,7 @@ public class AccountInfoListRequest {
                         
                         Message message = new Message();
                         if(Constants.SUCCESS_CODE.equals(code)){
-                            Bundle data = new Bundle();
-                            data.putSerializable("accountInfoList", accountInfoList);
-                        	data.putString("balance", balance);
-                            message.setData(data);
+                            message.obj = txRecordList;
                         	message.what = Constants.SUCCESS_DATA_FROM_NET;
                         }else{
                            message.obj = msg;
@@ -137,24 +132,16 @@ public class AccountInfoListRequest {
 	                for (int i = 0; i <= jsonArray.length() - 1; i++) {
 	                	JSONObject json = jsonArray.getJSONObject(i);
 
-                        AccountInfo accountInfo = new AccountInfo();
+                       TXRecord txRecord = new TXRecord();
 
-                        accountInfo.setId(json.optString("id"));
-                        accountInfo.setType(json.optString("type"));
-                        accountInfo.setNumber(json.optString("number"));
-                        accountInfo.setMoney(json.optString("money"));
-                        accountInfo.setPay_type(json.optString("pay_type"));
-                        accountInfo.setTradeno(json.optString("tradeno"));
-                        accountInfo.setStatus(json.optString("status"));
-                        accountInfo.setMember_id(json.optString("member_id"));
-                        accountInfo.setCreate_time(json.optString("create_time"));
-                        accountInfo.setReason(json.optString("reason"));
+                        txRecord.setId(json.optString("id"));
+                        txRecord.setMoney(json.optString("money"));
+                        txRecord.setCreate_time(json.optString("create_time"));
+                        txRecord.setStatus(json.optString("status"));
 
-	                	accountInfoList.add(accountInfo);
+	                	txRecordList.add(txRecord);
 	                }
 	        	}
-
-                balance = dataObj.optString("account_balance");
 
             }
         } catch (Exception e) {
