@@ -17,7 +17,6 @@ import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.task.GetVerifyCodeRequest;
-import com.xkhouse.fang.user.entity.TXRecord;
 import com.xkhouse.fang.user.task.CashWithdrawCommitRequest;
 import com.xkhouse.lib.utils.NetUtil;
 import com.xkhouse.lib.utils.StringUtil;
@@ -73,7 +72,7 @@ public class TXZfbActivity extends AppBaseActivity {
     private String zfpwd;		//支付密码
 
 
-    private TXRecord record;
+//    private TXRecord record;
 
 
 
@@ -97,7 +96,7 @@ public class TXZfbActivity extends AppBaseActivity {
 
         Bundle data = getIntent().getExtras();
         if (data != null){
-            record = (TXRecord) data.getSerializable("txrecord");
+//            record = (TXRecord) data.getSerializable("txrecord");
         }
 
     }
@@ -108,18 +107,18 @@ public class TXZfbActivity extends AppBaseActivity {
 
         initTitle();
 
-        if (record != null){
-            no_select_lay = (LinearLayout) findViewById(R.id.no_select_lay);
-            no_select_lay.setVisibility(View.VISIBLE);
-            icon_iv = (ImageView) findViewById(R.id.icon_iv);
-            kh_name_txt = (TextView) findViewById(R.id.kh_name_txt);
-            type_name_txt = (TextView) findViewById(R.id.type_name_txt);
-
-            icon_iv.setImageResource(R.drawable.tixian_ico_zhifubao);
-            type_name_txt.setText(record.getCardNo());
-            kh_name_txt.setText(record.getName());
-
-        }else{
+//        if (record != null){
+//            no_select_lay = (LinearLayout) findViewById(R.id.no_select_lay);
+//            no_select_lay.setVisibility(View.VISIBLE);
+//            icon_iv = (ImageView) findViewById(R.id.icon_iv);
+//            kh_name_txt = (TextView) findViewById(R.id.kh_name_txt);
+//            type_name_txt = (TextView) findViewById(R.id.type_name_txt);
+//
+//            icon_iv.setImageResource(R.drawable.tixian_ico_zhifubao);
+//            type_name_txt.setText(record.getCardNo());
+//            kh_name_txt.setText(record.getName());
+//
+//        }else{
             select_lay = (LinearLayout) findViewById(R.id.select_lay);
             select_lay.setVisibility(View.VISIBLE);
             bank_iv = (ImageView) findViewById(R.id.bank_iv);
@@ -129,7 +128,7 @@ public class TXZfbActivity extends AppBaseActivity {
             code_txt = (EditText) findViewById(R.id.code_txt);
             get_code_txt = (TextView) findViewById(R.id.get_code_txt);
 
-        }
+//        }
 
         count_txt = (EditText) findViewById(R.id.count_txt);
         pay_psw_txt = (EditText) findViewById(R.id.pay_psw_txt);
@@ -195,35 +194,35 @@ public class TXZfbActivity extends AppBaseActivity {
 
     private void startCommitTask(){
 
-        if (record != null){
-            userName = record.getName();
-            cardNo = record.getCardNo();
-            phone = record.getPhone();
-
-        }else{
-            userName = name_txt.getText().toString();
-            cardNo = account_txt.getText().toString();
-            phone = phone_txt.getText().toString();
-            verifyCode = code_txt.getText().toString();
-
-            //校验数据
-            if(StringUtil.isEmpty(userName)){
-                Toast.makeText(mContext, "请填写您的姓名", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(StringUtil.isEmpty(cardNo)){
-                Toast.makeText(mContext, "请填写您的支付宝账号", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(StringUtil.isEmpty(verifyCode)){
-                Toast.makeText(mContext, "请填写验证码", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(StringUtil.isEmpty(phone)){
-                Toast.makeText(mContext, "请填写您的手机号", Toast.LENGTH_SHORT).show();
-                return;
-            }
-        }
+//        if (record != null){
+//            userName = record.getName();
+//            cardNo = record.getCardNo();
+//            phone = record.getPhone();
+//
+//        }else{
+//            userName = name_txt.getText().toString();
+//            cardNo = account_txt.getText().toString();
+//            phone = phone_txt.getText().toString();
+//            verifyCode = code_txt.getText().toString();
+//
+//            //校验数据
+//            if(StringUtil.isEmpty(userName)){
+//                Toast.makeText(mContext, "请填写您的姓名", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//            if(StringUtil.isEmpty(cardNo)){
+//                Toast.makeText(mContext, "请填写您的支付宝账号", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//            if(StringUtil.isEmpty(verifyCode)){
+//                Toast.makeText(mContext, "请填写验证码", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//            if(StringUtil.isEmpty(phone)){
+//                Toast.makeText(mContext, "请填写您的手机号", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//        }
 
         money = count_txt.getText().toString();
         zfpwd = pay_psw_txt.getText().toString();

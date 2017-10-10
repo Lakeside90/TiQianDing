@@ -25,15 +25,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.utils.StorageUtils;
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.Headers;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.MultipartBuilder;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
+//import com.squareup.okhttp.Call;
+//import com.squareup.okhttp.Callback;
+//import com.squareup.okhttp.Headers;
+//import com.squareup.okhttp.MediaType;
+//import com.squareup.okhttp.MultipartBuilder;
+//import com.squareup.okhttp.OkHttpClient;
+//import com.squareup.okhttp.Request;
+//import com.squareup.okhttp.RequestBody;
+//import com.squareup.okhttp.Response;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
@@ -517,36 +517,36 @@ public class CommentAddActivity extends AppBaseActivity {
 
     private void commitPhoto(File file){
 
-        RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
-
-        RequestBody requestBody = new MultipartBuilder()
-                .type(MultipartBuilder.FORM)
-                .addPart(Headers.of(
-                        "Content-Disposition",
-                        "form-data; name=\"upfile\"; filename=\"a.jpg\""), fileBody)
-                .build();
-
-        Request request = new Request.Builder()
-                .url(Constants.UPLOAD_PHOTO_URL)
-                .post(requestBody)
-                .build();
-
-        OkHttpClient mOkHttpClient = new OkHttpClient();
-        Call call = mOkHttpClient.newCall(request);
-        call.enqueue(new Callback()
-        {
-            @Override
-            public void onFailure(Request request, IOException e) {
-                Message message = new Message();
-                message.what = 0;
-                mHandler.sendMessage(message);
-            }
-
-            @Override
-            public void onResponse(Response response) throws IOException {
-                parse(response.body().string());
-            }
-        });
+//        RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
+//
+//        RequestBody requestBody = new MultipartBuilder()
+//                .type(MultipartBuilder.FORM)
+//                .addPart(Headers.of(
+//                        "Content-Disposition",
+//                        "form-data; name=\"upfile\"; filename=\"a.jpg\""), fileBody)
+//                .build();
+//
+//        Request request = new Request.Builder()
+//                .url(Constants.UPLOAD_PHOTO_URL)
+//                .post(requestBody)
+//                .build();
+//
+//        OkHttpClient mOkHttpClient = new OkHttpClient();
+//        Call call = mOkHttpClient.newCall(request);
+//        call.enqueue(new Callback()
+//        {
+//            @Override
+//            public void onFailure(Request request, IOException e) {
+//                Message message = new Message();
+//                message.what = 0;
+//                mHandler.sendMessage(message);
+//            }
+//
+//            @Override
+//            public void onResponse(Response response) throws IOException {
+//                parse(response.body().string());
+//            }
+//        });
     }
 
     private void parse(String result) {

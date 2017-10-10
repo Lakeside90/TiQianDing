@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.user.activity.MyBookedDetailActivity;
-import com.xkhouse.fang.user.entity.MSGNews;
 import com.xkhouse.fang.user.entity.MyBookedInfo;
 
 import java.util.ArrayList;

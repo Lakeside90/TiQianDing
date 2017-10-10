@@ -15,6 +15,7 @@ public class Constants {
 
 	public static String HOST_OLD = "http://xkapi.com";
 	public static String HOST = "https://api.huizaoding.com";
+	public static String HOST_IMG = "https://img.huizaoding.com/";
 
 
 	/******************************* 全局通用  *******************************/
@@ -29,7 +30,7 @@ public class Constants {
 	public static String CONFIG_LIST = HOST_OLD + "/v1.0/System/Config.api";
 	
 	/**  短信验证码接口    **/
-	public static String GET_VERIFY_CODE = HOST_OLD + "/v1/login/sendMsgCode";
+	public static String GET_VERIFY_CODE = HOST + "/v1/login/sendMsgCode";
 	
 	/**  根据站点ID获取该站点热搜关键词     **/
 	public static String SEARCH_HOT_WORDS = HOST_OLD + "/v1.0/Other/SearchHot.api";

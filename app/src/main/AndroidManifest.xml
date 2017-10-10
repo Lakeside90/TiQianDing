@@ -504,12 +504,6 @@
             android:theme="@style/NewsStyledIndicators"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".user.activity.TXIndexActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/NewsStyledIndicators"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity
             android:name=".user.activity.TXBankActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"

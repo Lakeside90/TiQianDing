@@ -19,6 +19,9 @@ import com.xkhouse.lib.utils.StringUtil;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
 * @Description: 短信验证码接口 
 * @author wujian  
@@ -45,45 +48,50 @@ public class GetVerifyCodeRequest {
 	
 	
 	public void doRequest(){
-		
-		String url = Constants.GET_VERIFY_CODE + "?phone=" + phone;
-		Logger.d(TAG, url);
-		 
-		StringRequest request = new StringRequest(url, new Listener<String>() {
 
-                    @Override
-                    public void onResponse(String response) {
+        Map<String, String> params = new HashMap<String, String>();
 
-                        Logger.d(TAG, response);
+        params.put("phone", phone);
 
-                        parseResult(response);
 
-                        Message message = new Message();
-                        message.obj = msg;
-                        if(Constants.SUCCESS_CODE.equals(code)){
-                            message.what = Constants.SUCCESS_DATA_FROM_NET;
-                        }else{
-                            message.what = Constants.NO_DATA_FROM_NET;
-                        }
-                        requestListener.sendMessage(message);
+        String url = StringUtil.getRequestUrl(Constants.GET_VERIFY_CODE, params);
+        Logger.d(TAG, url);
 
-                    }
-                }, new ErrorListener() {
+        StringRequest request = new StringRequest(url, new Listener<String>() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Logger.e(TAG, error.toString());
-                        Message message = new Message();
-                        message.what = Constants.ERROR_DATA_FROM_NET;
-                        requestListener.sendMessage(message);
-                    }
-                }){
-                    @Override
-                    public RetryPolicy getRetryPolicy() {
-                        return new DefaultRetryPolicy(Constants.VOLLEY_TIME_OUT,
-                                Constants.VOLLEY_MAX_NUM_RETRIES, Constants.VOLLEY_BACKOFF_MULTIPLIER);
-                    }
-            };
+            @Override
+            public void onResponse(String response) {
+                Logger.d(TAG, response);
+
+                parseResult(response);
+
+                Message message = new Message();
+                if(Constants.SUCCESS_CODE.equals(code)){
+                    message.obj = msg;
+                    message.what = Constants.SUCCESS_DATA_FROM_NET;
+                }else {
+                    message.obj = msg;
+                    message.what = Constants.NO_DATA_FROM_NET;
+                }
+                requestListener.sendMessage(message);
+            }
+        }, new ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Logger.e(TAG, error.toString());
+                Message message = new Message();
+                message.what = Constants.ERROR_DATA_FROM_NET;
+                requestListener.sendMessage(message);
+            }
+        }){
+            @Override
+            public RetryPolicy getRetryPolicy() {
+                return new DefaultRetryPolicy(Constants.VOLLEY_TIME_OUT,
+                        Constants.VOLLEY_MAX_NUM_RETRIES, Constants.VOLLEY_BACKOFF_MULTIPLIER);
+            }
+        };
+
 
         BaseApplication.getInstance().getRequestQueue().add(request);
 	}
@@ -102,7 +110,7 @@ public class GetVerifyCodeRequest {
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject != null) {
                 code = jsonObject.optString("status");
-                msg = jsonObject.optString("msg");
+                msg = jsonObject.optString("info");
             }
         } catch (Exception e) {
             e.printStackTrace();

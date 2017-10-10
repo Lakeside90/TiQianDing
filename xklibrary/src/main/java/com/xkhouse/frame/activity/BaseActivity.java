@@ -6,8 +6,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-
-import com.umeng.analytics.MobclickAgent;
+//import com.umeng.analytics.MobclickAgent;
 import com.xkhouse.frame.config.BaseConfig;
 import com.xkhouse.frame.log.Logger;
 
@@ -110,7 +109,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 	protected void onResume() {
 		super.onResume();
 		Logger.i(TAG, "重新显示");
-		MobclickAgent.onResume(mContext);
+//		MobclickAgent.onResume(mContext);
 	}
 
 	/**
@@ -127,7 +126,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener {
 	protected void onPause() {
 		super.onPause();
 		Logger.i(TAG, "暂停");
-		MobclickAgent.onPause(mContext);
+//		MobclickAgent.onPause(mContext);
 	}
 
 	/**

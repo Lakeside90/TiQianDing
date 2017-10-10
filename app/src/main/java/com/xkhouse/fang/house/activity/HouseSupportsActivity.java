@@ -15,11 +15,11 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
+//import com.squareup.okhttp.Call;
+//import com.squareup.okhttp.Callback;
+//import com.squareup.okhttp.OkHttpClient;
+//import com.squareup.okhttp.Request;
+//import com.squareup.okhttp.Response;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.frame.log.Logger;
@@ -189,46 +189,46 @@ public class HouseSupportsActivity extends AppBaseActivity {
      * @param url
      */
     private void loadDataFromNet(final String url) {
-        try{
-            //创建okHttpClient对象
-            OkHttpClient mOkHttpClient = new OkHttpClient();
-            //创建一个Request
-            Request request = new Request.Builder()
-                    .url(url)
-                    .build();
-            //new call
-            Call call = mOkHttpClient.newCall(request);
-            //请求加入调度
-            call.enqueue(new Callback() {
-                @Override
-                public void onFailure(Request request, IOException e) {
-                    runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            webView.setVisibility(View.GONE);
-                            error_lay.setVisibility(View.VISIBLE);
-                        }
-                    });
-                }
-
-                @Override
-                public void onResponse(final Response response) throws IOException {
-                    final String htmlStr = response.body().string();
-                    runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            webView.loadUrl(url);
-                            webView.setVisibility(View.VISIBLE);
-                            error_lay.setVisibility(View.GONE);
-                        }
-                    });
-                }
-            });
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+//        try{
+//            //创建okHttpClient对象
+//            OkHttpClient mOkHttpClient = new OkHttpClient();
+//            //创建一个Request
+//            Request request = new Request.Builder()
+//                    .url(url)
+//                    .build();
+//            //new call
+//            Call call = mOkHttpClient.newCall(request);
+//            //请求加入调度
+//            call.enqueue(new Callback() {
+//                @Override
+//                public void onFailure(Request request, IOException e) {
+//                    runOnUiThread(new Runnable() {
+//
+//                        @Override
+//                        public void run() {
+//                            webView.setVisibility(View.GONE);
+//                            error_lay.setVisibility(View.VISIBLE);
+//                        }
+//                    });
+//                }
+//
+//                @Override
+//                public void onResponse(final Response response) throws IOException {
+//                    final String htmlStr = response.body().string();
+//                    runOnUiThread(new Runnable() {
+//
+//                        @Override
+//                        public void run() {
+//                            webView.loadUrl(url);
+//                            webView.setVisibility(View.VISIBLE);
+//                            error_lay.setVisibility(View.GONE);
+//                        }
+//                    });
+//                }
+//            });
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
     }
 
 

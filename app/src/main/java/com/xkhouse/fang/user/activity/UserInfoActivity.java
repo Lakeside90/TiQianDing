@@ -30,14 +30,9 @@ import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.config.Preference;
-import com.xkhouse.fang.app.entity.Site;
 import com.xkhouse.fang.app.task.HeadImgEditRequest;
 import com.xkhouse.fang.app.util.BitmapManager;
-import com.xkhouse.fang.app.util.uploadImg.UploadTask;
-import com.xkhouse.fang.app.util.uploadImg.UploadTask.UploadCallBack;
-import com.xkhouse.fang.money.activity.XKBCitySelectActivity;
 import com.xkhouse.fang.user.entity.User;
-import com.xkhouse.fang.user.task.UserInfoEditRequest;
 import com.xkhouse.fang.user.task.UserInfoRequest;
 import com.xkhouse.fang.user.view.PhotoDialog;
 import com.xkhouse.fang.widget.circle.CircleImageView;
@@ -430,15 +425,15 @@ public class UserInfoActivity extends AppBaseActivity {
 
 			String imagePath = BitmapManager.getInstance()
 					.getCacheFile(modelApp.getUser().getId(), this).toString();
-			int i=(int)(Math.random()*900)+100;
-			String key = System.currentTimeMillis() + i + "";
+			int i = (int)(Math.random()*900)+100;
+			String key = String.valueOf(System.currentTimeMillis()) + String.valueOf(i);
 			new UploadManager().put(imagePath, key, Constants.PIC_TOKEN,
 					new UpCompletionHandler() {
 						@Override
 						public void complete(String key, ResponseInfo info, JSONObject res) {
 							//res包含hash、key等信息，具体字段取决于上传策略的设置
 							if(info.isOK()) {
-								String url = Constants.HOST + "/" + key;
+								String url = Constants.HOST_IMG + key;
 								startEditHeadImg(url);
 							} else {
 								Toast.makeText(UserInfoActivity.this, "图片上传失败！", Toast.LENGTH_SHORT).show();

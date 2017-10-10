@@ -173,7 +173,7 @@ public class WalletActivity extends AppBaseActivity {
                 break;
 
             case R.id.wallet_application_txt:
-                startActivity(new Intent(mContext, TXIndexActivity.class));
+//                startActivity(new Intent(mContext, TXIndexActivity.class));
                 break;
 		}
 	}

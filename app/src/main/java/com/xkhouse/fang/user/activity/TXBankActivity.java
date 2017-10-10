@@ -18,7 +18,6 @@ import com.xkhouse.fang.app.activity.AppBaseActivity;
 import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.task.GetVerifyCodeRequest;
-import com.xkhouse.fang.user.entity.TXRecord;
 import com.xkhouse.fang.user.entity.XKBank;
 import com.xkhouse.fang.user.task.BankListRequest;
 import com.xkhouse.fang.user.task.CashWithdrawCommitRequest;
@@ -85,7 +84,7 @@ public class TXBankActivity extends AppBaseActivity {
     private BankListRequest bankListRequest;
 
 
-    private TXRecord record;
+//    private TXRecord record;
 
 
     @Override
@@ -108,7 +107,7 @@ public class TXBankActivity extends AppBaseActivity {
 
         Bundle data = getIntent().getExtras();
         if (data != null){
-            record = (TXRecord) data.getSerializable("txrecord");
+//            record = (TXRecord) data.getSerializable("txrecord");
         }
     }
 
@@ -118,32 +117,32 @@ public class TXBankActivity extends AppBaseActivity {
 
         initTitle();
 
-        if (record != null){
-            no_select_lay = (LinearLayout) findViewById(R.id.no_select_lay);
-            no_select_lay.setVisibility(View.VISIBLE);
-            icon_iv = (ImageView) findViewById(R.id.icon_iv);
-            kh_name_txt = (TextView) findViewById(R.id.kh_name_txt);
-            type_name_txt = (TextView) findViewById(R.id.type_name_txt);
-
-            ImageLoader.getInstance().displayImage(record.getIcon(), icon_iv);
-            type_name_txt.setText(record.getBankName() + "(" +
-                    record.getCardNo().substring(record.getCardNo().length() - 4, record.getCardNo().length())
-                    + ")");
-            kh_name_txt.setText(record.getName());
-
-        }else{
-            select_lay = (LinearLayout) findViewById(R.id.select_lay);
-            select_lay.setVisibility(View.VISIBLE);
-            bank_lay = (LinearLayout) findViewById(R.id.bank_lay);
-            bank_iv = (ImageView) findViewById(R.id.bank_iv);
-            bank_txt = (TextView) findViewById(R.id.bank_txt);
-            name_txt = (EditText) findViewById(R.id.name_txt);
-            account_txt = (EditText) findViewById(R.id.account_txt);
-            phone_txt = (EditText) findViewById(R.id.phone_txt);
-            code_txt = (EditText) findViewById(R.id.code_txt);
-            get_code_txt = (TextView) findViewById(R.id.get_code_txt);
-
-        }
+//        if (record != null){
+//            no_select_lay = (LinearLayout) findViewById(R.id.no_select_lay);
+//            no_select_lay.setVisibility(View.VISIBLE);
+//            icon_iv = (ImageView) findViewById(R.id.icon_iv);
+//            kh_name_txt = (TextView) findViewById(R.id.kh_name_txt);
+//            type_name_txt = (TextView) findViewById(R.id.type_name_txt);
+//
+//            ImageLoader.getInstance().displayImage(record.getIcon(), icon_iv);
+//            type_name_txt.setText(record.getBankName() + "(" +
+//                    record.getCardNo().substring(record.getCardNo().length() - 4, record.getCardNo().length())
+//                    + ")");
+//            kh_name_txt.setText(record.getName());
+//
+//        }else{
+//            select_lay = (LinearLayout) findViewById(R.id.select_lay);
+//            select_lay.setVisibility(View.VISIBLE);
+//            bank_lay = (LinearLayout) findViewById(R.id.bank_lay);
+//            bank_iv = (ImageView) findViewById(R.id.bank_iv);
+//            bank_txt = (TextView) findViewById(R.id.bank_txt);
+//            name_txt = (EditText) findViewById(R.id.name_txt);
+//            account_txt = (EditText) findViewById(R.id.account_txt);
+//            phone_txt = (EditText) findViewById(R.id.phone_txt);
+//            code_txt = (EditText) findViewById(R.id.code_txt);
+//            get_code_txt = (TextView) findViewById(R.id.get_code_txt);
+//
+//        }
 
         count_txt = (EditText) findViewById(R.id.count_txt);
         pay_psw_txt = (EditText) findViewById(R.id.pay_psw_txt);
@@ -277,41 +276,41 @@ public class TXBankActivity extends AppBaseActivity {
 
     private void startCommitTask(){
 
-        if (record != null) {
-            userName = record.getName();
-            cardNo = record.getCardNo();
-            type = record.getType();
-            phone = record.getPhone();
-
-        }else {
-            userName = name_txt.getText().toString();
-            cardNo = account_txt.getText().toString();
-            phone = phone_txt.getText().toString();
-            verifyCode = code_txt.getText().toString();
-
-            //校验数据
-            if(StringUtil.isEmpty(userName)){
-                Toast.makeText(mContext, "请填写您的姓名", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(StringUtil.isEmpty(type)){
-                Toast.makeText(mContext, "请选择银行卡", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(StringUtil.isEmpty(cardNo)){
-                Toast.makeText(mContext, "请填写您的银行卡账号", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(StringUtil.isEmpty(verifyCode)){
-                Toast.makeText(mContext, "请填写验证码", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if(StringUtil.isEmpty(phone)){
-                Toast.makeText(mContext, "请填写您的手机号", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-        }
+//        if (record != null) {
+//            userName = record.getName();
+//            cardNo = record.getCardNo();
+//            type = record.getType();
+//            phone = record.getPhone();
+//
+//        }else {
+//            userName = name_txt.getText().toString();
+//            cardNo = account_txt.getText().toString();
+//            phone = phone_txt.getText().toString();
+//            verifyCode = code_txt.getText().toString();
+//
+//            //校验数据
+//            if(StringUtil.isEmpty(userName)){
+//                Toast.makeText(mContext, "请填写您的姓名", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//            if(StringUtil.isEmpty(type)){
+//                Toast.makeText(mContext, "请选择银行卡", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//            if(StringUtil.isEmpty(cardNo)){
+//                Toast.makeText(mContext, "请填写您的银行卡账号", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//            if(StringUtil.isEmpty(verifyCode)){
+//                Toast.makeText(mContext, "请填写验证码", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//            if(StringUtil.isEmpty(phone)){
+//                Toast.makeText(mContext, "请填写您的手机号", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//
+//        }
 
         money = count_txt.getText().toString();
         zfpwd = pay_psw_txt.getText().toString();
