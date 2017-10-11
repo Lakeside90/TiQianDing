@@ -15,7 +15,7 @@ public class Constants {
 
 	public static String HOST_OLD = "http://xkapi.com";
 	public static String HOST = "https://api.huizaoding.com";
-	public static String HOST_IMG = "https://img.huizaoding.com/";
+	public static String HOST_IMG = "http://img.huizaoding.com/";
 
 
 	/******************************* 全局通用  *******************************/

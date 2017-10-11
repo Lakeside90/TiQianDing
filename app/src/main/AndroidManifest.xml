@@ -873,7 +873,7 @@
         <!-- 高德地图 app key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="85add323a34740f59aded12a4c04ab8a" />
+            android:value="81b8cf9a9d398ab356d5422dd694f6cb" />
         <!-- android:value="85add323a34740f59aded12a4c04ab8a"    正式 -->
         <!-- android:value="e572f1b729c81616d64cf79e6e0b753e"    测试 -->
 
