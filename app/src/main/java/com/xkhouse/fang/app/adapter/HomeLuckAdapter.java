@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.entity.House;
 import com.xkhouse.fang.app.entity.LuckInfo;
+import com.xkhouse.lib.utils.StringUtil;
 
 /** 
  * @Description: 猜你喜欢 (楼盘)
@@ -96,6 +98,13 @@ public class HomeLuckAdapter extends BaseAdapter {
             holder.count_txt.setVisibility(View.VISIBLE);
         }
 
+        if (StringUtil.isEmpty(luckInfo.getPub_type())) {
+            holder.pub_type_iv.setVisibility(View.INVISIBLE);
+        }else {
+            holder.pub_type_iv.setVisibility(View.VISIBLE);
+            holder.pub_type_txt.setText(luckInfo.getPub_type());
+        }
+
 		//跳转到详情页
 		convertView.setOnClickListener(new OnClickListener() {
 			
@@ -116,6 +125,8 @@ public class HomeLuckAdapter extends BaseAdapter {
         TextView join_count_txt;
         TextView count_txt;
         TextView join_txt;
+        LinearLayout pub_type_iv;
+        TextView pub_type_txt;
 
 		public ViewHolder(View view){
             icon_iv = (ImageView) view.findViewById(R.id.icon_iv);
@@ -124,6 +135,8 @@ public class HomeLuckAdapter extends BaseAdapter {
             join_count_txt = (TextView) view.findViewById(R.id.join_count_txt);
             count_txt = (TextView) view.findViewById(R.id.count_txt);
             join_txt = (TextView) view.findViewById(R.id.join_txt);
+            pub_type_txt = (TextView) view.findViewById(R.id.pub_type_txt);
+            pub_type_iv = (LinearLayout) view.findViewById(R.id.pub_type_iv);
         }
 	}
 
