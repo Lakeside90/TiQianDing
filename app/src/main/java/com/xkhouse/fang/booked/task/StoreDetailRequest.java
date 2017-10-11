@@ -144,29 +144,23 @@ public class StoreDetailRequest {
                     storeDetail.setCheck_discount(dataObj.optString("check_discount"));
                     storeDetail.setCollection(dataObj.optString("collection"));
 
-                    JSONArray labelArray = dataObj.optJSONArray("business_label");
-                    if (labelArray != null && labelArray.length() > 0) {
-                        String[] labels = new String[labelArray.length()];
-                        for (int j = 0; j < labelArray.length(); j++) {
-                            labels[j] = labelArray.optString(j);
-                        }
+                    String business_label = dataObj.optString("business_label");
+                    if (!StringUtil.isEmpty(business_label)) {
+                        String[] labels = business_label.split(",");
                         storeDetail.setBusinessLabel(labels);
                     }
 
-                    JSONArray bannerArray = dataObj.optJSONArray("banner");
-                    if (bannerArray != null && bannerArray.length() > 0) {
-                        String[] banners = new String[bannerArray.length()];
-                        for (int j = 0; j < bannerArray.length(); j++) {
-                            banners[j] = bannerArray.optString(j);
-                        }
+                    String banner = dataObj.optString("banner");
+                    if (!StringUtil.isEmpty(banner)) {
+                        String[] banners = banner.split(",");
                         storeDetail.setBanner(banners);
                     }
 
                     ArrayList<BookedInfo> bookings = new ArrayList<>();
                     JSONArray bookingArray = dataObj.optJSONArray("booking");
-                    if (bannerArray != null && bannerArray.length() > 0) {
+                    if (bookingArray != null && bookingArray.length() > 0) {
                         for(int i = 0; i < bookingArray.length(); i++) {
-                            JSONObject bookJson = bannerArray.getJSONObject(i);
+                            JSONObject bookJson = bookingArray.getJSONObject(i);
                             BookedInfo booking = new BookedInfo();
                             booking.setBookingId(bookJson.optString("booking_id"));
                             booking.setDiscount(bookJson.optString("discount"));

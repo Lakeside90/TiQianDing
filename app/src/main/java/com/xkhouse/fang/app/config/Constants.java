@@ -23,8 +23,8 @@ public class Constants {
     /**  版本更新  **/
     public static String APP_VERSION_CHECK = HOST_OLD + "/v1.0/System/ApplicationVersion.api";
 
-	/**  专题资讯  **/
-	public static String SITE_LIST = HOST_OLD + "/v1.0/System/Site.api";
+	/**  城市站点  **/
+	public static String SITE_LIST = HOST + "/v1/Index/city";
 	
 	/**  通过配置标识获取相应配置子选项列表   **/
 	public static String CONFIG_LIST = HOST_OLD + "/v1.0/System/Config.api";

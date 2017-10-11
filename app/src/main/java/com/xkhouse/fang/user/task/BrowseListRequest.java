@@ -153,14 +153,12 @@ public class BrowseListRequest {
                         favoriteInfo.setCover_banner(favJson.optString("cover_banner"));
                         favoriteInfo.setBusinessAddress(favJson.optString("business_address"));
 
-                        JSONArray labelArray = favJson.optJSONArray("business_label");
-                        if (labelArray != null && labelArray.length() > 0) {
-                            String[] labels = new String[labelArray.length()];
-                            for (int j = 0; j < labelArray.length(); j++) {
-                                labels[j] = labelArray.optString(j);
-                            }
+                        String business_label = favJson.optString("business_label");
+                        if (!StringUtil.isEmpty(business_label)) {
+                            String[] labels = business_label.split(",");
                             favoriteInfo.setBusinessLabel(labels);
                         }
+
                         bookedList.add(favoriteInfo);
                     }
                 }

@@ -52,7 +52,7 @@ public class SiteListRequest {
                 parseResult(response);
                 
                 Message message = new Message();
-                if(Constants.SUCCESS_CODE_OLD.equals(code)){
+                if(Constants.SUCCESS_CODE.equals(code)){
                 	message.obj = siteList;
                 	message.what = Constants.SUCCESS_DATA_FROM_NET;
                 }else{
@@ -93,27 +93,27 @@ public class SiteListRequest {
         	
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject != null) {
-            	code = jsonObject.optString("code");
+            	code = jsonObject.optString("status");
             	
-                if (!Constants.SUCCESS_CODE_OLD.equals(code)) {
+                if (!Constants.SUCCESS_CODE.equals(code)) {
                 	msg = jsonObject.optString("msg");
                     return;
                 }
                 
-                JSONArray jsonArray = jsonObject.optJSONObject("data").optJSONArray("list");
+                JSONArray jsonArray = jsonObject.optJSONArray("data");
                
 	        	if (jsonArray != null && jsonArray.length() > 0) {
 	                for (int i = 0; i < jsonArray.length(); i++) {
 	                	JSONObject siteJson = jsonArray.getJSONObject(i);
 	                	
 	                	Site site = new Site();
-	                	site.setArea(siteJson.optString("area"));
-	                	site.setDomain(getDomain(siteJson.optString("domain")));
-	                	site.setSiteId(siteJson.optString("siteId"));
-	                	site.setTitle(siteJson.optString("title"));
-	                	site.setLongitude(siteJson.optString("longitude"));
-	                	site.setLatitude(siteJson.optString("latitude"));
-	                	site.setIsHot(siteJson.optString("isHot"));
+	                	site.setArea(siteJson.optString("name"));
+	                	site.setDomain(Constants.HOST);
+	                	site.setSiteId(siteJson.optString("id"));
+	                	site.setTitle(siteJson.optString("name"));
+	                	site.setLongitude("");
+	                	site.setLatitude("");
+	                	site.setIsHot(siteJson.optString("is_hot"));
 	                	
 	                	siteList.add(site);
 	                }

@@ -167,14 +167,20 @@ public class BookedInfoListRequest {
                         bookedInfo.setCover_banner(json.optString("cover_banner"));
                         bookedInfo.setCheck_discount(json.optString("check_discount"));
 
-                        JSONArray labelArray = json.optJSONArray("business_label");
-                        if (labelArray != null && labelArray.length() > 0) {
-                            String[] labels = new String[labelArray.length()];
-                            for (int j = 0; j < labelArray.length(); j++) {
-                                labels[j] = labelArray.optString(j);
-                            }
+                        String business_label = json.optString("business_label");
+                        if (!StringUtil.isEmpty(business_label)) {
+                            String[] labels = business_label.split(",");
                             bookedInfo.setBusinessLabel(labels);
                         }
+
+//                        JSONArray labelArray = json.optJSONArray("business_label");
+//                        if (labelArray != null && labelArray.length() > 0) {
+//                            String[] labels = new String[labelArray.length()];
+//                            for (int j = 0; j < labelArray.length(); j++) {
+//                                labels[j] = labelArray.optString(j);
+//                            }
+//                            bookedInfo.setBusinessLabel(labels);
+//                        }
 	                	
 	                	bookedInfoList.add(bookedInfo);
 	                }

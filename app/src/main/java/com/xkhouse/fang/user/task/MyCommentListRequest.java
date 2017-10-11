@@ -148,14 +148,11 @@ public class MyCommentListRequest {
 						myCommentInfo.setBusiness_name(json.optString("business_name"));
 						myCommentInfo.setAverage_consump(json.optString("average_consump"));
 
-						JSONArray labelArray = json.optJSONArray("business_label");
-						if (labelArray != null && labelArray.length() > 0) {
-							String[] labels = new String[labelArray.length()];
-							for (int j = 0; j < labelArray.length(); j++) {
-								labels[j] = labelArray.optString(j);
-							}
-							myCommentInfo.setBusiness_label(labels);
-						}
+                        String business_label = json.optString("business_label");
+                        if (!StringUtil.isEmpty(business_label)) {
+                            String[] labels = business_label.split(",");
+                            myCommentInfo.setBusiness_label(labels);
+                        }
 
 						myCommentInfo.setCover_banner(json.optString("cover_banner"));
 						myCommentInfo.setMember_content(json.optString("member_content"));

@@ -317,7 +317,7 @@ public class StoreDetailActivity extends AppBaseActivity {
                         DisplayUtil.dip2px(mContext, 3),
                         DisplayUtil.dip2px(mContext, 2));
                 textView.setTextColor(mContext.getResources().getColor(R.color.common_gray_txt));
-                textView.setTextSize(DisplayUtil.dip2px(mContext, 12));
+                textView.setTextSize(12);
                 textView.setBackground(mContext.getResources().getDrawable(R.drawable.gray_border_btn_bg));
                 textView.setText(label);
                 label_lay.addView(textView, lps);
