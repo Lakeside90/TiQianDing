@@ -343,5 +343,14 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            String scanResult = bundle.getString("result");
+            Toast.makeText(this, scanResult, Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }

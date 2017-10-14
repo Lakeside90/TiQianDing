@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/employee_blue">
+
+        <ImageView
+            android:id="@+id/iv_head_left"
+            android:layout_width="@dimen/activity_title_height"
+            android:layout_height="@dimen/activity_title_height"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/nav_back"
+            />
+
+        <TextView
+            android:id="@+id/tv_head_left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="我是员工"/>
+    </LinearLayout>
+
+   <Button
+       android:id="@+id/pay"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="click to pay"/>
+</LinearLayout>

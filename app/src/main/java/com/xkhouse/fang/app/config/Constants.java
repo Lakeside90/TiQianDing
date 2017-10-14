@@ -295,6 +295,9 @@ public class Constants {
     /**  添加足迹  **/
     public static String USER_FOOT_ADD = HOST + "/v1/My/my_footprint_add";
 
+    /**  预定充值支付  **/
+    public static String PAY_ORDER_ALI = HOST + "/v1/Pay/doalipay";
+
 
 	/**  我的消息  **/
 	public static String USER_NEWS = HOST_OLD + "/v1.0/Passport/News.api";

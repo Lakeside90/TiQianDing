@@ -59,6 +59,7 @@ import com.xkhouse.fang.widget.xlist.XListView.IXListViewListener;
 import com.xkhouse.frame.log.Logger;
 import com.xkhouse.lib.utils.NetUtil;
 import com.xkhouse.lib.utils.StringUtil;
+import com.xys.libzxing.zxing.activity.CaptureActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +74,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	private View rootView;
 	//title bar
 	private TextView city_txt;
+    private ImageView zxing_tqd_iv;
 	
 	private CustomScrollView content_scroll;
     private ImageView scroll_top_iv;
@@ -205,7 +207,8 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
     private void findViews() {
 		city_txt = (TextView) rootView.findViewById(R.id.city_txt);
-		
+        zxing_tqd_iv = (ImageView) rootView.findViewById(R.id.zxing_tqd_iv);
+
 		home_viewpager = (AutoScrollViewPager) rootView.findViewById(R.id.home_viewpager);
 		home_point_lay = (LinearLayout) rootView.findViewById(R.id.home_point_lay);
 
@@ -220,6 +223,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	
 	private void setListeners() {
 		city_txt.setOnClickListener(this);
+		zxing_tqd_iv.setOnClickListener(this);
         scroll_top_iv.setOnClickListener(this);
 
 
@@ -395,6 +399,12 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 	public void onClick(View v) {
 		switch (v.getId()) {
 
+
+            case R.id.zxing_tqd_iv:
+                //打开扫描界面扫描条形码或二维码
+                Intent openCameraIntent = new Intent(getActivity(), CaptureActivity.class);
+                startActivityForResult(openCameraIntent, 0);
+                break;
 
             case R.id.city_txt:
                 Intent cityIntent = new Intent(getActivity(), CitySelectActivity.class);

@@ -224,14 +224,15 @@ public class UserFragment extends AppBaseFragment implements OnClickListener{
 
 
             case R.id.booked_lay:
-                if(Preference.getInstance().readIsLogin()){
-                    startActivity(new Intent(getActivity(), MyBookedListActivity.class));
-                }else {
-                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    intent.putExtra("classStr", MyBookedListActivity.class);
-                    startActivity(intent);
-                }
+                startActivity(new Intent(getActivity(), PayActivity.class));
+//                if(Preference.getInstance().readIsLogin()){
+//                    startActivity(new Intent(getActivity(), MyBookedListActivity.class));
+//                }else {
+//                    Toast.makeText(getActivity(), "您还未登录，请先登录！", Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+//                    intent.putExtra("classStr", MyBookedListActivity.class);
+//                    startActivity(intent);
+//                }
                 break;
 
             case R.id.luck_lay:
