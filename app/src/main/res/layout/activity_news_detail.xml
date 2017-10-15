@@ -34,21 +34,21 @@
             android:textSize="18sp" />
 
         
-        <ImageView
-            android:id="@+id/iv_head_share"
-            android:layout_width="@dimen/activity_title_height"
-            android:layout_height="@dimen/activity_title_height"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/nav_share" />
-        
-         <ImageView
-            android:id="@+id/iv_head_favorite"
-            android:layout_width="@dimen/activity_title_height"
-            android:layout_height="@dimen/activity_title_height"
-            android:layout_toLeftOf="@id/iv_head_share"
-            android:layout_centerVertical="true"
-            android:src="@drawable/nav_favorite"/>
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_head_share"-->
+            <!--android:layout_width="@dimen/activity_title_height"-->
+            <!--android:layout_height="@dimen/activity_title_height"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@drawable/nav_share" />-->
+        <!---->
+         <!--<ImageView-->
+            <!--android:id="@+id/iv_head_favorite"-->
+            <!--android:layout_width="@dimen/activity_title_height"-->
+            <!--android:layout_height="@dimen/activity_title_height"-->
+            <!--android:layout_toLeftOf="@id/iv_head_share"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@drawable/nav_favorite"/>-->
         
     </RelativeLayout>
 

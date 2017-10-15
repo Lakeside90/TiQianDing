@@ -225,6 +225,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 		city_txt.setOnClickListener(this);
 		zxing_tqd_iv.setOnClickListener(this);
         scroll_top_iv.setOnClickListener(this);
+        home_ad_img.setOnClickListener(this);
 
 
 
@@ -357,7 +358,7 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 				
 				@Override
 				public void onClick(View v) {
-					goADDetail();
+					goADDetail(bannerList.get(home_viewpager.getCurrentItem()).getLink());
 				}
 			});
 		}
@@ -369,27 +370,10 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
 
 	}
 	
-	private void goADDetail(){
-        String url = bannerList.get(home_viewpager.getCurrentItem()).getLink();
-
-        if(!StringUtil.isEmpty(url) && url.contains("/newhouse/")){
-            String params[] = url.split("/");
-            if(params != null && params.length == 5){
-                Intent intent = new Intent(getActivity(), HouseDetailActivity.class);
-                Bundle data = new Bundle();
-                data.putInt("houseType", MapHousesActivity.HOUSE_TYPE_NEW);
-                data.putString("projectId", params[params.length-1]);
-                data.putString("projectName", "");
-                intent.putExtras(data);
-                startActivity(intent);
-                return ;
-            }
-        }
-
+	private void goADDetail(String url){
         Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
         Bundle data = new Bundle();
-        data.putString("url", bannerList.get(home_viewpager.getCurrentItem()).getLink());
-        data.putString("isAd", NewsDetailActivity.AD_FLAG);
+        data.putString("url", url);
         intent.putExtras(data);
         getActivity().startActivity(intent);
 	}
@@ -418,14 +402,18 @@ public class HomeFragment extends AppBaseFragment implements OnClickListener, AM
                 getActivity().startActivity(cityIntent);
                 break;
 
-
-
             case R.id.custom_house_btn:
                 startActivity(new Intent(getActivity(), CustomHouseListActivity.class));
                 break;
 
             case R.id.scroll_top_iv:
                 content_scroll.fullScroll(ScrollView.FOCUS_UP);
+                break;
+
+            case R.id.home_ad_img:
+                if (ad != null) {
+                    goADDetail(ad.getLink());
+                }
                 break;
 
 		}

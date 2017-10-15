@@ -89,7 +89,7 @@ public class HomeNewsGridAdapter extends BaseAdapter {
 				Intent intent = new Intent(context, NewsDetailActivity.class);
 				Bundle data = new Bundle();
 				data.putString("url", themes.get(position).getNewsUrl());
-                data.putString("isAd", NewsDetailActivity.AD_FLAG);
+//                data.putString("isAd", NewsDetailActivity.AD_FLAG);
 				intent.putExtras(data);
 				context.startActivity(intent);
 			}
