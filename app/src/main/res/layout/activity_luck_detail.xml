@@ -1,289 +1,89 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/window_bg"
-              android:orientation="vertical">
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
 
-    <!-- title  bar -->
-    <include layout="@layout/common_title_bar"/>
-
-    <!-- content -->
-
-    <com.xkhouse.fang.widget.CustomScrollView
-        android:id="@+id/content_scroll"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="none"
-        android:descendantFocusability="blocksDescendants"
-        >
+        android:layout_height="@dimen/activity_title_height"
+        android:background="@color/common_red" >
 
-        <LinearLayout
-            android:id="@+id/contentView"
+        <ImageView
+            android:id="@+id/iv_head_left"
+            android:layout_width="@dimen/activity_title_height"
+            android:layout_height="@dimen/activity_title_height"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/nav_back" />
+
+        <TextView
+            android:id="@+id/tv_head_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxWidth="150dp"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_head_share"-->
+            <!--android:layout_width="@dimen/activity_title_height"-->
+            <!--android:layout_height="@dimen/activity_title_height"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@drawable/nav_share" />-->
+        <!---->
+         <!--<ImageView-->
+            <!--android:id="@+id/iv_head_favorite"-->
+            <!--android:layout_width="@dimen/activity_title_height"-->
+            <!--android:layout_height="@dimen/activity_title_height"-->
+            <!--android:layout_toLeftOf="@id/iv_head_share"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@drawable/nav_favorite" />-->
+        
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/pb"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="3dip"
+        android:indeterminateOnly="false"
+        android:max="100"
+        android:progressDrawable="@drawable/progress_bar_states" >
+    </ProgressBar>
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/error_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center" >
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <!-- big image -->
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:src="@drawable/umeng_socialize_fetch_image"/>
-
-            <!-- luck detail -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
-                android:background="@color/white">
-
-                <TextView
-                    android:id="@+id/house_name_txt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="拉菲红酒拉菲红酒拉菲红酒拉菲红酒拉菲红酒"
-                    android:textColor="@color/common_black_txt"
-                    android:textSize="16sp"/>
-
-                <ProgressBar
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="9dp"
-                    android:layout_marginTop="5dp"
-                    android:max="100"
-                    android:progress="40"
-                    android:progressDrawable="@drawable/progress_bar_drawable"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="总需人次："
-                        android:textColor="@color/c_666666"
-                        android:textSize="13sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="6000"
-                        android:textColor="@color/common_red"
-                        android:textSize="13sp"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="价格："
-                        android:textColor="@color/common_gray_txt"
-                        android:textSize="13sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textColor="@color/common_gray_txt"
-                        android:textSize="13sp"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <!-- store detail -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:padding="15dp"
-                android:background="@color/white">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/shop_ico"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="3dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textColor="@color/common_gray_txt"
-                        android:text="商家信息"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
-                        <ImageView
-                            android:layout_width="45dp"
-                            android:layout_height="45dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/umeng_socialize_fetch_image"/>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_marginLeft="10dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:lines="1"
-                                android:ellipsize="end"
-                                android:textSize="16sp"
-                                android:textColor="@color/common_black_txt"
-                                android:text="张三麻辣烫麻辣烫麻辣烫麻辣烫"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:lines="1"
-                                android:ellipsize="end"
-                                android:textSize="13sp"
-                                android:textColor="@color/c_666666"
-                                android:text="黄山路黄山路黄山路黄山路"
-                                android:drawableLeft="@drawable/add_ico"
-                                android:drawablePadding="5dp"/>
-                        </LinearLayout>
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/tel_ico"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-
-           <!--  detail rule record-->
-            <com.xkhouse.fang.widget.viewpagerindicator.TabPageIndicator
-                android:id="@+id/indicator"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_marginTop="10dp"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"/>
-
-            <com.xkhouse.fang.widget.CustomViewPager
-                android:id="@+id/pager"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                />
-
-        </LinearLayout>
-    </com.xkhouse.fang.widget.CustomScrollView>
-
-
-    <!-- bottom bar-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/common_diver_line"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:orientation="horizontal">
-        
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical"
             android:gravity="center"
-            android:background="@color/white">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    android:textColor="@color/common_red"
-                    android:text="01"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    android:textColor="@color/c_666666"
-                    android:text="时"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    android:textColor="@color/common_red"
-                    android:text="33"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    android:textColor="@color/c_666666"
-                    android:text="分"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    android:textColor="@color/common_red"
-                    android:text="33"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    android:textColor="@color/c_666666"
-                    android:text="秒"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:textSize="13sp"
-                    android:textColor="@color/c_666666"
-                    android:text="活动结束"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textSize="12sp"
-                android:textColor="@color/common_gray_txt"
-                android:text="本次活动消耗2次机会"/>
-            
-        </LinearLayout>
-        
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:background="@color/common_red"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:text="立即参与"/>
+            android:text="@string/web_error"
+            android:drawableTop="@drawable/net_error"
+            android:drawablePadding="20dp"
+            android:textColor="@color/c_666666"
+            android:textSize="14sp"/>
     </LinearLayout>
 
 </LinearLayout>

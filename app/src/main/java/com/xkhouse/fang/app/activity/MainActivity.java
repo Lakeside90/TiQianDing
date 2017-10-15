@@ -23,6 +23,7 @@ import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.config.Preference;
 import com.xkhouse.fang.app.entity.AppUpgrade;
 import com.xkhouse.fang.app.task.VersionCheckRequest;
+import com.xkhouse.fang.booked.activity.DSpayActivity;
 import com.xkhouse.fang.money.activity.TQDFragment;
 import com.xkhouse.fang.user.activity.UserFragment;
 import com.xkhouse.fang.widget.AppUpdateDialog;
@@ -350,6 +351,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
             Bundle bundle = data.getExtras();
             String scanResult = bundle.getString("result");
             Toast.makeText(this, scanResult, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, DSpayActivity.class);
+            intent.putExtra("url", scanResult);
+            startActivity(intent);
         }
     }
 

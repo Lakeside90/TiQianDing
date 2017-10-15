@@ -3,6 +3,7 @@ package com.xkhouse.fang.app.adapter;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.entity.House;
 import com.xkhouse.fang.app.entity.LuckInfo;
+import com.xkhouse.fang.booked.activity.LuckDetailActivity;
 import com.xkhouse.lib.utils.StringUtil;
 
 /** 
@@ -80,7 +82,7 @@ public class HomeLuckAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		LuckInfo luckInfo = luckList.get(position);
+		final LuckInfo luckInfo = luckList.get(position);
 		
 
 		ImageLoader.getInstance().displayImage(luckInfo.getImg(), holder.icon_iv, options);
@@ -110,7 +112,9 @@ public class HomeLuckAdapter extends BaseAdapter {
 			
 			@Override
 			public void onClick(View v) {
-
+                Intent intent = new Intent(context, LuckDetailActivity.class);
+                intent.putExtra("luckId", luckInfo.getId());
+                context.startActivity(intent);
 			}
 		});
 				

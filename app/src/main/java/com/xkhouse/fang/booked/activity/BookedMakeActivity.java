@@ -1,14 +1,10 @@
 package com.xkhouse.fang.booked.activity;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.os.Message;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
-import android.widget.Checkable;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -22,13 +18,10 @@ import com.xkhouse.fang.app.callback.RequestListener;
 import com.xkhouse.fang.app.config.Constants;
 import com.xkhouse.fang.app.entity.BookedInfo;
 import com.xkhouse.fang.booked.entity.BookAddInfo;
-import com.xkhouse.fang.booked.task.AddressEditRequest;
 import com.xkhouse.fang.booked.task.BookedAddRequest;
 import com.xkhouse.fang.widget.TimePickerDialog;
 import com.xkhouse.lib.utils.NetUtil;
 import com.xkhouse.lib.utils.StringUtil;
-
-import java.util.Calendar;
 
 /**
  * 在线预定

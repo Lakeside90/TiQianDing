@@ -1,6 +1,7 @@
 package com.xkhouse.fang.user.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xkhouse.fang.R;
 import com.xkhouse.fang.app.activity.CJFragment;
 import com.xkhouse.fang.app.entity.CJInfo;
+import com.xkhouse.fang.booked.activity.LuckDetailActivity;
 
 import java.util.ArrayList;
 
@@ -71,7 +73,7 @@ public class CJyjxListAdapter extends BaseAdapter {
 		}
 		
 
-        CJInfo cjInfo = cjInfoList.get(position);
+        final CJInfo cjInfo = cjInfoList.get(position);
 
         ImageLoader.getInstance().displayImage(cjInfo.getImg(), holder.icon_iv, options);
 
@@ -79,6 +81,15 @@ public class CJyjxListAdapter extends BaseAdapter {
         holder.name_txt.setText("恭喜：" + cjInfo.getNickname());
         holder.number_txt.setText(cjInfo.getWinning_number());
         holder.time_txt.setText("揭晓时间：" + cjInfo.getReal_winning_time());
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, LuckDetailActivity.class);
+                intent.putExtra("luckId", cjInfo.getId());
+                context.startActivity(intent);
+            }
+        });
 
 		return convertView;
 	}

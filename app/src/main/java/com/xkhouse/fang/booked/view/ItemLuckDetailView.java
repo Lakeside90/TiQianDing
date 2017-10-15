@@ -18,11 +18,10 @@ import com.xkhouse.fang.user.adapter.CJListAdapter;
 import com.xkhouse.fang.user.entity.XKRecommend;
 import com.xkhouse.fang.user.task.XKRecommendListRequest;
 import com.xkhouse.fang.widget.ScrollXListView;
-import com.xkhouse.fang.widget.xlist.XListView;
 import com.xkhouse.fang.widget.xlist.XListView.IXListViewListener;
 import com.xkhouse.lib.utils.NetUtil;
 
-import com.xkhouse.fang.booked.activity.LuckDetailActivity;
+import com.xkhouse.fang.booked.activity.LuckDetailBakActivity;
 
 import java.util.ArrayList;
 
@@ -72,20 +71,20 @@ public class ItemLuckDetailView {
 
 	private void fillData() {
         switch (status) {
-            case LuckDetailActivity.LUCK_DETAIL:
+            case LuckDetailBakActivity.LUCK_DETAIL:
                 luck_join_listView.setVisibility(View.GONE);
                 luck_detail_webview.setVisibility(View.VISIBLE);
                 luck_detail_webview.loadUrl("http://baidu.com");
                 break;
 
-            case LuckDetailActivity.LUCK_RULE:
+            case LuckDetailBakActivity.LUCK_RULE:
                 luck_join_listView.setVisibility(View.GONE);
                 luck_detail_webview.setVisibility(View.VISIBLE);
                 luck_detail_webview.loadUrl("http://baidu.com");
                 break;
 
 
-            case LuckDetailActivity.LUCK_JOIN:
+            case LuckDetailBakActivity.LUCK_JOIN:
                 luck_join_listView.setVisibility(View.VISIBLE);
                 luck_detail_webview.setVisibility(View.GONE);
 //                luck_join_listView.setAdapter(new CJListAdapter(context, null));
